@@ -1,0 +1,2282 @@
+[
+  {
+    "_id": {
+      "$oid": "ca52f15d32b907a243f8d406"
+    },
+    "userId": {
+      "$oid": "519a765aa3c9eff26b32e958"
+    },
+    "storyId": {
+      "$oid": "8eb384f2002f88b9d775a455"
+    },
+    "lastChapterId": {
+      "$oid": "67850310f32f495e0aa06161"
+    },
+    "lastReadAt": {
+      "$date": "2025-07-08T10:12:29Z"
+    },
+    "progress": 88,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "d8e46def36c388daf5b9e6fa"
+    },
+    "userId": {
+      "$oid": "1ce14b72bfe95f7e6bb7ec4b"
+    },
+    "storyId": {
+      "$oid": "e234a7069253c8acb3cc2c8c"
+    },
+    "lastChapterId": {
+      "$oid": "0713d1a132211c804087324d"
+    },
+    "lastReadAt": {
+      "$date": "2021-08-05T21:54:22Z"
+    },
+    "progress": 3,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "3927d3997cb4c38060c83a80"
+    },
+    "userId": {
+      "$oid": "aee03fbc53756ca5fb85849c"
+    },
+    "storyId": {
+      "$oid": "e234a7069253c8acb3cc2c8c"
+    },
+    "lastChapterId": {
+      "$oid": "16aa1e3df4f301ef390bc416"
+    },
+    "lastReadAt": {
+      "$date": "2021-07-30T21:54:22Z"
+    },
+    "progress": 59,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "9d613d99d3dac42b7a85ea59"
+    },
+    "userId": {
+      "$oid": "8ba5c4657f518722c43041ff"
+    },
+    "storyId": {
+      "$oid": "cb54557657c51fc6f3428c6b"
+    },
+    "lastChapterId": {
+      "$oid": "2cce2ac95c82a05c5e62b8fe"
+    },
+    "lastReadAt": {
+      "$date": "2022-02-19T15:46:32Z"
+    },
+    "progress": 35,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "4af571f38cd7e1adbf90dc8a"
+    },
+    "userId": {
+      "$oid": "a0b707cdc29162d4ad559502"
+    },
+    "storyId": {
+      "$oid": "1106e755feb77adea3469bf3"
+    },
+    "lastChapterId": {
+      "$oid": "9aa60d08c53935007126816a"
+    },
+    "lastReadAt": {
+      "$date": "2021-02-01T05:47:12Z"
+    },
+    "progress": 49,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "3d66a6f7fe56a16f3f6a995a"
+    },
+    "userId": {
+      "$oid": "6dc10e25f73464719c95c84a"
+    },
+    "storyId": {
+      "$oid": "be258766fc6cc12bd0eaf85b"
+    },
+    "lastChapterId": {
+      "$oid": "07e16df27596f2082638641f"
+    },
+    "lastReadAt": {
+      "$date": "2025-11-19T02:34:43Z"
+    },
+    "progress": 72,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "d52018da093a63f0c3012d85"
+    },
+    "userId": {
+      "$oid": "c2fc9d9714e4d7e46ed78932"
+    },
+    "storyId": {
+      "$oid": "3ea50919a2074116cf66e31d"
+    },
+    "lastChapterId": {
+      "$oid": "8df70a04d6d670411d301ba5"
+    },
+    "lastReadAt": {
+      "$date": "2023-06-22T02:49:04Z"
+    },
+    "progress": 39,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "76cf3dd75830d6b253510b59"
+    },
+    "userId": {
+      "$oid": "51024c0f7149bfe40e726bdc"
+    },
+    "storyId": {
+      "$oid": "6de6e293f2645b2c24cfc4a4"
+    },
+    "lastChapterId": {
+      "$oid": "1de415aed438d74dd48c42a6"
+    },
+    "lastReadAt": {
+      "$date": "2025-06-02T17:02:00Z"
+    },
+    "progress": 25,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "a1f7042ed634e0029faf3426"
+    },
+    "userId": {
+      "$oid": "c37bc907080f968fd17b01aa"
+    },
+    "storyId": {
+      "$oid": "ee31608df86c6d73a84fa2b2"
+    },
+    "lastChapterId": {
+      "$oid": "67f17ab4a0f0562b7efa701f"
+    },
+    "lastReadAt": {
+      "$date": "2021-07-28T12:58:40Z"
+    },
+    "progress": 89,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "6ffb43fb21c4acc936c8bf3d"
+    },
+    "userId": {
+      "$oid": "606fa9a5e8a44450e840f319"
+    },
+    "storyId": {
+      "$oid": "965ac57c75bf758d954a624a"
+    },
+    "lastChapterId": {
+      "$oid": "d7317f685fb137370bae8fa5"
+    },
+    "lastReadAt": {
+      "$date": "2026-05-17T23:55:30Z"
+    },
+    "progress": 21,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "52b38fcbe44035f1e0df1c2a"
+    },
+    "userId": {
+      "$oid": "717c9a4bfb611e07819b151a"
+    },
+    "storyId": {
+      "$oid": "9d626e009e34ea92a3dca28e"
+    },
+    "lastChapterId": {
+      "$oid": "f86a3351ff52a4d2801297de"
+    },
+    "lastReadAt": {
+      "$date": "2022-05-02T04:05:58Z"
+    },
+    "progress": 26,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "9fd7e40dd76093a6faf75600"
+    },
+    "userId": {
+      "$oid": "7fe0d1b2cd4df855cd4e962c"
+    },
+    "storyId": {
+      "$oid": "df9bcc269ca03f9bd46966bf"
+    },
+    "lastChapterId": {
+      "$oid": "74c70982c72fc03bf273f6fe"
+    },
+    "lastReadAt": {
+      "$date": "2023-05-27T13:51:53Z"
+    },
+    "progress": 72,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "f8cc4fd460e1af6911602db1"
+    },
+    "userId": {
+      "$oid": "99e1a645d9ec42a4798b8637"
+    },
+    "storyId": {
+      "$oid": "1944a3acc740ccc1031b5218"
+    },
+    "lastChapterId": {
+      "$oid": "eb8d927a3bb58e8ccf51e9dd"
+    },
+    "lastReadAt": {
+      "$date": "2026-07-07T02:56:34Z"
+    },
+    "progress": 85,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "89b7e91da0de7bd3a24eeccd"
+    },
+    "userId": {
+      "$oid": "e9e66423990c8bc35afa3629"
+    },
+    "storyId": {
+      "$oid": "42085256355f6c4f164d54fa"
+    },
+    "lastChapterId": {
+      "$oid": "a725aa531888abd1f7a674ae"
+    },
+    "lastReadAt": {
+      "$date": "2025-11-04T04:32:34Z"
+    },
+    "progress": 6,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "10c8d43eb16392b9290342ee"
+    },
+    "userId": {
+      "$oid": "8ba5c4657f518722c43041ff"
+    },
+    "storyId": {
+      "$oid": "ac45a57a65d7581bfb797f8b"
+    },
+    "lastChapterId": {
+      "$oid": "b4173de4b2145bb4b2b49241"
+    },
+    "lastReadAt": {
+      "$date": "2025-03-15T14:35:01Z"
+    },
+    "progress": 59,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "962ae04aa021799152b3b347"
+    },
+    "userId": {
+      "$oid": "e00366f1191275610c41a6f6"
+    },
+    "storyId": {
+      "$oid": "382d99f19964045852643e02"
+    },
+    "lastChapterId": {
+      "$oid": "ec150c3f17805239d59796cd"
+    },
+    "lastReadAt": {
+      "$date": "2025-12-21T13:48:33Z"
+    },
+    "progress": 81,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "5b990194508f97c0c3a293f0"
+    },
+    "userId": {
+      "$oid": "d61aa3334d755e8f6976b584"
+    },
+    "storyId": {
+      "$oid": "8eb384f2002f88b9d775a455"
+    },
+    "lastChapterId": {
+      "$oid": "235921b5eeaeb91e083800f5"
+    },
+    "lastReadAt": {
+      "$date": "2025-07-26T10:12:29Z"
+    },
+    "progress": 15,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "e690399d3eee659550cc37c4"
+    },
+    "userId": {
+      "$oid": "d9526a69b69f00ec145b94bb"
+    },
+    "storyId": {
+      "$oid": "be258766fc6cc12bd0eaf85b"
+    },
+    "lastChapterId": {
+      "$oid": "07e16df27596f2082638641f"
+    },
+    "lastReadAt": {
+      "$date": "2026-02-26T02:34:43Z"
+    },
+    "progress": 93,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "d77d7ebff7817980fc808d62"
+    },
+    "userId": {
+      "$oid": "8ba5c4657f518722c43041ff"
+    },
+    "storyId": {
+      "$oid": "bf1983b977d2862375c56ebd"
+    },
+    "lastChapterId": {
+      "$oid": "851a245518ff626b990e84ca"
+    },
+    "lastReadAt": {
+      "$date": "2021-02-26T03:27:14Z"
+    },
+    "progress": 36,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "755198235ee60c75e47ab9ba"
+    },
+    "userId": {
+      "$oid": "8ba5c4657f518722c43041ff"
+    },
+    "storyId": {
+      "$oid": "6abaa970829bea7ad18474ed"
+    },
+    "lastChapterId": {
+      "$oid": "288052142e9e93727e7601b5"
+    },
+    "lastReadAt": {
+      "$date": "2020-11-13T02:42:28Z"
+    },
+    "progress": 47,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "65aa4de3157eefb1ded1ac50"
+    },
+    "userId": {
+      "$oid": "e9e66423990c8bc35afa3629"
+    },
+    "storyId": {
+      "$oid": "7bd3d0ec4abbc103b0e66ae6"
+    },
+    "lastChapterId": {
+      "$oid": "fbd3c49ad61506c3e3ede92a"
+    },
+    "lastReadAt": {
+      "$date": "2024-04-02T11:40:14Z"
+    },
+    "progress": 70,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "4cb11ee8192c7c82fde47399"
+    },
+    "userId": {
+      "$oid": "a6a05d3238d38669c4da68bf"
+    },
+    "storyId": {
+      "$oid": "7983950248158983ca4680dd"
+    },
+    "lastChapterId": {
+      "$oid": "6dbdd4f72b7ac388e427bd68"
+    },
+    "lastReadAt": {
+      "$date": "2023-11-18T23:51:54Z"
+    },
+    "progress": 47,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "c5d948a6533ce85a07f44c69"
+    },
+    "userId": {
+      "$oid": "cd45a941d26cd13e942fcac4"
+    },
+    "storyId": {
+      "$oid": "ee31608df86c6d73a84fa2b2"
+    },
+    "lastChapterId": {
+      "$oid": "663bf4636536483363b1d9e8"
+    },
+    "lastReadAt": {
+      "$date": "2021-09-25T12:58:40Z"
+    },
+    "progress": 60,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "c3b16a32375e0bc4bbd5a352"
+    },
+    "userId": {
+      "$oid": "ace3fff0d88956af807c0f68"
+    },
+    "storyId": {
+      "$oid": "42085256355f6c4f164d54fa"
+    },
+    "lastChapterId": {
+      "$oid": "a725aa531888abd1f7a674ae"
+    },
+    "lastReadAt": {
+      "$date": "2025-11-30T04:32:34Z"
+    },
+    "progress": 98,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "a13088a58772465a12b3150f"
+    },
+    "userId": {
+      "$oid": "1b467fd122f5a42929301569"
+    },
+    "storyId": {
+      "$oid": "2c3e8e2a7ccba3c0170ec718"
+    },
+    "lastChapterId": {
+      "$oid": "e73fed6b4fa5f401db3a7428"
+    },
+    "lastReadAt": {
+      "$date": "2024-11-24T19:20:41Z"
+    },
+    "progress": 7,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "9314998f2e682648d9003000"
+    },
+    "userId": {
+      "$oid": "cd45a941d26cd13e942fcac4"
+    },
+    "storyId": {
+      "$oid": "bf1983b977d2862375c56ebd"
+    },
+    "lastChapterId": {
+      "$oid": "b253114a3900671ea0152411"
+    },
+    "lastReadAt": {
+      "$date": "2021-04-12T03:27:14Z"
+    },
+    "progress": 73,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "a15c72e243e503162d6da10b"
+    },
+    "userId": {
+      "$oid": "ace3fff0d88956af807c0f68"
+    },
+    "storyId": {
+      "$oid": "8cdb6c21334e97875f5e60ca"
+    },
+    "lastChapterId": {
+      "$oid": "73b2177b21916505be84ec61"
+    },
+    "lastReadAt": {
+      "$date": "2021-11-26T06:06:01Z"
+    },
+    "progress": 14,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "caa3a672d7c6fa6a14b01a05"
+    },
+    "userId": {
+      "$oid": "606fa9a5e8a44450e840f319"
+    },
+    "storyId": {
+      "$oid": "2c3e8e2a7ccba3c0170ec718"
+    },
+    "lastChapterId": {
+      "$oid": "3ab8db456f79938f5cd642f4"
+    },
+    "lastReadAt": {
+      "$date": "2025-01-18T19:20:41Z"
+    },
+    "progress": 74,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "1d5d6f55c5c6e63d68b77db6"
+    },
+    "userId": {
+      "$oid": "606fa9a5e8a44450e840f319"
+    },
+    "storyId": {
+      "$oid": "8eb384f2002f88b9d775a455"
+    },
+    "lastChapterId": {
+      "$oid": "81887c321f1fedc331ce990e"
+    },
+    "lastReadAt": {
+      "$date": "2025-06-07T10:12:29Z"
+    },
+    "progress": 30,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "7043c70e8a8a37994023f285"
+    },
+    "userId": {
+      "$oid": "1b467fd122f5a42929301569"
+    },
+    "storyId": {
+      "$oid": "7983950248158983ca4680dd"
+    },
+    "lastChapterId": {
+      "$oid": "dae4a307255d84cffe44b9e4"
+    },
+    "lastReadAt": {
+      "$date": "2023-11-05T23:51:54Z"
+    },
+    "progress": 97,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "2030313568489e6b1c5b5ed8"
+    },
+    "userId": {
+      "$oid": "d9526a69b69f00ec145b94bb"
+    },
+    "storyId": {
+      "$oid": "5b9ff1eab2855b687a1d7c81"
+    },
+    "lastChapterId": {
+      "$oid": "03a66be4dc86c13b39412d5d"
+    },
+    "lastReadAt": {
+      "$date": "2024-08-21T00:15:25Z"
+    },
+    "progress": 5,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "18205f656d6f4bdb755aa61f"
+    },
+    "userId": {
+      "$oid": "c37bc907080f968fd17b01aa"
+    },
+    "storyId": {
+      "$oid": "234b9cb3392a252c6bac0d80"
+    },
+    "lastChapterId": {
+      "$oid": "0acc837a327931db646c90d2"
+    },
+    "lastReadAt": {
+      "$date": "2021-01-04T03:32:51Z"
+    },
+    "progress": 16,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "bf2ba4bd0a514c053467cd22"
+    },
+    "userId": {
+      "$oid": "6dc10e25f73464719c95c84a"
+    },
+    "storyId": {
+      "$oid": "795e5eeebb181f07ab03a7a9"
+    },
+    "lastChapterId": {
+      "$oid": "27fc133cc1202308530bfec6"
+    },
+    "lastReadAt": {
+      "$date": "2023-10-26T21:58:21Z"
+    },
+    "progress": 29,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "533ae4aae0e43ecf7482b69c"
+    },
+    "userId": {
+      "$oid": "13f142b33d8d51c4a08cddc2"
+    },
+    "storyId": {
+      "$oid": "b29953b1bc978076c52ebbae"
+    },
+    "lastChapterId": {
+      "$oid": "bee44af60f7068899df3f41f"
+    },
+    "lastReadAt": {
+      "$date": "2023-05-31T01:10:53Z"
+    },
+    "progress": 54,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "4ef7bef7957623cf19b1e765"
+    },
+    "userId": {
+      "$oid": "ea27ff03adf04e89f716fb04"
+    },
+    "storyId": {
+      "$oid": "e804c822cffc847bbd20ab64"
+    },
+    "lastChapterId": {
+      "$oid": "95963c9e9fe7afe944764482"
+    },
+    "lastReadAt": {
+      "$date": "2021-01-20T14:42:54Z"
+    },
+    "progress": 86,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "33f5feec3adafe687f2445d3"
+    },
+    "userId": {
+      "$oid": "e00366f1191275610c41a6f6"
+    },
+    "storyId": {
+      "$oid": "764eb1cad4118da750babc42"
+    },
+    "lastChapterId": {
+      "$oid": "71ecd3bce03dd5a0371437a2"
+    },
+    "lastReadAt": {
+      "$date": "2021-03-08T14:10:55Z"
+    },
+    "progress": 32,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "6040fd96ded65d2e7b91c018"
+    },
+    "userId": {
+      "$oid": "d61aa3334d755e8f6976b584"
+    },
+    "storyId": {
+      "$oid": "e399f79bf04457fe744a0980"
+    },
+    "lastChapterId": {
+      "$oid": "dc034bd0a42c2ae5b7d7438b"
+    },
+    "lastReadAt": {
+      "$date": "2025-02-28T04:32:20Z"
+    },
+    "progress": 23,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "fd6ef332fe6cd6d690046ab4"
+    },
+    "userId": {
+      "$oid": "d9526a69b69f00ec145b94bb"
+    },
+    "storyId": {
+      "$oid": "5c481b53a1a01407eab5e2a3"
+    },
+    "lastChapterId": {
+      "$oid": "fd8d319cb36513af46f546a8"
+    },
+    "lastReadAt": {
+      "$date": "2023-06-04T08:25:18Z"
+    },
+    "progress": 85,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "39290d0b6e115adc2ac7eb3f"
+    },
+    "userId": {
+      "$oid": "a0b707cdc29162d4ad559502"
+    },
+    "storyId": {
+      "$oid": "8eb384f2002f88b9d775a455"
+    },
+    "lastChapterId": {
+      "$oid": "68395d7a96d4e42884614c19"
+    },
+    "lastReadAt": {
+      "$date": "2025-09-14T10:12:29Z"
+    },
+    "progress": 47,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "9016d86b03e784701430d21e"
+    },
+    "userId": {
+      "$oid": "ace3fff0d88956af807c0f68"
+    },
+    "storyId": {
+      "$oid": "6abaa970829bea7ad18474ed"
+    },
+    "lastChapterId": {
+      "$oid": "bbf700f945ec967c66b94f11"
+    },
+    "lastReadAt": {
+      "$date": "2021-01-25T02:42:28Z"
+    },
+    "progress": 21,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "ba709d1ebdee08928d9d9d95"
+    },
+    "userId": {
+      "$oid": "e4bd022090c389b376a6846d"
+    },
+    "storyId": {
+      "$oid": "be258766fc6cc12bd0eaf85b"
+    },
+    "lastChapterId": {
+      "$oid": "b094a533b2a6641a85a14846"
+    },
+    "lastReadAt": {
+      "$date": "2026-01-03T02:34:43Z"
+    },
+    "progress": 10,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "2ecc84079e15f3d251b810bf"
+    },
+    "userId": {
+      "$oid": "7631b89cfebabeff3f4a903d"
+    },
+    "storyId": {
+      "$oid": "234b9cb3392a252c6bac0d80"
+    },
+    "lastChapterId": {
+      "$oid": "ba279e322cc0e2d6845156d6"
+    },
+    "lastReadAt": {
+      "$date": "2021-01-01T03:32:51Z"
+    },
+    "progress": 55,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "09ccf5068bb78ba63002af6e"
+    },
+    "userId": {
+      "$oid": "c2fc9d9714e4d7e46ed78932"
+    },
+    "storyId": {
+      "$oid": "493184876cadf7eb76c8371c"
+    },
+    "lastChapterId": {
+      "$oid": "dec02777ac194ae8befe6231"
+    },
+    "lastReadAt": {
+      "$date": "2023-02-01T08:04:11Z"
+    },
+    "progress": 83,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "cd26b359d0656fbe2206f10f"
+    },
+    "userId": {
+      "$oid": "e00366f1191275610c41a6f6"
+    },
+    "storyId": {
+      "$oid": "965ac57c75bf758d954a624a"
+    },
+    "lastChapterId": {
+      "$oid": "213d8b0499f79389b9527d0f"
+    },
+    "lastReadAt": {
+      "$date": "2026-04-02T23:55:30Z"
+    },
+    "progress": 97,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "88ead3bc71290de5d54f9efc"
+    },
+    "userId": {
+      "$oid": "519a765aa3c9eff26b32e958"
+    },
+    "storyId": {
+      "$oid": "874fdbe8c3a64d950f32c9b8"
+    },
+    "lastChapterId": {
+      "$oid": "a943963e4fbcd81b54b5ffd4"
+    },
+    "lastReadAt": {
+      "$date": "2025-09-12T05:45:02Z"
+    },
+    "progress": 88,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "db664a9ad5fa1ae316e98ac2"
+    },
+    "userId": {
+      "$oid": "8ba5c4657f518722c43041ff"
+    },
+    "storyId": {
+      "$oid": "382d99f19964045852643e02"
+    },
+    "lastChapterId": {
+      "$oid": "90f2f050b60cc8c0090d8219"
+    },
+    "lastReadAt": {
+      "$date": "2026-03-23T13:48:33Z"
+    },
+    "progress": 72,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "cafe2baa64033907db421386"
+    },
+    "userId": {
+      "$oid": "78897b1e81ccb78d304d7fe0"
+    },
+    "storyId": {
+      "$oid": "1106e755feb77adea3469bf3"
+    },
+    "lastChapterId": {
+      "$oid": "5146ad16638481aa33e0287c"
+    },
+    "lastReadAt": {
+      "$date": "2020-10-03T05:47:12Z"
+    },
+    "progress": 9,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "4f656337474268a49fdd2242"
+    },
+    "userId": {
+      "$oid": "e4bd022090c389b376a6846d"
+    },
+    "storyId": {
+      "$oid": "e234a7069253c8acb3cc2c8c"
+    },
+    "lastChapterId": {
+      "$oid": "146bd01d4d4cc7043e15d3a5"
+    },
+    "lastReadAt": {
+      "$date": "2021-05-20T21:54:22Z"
+    },
+    "progress": 38,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "64b0b57737f1f3d827070d3c"
+    },
+    "userId": {
+      "$oid": "c37bc907080f968fd17b01aa"
+    },
+    "storyId": {
+      "$oid": "7983950248158983ca4680dd"
+    },
+    "lastChapterId": {
+      "$oid": "a50f01030869cfec11ed3da3"
+    },
+    "lastReadAt": {
+      "$date": "2023-11-15T23:51:54Z"
+    },
+    "progress": 64,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "74b1dc94dd11c9eee0716fed"
+    },
+    "userId": {
+      "$oid": "1ed85fd591c01255fabd21c4"
+    },
+    "storyId": {
+      "$oid": "e7347fa93e153dd755fa66b9"
+    },
+    "lastChapterId": {
+      "$oid": "98ecf32c9aa46c3e36e73904"
+    },
+    "lastReadAt": {
+      "$date": "2024-12-29T17:16:00Z"
+    },
+    "progress": 45,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "9d64c3f2951197f2d5358b6e"
+    },
+    "userId": {
+      "$oid": "1b467fd122f5a42929301569"
+    },
+    "storyId": {
+      "$oid": "e1b9a2ef0194551f31e1cfce"
+    },
+    "lastChapterId": {
+      "$oid": "efdce4667acf30d7737149db"
+    },
+    "lastReadAt": {
+      "$date": "2024-05-28T07:31:06Z"
+    },
+    "progress": 20,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "e159a3fcc92b285013199048"
+    },
+    "userId": {
+      "$oid": "519a765aa3c9eff26b32e958"
+    },
+    "storyId": {
+      "$oid": "7bd3d0ec4abbc103b0e66ae6"
+    },
+    "lastChapterId": {
+      "$oid": "0c28bd927ddf9a49f9ca405a"
+    },
+    "lastReadAt": {
+      "$date": "2024-02-24T11:40:14Z"
+    },
+    "progress": 4,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "4c80d39d006ec6092a38c88b"
+    },
+    "userId": {
+      "$oid": "df0cb6518fe427ceb6350599"
+    },
+    "storyId": {
+      "$oid": "d108eb62c84540bf0eeaec61"
+    },
+    "lastChapterId": {
+      "$oid": "a038c1d724c560305b73b2ff"
+    },
+    "lastReadAt": {
+      "$date": "2023-11-23T04:16:46Z"
+    },
+    "progress": 47,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "e8e3c7322ea39ec9b54c2713"
+    },
+    "userId": {
+      "$oid": "7631b89cfebabeff3f4a903d"
+    },
+    "storyId": {
+      "$oid": "234b9cb3392a252c6bac0d80"
+    },
+    "lastChapterId": {
+      "$oid": "19bc5a14f6688a0b193db67b"
+    },
+    "lastReadAt": {
+      "$date": "2020-12-05T03:32:51Z"
+    },
+    "progress": 23,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "f10b2fba216b3342de58ef3a"
+    },
+    "userId": {
+      "$oid": "e9e66423990c8bc35afa3629"
+    },
+    "storyId": {
+      "$oid": "bf1983b977d2862375c56ebd"
+    },
+    "lastChapterId": {
+      "$oid": "5d0520964682699b3f34619a"
+    },
+    "lastReadAt": {
+      "$date": "2020-12-14T03:27:14Z"
+    },
+    "progress": 73,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "46efa4391512df0896580a4c"
+    },
+    "userId": {
+      "$oid": "be29fdb56ffed7dcfef37739"
+    },
+    "storyId": {
+      "$oid": "117e7554b97961dccf9ff4d1"
+    },
+    "lastChapterId": {
+      "$oid": "ed32afd12c97a7cafd4bb1b1"
+    },
+    "lastReadAt": {
+      "$date": "2020-07-29T09:45:51Z"
+    },
+    "progress": 58,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "c0f93a003ea7acedc8a232fc"
+    },
+    "userId": {
+      "$oid": "68e563266dd0e848a1291a3f"
+    },
+    "storyId": {
+      "$oid": "e4ec8d18e7085dc3175f1b69"
+    },
+    "lastChapterId": {
+      "$oid": "cf2b087140453b3b99acacee"
+    },
+    "lastReadAt": {
+      "$date": "2024-01-30T10:18:58Z"
+    },
+    "progress": 41,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "b785cf595ac36ba084b41a80"
+    },
+    "userId": {
+      "$oid": "17c2c2546ab71a977b61172c"
+    },
+    "storyId": {
+      "$oid": "df9bcc269ca03f9bd46966bf"
+    },
+    "lastChapterId": {
+      "$oid": "ef2e0e7aa60fc363689b5a28"
+    },
+    "lastReadAt": {
+      "$date": "2023-06-15T13:51:53Z"
+    },
+    "progress": 34,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "2a3da7974fcdd944fa587b1c"
+    },
+    "userId": {
+      "$oid": "6a89efd5b14fbd7a85869348"
+    },
+    "storyId": {
+      "$oid": "764eb1cad4118da750babc42"
+    },
+    "lastChapterId": {
+      "$oid": "2faad0109596bf7934b581c9"
+    },
+    "lastReadAt": {
+      "$date": "2021-04-17T14:10:55Z"
+    },
+    "progress": 34,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "21e28e664b402bda5723710f"
+    },
+    "userId": {
+      "$oid": "e00366f1191275610c41a6f6"
+    },
+    "storyId": {
+      "$oid": "b617a31782b4d4f756f1abd2"
+    },
+    "lastChapterId": {
+      "$oid": "ba5f618e99d8cceb20b56cd0"
+    },
+    "lastReadAt": {
+      "$date": "2021-04-16T18:16:20Z"
+    },
+    "progress": 8,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "73f2cf4282c76e0045c30a28"
+    },
+    "userId": {
+      "$oid": "17c2c2546ab71a977b61172c"
+    },
+    "storyId": {
+      "$oid": "7bf5c7c5ad15d6f973af8f95"
+    },
+    "lastChapterId": {
+      "$oid": "f177a2d274673b2da5b20498"
+    },
+    "lastReadAt": {
+      "$date": "2024-02-13T00:39:59Z"
+    },
+    "progress": 99,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "2b7f5b2d07da460fe0aab45f"
+    },
+    "userId": {
+      "$oid": "a0b707cdc29162d4ad559502"
+    },
+    "storyId": {
+      "$oid": "5b9ff1eab2855b687a1d7c81"
+    },
+    "lastChapterId": {
+      "$oid": "7e0b00def3bd4b99cc94d2ea"
+    },
+    "lastReadAt": {
+      "$date": "2024-11-24T00:15:25Z"
+    },
+    "progress": 24,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "7673f2a41ce70be4fcd60939"
+    },
+    "userId": {
+      "$oid": "aee03fbc53756ca5fb85849c"
+    },
+    "storyId": {
+      "$oid": "9ed1d983bb3dc4b58d0f6905"
+    },
+    "lastChapterId": {
+      "$oid": "70d47b60975372d95e23aae4"
+    },
+    "lastReadAt": {
+      "$date": "2026-01-29T11:56:10Z"
+    },
+    "progress": 14,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "6bf9bbfea1c24f79967b1890"
+    },
+    "userId": {
+      "$oid": "68e563266dd0e848a1291a3f"
+    },
+    "storyId": {
+      "$oid": "b617a31782b4d4f756f1abd2"
+    },
+    "lastChapterId": {
+      "$oid": "125ddb8218c2cd4e28146682"
+    },
+    "lastReadAt": {
+      "$date": "2020-11-17T18:16:20Z"
+    },
+    "progress": 64,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "a7f8f530215817915e595bf1"
+    },
+    "userId": {
+      "$oid": "0f25891199beb260cad9c33a"
+    },
+    "storyId": {
+      "$oid": "0e73eda23678ac58cff6a99b"
+    },
+    "lastChapterId": {
+      "$oid": "e533df9c55b128e01c9cf38c"
+    },
+    "lastReadAt": {
+      "$date": "2021-10-28T00:28:39Z"
+    },
+    "progress": 78,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "1c54d25b511a3a30262803bf"
+    },
+    "userId": {
+      "$oid": "e9e66423990c8bc35afa3629"
+    },
+    "storyId": {
+      "$oid": "234b9cb3392a252c6bac0d80"
+    },
+    "lastChapterId": {
+      "$oid": "7c90ae9c054e1e2f9b2044f8"
+    },
+    "lastReadAt": {
+      "$date": "2020-10-06T03:32:51Z"
+    },
+    "progress": 19,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "68e659a111506e1042c69ff0"
+    },
+    "userId": {
+      "$oid": "a0b707cdc29162d4ad559502"
+    },
+    "storyId": {
+      "$oid": "2d2744e6484b1e4b574b38c6"
+    },
+    "lastChapterId": {
+      "$oid": "4de7c93a3b10b0c6774950ee"
+    },
+    "lastReadAt": {
+      "$date": "2024-04-19T16:01:56Z"
+    },
+    "progress": 41,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "64304eed77dff460920c1b1c"
+    },
+    "userId": {
+      "$oid": "3776b7e8c2c084c2f588dd33"
+    },
+    "storyId": {
+      "$oid": "e4ec8d18e7085dc3175f1b69"
+    },
+    "lastChapterId": {
+      "$oid": "ac16dd36a6ee786b6af5ca70"
+    },
+    "lastReadAt": {
+      "$date": "2024-03-10T10:18:58Z"
+    },
+    "progress": 81,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "9ec57e16c19b82135221d615"
+    },
+    "userId": {
+      "$oid": "1ed85fd591c01255fabd21c4"
+    },
+    "storyId": {
+      "$oid": "b617a31782b4d4f756f1abd2"
+    },
+    "lastChapterId": {
+      "$oid": "b2066cb2a9295a199ac27477"
+    },
+    "lastReadAt": {
+      "$date": "2021-01-07T18:16:20Z"
+    },
+    "progress": 91,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "7665de3f8b7c3033b44d6f47"
+    },
+    "userId": {
+      "$oid": "8ba5c4657f518722c43041ff"
+    },
+    "storyId": {
+      "$oid": "9d626e009e34ea92a3dca28e"
+    },
+    "lastChapterId": {
+      "$oid": "e582d36a8588332292a50944"
+    },
+    "lastReadAt": {
+      "$date": "2022-06-12T04:05:58Z"
+    },
+    "progress": 58,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "35241498f2501429bb89d23a"
+    },
+    "userId": {
+      "$oid": "7fe0d1b2cd4df855cd4e962c"
+    },
+    "storyId": {
+      "$oid": "df9bcc269ca03f9bd46966bf"
+    },
+    "lastChapterId": {
+      "$oid": "854ae976592f6ee7144fdfd2"
+    },
+    "lastReadAt": {
+      "$date": "2023-04-29T13:51:53Z"
+    },
+    "progress": 11,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "94e4be6b6b45477cbfd55ae6"
+    },
+    "userId": {
+      "$oid": "66022ebd28e4747e7593d1e8"
+    },
+    "storyId": {
+      "$oid": "1944a3acc740ccc1031b5218"
+    },
+    "lastChapterId": {
+      "$oid": "778a262b7f821a3b1b92be16"
+    },
+    "lastReadAt": {
+      "$date": "2026-03-16T02:56:34Z"
+    },
+    "progress": 23,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "9661b53b05452ed0fceb4305"
+    },
+    "userId": {
+      "$oid": "a6a05d3238d38669c4da68bf"
+    },
+    "storyId": {
+      "$oid": "b29953b1bc978076c52ebbae"
+    },
+    "lastChapterId": {
+      "$oid": "bee44af60f7068899df3f41f"
+    },
+    "lastReadAt": {
+      "$date": "2023-06-27T01:10:53Z"
+    },
+    "progress": 53,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "6f4ef8029d46f329121aaa61"
+    },
+    "userId": {
+      "$oid": "ea27ff03adf04e89f716fb04"
+    },
+    "storyId": {
+      "$oid": "493184876cadf7eb76c8371c"
+    },
+    "lastChapterId": {
+      "$oid": "db3ea50fb0a34facb7d54b8f"
+    },
+    "lastReadAt": {
+      "$date": "2022-10-08T08:04:11Z"
+    },
+    "progress": 29,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "79c8e0506cab700da17a50e7"
+    },
+    "userId": {
+      "$oid": "c2fc9d9714e4d7e46ed78932"
+    },
+    "storyId": {
+      "$oid": "a2c9e069756133d6c27588dd"
+    },
+    "lastChapterId": {
+      "$oid": "4cf624488efb27eeb011c4a8"
+    },
+    "lastReadAt": {
+      "$date": "2022-08-30T04:51:27Z"
+    },
+    "progress": 79,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "4d97964273f72338869d84bf"
+    },
+    "userId": {
+      "$oid": "ea27ff03adf04e89f716fb04"
+    },
+    "storyId": {
+      "$oid": "8cdb6c21334e97875f5e60ca"
+    },
+    "lastChapterId": {
+      "$oid": "5b7c6a129096907113d77302"
+    },
+    "lastReadAt": {
+      "$date": "2021-12-11T06:06:01Z"
+    },
+    "progress": 36,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "062daaf06ccacfd515b2d986"
+    },
+    "userId": {
+      "$oid": "68e563266dd0e848a1291a3f"
+    },
+    "storyId": {
+      "$oid": "cb54557657c51fc6f3428c6b"
+    },
+    "lastChapterId": {
+      "$oid": "637ab5bf6869a7a17c059d31"
+    },
+    "lastReadAt": {
+      "$date": "2022-08-10T15:46:32Z"
+    },
+    "progress": 56,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "6b799964572f9cd5c338f718"
+    },
+    "userId": {
+      "$oid": "13f142b33d8d51c4a08cddc2"
+    },
+    "storyId": {
+      "$oid": "e234a7069253c8acb3cc2c8c"
+    },
+    "lastChapterId": {
+      "$oid": "146bd01d4d4cc7043e15d3a5"
+    },
+    "lastReadAt": {
+      "$date": "2021-05-24T21:54:22Z"
+    },
+    "progress": 35,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "47f7e15810d5c1ce05388bce"
+    },
+    "userId": {
+      "$oid": "cd45a941d26cd13e942fcac4"
+    },
+    "storyId": {
+      "$oid": "d108eb62c84540bf0eeaec61"
+    },
+    "lastChapterId": {
+      "$oid": "f6cf1928da4905c9dbb45cae"
+    },
+    "lastReadAt": {
+      "$date": "2023-10-17T04:16:46Z"
+    },
+    "progress": 43,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "159df4ad9ae4c5d548a71cc8"
+    },
+    "userId": {
+      "$oid": "c7a09cc0137e3fbebb74fd00"
+    },
+    "storyId": {
+      "$oid": "5b9ff1eab2855b687a1d7c81"
+    },
+    "lastChapterId": {
+      "$oid": "228f81aeb13dcf980c7bba9c"
+    },
+    "lastReadAt": {
+      "$date": "2024-12-12T00:15:25Z"
+    },
+    "progress": 84,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "19cfc199d8d95f3644d503de"
+    },
+    "userId": {
+      "$oid": "519a765aa3c9eff26b32e958"
+    },
+    "storyId": {
+      "$oid": "117e7554b97961dccf9ff4d1"
+    },
+    "lastChapterId": {
+      "$oid": "6bc606413b0080febebe4024"
+    },
+    "lastReadAt": {
+      "$date": "2020-06-10T09:45:51Z"
+    },
+    "progress": 73,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "3dbbbeebb0ed29cd9b466109"
+    },
+    "userId": {
+      "$oid": "c279e87f38891e4acc21a827"
+    },
+    "storyId": {
+      "$oid": "e7347fa93e153dd755fa66b9"
+    },
+    "lastChapterId": {
+      "$oid": "a2918dd62584acf94610c802"
+    },
+    "lastReadAt": {
+      "$date": "2024-12-07T17:16:00Z"
+    },
+    "progress": 73,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "b96055e064120b2ed9940bfb"
+    },
+    "userId": {
+      "$oid": "aee03fbc53756ca5fb85849c"
+    },
+    "storyId": {
+      "$oid": "b617a31782b4d4f756f1abd2"
+    },
+    "lastChapterId": {
+      "$oid": "d2dea15cf53abb45cf21c998"
+    },
+    "lastReadAt": {
+      "$date": "2020-12-13T18:16:20Z"
+    },
+    "progress": 43,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "8be5978affbe24781e0dc3f2"
+    },
+    "userId": {
+      "$oid": "e4bd022090c389b376a6846d"
+    },
+    "storyId": {
+      "$oid": "e7347fa93e153dd755fa66b9"
+    },
+    "lastChapterId": {
+      "$oid": "cccc0f16a3960b5b7c215c67"
+    },
+    "lastReadAt": {
+      "$date": "2025-01-31T17:16:00Z"
+    },
+    "progress": 97,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "f103bf1e9f067cad8454b0b9"
+    },
+    "userId": {
+      "$oid": "78897b1e81ccb78d304d7fe0"
+    },
+    "storyId": {
+      "$oid": "795e5eeebb181f07ab03a7a9"
+    },
+    "lastChapterId": {
+      "$oid": "6d4bbf8afca8166f4d073180"
+    },
+    "lastReadAt": {
+      "$date": "2023-07-13T21:58:21Z"
+    },
+    "progress": 21,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "8f5a8b342379ab2a4a55b9a9"
+    },
+    "userId": {
+      "$oid": "ea27ff03adf04e89f716fb04"
+    },
+    "storyId": {
+      "$oid": "1944a3acc740ccc1031b5218"
+    },
+    "lastChapterId": {
+      "$oid": "8c552d593a2eeac5a8ccf202"
+    },
+    "lastReadAt": {
+      "$date": "2026-04-09T02:56:34Z"
+    },
+    "progress": 43,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "c1fb7909ba1d7b3b5a9dfaed"
+    },
+    "userId": {
+      "$oid": "1ce14b72bfe95f7e6bb7ec4b"
+    },
+    "storyId": {
+      "$oid": "e7347fa93e153dd755fa66b9"
+    },
+    "lastChapterId": {
+      "$oid": "d81a6ea11af5e586a2b9c5de"
+    },
+    "lastReadAt": {
+      "$date": "2025-01-05T17:16:00Z"
+    },
+    "progress": 5,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "7a906070e6be3fc4ceb7a106"
+    },
+    "userId": {
+      "$oid": "3ab6150e69ab6319fd7c790e"
+    },
+    "storyId": {
+      "$oid": "b29953b1bc978076c52ebbae"
+    },
+    "lastChapterId": {
+      "$oid": "6097e1f0a945292b32327b7c"
+    },
+    "lastReadAt": {
+      "$date": "2023-06-22T01:10:53Z"
+    },
+    "progress": 85,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "88f9608ff06d8033b33671c1"
+    },
+    "userId": {
+      "$oid": "78897b1e81ccb78d304d7fe0"
+    },
+    "storyId": {
+      "$oid": "e4ec8d18e7085dc3175f1b69"
+    },
+    "lastChapterId": {
+      "$oid": "a709a4b905c46edf2ec49819"
+    },
+    "lastReadAt": {
+      "$date": "2024-01-12T10:18:58Z"
+    },
+    "progress": 15,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "50ddb5872687eb8202fc2f4d"
+    },
+    "userId": {
+      "$oid": "df0cb6518fe427ceb6350599"
+    },
+    "storyId": {
+      "$oid": "7983950248158983ca4680dd"
+    },
+    "lastChapterId": {
+      "$oid": "57b03950ee59ceed6f3e0f93"
+    },
+    "lastReadAt": {
+      "$date": "2023-12-28T23:51:54Z"
+    },
+    "progress": 50,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "e8cb13b4c75bccaade1d711b"
+    },
+    "userId": {
+      "$oid": "7fe0d1b2cd4df855cd4e962c"
+    },
+    "storyId": {
+      "$oid": "382d99f19964045852643e02"
+    },
+    "lastChapterId": {
+      "$oid": "9d89d8af3122377f660e689b"
+    },
+    "lastReadAt": {
+      "$date": "2025-09-25T13:48:33Z"
+    },
+    "progress": 66,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "89450aa708eea0a76b1725d4"
+    },
+    "userId": {
+      "$oid": "c2fc9d9714e4d7e46ed78932"
+    },
+    "storyId": {
+      "$oid": "ee31608df86c6d73a84fa2b2"
+    },
+    "lastChapterId": {
+      "$oid": "6b9e3e421c9abffb6da7e589"
+    },
+    "lastReadAt": {
+      "$date": "2021-07-04T12:58:40Z"
+    },
+    "progress": 55,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "263b9d223aaaf0c511d00ad0"
+    },
+    "userId": {
+      "$oid": "c37bc907080f968fd17b01aa"
+    },
+    "storyId": {
+      "$oid": "2e1de3b55369304d1535b427"
+    },
+    "lastChapterId": {
+      "$oid": "9546de1d8be10bce3071fd34"
+    },
+    "lastReadAt": {
+      "$date": "2021-12-12T02:19:48Z"
+    },
+    "progress": 82,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "c8cacbc3c83acc6b150c360f"
+    },
+    "userId": {
+      "$oid": "e9e66423990c8bc35afa3629"
+    },
+    "storyId": {
+      "$oid": "b617a31782b4d4f756f1abd2"
+    },
+    "lastChapterId": {
+      "$oid": "0984e4307d700e658658a6fd"
+    },
+    "lastReadAt": {
+      "$date": "2021-04-29T18:16:20Z"
+    },
+    "progress": 60,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "688cdad260e111790bfd78fa"
+    },
+    "userId": {
+      "$oid": "d9526a69b69f00ec145b94bb"
+    },
+    "storyId": {
+      "$oid": "5c481b53a1a01407eab5e2a3"
+    },
+    "lastChapterId": {
+      "$oid": "2bfad282285df468e1b30a79"
+    },
+    "lastReadAt": {
+      "$date": "2023-01-25T08:25:18Z"
+    },
+    "progress": 90,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "ec7c6d26b8561cb05868414d"
+    },
+    "userId": {
+      "$oid": "c2fc9d9714e4d7e46ed78932"
+    },
+    "storyId": {
+      "$oid": "42085256355f6c4f164d54fa"
+    },
+    "lastChapterId": {
+      "$oid": "e7d6520c5566e8dcfafb6128"
+    },
+    "lastReadAt": {
+      "$date": "2026-03-22T04:32:34Z"
+    },
+    "progress": 22,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "4b7f6f8301d4251560bebe16"
+    },
+    "userId": {
+      "$oid": "ea27ff03adf04e89f716fb04"
+    },
+    "storyId": {
+      "$oid": "2c3e8e2a7ccba3c0170ec718"
+    },
+    "lastChapterId": {
+      "$oid": "3ab8db456f79938f5cd642f4"
+    },
+    "lastReadAt": {
+      "$date": "2024-11-01T19:20:41Z"
+    },
+    "progress": 82,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "0bac8ac87734c07ab9829bf8"
+    },
+    "userId": {
+      "$oid": "be29fdb56ffed7dcfef37739"
+    },
+    "storyId": {
+      "$oid": "234b9cb3392a252c6bac0d80"
+    },
+    "lastChapterId": {
+      "$oid": "cd24790107409fd59901f346"
+    },
+    "lastReadAt": {
+      "$date": "2020-09-28T03:32:51Z"
+    },
+    "progress": 73,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "adab636e12e22f36332147a6"
+    },
+    "userId": {
+      "$oid": "a0b707cdc29162d4ad559502"
+    },
+    "storyId": {
+      "$oid": "ee31608df86c6d73a84fa2b2"
+    },
+    "lastChapterId": {
+      "$oid": "89072c8e6ffadef869c221c4"
+    },
+    "lastReadAt": {
+      "$date": "2021-08-23T12:58:40Z"
+    },
+    "progress": 14,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "a1dbe387b7e579c656c29bfa"
+    },
+    "userId": {
+      "$oid": "b016009c996e153ec54974bb"
+    },
+    "storyId": {
+      "$oid": "5813d27ad75ea1b34692ef5c"
+    },
+    "lastChapterId": {
+      "$oid": "f6395d91c53d795a37ea191f"
+    },
+    "lastReadAt": {
+      "$date": "2020-12-24T13:55:16Z"
+    },
+    "progress": 96,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "823726f2242c58bc558397e2"
+    },
+    "userId": {
+      "$oid": "78897b1e81ccb78d304d7fe0"
+    },
+    "storyId": {
+      "$oid": "7983950248158983ca4680dd"
+    },
+    "lastChapterId": {
+      "$oid": "f16b6cae66db0aaa0e0fd5e9"
+    },
+    "lastReadAt": {
+      "$date": "2023-12-19T23:51:54Z"
+    },
+    "progress": 88,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "dd69f8fb770e78aef281bb4d"
+    },
+    "userId": {
+      "$oid": "1ce14b72bfe95f7e6bb7ec4b"
+    },
+    "storyId": {
+      "$oid": "21c9c77acb669be84cdc3014"
+    },
+    "lastChapterId": {
+      "$oid": "f7fb5cd4847165282e2327cc"
+    },
+    "lastReadAt": {
+      "$date": "2022-07-08T06:08:07Z"
+    },
+    "progress": 74,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "6f243a9377cc33bcb2f54f2b"
+    },
+    "userId": {
+      "$oid": "ace3fff0d88956af807c0f68"
+    },
+    "storyId": {
+      "$oid": "1944a3acc740ccc1031b5218"
+    },
+    "lastChapterId": {
+      "$oid": "778a262b7f821a3b1b92be16"
+    },
+    "lastReadAt": {
+      "$date": "2026-03-23T02:56:34Z"
+    },
+    "progress": 41,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "71899f01e2ce34065916453c"
+    },
+    "userId": {
+      "$oid": "717c9a4bfb611e07819b151a"
+    },
+    "storyId": {
+      "$oid": "493184876cadf7eb76c8371c"
+    },
+    "lastChapterId": {
+      "$oid": "93d7d2c7a0bb9cbcd2f8a4ec"
+    },
+    "lastReadAt": {
+      "$date": "2022-10-16T08:04:11Z"
+    },
+    "progress": 90,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "d127c146cee6c669de360303"
+    },
+    "userId": {
+      "$oid": "17c2c2546ab71a977b61172c"
+    },
+    "storyId": {
+      "$oid": "b617a31782b4d4f756f1abd2"
+    },
+    "lastChapterId": {
+      "$oid": "50d963ecb872784ffb86267a"
+    },
+    "lastReadAt": {
+      "$date": "2021-01-13T18:16:20Z"
+    },
+    "progress": 5,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "19d9a713414862fdc5e3ddbe"
+    },
+    "userId": {
+      "$oid": "717c9a4bfb611e07819b151a"
+    },
+    "storyId": {
+      "$oid": "e804c822cffc847bbd20ab64"
+    },
+    "lastChapterId": {
+      "$oid": "a58b7b48f80e71e327f8cc6b"
+    },
+    "lastReadAt": {
+      "$date": "2021-01-11T14:42:54Z"
+    },
+    "progress": 82,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "c7358c6ad6a353ddac36e937"
+    },
+    "userId": {
+      "$oid": "a6a05d3238d38669c4da68bf"
+    },
+    "storyId": {
+      "$oid": "94d179b699781ed62bed992d"
+    },
+    "lastChapterId": {
+      "$oid": "35a460f27dec5631c3388e90"
+    },
+    "lastReadAt": {
+      "$date": "2020-07-20T08:37:35Z"
+    },
+    "progress": 79,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "fa62b9396bb1bba92f0fa489"
+    },
+    "userId": {
+      "$oid": "6dc10e25f73464719c95c84a"
+    },
+    "storyId": {
+      "$oid": "e399f79bf04457fe744a0980"
+    },
+    "lastChapterId": {
+      "$oid": "93314c0137ea218c2cbea452"
+    },
+    "lastReadAt": {
+      "$date": "2025-05-23T04:32:20Z"
+    },
+    "progress": 51,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "d490e50740bf1ff406794d7a"
+    },
+    "userId": {
+      "$oid": "7fe0d1b2cd4df855cd4e962c"
+    },
+    "storyId": {
+      "$oid": "7bd3d0ec4abbc103b0e66ae6"
+    },
+    "lastChapterId": {
+      "$oid": "c9b7285794602db2d0fb40d0"
+    },
+    "lastReadAt": {
+      "$date": "2024-03-04T11:40:14Z"
+    },
+    "progress": 9,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "7eb2c5534ba92b83801df28d"
+    },
+    "userId": {
+      "$oid": "0f25891199beb260cad9c33a"
+    },
+    "storyId": {
+      "$oid": "8cdb6c21334e97875f5e60ca"
+    },
+    "lastChapterId": {
+      "$oid": "b422b77f471b4621a62cff14"
+    },
+    "lastReadAt": {
+      "$date": "2021-09-11T06:06:01Z"
+    },
+    "progress": 76,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "742aedc7b6918b043ed3c6e5"
+    },
+    "userId": {
+      "$oid": "ace3fff0d88956af807c0f68"
+    },
+    "storyId": {
+      "$oid": "2d2744e6484b1e4b574b38c6"
+    },
+    "lastChapterId": {
+      "$oid": "182d54582e0890b4821abc9d"
+    },
+    "lastReadAt": {
+      "$date": "2024-04-23T16:01:56Z"
+    },
+    "progress": 85,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "13d4f823a00980137917cc4b"
+    },
+    "userId": {
+      "$oid": "c37bc907080f968fd17b01aa"
+    },
+    "storyId": {
+      "$oid": "ee31608df86c6d73a84fa2b2"
+    },
+    "lastChapterId": {
+      "$oid": "54b0b38ef7b74998dd1450b2"
+    },
+    "lastReadAt": {
+      "$date": "2021-07-27T12:58:40Z"
+    },
+    "progress": 39,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "a8b125b0c8a907fb40f1a2ef"
+    },
+    "userId": {
+      "$oid": "e00366f1191275610c41a6f6"
+    },
+    "storyId": {
+      "$oid": "94d179b699781ed62bed992d"
+    },
+    "lastChapterId": {
+      "$oid": "ce95355a528bc14b07430530"
+    },
+    "lastReadAt": {
+      "$date": "2020-05-10T08:37:35Z"
+    },
+    "progress": 40,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "2c91de6055ed6a043d302a39"
+    },
+    "userId": {
+      "$oid": "df0cb6518fe427ceb6350599"
+    },
+    "storyId": {
+      "$oid": "8cdb6c21334e97875f5e60ca"
+    },
+    "lastChapterId": {
+      "$oid": "25a8962730d1ca57602026e0"
+    },
+    "lastReadAt": {
+      "$date": "2021-12-05T06:06:01Z"
+    },
+    "progress": 83,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "090aed9ff7c7b4df6ecb5220"
+    },
+    "userId": {
+      "$oid": "17c2c2546ab71a977b61172c"
+    },
+    "storyId": {
+      "$oid": "b617a31782b4d4f756f1abd2"
+    },
+    "lastChapterId": {
+      "$oid": "fe7745433432ae1a583bb4ac"
+    },
+    "lastReadAt": {
+      "$date": "2020-12-04T18:16:20Z"
+    },
+    "progress": 7,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "0a055cea30505b9ec1b52004"
+    },
+    "userId": {
+      "$oid": "c279e87f38891e4acc21a827"
+    },
+    "storyId": {
+      "$oid": "874fdbe8c3a64d950f32c9b8"
+    },
+    "lastChapterId": {
+      "$oid": "fbd9426e38ac4de0122774a3"
+    },
+    "lastReadAt": {
+      "$date": "2025-06-30T05:45:02Z"
+    },
+    "progress": 13,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "adf1a2dfa355e9f629e09ce3"
+    },
+    "userId": {
+      "$oid": "aee03fbc53756ca5fb85849c"
+    },
+    "storyId": {
+      "$oid": "df9bcc269ca03f9bd46966bf"
+    },
+    "lastChapterId": {
+      "$oid": "93f3a69e75befd35a65564e6"
+    },
+    "lastReadAt": {
+      "$date": "2023-06-16T13:51:53Z"
+    },
+    "progress": 21,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "0a16005a7e2f938821016ce6"
+    },
+    "userId": {
+      "$oid": "13f142b33d8d51c4a08cddc2"
+    },
+    "storyId": {
+      "$oid": "1944a3acc740ccc1031b5218"
+    },
+    "lastChapterId": {
+      "$oid": "778a262b7f821a3b1b92be16"
+    },
+    "lastReadAt": {
+      "$date": "2026-04-26T02:56:34Z"
+    },
+    "progress": 32,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "eaa7577ea0334f28ef5719a5"
+    },
+    "userId": {
+      "$oid": "68e563266dd0e848a1291a3f"
+    },
+    "storyId": {
+      "$oid": "382d99f19964045852643e02"
+    },
+    "lastChapterId": {
+      "$oid": "96d45d5c0c35888772af5ca1"
+    },
+    "lastReadAt": {
+      "$date": "2025-10-01T13:48:33Z"
+    },
+    "progress": 92,
+    "isFinished": false
+  },
+  {
+    "_id": {
+      "$oid": "4328d0cc73e37f4d743b8d77"
+    },
+    "userId": {
+      "$oid": "c7a09cc0137e3fbebb74fd00"
+    },
+    "storyId": {
+      "$oid": "df9bcc269ca03f9bd46966bf"
+    },
+    "lastChapterId": {
+      "$oid": "6008056e41b520ac310f3ad1"
+    },
+    "lastReadAt": {
+      "$date": "2023-02-28T13:51:53Z"
+    },
+    "progress": 61,
+    "isFinished": false
+  }
+]

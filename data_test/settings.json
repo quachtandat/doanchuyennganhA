@@ -1,0 +1,25 @@
+[
+  {
+    "_id": "global_settings",
+    "moneyToCoin": {
+      "rate": 1000,
+      "minTopupVnd": 10000
+    },
+    "moneyToCoin_bonusTiers": [
+      {
+        "min": 10000,
+        "bonusPercent": 0
+      },
+      {
+        "min": 50000,
+        "bonusPercent": 5
+      },
+      {
+        "min": 100000,
+        "bonusPercent": 10
+      }
+    ],
+    "authorRevenueSharePercent": 70,
+    "platformFeePercent": 30
+  }
+]

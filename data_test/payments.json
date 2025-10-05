@@ -1,0 +1,342 @@
+[
+  {
+    "_id": {
+      "$oid": "2784f30a3efa55531fd940f5"
+    },
+    "userId": {
+      "$oid": "d61aa3334d755e8f6976b584"
+    },
+    "provider": "card",
+    "amountVnd": 13213,
+    "coinsCredit": 13,
+    "fee": 264,
+    "status": "failed",
+    "txRef": "2784f30a3efa55531fd940f5",
+    "createdAt": {
+      "$date": "2024-10-01T11:28:30Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "eb1dee1ec58dcdc8752a9637"
+    },
+    "userId": {
+      "$oid": "d9526a69b69f00ec145b94bb"
+    },
+    "provider": "card",
+    "amountVnd": 306926,
+    "coinsCredit": 306,
+    "fee": 6138,
+    "status": "success",
+    "txRef": "eb1dee1ec58dcdc8752a9637",
+    "createdAt": {
+      "$date": "2025-08-08T06:27:20Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6ff974b91a86fd15123e1c2a"
+    },
+    "userId": {
+      "$oid": "606fa9a5e8a44450e840f319"
+    },
+    "provider": "bank",
+    "amountVnd": 113714,
+    "coinsCredit": 113,
+    "fee": 2274,
+    "status": "success",
+    "txRef": "6ff974b91a86fd15123e1c2a",
+    "createdAt": {
+      "$date": "2023-11-17T22:56:27Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "25edd8cab0bf2ee36079995b"
+    },
+    "userId": {
+      "$oid": "cd45a941d26cd13e942fcac4"
+    },
+    "provider": "bank",
+    "amountVnd": 379281,
+    "coinsCredit": 379,
+    "fee": 7585,
+    "status": "success",
+    "txRef": "25edd8cab0bf2ee36079995b",
+    "createdAt": {
+      "$date": "2021-01-24T03:00:02Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "3b4948d6884e405694246edf"
+    },
+    "userId": {
+      "$oid": "1ed85fd591c01255fabd21c4"
+    },
+    "provider": "vnpay",
+    "amountVnd": 296698,
+    "coinsCredit": 296,
+    "fee": 5933,
+    "status": "pending",
+    "txRef": "3b4948d6884e405694246edf",
+    "createdAt": {
+      "$date": "2022-10-07T20:13:44Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "0e4101cb04aedbb515a4c62e"
+    },
+    "userId": {
+      "$oid": "a0b707cdc29162d4ad559502"
+    },
+    "provider": "card",
+    "amountVnd": 48251,
+    "coinsCredit": 48,
+    "fee": 965,
+    "status": "failed",
+    "txRef": "0e4101cb04aedbb515a4c62e",
+    "createdAt": {
+      "$date": "2022-03-10T02:34:42Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e6318c74c8ee0de701af5a4f"
+    },
+    "userId": {
+      "$oid": "d9526a69b69f00ec145b94bb"
+    },
+    "provider": "card",
+    "amountVnd": 397893,
+    "coinsCredit": 397,
+    "fee": 7957,
+    "status": "success",
+    "txRef": "e6318c74c8ee0de701af5a4f",
+    "createdAt": {
+      "$date": "2022-05-13T10:01:21Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "63e34fef556d9d0e3af59a96"
+    },
+    "userId": {
+      "$oid": "ea27ff03adf04e89f716fb04"
+    },
+    "provider": "vnpay",
+    "amountVnd": 481977,
+    "coinsCredit": 481,
+    "fee": 9639,
+    "status": "success",
+    "txRef": "63e34fef556d9d0e3af59a96",
+    "createdAt": {
+      "$date": "2024-12-15T09:11:08Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d43da8df8568b02e5457c8fa"
+    },
+    "userId": {
+      "$oid": "c2fc9d9714e4d7e46ed78932"
+    },
+    "provider": "card",
+    "amountVnd": 62859,
+    "coinsCredit": 62,
+    "fee": 1257,
+    "status": "pending",
+    "txRef": "d43da8df8568b02e5457c8fa",
+    "createdAt": {
+      "$date": "2021-08-09T23:30:42Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "21f9353d8e2fa8b35914fc8d"
+    },
+    "userId": {
+      "$oid": "1b467fd122f5a42929301569"
+    },
+    "provider": "card",
+    "amountVnd": 331039,
+    "coinsCredit": 331,
+    "fee": 6620,
+    "status": "pending",
+    "txRef": "21f9353d8e2fa8b35914fc8d",
+    "createdAt": {
+      "$date": "2022-12-26T13:51:21Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e3d87076e9692c15cce06317"
+    },
+    "userId": {
+      "$oid": "b016009c996e153ec54974bb"
+    },
+    "provider": "momo",
+    "amountVnd": 315049,
+    "coinsCredit": 315,
+    "fee": 6300,
+    "status": "success",
+    "txRef": "e3d87076e9692c15cce06317",
+    "createdAt": {
+      "$date": "2021-10-08T18:12:50Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "cfc2258b3ad587dd4c819c5f"
+    },
+    "userId": {
+      "$oid": "aee03fbc53756ca5fb85849c"
+    },
+    "provider": "momo",
+    "amountVnd": 492721,
+    "coinsCredit": 492,
+    "fee": 9854,
+    "status": "failed",
+    "txRef": "cfc2258b3ad587dd4c819c5f",
+    "createdAt": {
+      "$date": "2025-12-27T05:59:42Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ab38e1034be9c1e9185e0efc"
+    },
+    "userId": {
+      "$oid": "be29fdb56ffed7dcfef37739"
+    },
+    "provider": "momo",
+    "amountVnd": 322816,
+    "coinsCredit": 322,
+    "fee": 6456,
+    "status": "success",
+    "txRef": "ab38e1034be9c1e9185e0efc",
+    "createdAt": {
+      "$date": "2024-03-26T20:56:15Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ded5d2ad0e386579f010a880"
+    },
+    "userId": {
+      "$oid": "a6a05d3238d38669c4da68bf"
+    },
+    "provider": "card",
+    "amountVnd": 66232,
+    "coinsCredit": 66,
+    "fee": 1324,
+    "status": "failed",
+    "txRef": "ded5d2ad0e386579f010a880",
+    "createdAt": {
+      "$date": "2021-12-16T19:18:39Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a07421b2573c530bd70b0260"
+    },
+    "userId": {
+      "$oid": "51024c0f7149bfe40e726bdc"
+    },
+    "provider": "vnpay",
+    "amountVnd": 220712,
+    "coinsCredit": 220,
+    "fee": 4414,
+    "status": "success",
+    "txRef": "a07421b2573c530bd70b0260",
+    "createdAt": {
+      "$date": "2025-02-23T22:21:36Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1b026704c5efc7c92e25052b"
+    },
+    "userId": {
+      "$oid": "68e563266dd0e848a1291a3f"
+    },
+    "provider": "card",
+    "amountVnd": 394814,
+    "coinsCredit": 394,
+    "fee": 7896,
+    "status": "pending",
+    "txRef": "1b026704c5efc7c92e25052b",
+    "createdAt": {
+      "$date": "2022-02-21T08:13:38Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "13953941e74011ad931f6bbc"
+    },
+    "userId": {
+      "$oid": "1ed85fd591c01255fabd21c4"
+    },
+    "provider": "bank",
+    "amountVnd": 134440,
+    "coinsCredit": 134,
+    "fee": 2688,
+    "status": "success",
+    "txRef": "13953941e74011ad931f6bbc",
+    "createdAt": {
+      "$date": "2021-03-18T07:19:10Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "39c717cf311eb338dcacf51f"
+    },
+    "userId": {
+      "$oid": "717c9a4bfb611e07819b151a"
+    },
+    "provider": "vnpay",
+    "amountVnd": 146742,
+    "coinsCredit": 146,
+    "fee": 2934,
+    "status": "pending",
+    "txRef": "39c717cf311eb338dcacf51f",
+    "createdAt": {
+      "$date": "2023-07-28T07:14:23Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d47ee46f42121db42bdc8053"
+    },
+    "userId": {
+      "$oid": "8ba5c4657f518722c43041ff"
+    },
+    "provider": "bank",
+    "amountVnd": 465278,
+    "coinsCredit": 465,
+    "fee": 9305,
+    "status": "pending",
+    "txRef": "d47ee46f42121db42bdc8053",
+    "createdAt": {
+      "$date": "2021-09-09T09:47:18Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "44bac4c89006ee0aad7413bf"
+    },
+    "userId": {
+      "$oid": "db844a7a4959f753c5350fab"
+    },
+    "provider": "vnpay",
+    "amountVnd": 342032,
+    "coinsCredit": 342,
+    "fee": 6840,
+    "status": "failed",
+    "txRef": "44bac4c89006ee0aad7413bf",
+    "createdAt": {
+      "$date": "2020-12-14T02:04:31Z"
+    }
+  }
+]

@@ -1,0 +1,692 @@
+[
+  {
+    "_id": {
+      "$oid": "3f062dba346b40ea3c65427a"
+    },
+    "userId": {
+      "$oid": "e4bd022090c389b376a6846d"
+    },
+    "type": "admin_adjust",
+    "amountCoins": 21,
+    "balanceAfter": 903,
+    "relatedPaymentId": {
+      "$oid": "13953941e74011ad931f6bbc"
+    },
+    "note": "",
+    "status": "failed",
+    "createdAt": {
+      "$date": "2025-07-24T09:55:49Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a34049dd1ac8350397ed23b"
+    },
+    "userId": {
+      "$oid": "606fa9a5e8a44450e840f319"
+    },
+    "type": "purchase",
+    "amountCoins": 91,
+    "balanceAfter": 1934,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "failed",
+    "createdAt": {
+      "$date": "2023-10-08T17:26:36Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "382bdb56a84ac888289886d8"
+    },
+    "userId": {
+      "$oid": "c37bc907080f968fd17b01aa"
+    },
+    "type": "purchase",
+    "amountCoins": 31,
+    "balanceAfter": 144,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "completed",
+    "createdAt": {
+      "$date": "2022-09-12T10:11:23Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6d5bb9332475ea82d13bca9f"
+    },
+    "userId": {
+      "$oid": "a0b707cdc29162d4ad559502"
+    },
+    "type": "bonus",
+    "amountCoins": 63,
+    "balanceAfter": 1551,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2020-08-06T12:12:10Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ff0e782dd925680fd544383e"
+    },
+    "userId": {
+      "$oid": "78897b1e81ccb78d304d7fe0"
+    },
+    "type": "refund",
+    "amountCoins": 156,
+    "balanceAfter": 1722,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2020-11-22T16:56:24Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "dbabf5d1c1859ceb4b83c8e4"
+    },
+    "userId": {
+      "$oid": "17c2c2546ab71a977b61172c"
+    },
+    "type": "admin_adjust",
+    "amountCoins": 129,
+    "balanceAfter": 824,
+    "relatedPaymentId": {
+      "$oid": "63e34fef556d9d0e3af59a96"
+    },
+    "note": "",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2023-09-04T03:07:04Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "bd964b08a179d50cc7e22be0"
+    },
+    "userId": {
+      "$oid": "c2fc9d9714e4d7e46ed78932"
+    },
+    "type": "admin_adjust",
+    "amountCoins": 67,
+    "balanceAfter": 1378,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2021-12-30T17:39:10Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "93095cc901fdf92456fe5f0e"
+    },
+    "userId": {
+      "$oid": "0f25891199beb260cad9c33a"
+    },
+    "type": "topup",
+    "amountCoins": 131,
+    "balanceAfter": 1640,
+    "relatedPaymentId": {
+      "$oid": "ded5d2ad0e386579f010a880"
+    },
+    "note": "",
+    "status": "completed",
+    "createdAt": {
+      "$date": "2024-08-26T21:50:16Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "067cdbba2333c7a9e57745d0"
+    },
+    "userId": {
+      "$oid": "7fe0d1b2cd4df855cd4e962c"
+    },
+    "type": "topup",
+    "amountCoins": 174,
+    "balanceAfter": 76,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2020-07-29T09:44:21Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "5cfdfd15f506a319421a49f6"
+    },
+    "userId": {
+      "$oid": "6dc10e25f73464719c95c84a"
+    },
+    "type": "purchase",
+    "amountCoins": 78,
+    "balanceAfter": 155,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2024-08-17T01:35:38Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a93b17bcfbf2582819425804"
+    },
+    "userId": {
+      "$oid": "78897b1e81ccb78d304d7fe0"
+    },
+    "type": "bonus",
+    "amountCoins": 12,
+    "balanceAfter": 275,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "completed",
+    "createdAt": {
+      "$date": "2020-07-13T17:50:45Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "24ccd24a7f2aa64f387f5815"
+    },
+    "userId": {
+      "$oid": "51024c0f7149bfe40e726bdc"
+    },
+    "type": "admin_adjust",
+    "amountCoins": 121,
+    "balanceAfter": 1091,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "failed",
+    "createdAt": {
+      "$date": "2021-08-18T03:45:09Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b8a3ad0d7ff2af2b725c4e38"
+    },
+    "userId": {
+      "$oid": "db844a7a4959f753c5350fab"
+    },
+    "type": "topup",
+    "amountCoins": 73,
+    "balanceAfter": 1163,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "completed",
+    "createdAt": {
+      "$date": "2020-02-03T09:12:27Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "8c6baf6838af74027efff702"
+    },
+    "userId": {
+      "$oid": "3776b7e8c2c084c2f588dd33"
+    },
+    "type": "purchase",
+    "amountCoins": 6,
+    "balanceAfter": 573,
+    "relatedPaymentId": {
+      "$oid": "21f9353d8e2fa8b35914fc8d"
+    },
+    "note": "",
+    "status": "failed",
+    "createdAt": {
+      "$date": "2024-03-19T16:47:28Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "5f69bca6945771900d2cc96f"
+    },
+    "userId": {
+      "$oid": "c7a09cc0137e3fbebb74fd00"
+    },
+    "type": "purchase",
+    "amountCoins": 186,
+    "balanceAfter": 419,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2020-11-20T14:06:34Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "7536ffff66b255ef095a799b"
+    },
+    "userId": {
+      "$oid": "1b467fd122f5a42929301569"
+    },
+    "type": "bonus",
+    "amountCoins": 93,
+    "balanceAfter": 135,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2022-07-03T03:17:18Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "3181e06bd0241bf2076c9b15"
+    },
+    "userId": {
+      "$oid": "1ce14b72bfe95f7e6bb7ec4b"
+    },
+    "type": "topup",
+    "amountCoins": 17,
+    "balanceAfter": 24,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2021-09-11T03:13:16Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "7546ba0112007bbf1bd95302"
+    },
+    "userId": {
+      "$oid": "ace3fff0d88956af807c0f68"
+    },
+    "type": "purchase",
+    "amountCoins": 87,
+    "balanceAfter": 750,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "failed",
+    "createdAt": {
+      "$date": "2023-11-15T07:17:25Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e16dbdfbe273ded0cadf903e"
+    },
+    "userId": {
+      "$oid": "606fa9a5e8a44450e840f319"
+    },
+    "type": "refund",
+    "amountCoins": 35,
+    "balanceAfter": 96,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2025-10-28T01:54:04Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "2f6a047f29de73a7522da119"
+    },
+    "userId": {
+      "$oid": "e4bd022090c389b376a6846d"
+    },
+    "type": "purchase",
+    "amountCoins": 153,
+    "balanceAfter": 1966,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "failed",
+    "createdAt": {
+      "$date": "2023-12-13T09:12:14Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "5205d44ed5b01a3e7d073a97"
+    },
+    "userId": {
+      "$oid": "e4bd022090c389b376a6846d"
+    },
+    "type": "topup",
+    "amountCoins": 126,
+    "balanceAfter": 773,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2024-06-12T01:55:04Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "3fbd06768e2e2ebf08b13875"
+    },
+    "userId": {
+      "$oid": "3ab6150e69ab6319fd7c790e"
+    },
+    "type": "admin_adjust",
+    "amountCoins": 150,
+    "balanceAfter": 1135,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "failed",
+    "createdAt": {
+      "$date": "2023-11-11T09:21:20Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "5934da88327e7b59b5a9b0cf"
+    },
+    "userId": {
+      "$oid": "8ba5c4657f518722c43041ff"
+    },
+    "type": "bonus",
+    "amountCoins": 122,
+    "balanceAfter": 1506,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "completed",
+    "createdAt": {
+      "$date": "2020-07-16T11:56:55Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "847e2ee829f05d111cdd5c6f"
+    },
+    "userId": {
+      "$oid": "3776b7e8c2c084c2f588dd33"
+    },
+    "type": "admin_adjust",
+    "amountCoins": 123,
+    "balanceAfter": 951,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2021-10-24T00:37:50Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ed00169f9529f3503e82c190"
+    },
+    "userId": {
+      "$oid": "3ab6150e69ab6319fd7c790e"
+    },
+    "type": "admin_adjust",
+    "amountCoins": 22,
+    "balanceAfter": 1091,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2025-03-24T21:09:06Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "eca2826b6ca3bcb5e860589d"
+    },
+    "userId": {
+      "$oid": "99e1a645d9ec42a4798b8637"
+    },
+    "type": "purchase",
+    "amountCoins": 11,
+    "balanceAfter": 568,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2020-04-30T15:44:13Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b055109a40b843325af8bc50"
+    },
+    "userId": {
+      "$oid": "e00366f1191275610c41a6f6"
+    },
+    "type": "refund",
+    "amountCoins": 30,
+    "balanceAfter": 1202,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "completed",
+    "createdAt": {
+      "$date": "2024-04-06T10:59:41Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b2272f5f8c3d0ad750c066fc"
+    },
+    "userId": {
+      "$oid": "66022ebd28e4747e7593d1e8"
+    },
+    "type": "admin_adjust",
+    "amountCoins": 22,
+    "balanceAfter": 1321,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "completed",
+    "createdAt": {
+      "$date": "2021-11-24T21:55:25Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "afd46c8b5046886b5928926b"
+    },
+    "userId": {
+      "$oid": "e00366f1191275610c41a6f6"
+    },
+    "type": "topup",
+    "amountCoins": 138,
+    "balanceAfter": 1137,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2024-03-29T04:38:10Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1d02896b219923112a3e9d84"
+    },
+    "userId": {
+      "$oid": "a0b707cdc29162d4ad559502"
+    },
+    "type": "bonus",
+    "amountCoins": 200,
+    "balanceAfter": 638,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2022-02-09T10:21:39Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "00a3e9e9fd4109d9ba248551"
+    },
+    "userId": {
+      "$oid": "be29fdb56ffed7dcfef37739"
+    },
+    "type": "refund",
+    "amountCoins": 125,
+    "balanceAfter": 1648,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "completed",
+    "createdAt": {
+      "$date": "2025-04-09T16:51:45Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6e741f2ab6e76260d7727716"
+    },
+    "userId": {
+      "$oid": "df0cb6518fe427ceb6350599"
+    },
+    "type": "admin_adjust",
+    "amountCoins": 28,
+    "balanceAfter": 1571,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "failed",
+    "createdAt": {
+      "$date": "2022-10-07T15:19:59Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "fc45c6f0919ef35d53dcd39d"
+    },
+    "userId": {
+      "$oid": "13f142b33d8d51c4a08cddc2"
+    },
+    "type": "bonus",
+    "amountCoins": 185,
+    "balanceAfter": 287,
+    "relatedPaymentId": {
+      "$oid": "d43da8df8568b02e5457c8fa"
+    },
+    "note": "",
+    "status": "completed",
+    "createdAt": {
+      "$date": "2025-02-10T02:07:47Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "7399c5a3a2fba62fcbd27459"
+    },
+    "userId": {
+      "$oid": "df0cb6518fe427ceb6350599"
+    },
+    "type": "purchase",
+    "amountCoins": 150,
+    "balanceAfter": 374,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "failed",
+    "createdAt": {
+      "$date": "2024-10-16T20:38:54Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "10cb0d37f6156a9efa8dddfc"
+    },
+    "userId": {
+      "$oid": "c37bc907080f968fd17b01aa"
+    },
+    "type": "refund",
+    "amountCoins": 8,
+    "balanceAfter": 1931,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "failed",
+    "createdAt": {
+      "$date": "2022-09-02T14:32:15Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "4710b47d2a8a300f8e391d64"
+    },
+    "userId": {
+      "$oid": "66022ebd28e4747e7593d1e8"
+    },
+    "type": "bonus",
+    "amountCoins": 3,
+    "balanceAfter": 287,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "failed",
+    "createdAt": {
+      "$date": "2023-12-25T20:03:29Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "4c5ca22ec046bfb9cfc79b40"
+    },
+    "userId": {
+      "$oid": "1ed85fd591c01255fabd21c4"
+    },
+    "type": "refund",
+    "amountCoins": 51,
+    "balanceAfter": 939,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "completed",
+    "createdAt": {
+      "$date": "2021-07-31T14:33:30Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6055760e8ee11ab283cd1bcc"
+    },
+    "userId": {
+      "$oid": "519a765aa3c9eff26b32e958"
+    },
+    "type": "refund",
+    "amountCoins": 92,
+    "balanceAfter": 1397,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "failed",
+    "createdAt": {
+      "$date": "2022-11-11T16:54:09Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b19a2f9837656fe5682fb3db"
+    },
+    "userId": {
+      "$oid": "6a89efd5b14fbd7a85869348"
+    },
+    "type": "refund",
+    "amountCoins": 69,
+    "balanceAfter": 578,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2023-10-30T15:31:29Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ae0e12074ad8a7479f27c4bf"
+    },
+    "userId": {
+      "$oid": "c279e87f38891e4acc21a827"
+    },
+    "type": "admin_adjust",
+    "amountCoins": 174,
+    "balanceAfter": 846,
+    "relatedPaymentId": null,
+    "note": "",
+    "status": "failed",
+    "createdAt": {
+      "$date": "2024-04-12T19:24:47Z"
+    }
+  }
+]

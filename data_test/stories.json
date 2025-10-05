@@ -1,0 +1,1157 @@
+[
+  {
+    "_id": {
+      "$oid": "493184876cadf7eb76c8371c"
+    },
+    "title": "Vô Hành Trình 1",
+    "slug": "vô-hành-trình-1-493184",
+    "authorId": {
+      "$oid": "1139055a3e7898e8a1aca18e"
+    },
+    "category": [
+      "comedy"
+    ],
+    "coverUrl": "https://picsum.photos/seed/493184876cadf7eb76c8371c/600/800",
+    "description": "Lời hứa năm xưa vẫn còn đó, như ánh sáng le lói trong bóng tối. Họ gặp nhau như một định mệnh, và chia tay như một phần của cuộc đời. Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học. Lời hứa năm xưa vẫn còn đó, như ánh sáng le lói trong bóng tối. Anh nhìn ra ngoài cửa sổ, nơi thành phố vẫn còn say giấc ngủ.",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2022-09-01T08:04:11Z"
+    },
+    "updatedAt": {
+      "$date": "2022-09-30T08:04:11Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6de6e293f2645b2c24cfc4a4"
+    },
+    "title": "Sắc Đêm 2",
+    "slug": "sắc-đêm-2-6de6e2",
+    "authorId": {
+      "$oid": "359d08056455e5003de41955"
+    },
+    "category": [
+      "mystery",
+      "action",
+      "adventure"
+    ],
+    "coverUrl": "https://picsum.photos/seed/6de6e293f2645b2c24cfc4a4/600/800",
+    "description": "Không ai biết được tương lai sẽ đưa họ đến đâu, chỉ có niềm tin dẫn đường. Một bí mật được giấu kín từ lâu cuối cùng cũng bị hé lộ. Một bí mật được giấu kín từ lâu cuối cùng cũng bị hé lộ. Câu chuyện bắt đầu vào một buổi sớm mai khi mặt trời vừa ló dạng. Một bí mật được giấu kín từ lâu cuối cùng cũng bị hé lộ.",
+    "status": "rejected",
+    "createdAt": {
+      "$date": "2025-01-22T17:02:00Z"
+    },
+    "updatedAt": {
+      "$date": "2025-03-04T17:02:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "9d626e009e34ea92a3dca28e"
+    },
+    "title": "Thần Ánh Sáng 3",
+    "slug": "thần-ánh-sáng-3-9d626e",
+    "authorId": {
+      "$oid": "3a6bc19ce900e54d6b7e5bdf"
+    },
+    "category": [
+      "historical",
+      "mystery",
+      "sci-fi"
+    ],
+    "coverUrl": "https://picsum.photos/seed/9d626e009e34ea92a3dca28e/600/800",
+    "description": "Anh nhìn ra ngoài cửa sổ, nơi thành phố vẫn còn say giấc ngủ. Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ. Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ. Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói. Đêm dài hát rỉ nỗi nhớ, khiến trái tim không thể yên bình. Nỗi buồn và niềm vui đan xen, tạo thành một khúc ca của đời người.",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2022-03-21T04:05:58Z"
+    },
+    "updatedAt": {
+      "$date": "2022-04-27T04:05:58Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e804c822cffc847bbd20ab64"
+    },
+    "title": "Huyền Báu Vật 4",
+    "slug": "huyền-báu-vật-4-e804c8",
+    "authorId": {
+      "$oid": "05ed2576a6d8e8314caa46ba"
+    },
+    "category": [
+      "horror"
+    ],
+    "coverUrl": "https://picsum.photos/seed/e804c822cffc847bbd20ab64/600/800",
+    "description": "Anh nhìn ra ngoài cửa sổ, nơi thành phố vẫn còn say giấc ngủ. Họ gặp nhau như một định mệnh, và chia tay như một phần của cuộc đời. Nỗi buồn và niềm vui đan xen, tạo thành một khúc ca của đời người. Họ gặp nhau như một định mệnh, và chia tay như một phần của cuộc đời. Gió nhẹ thổi qua bức rèm cửa, mang theo mùi hoa và ký ức.",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2020-08-15T14:42:54Z"
+    },
+    "updatedAt": {
+      "$date": "2020-12-18T14:42:54Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e7347fa93e153dd755fa66b9"
+    },
+    "title": "Bí Cuộc Đời của Duy 5",
+    "slug": "bí-cuộc-đời-của-duy-5-e7347f",
+    "authorId": {
+      "$oid": "9e4d58b5190efa2060e650a0"
+    },
+    "category": [
+      "comedy",
+      "horror"
+    ],
+    "coverUrl": "https://picsum.photos/seed/e7347fa93e153dd755fa66b9/600/800",
+    "description": "Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ. Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học. Lời hứa năm xưa vẫn còn đó, như ánh sáng le lói trong bóng tối. Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói. Họ gặp nhau như một định mệnh, và chia tay như một phần của cuộc đời.",
+    "status": "published",
+    "createdAt": {
+      "$date": "2024-08-14T17:16:00Z"
+    },
+    "updatedAt": {
+      "$date": "2024-10-06T17:16:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "2c3e8e2a7ccba3c0170ec718"
+    },
+    "title": "Ánh Cuộc Đời 6",
+    "slug": "ánh-cuộc-đời-6-2c3e8e",
+    "authorId": {
+      "$oid": "a095caf3985b613af9a2d186"
+    },
+    "category": [
+      "sci-fi",
+      "mystery"
+    ],
+    "coverUrl": "https://picsum.photos/seed/2c3e8e2a7ccba3c0170ec718/600/800",
+    "description": "Nỗi buồn và niềm vui đan xen, tạo thành một khúc ca của đời người. Không ai biết được tương lai sẽ đưa họ đến đâu, chỉ có niềm tin dẫn đường. Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ. Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ. Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học.",
+    "status": "rejected",
+    "createdAt": {
+      "$date": "2024-09-14T19:20:41Z"
+    },
+    "updatedAt": {
+      "$date": "2025-01-27T19:20:41Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b617a31782b4d4f756f1abd2"
+    },
+    "title": "Sắc Báu Vật 7",
+    "slug": "sắc-báu-vật-7-b617a3",
+    "authorId": {
+      "$oid": "3e6b05db23aaf97a2f400e34"
+    },
+    "category": [
+      "sci-fi",
+      "fantasy"
+    ],
+    "coverUrl": "https://picsum.photos/seed/b617a31782b4d4f756f1abd2/600/800",
+    "description": "Nỗi buồn và niềm vui đan xen, tạo thành một khúc ca của đời người. Ánh trăng làm bừng tỉnh những ký ức ngủ quên. Anh nhìn ra ngoài cửa sổ, nơi thành phố vẫn còn say giấc ngủ. Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ. Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói. Anh nhìn ra ngoài cửa sổ, nơi thành phố vẫn còn say giấc ngủ.",
+    "status": "published",
+    "createdAt": {
+      "$date": "2020-10-13T18:16:20Z"
+    },
+    "updatedAt": {
+      "$date": "2021-05-27T18:16:20Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "5813d27ad75ea1b34692ef5c"
+    },
+    "title": "Sắc Tiếng Gọi 8",
+    "slug": "sắc-tiếng-gọi-8-5813d2",
+    "authorId": {
+      "$oid": "359d08056455e5003de41955"
+    },
+    "category": [
+      "romance",
+      "horror",
+      "fantasy"
+    ],
+    "coverUrl": "https://picsum.photos/seed/5813d27ad75ea1b34692ef5c/600/800",
+    "description": "Một bí mật được giấu kín từ lâu cuối cùng cũng bị hé lộ. Lời hứa năm xưa vẫn còn đó, như ánh sáng le lói trong bóng tối. Anh nhìn ra ngoài cửa sổ, nơi thành phố vẫn còn say giấc ngủ. Họ đã vượt qua bao thử thách để giữ lấy nhau. Anh nhìn ra ngoài cửa sổ, nơi thành phố vẫn còn say giấc ngủ. Câu chuyện bắt đầu vào một buổi sớm mai khi mặt trời vừa ló dạng.",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2020-12-13T13:55:16Z"
+    },
+    "updatedAt": {
+      "$date": "2021-05-19T13:55:16Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "be258766fc6cc12bd0eaf85b"
+    },
+    "title": "Bí Rừng 9",
+    "slug": "bí-rừng-9-be2587",
+    "authorId": {
+      "$oid": "3a6bc19ce900e54d6b7e5bdf"
+    },
+    "category": [
+      "adventure",
+      "historical",
+      "action"
+    ],
+    "coverUrl": "https://picsum.photos/seed/be258766fc6cc12bd0eaf85b/600/800",
+    "description": "Trên con đường vắng, chỉ còn lại tiếng thở dài của kẻ lữ hành. Anh nhìn ra ngoài cửa sổ, nơi thành phố vẫn còn say giấc ngủ. Họ gặp nhau như một định mệnh, và chia tay như một phần của cuộc đời. Họ gặp nhau như một định mệnh, và chia tay như một phần của cuộc đời. Không ai biết được tương lai sẽ đưa họ đến đâu, chỉ có niềm tin dẫn đường.",
+    "status": "rejected",
+    "createdAt": {
+      "$date": "2025-10-20T02:34:43Z"
+    },
+    "updatedAt": {
+      "$date": "2026-01-11T02:34:43Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "8cdb6c21334e97875f5e60ca"
+    },
+    "title": "Vĩ Lữ Khách 10",
+    "slug": "vĩ-lữ-khách-10-8cdb6c",
+    "authorId": {
+      "$oid": "9e4d58b5190efa2060e650a0"
+    },
+    "category": [
+      "action",
+      "mystery"
+    ],
+    "coverUrl": "https://picsum.photos/seed/8cdb6c21334e97875f5e60ca/600/800",
+    "description": "Anh nhìn ra ngoài cửa sổ, nơi thành phố vẫn còn say giấc ngủ. Ánh trăng làm bừng tỉnh những ký ức ngủ quên. Trên con đường vắng, chỉ còn lại tiếng thở dài của kẻ lữ hành. Gió nhẹ thổi qua bức rèm cửa, mang theo mùi hoa và ký ức. Họ đã vượt qua bao thử thách để giữ lấy nhau. Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học.",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2021-07-11T06:06:01Z"
+    },
+    "updatedAt": {
+      "$date": "2021-07-30T06:06:01Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "5c481b53a1a01407eab5e2a3"
+    },
+    "title": "Kỳ Hành Trình của Giang 11",
+    "slug": "kỳ-hành-trình-của-giang-11-5c481b",
+    "authorId": {
+      "$oid": "a23a0ba67c6f2dc139fa3ba7"
+    },
+    "category": [
+      "mystery"
+    ],
+    "coverUrl": "https://picsum.photos/seed/5c481b53a1a01407eab5e2a3/600/800",
+    "description": "Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ. Không ai biết được tương lai sẽ đưa họ đến đâu, chỉ có niềm tin dẫn đường. Họ đã vượt qua bao thử thách để giữ lấy nhau. Nỗi buồn và niềm vui đan xen, tạo thành một khúc ca của đời người. Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói.",
+    "status": "published",
+    "createdAt": {
+      "$date": "2022-12-22T08:25:18Z"
+    },
+    "updatedAt": {
+      "$date": "2023-01-26T08:25:18Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "42085256355f6c4f164d54fa"
+    },
+    "title": "Vĩ Cuộc Đời của Minh 12",
+    "slug": "vĩ-cuộc-đời-của-minh-12-420852",
+    "authorId": {
+      "$oid": "05ed2576a6d8e8314caa46ba"
+    },
+    "category": [
+      "fantasy",
+      "adventure"
+    ],
+    "coverUrl": "https://picsum.photos/seed/42085256355f6c4f164d54fa/600/800",
+    "description": "Anh nhìn ra ngoài cửa sổ, nơi thành phố vẫn còn say giấc ngủ. Một bí mật được giấu kín từ lâu cuối cùng cũng bị hé lộ. Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói. Câu chuyện bắt đầu vào một buổi sớm mai khi mặt trời vừa ló dạng. Gió nhẹ thổi qua bức rèm cửa, mang theo mùi hoa và ký ức.",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2025-10-12T04:32:34Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-22T04:32:34Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "8eb384f2002f88b9d775a455"
+    },
+    "title": "Bí Tiếng Gọi của Lan 13",
+    "slug": "bí-tiếng-gọi-của-lan-13-8eb384",
+    "authorId": {
+      "$oid": "05ed2576a6d8e8314caa46ba"
+    },
+    "category": [
+      "action"
+    ],
+    "coverUrl": "https://picsum.photos/seed/8eb384f2002f88b9d775a455/600/800",
+    "description": "Không ai biết được tương lai sẽ đưa họ đến đâu, chỉ có niềm tin dẫn đường. Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói. Câu chuyện bắt đầu vào một buổi sớm mai khi mặt trời vừa ló dạng. Trên con đường vắng, chỉ còn lại tiếng thở dài của kẻ lữ hành. Họ đã vượt qua bao thử thách để giữ lấy nhau.",
+    "status": "rejected",
+    "createdAt": {
+      "$date": "2025-02-26T10:12:29Z"
+    },
+    "updatedAt": {
+      "$date": "2025-02-26T10:12:29Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "7983950248158983ca4680dd"
+    },
+    "title": "Sắc Thành Phố 14",
+    "slug": "sắc-thành-phố-14-798395",
+    "authorId": {
+      "$oid": "359d08056455e5003de41955"
+    },
+    "category": [
+      "historical",
+      "comedy",
+      "adventure"
+    ],
+    "coverUrl": "https://picsum.photos/seed/7983950248158983ca4680dd/600/800",
+    "description": "Họ gặp nhau như một định mệnh, và chia tay như một phần của cuộc đời. Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói. Lời hứa năm xưa vẫn còn đó, như ánh sáng le lói trong bóng tối. Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói. Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ.",
+    "status": "rejected",
+    "createdAt": {
+      "$date": "2023-09-01T23:51:54Z"
+    },
+    "updatedAt": {
+      "$date": "2024-03-28T23:51:54Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "91fef5cc8be914fb66ac10d5"
+    },
+    "title": "Bí Kiếm 15",
+    "slug": "bí-kiếm-15-91fef5",
+    "authorId": {
+      "$oid": "4e407d5034606dd262af019f"
+    },
+    "category": [
+      "action",
+      "romance",
+      "sci-fi"
+    ],
+    "coverUrl": "https://picsum.photos/seed/91fef5cc8be914fb66ac10d5/600/800",
+    "description": "Lời hứa năm xưa vẫn còn đó, như ánh sáng le lói trong bóng tối. Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học. Câu chuyện bắt đầu vào một buổi sớm mai khi mặt trời vừa ló dạng. Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói. Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói.",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2021-08-19T00:38:03Z"
+    },
+    "updatedAt": {
+      "$date": "2021-12-04T00:38:03Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "2d2744e6484b1e4b574b38c6"
+    },
+    "title": "Thần Tuyết 16",
+    "slug": "thần-tuyết-16-2d2744",
+    "authorId": {
+      "$oid": "c085c053a7f5c983e00073d6"
+    },
+    "category": [
+      "mystery",
+      "horror"
+    ],
+    "coverUrl": "https://picsum.photos/seed/2d2744e6484b1e4b574b38c6/600/800",
+    "description": "Ánh trăng làm bừng tỉnh những ký ức ngủ quên. Họ gặp nhau như một định mệnh, và chia tay như một phần của cuộc đời. Ánh trăng làm bừng tỉnh những ký ức ngủ quên. Trên con đường vắng, chỉ còn lại tiếng thở dài của kẻ lữ hành. Anh nhìn ra ngoài cửa sổ, nơi thành phố vẫn còn say giấc ngủ. Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ.",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2023-12-15T16:01:56Z"
+    },
+    "updatedAt": {
+      "$date": "2024-01-27T16:01:56Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "bf1983b977d2862375c56ebd"
+    },
+    "title": "Vô Thành Phố 17",
+    "slug": "vô-thành-phố-17-bf1983",
+    "authorId": {
+      "$oid": "3a6bc19ce900e54d6b7e5bdf"
+    },
+    "category": [
+      "sci-fi",
+      "mystery",
+      "horror"
+    ],
+    "coverUrl": "https://picsum.photos/seed/bf1983b977d2862375c56ebd/600/800",
+    "description": "Câu chuyện bắt đầu vào một buổi sớm mai khi mặt trời vừa ló dạng. Câu chuyện bắt đầu vào một buổi sớm mai khi mặt trời vừa ló dạng. Không ai biết được tương lai sẽ đưa họ đến đâu, chỉ có niềm tin dẫn đường. Đêm dài hát rỉ nỗi nhớ, khiến trái tim không thể yên bình. Một bí mật được giấu kín từ lâu cuối cùng cũng bị hé lộ.",
+    "status": "published",
+    "createdAt": {
+      "$date": "2020-10-17T03:27:14Z"
+    },
+    "updatedAt": {
+      "$date": "2020-11-23T03:27:14Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "9ed1d983bb3dc4b58d0f6905"
+    },
+    "title": "Kỳ Kiếm 18",
+    "slug": "kỳ-kiếm-18-9ed1d9",
+    "authorId": {
+      "$oid": "4e407d5034606dd262af019f"
+    },
+    "category": [
+      "action",
+      "mystery"
+    ],
+    "coverUrl": "https://picsum.photos/seed/9ed1d983bb3dc4b58d0f6905/600/800",
+    "description": "Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ. Trên con đường vắng, chỉ còn lại tiếng thở dài của kẻ lữ hành. Câu chuyện bắt đầu vào một buổi sớm mai khi mặt trời vừa ló dạng. Họ gặp nhau như một định mệnh, và chia tay như một phần của cuộc đời. Ánh trăng làm bừng tỉnh những ký ức ngủ quên. Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học.",
+    "status": "published",
+    "createdAt": {
+      "$date": "2025-12-03T11:56:10Z"
+    },
+    "updatedAt": {
+      "$date": "2026-01-26T11:56:10Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1944a3acc740ccc1031b5218"
+    },
+    "title": "Vĩ Kiếm 19",
+    "slug": "vĩ-kiếm-19-1944a3",
+    "authorId": {
+      "$oid": "05ed2576a6d8e8314caa46ba"
+    },
+    "category": [
+      "fantasy",
+      "horror"
+    ],
+    "coverUrl": "https://picsum.photos/seed/1944a3acc740ccc1031b5218/600/800",
+    "description": "Họ gặp nhau như một định mệnh, và chia tay như một phần của cuộc đời. Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học. Gió nhẹ thổi qua bức rèm cửa, mang theo mùi hoa và ký ức. Đêm dài hát rỉ nỗi nhớ, khiến trái tim không thể yên bình. Anh nhìn ra ngoài cửa sổ, nơi thành phố vẫn còn say giấc ngủ.",
+    "status": "published",
+    "createdAt": {
+      "$date": "2025-12-02T02:56:34Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-27T02:56:34Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "7bf5c7c5ad15d6f973af8f95"
+    },
+    "title": "Phong Thành Phố 20",
+    "slug": "phong-thành-phố-20-7bf5c7",
+    "authorId": {
+      "$oid": "fe2e4834924fa2db0062bf64"
+    },
+    "category": [
+      "horror",
+      "action",
+      "slice-of-life"
+    ],
+    "coverUrl": "https://picsum.photos/seed/7bf5c7c5ad15d6f973af8f95/600/800",
+    "description": "Trên con đường vắng, chỉ còn lại tiếng thở dài của kẻ lữ hành. Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học. Đêm dài hát rỉ nỗi nhớ, khiến trái tim không thể yên bình. Đêm dài hát rỉ nỗi nhớ, khiến trái tim không thể yên bình. Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói.",
+    "status": "published",
+    "createdAt": {
+      "$date": "2023-10-07T00:39:59Z"
+    },
+    "updatedAt": {
+      "$date": "2024-02-10T00:39:59Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "874fdbe8c3a64d950f32c9b8"
+    },
+    "title": "Phong Cuộc Đời của Thao 21",
+    "slug": "phong-cuộc-đời-của-thao-21-874fdb",
+    "authorId": {
+      "$oid": "3a6bc19ce900e54d6b7e5bdf"
+    },
+    "category": [
+      "slice-of-life",
+      "adventure"
+    ],
+    "coverUrl": "https://picsum.photos/seed/874fdbe8c3a64d950f32c9b8/600/800",
+    "description": "Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói. Không ai biết được tương lai sẽ đưa họ đến đâu, chỉ có niềm tin dẫn đường. Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói. Nỗi buồn và niềm vui đan xen, tạo thành một khúc ca của đời người. Nỗi buồn và niềm vui đan xen, tạo thành một khúc ca của đời người.",
+    "status": "rejected",
+    "createdAt": {
+      "$date": "2025-05-01T05:45:02Z"
+    },
+    "updatedAt": {
+      "$date": "2026-02-01T05:45:02Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b29953b1bc978076c52ebbae"
+    },
+    "title": "Lãng Lữ Khách 22",
+    "slug": "lãng-lữ-khách-22-b29953",
+    "authorId": {
+      "$oid": "9e4d58b5190efa2060e650a0"
+    },
+    "category": [
+      "mystery"
+    ],
+    "coverUrl": "https://picsum.photos/seed/b29953b1bc978076c52ebbae/600/800",
+    "description": "Họ đã vượt qua bao thử thách để giữ lấy nhau. Họ đã vượt qua bao thử thách để giữ lấy nhau. Nỗi buồn và niềm vui đan xen, tạo thành một khúc ca của đời người. Lời hứa năm xưa vẫn còn đó, như ánh sáng le lói trong bóng tối. Đêm dài hát rỉ nỗi nhớ, khiến trái tim không thể yên bình. Họ đã vượt qua bao thử thách để giữ lấy nhau.",
+    "status": "published",
+    "createdAt": {
+      "$date": "2023-04-05T01:10:53Z"
+    },
+    "updatedAt": {
+      "$date": "2023-05-06T01:10:53Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ac45a57a65d7581bfb797f8b"
+    },
+    "title": "Bóng Kiếm 23",
+    "slug": "bóng-kiếm-23-ac45a5",
+    "authorId": {
+      "$oid": "4e407d5034606dd262af019f"
+    },
+    "category": [
+      "fantasy",
+      "historical"
+    ],
+    "coverUrl": "https://picsum.photos/seed/ac45a57a65d7581bfb797f8b/600/800",
+    "description": "Ánh trăng làm bừng tỉnh những ký ức ngủ quên. Họ đã vượt qua bao thử thách để giữ lấy nhau. Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học. Họ gặp nhau như một định mệnh, và chia tay như một phần của cuộc đời. Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học. Họ đã vượt qua bao thử thách để giữ lấy nhau.",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2024-11-23T14:35:01Z"
+    },
+    "updatedAt": {
+      "$date": "2025-08-25T14:35:01Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "85a37baa2e7e4d7a8aba171e"
+    },
+    "title": "Linh Tiếng Gọi 24",
+    "slug": "linh-tiếng-gọi-24-85a37b",
+    "authorId": {
+      "$oid": "3a6bc19ce900e54d6b7e5bdf"
+    },
+    "category": [
+      "action",
+      "slice-of-life"
+    ],
+    "coverUrl": "https://picsum.photos/seed/85a37baa2e7e4d7a8aba171e/600/800",
+    "description": "Họ đã vượt qua bao thử thách để giữ lấy nhau. Nỗi buồn và niềm vui đan xen, tạo thành một khúc ca của đời người. Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ. Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ. Ánh trăng làm bừng tỉnh những ký ức ngủ quên. Họ đã vượt qua bao thử thách để giữ lấy nhau.",
+    "status": "published",
+    "createdAt": {
+      "$date": "2024-02-25T21:01:43Z"
+    },
+    "updatedAt": {
+      "$date": "2024-05-19T21:01:43Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d108eb62c84540bf0eeaec61"
+    },
+    "title": "Kỳ Lữ Khách 25",
+    "slug": "kỳ-lữ-khách-25-d108eb",
+    "authorId": {
+      "$oid": "fe2e4834924fa2db0062bf64"
+    },
+    "category": [
+      "fantasy",
+      "adventure",
+      "action"
+    ],
+    "coverUrl": "https://picsum.photos/seed/d108eb62c84540bf0eeaec61/600/800",
+    "description": "Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học. Đêm dài hát rỉ nỗi nhớ, khiến trái tim không thể yên bình. Anh nhìn ra ngoài cửa sổ, nơi thành phố vẫn còn say giấc ngủ. Câu chuyện bắt đầu vào một buổi sớm mai khi mặt trời vừa ló dạng. Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói.",
+    "status": "published",
+    "createdAt": {
+      "$date": "2023-05-09T04:16:46Z"
+    },
+    "updatedAt": {
+      "$date": "2023-11-19T04:16:46Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "df9bcc269ca03f9bd46966bf"
+    },
+    "title": "Bí Hành Trình 26",
+    "slug": "bí-hành-trình-26-df9bcc",
+    "authorId": {
+      "$oid": "4e407d5034606dd262af019f"
+    },
+    "category": [
+      "action",
+      "sci-fi"
+    ],
+    "coverUrl": "https://picsum.photos/seed/df9bcc269ca03f9bd46966bf/600/800",
+    "description": "Đêm dài hát rỉ nỗi nhớ, khiến trái tim không thể yên bình. Câu chuyện bắt đầu vào một buổi sớm mai khi mặt trời vừa ló dạng. Trên con đường vắng, chỉ còn lại tiếng thở dài của kẻ lữ hành. Lời hứa năm xưa vẫn còn đó, như ánh sáng le lói trong bóng tối. Câu chuyện bắt đầu vào một buổi sớm mai khi mặt trời vừa ló dạng.",
+    "status": "published",
+    "createdAt": {
+      "$date": "2022-11-14T13:51:53Z"
+    },
+    "updatedAt": {
+      "$date": "2023-05-12T13:51:53Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "117e7554b97961dccf9ff4d1"
+    },
+    "title": "Bóng Ánh Sáng 27",
+    "slug": "bóng-ánh-sáng-27-117e75",
+    "authorId": {
+      "$oid": "3a6bc19ce900e54d6b7e5bdf"
+    },
+    "category": [
+      "fantasy"
+    ],
+    "coverUrl": "https://picsum.photos/seed/117e7554b97961dccf9ff4d1/600/800",
+    "description": "Anh nhìn ra ngoài cửa sổ, nơi thành phố vẫn còn say giấc ngủ. Không ai biết được tương lai sẽ đưa họ đến đâu, chỉ có niềm tin dẫn đường. Anh nhìn ra ngoài cửa sổ, nơi thành phố vẫn còn say giấc ngủ. Đêm dài hát rỉ nỗi nhớ, khiến trái tim không thể yên bình. Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ.",
+    "status": "rejected",
+    "createdAt": {
+      "$date": "2020-04-06T09:45:51Z"
+    },
+    "updatedAt": {
+      "$date": "2020-06-03T09:45:51Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "3ea50919a2074116cf66e31d"
+    },
+    "title": "Nguyệt Hành Trình 28",
+    "slug": "nguyệt-hành-trình-28-3ea509",
+    "authorId": {
+      "$oid": "a095caf3985b613af9a2d186"
+    },
+    "category": [
+      "comedy",
+      "adventure",
+      "romance"
+    ],
+    "coverUrl": "https://picsum.photos/seed/3ea50919a2074116cf66e31d/600/800",
+    "description": "Gió nhẹ thổi qua bức rèm cửa, mang theo mùi hoa và ký ức. Một bí mật được giấu kín từ lâu cuối cùng cũng bị hé lộ. Câu chuyện bắt đầu vào một buổi sớm mai khi mặt trời vừa ló dạng. Họ gặp nhau như một định mệnh, và chia tay như một phần của cuộc đời. Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói.",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2023-02-20T02:49:04Z"
+    },
+    "updatedAt": {
+      "$date": "2023-12-11T02:49:04Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6abaa970829bea7ad18474ed"
+    },
+    "title": "Phong Kiếm 29",
+    "slug": "phong-kiếm-29-6abaa9",
+    "authorId": {
+      "$oid": "fe2e4834924fa2db0062bf64"
+    },
+    "category": [
+      "mystery",
+      "adventure",
+      "sci-fi"
+    ],
+    "coverUrl": "https://picsum.photos/seed/6abaa970829bea7ad18474ed/600/800",
+    "description": "Một bí mật được giấu kín từ lâu cuối cùng cũng bị hé lộ. Ánh trăng làm bừng tỉnh những ký ức ngủ quên. Gió nhẹ thổi qua bức rèm cửa, mang theo mùi hoa và ký ức. Ánh trăng làm bừng tỉnh những ký ức ngủ quên. Một bí mật được giấu kín từ lâu cuối cùng cũng bị hé lộ. Ánh trăng làm bừng tỉnh những ký ức ngủ quên.",
+    "status": "rejected",
+    "createdAt": {
+      "$date": "2020-08-24T02:42:28Z"
+    },
+    "updatedAt": {
+      "$date": "2020-09-14T02:42:28Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "1106e755feb77adea3469bf3"
+    },
+    "title": "Bí Thành Phố 30",
+    "slug": "bí-thành-phố-30-1106e7",
+    "authorId": {
+      "$oid": "05ed2576a6d8e8314caa46ba"
+    },
+    "category": [
+      "historical",
+      "fantasy",
+      "action"
+    ],
+    "coverUrl": "https://picsum.photos/seed/1106e755feb77adea3469bf3/600/800",
+    "description": "Gió nhẹ thổi qua bức rèm cửa, mang theo mùi hoa và ký ức. Họ đã vượt qua bao thử thách để giữ lấy nhau. Nỗi buồn và niềm vui đan xen, tạo thành một khúc ca của đời người. Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ. Họ gặp nhau như một định mệnh, và chia tay như một phần của cuộc đời. Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học.",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2020-08-02T05:47:12Z"
+    },
+    "updatedAt": {
+      "$date": "2021-03-25T05:47:12Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "5b9ff1eab2855b687a1d7c81"
+    },
+    "title": "Linh Lữ Khách 31",
+    "slug": "linh-lữ-khách-31-5b9ff1",
+    "authorId": {
+      "$oid": "3e6b05db23aaf97a2f400e34"
+    },
+    "category": [
+      "comedy",
+      "horror"
+    ],
+    "coverUrl": "https://picsum.photos/seed/5b9ff1eab2855b687a1d7c81/600/800",
+    "description": "Đêm dài hát rỉ nỗi nhớ, khiến trái tim không thể yên bình. Họ đã vượt qua bao thử thách để giữ lấy nhau. Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học. Trên con đường vắng, chỉ còn lại tiếng thở dài của kẻ lữ hành. Một bí mật được giấu kín từ lâu cuối cùng cũng bị hé lộ. Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói.",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2024-06-09T00:15:25Z"
+    },
+    "updatedAt": {
+      "$date": "2024-11-21T00:15:25Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "cb54557657c51fc6f3428c6b"
+    },
+    "title": "Bóng Đêm của Ha 32",
+    "slug": "bóng-đêm-của-ha-32-cb5455",
+    "authorId": {
+      "$oid": "c085c053a7f5c983e00073d6"
+    },
+    "category": [
+      "comedy",
+      "action",
+      "historical"
+    ],
+    "coverUrl": "https://picsum.photos/seed/cb54557657c51fc6f3428c6b/600/800",
+    "description": "Đêm dài hát rỉ nỗi nhớ, khiến trái tim không thể yên bình. Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học. Nỗi buồn và niềm vui đan xen, tạo thành một khúc ca của đời người. Anh nhìn ra ngoài cửa sổ, nơi thành phố vẫn còn say giấc ngủ. Đêm dài hát rỉ nỗi nhớ, khiến trái tim không thể yên bình.",
+    "status": "published",
+    "createdAt": {
+      "$date": "2022-01-27T15:46:32Z"
+    },
+    "updatedAt": {
+      "$date": "2022-05-15T15:46:32Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e399f79bf04457fe744a0980"
+    },
+    "title": "Bí Cuộc Đời 33",
+    "slug": "bí-cuộc-đời-33-e399f7",
+    "authorId": {
+      "$oid": "9e4d58b5190efa2060e650a0"
+    },
+    "category": [
+      "horror",
+      "fantasy"
+    ],
+    "coverUrl": "https://picsum.photos/seed/e399f79bf04457fe744a0980/600/800",
+    "description": "Không ai biết được tương lai sẽ đưa họ đến đâu, chỉ có niềm tin dẫn đường. Gió nhẹ thổi qua bức rèm cửa, mang theo mùi hoa và ký ức. Không ai biết được tương lai sẽ đưa họ đến đâu, chỉ có niềm tin dẫn đường. Trên con đường vắng, chỉ còn lại tiếng thở dài của kẻ lữ hành. Họ đã vượt qua bao thử thách để giữ lấy nhau.",
+    "status": "rejected",
+    "createdAt": {
+      "$date": "2025-01-26T04:32:20Z"
+    },
+    "updatedAt": {
+      "$date": "2025-10-03T04:32:20Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e4ec8d18e7085dc3175f1b69"
+    },
+    "title": "Sắc Hành Trình của Tam 34",
+    "slug": "sắc-hành-trình-của-tam-34-e4ec8d",
+    "authorId": {
+      "$oid": "1139055a3e7898e8a1aca18e"
+    },
+    "category": [
+      "sci-fi"
+    ],
+    "coverUrl": "https://picsum.photos/seed/e4ec8d18e7085dc3175f1b69/600/800",
+    "description": "Họ đã vượt qua bao thử thách để giữ lấy nhau. Trên con đường vắng, chỉ còn lại tiếng thở dài của kẻ lữ hành. Không ai biết được tương lai sẽ đưa họ đến đâu, chỉ có niềm tin dẫn đường. Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói. Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ.",
+    "status": "published",
+    "createdAt": {
+      "$date": "2023-10-24T10:18:58Z"
+    },
+    "updatedAt": {
+      "$date": "2024-08-16T10:18:58Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "4c75f62a4f7fea8305e5b567"
+    },
+    "title": "Bí Báu Vật 35",
+    "slug": "bí-báu-vật-35-4c75f6",
+    "authorId": {
+      "$oid": "9e4d58b5190efa2060e650a0"
+    },
+    "category": [
+      "historical",
+      "comedy",
+      "slice-of-life"
+    ],
+    "coverUrl": "https://picsum.photos/seed/4c75f62a4f7fea8305e5b567/600/800",
+    "description": "Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói. Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói. Không ai biết được tương lai sẽ đưa họ đến đâu, chỉ có niềm tin dẫn đường. Gió nhẹ thổi qua bức rèm cửa, mang theo mùi hoa và ký ức. Trên con đường vắng, chỉ còn lại tiếng thở dài của kẻ lữ hành.",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2023-08-14T23:51:49Z"
+    },
+    "updatedAt": {
+      "$date": "2023-11-20T23:51:49Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "2e1de3b55369304d1535b427"
+    },
+    "title": "Bí Đêm 36",
+    "slug": "bí-đêm-36-2e1de3",
+    "authorId": {
+      "$oid": "3a6bc19ce900e54d6b7e5bdf"
+    },
+    "category": [
+      "slice-of-life",
+      "sci-fi",
+      "horror"
+    ],
+    "coverUrl": "https://picsum.photos/seed/2e1de3b55369304d1535b427/600/800",
+    "description": "Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học. Không ai biết được tương lai sẽ đưa họ đến đâu, chỉ có niềm tin dẫn đường. Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói. Không ai biết được tương lai sẽ đưa họ đến đâu, chỉ có niềm tin dẫn đường. Nỗi buồn và niềm vui đan xen, tạo thành một khúc ca của đời người.",
+    "status": "published",
+    "createdAt": {
+      "$date": "2021-08-18T02:19:48Z"
+    },
+    "updatedAt": {
+      "$date": "2021-11-17T02:19:48Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "21c9c77acb669be84cdc3014"
+    },
+    "title": "Vô Rừng 37",
+    "slug": "vô-rừng-37-21c9c7",
+    "authorId": {
+      "$oid": "1139055a3e7898e8a1aca18e"
+    },
+    "category": [
+      "horror"
+    ],
+    "coverUrl": "https://picsum.photos/seed/21c9c77acb669be84cdc3014/600/800",
+    "description": "Trên con đường vắng, chỉ còn lại tiếng thở dài của kẻ lữ hành. Anh nhìn ra ngoài cửa sổ, nơi thành phố vẫn còn say giấc ngủ. Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ. Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học. Ánh trăng làm bừng tỉnh những ký ức ngủ quên. Đêm dài hát rỉ nỗi nhớ, khiến trái tim không thể yên bình.",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2022-05-02T06:08:07Z"
+    },
+    "updatedAt": {
+      "$date": "2022-06-23T06:08:07Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e1b9a2ef0194551f31e1cfce"
+    },
+    "title": "Huyền Tuyết của Khanh 38",
+    "slug": "huyền-tuyết-của-khanh-38-e1b9a2",
+    "authorId": {
+      "$oid": "c085c053a7f5c983e00073d6"
+    },
+    "category": [
+      "romance",
+      "fantasy"
+    ],
+    "coverUrl": "https://picsum.photos/seed/e1b9a2ef0194551f31e1cfce/600/800",
+    "description": "Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học. Đêm dài hát rỉ nỗi nhớ, khiến trái tim không thể yên bình. Gió nhẹ thổi qua bức rèm cửa, mang theo mùi hoa và ký ức. Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học. Gió nhẹ thổi qua bức rèm cửa, mang theo mùi hoa và ký ức. Họ đã vượt qua bao thử thách để giữ lấy nhau.",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2024-01-27T07:31:06Z"
+    },
+    "updatedAt": {
+      "$date": "2024-10-04T07:31:06Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ee31608df86c6d73a84fa2b2"
+    },
+    "title": "Lãng Tuyết 39",
+    "slug": "lãng-tuyết-39-ee3160",
+    "authorId": {
+      "$oid": "fe2e4834924fa2db0062bf64"
+    },
+    "category": [
+      "adventure",
+      "mystery"
+    ],
+    "coverUrl": "https://picsum.photos/seed/ee31608df86c6d73a84fa2b2/600/800",
+    "description": "Lời hứa năm xưa vẫn còn đó, như ánh sáng le lói trong bóng tối. Ánh trăng làm bừng tỉnh những ký ức ngủ quên. Họ đã vượt qua bao thử thách để giữ lấy nhau. Một bí mật được giấu kín từ lâu cuối cùng cũng bị hé lộ. Một bí mật được giấu kín từ lâu cuối cùng cũng bị hé lộ. Ánh trăng làm bừng tỉnh những ký ức ngủ quên.",
+    "status": "published",
+    "createdAt": {
+      "$date": "2021-04-08T12:58:40Z"
+    },
+    "updatedAt": {
+      "$date": "2021-08-01T12:58:40Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "7bd3d0ec4abbc103b0e66ae6"
+    },
+    "title": "Vĩ Thành Phố của Nga 40",
+    "slug": "vĩ-thành-phố-của-nga-40-7bd3d0",
+    "authorId": {
+      "$oid": "a23a0ba67c6f2dc139fa3ba7"
+    },
+    "category": [
+      "action",
+      "sci-fi",
+      "fantasy"
+    ],
+    "coverUrl": "https://picsum.photos/seed/7bd3d0ec4abbc103b0e66ae6/600/800",
+    "description": "Trên con đường vắng, chỉ còn lại tiếng thở dài của kẻ lữ hành. Gió nhẹ thổi qua bức rèm cửa, mang theo mùi hoa và ký ức. Ánh trăng làm bừng tỉnh những ký ức ngủ quên. Không ai biết được tương lai sẽ đưa họ đến đâu, chỉ có niềm tin dẫn đường. Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ. Không ai biết được tương lai sẽ đưa họ đến đâu, chỉ có niềm tin dẫn đường.",
+    "status": "rejected",
+    "createdAt": {
+      "$date": "2023-10-07T11:40:14Z"
+    },
+    "updatedAt": {
+      "$date": "2024-02-19T11:40:14Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "0e73eda23678ac58cff6a99b"
+    },
+    "title": "Phong Đêm 41",
+    "slug": "phong-đêm-41-0e73ed",
+    "authorId": {
+      "$oid": "05ed2576a6d8e8314caa46ba"
+    },
+    "category": [
+      "romance"
+    ],
+    "coverUrl": "https://picsum.photos/seed/0e73eda23678ac58cff6a99b/600/800",
+    "description": "Họ đã vượt qua bao thử thách để giữ lấy nhau. Đêm dài hát rỉ nỗi nhớ, khiến trái tim không thể yên bình. Trên con đường vắng, chỉ còn lại tiếng thở dài của kẻ lữ hành. Một bí mật được giấu kín từ lâu cuối cùng cũng bị hé lộ. Đêm dài hát rỉ nỗi nhớ, khiến trái tim không thể yên bình. Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói.",
+    "status": "published",
+    "createdAt": {
+      "$date": "2021-06-24T00:28:39Z"
+    },
+    "updatedAt": {
+      "$date": "2021-07-10T00:28:39Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "234b9cb3392a252c6bac0d80"
+    },
+    "title": "Bóng Cuộc Đời của Khanh 42",
+    "slug": "bóng-cuộc-đời-của-khanh-42-234b9c",
+    "authorId": {
+      "$oid": "3e6b05db23aaf97a2f400e34"
+    },
+    "category": [
+      "sci-fi"
+    ],
+    "coverUrl": "https://picsum.photos/seed/234b9cb3392a252c6bac0d80/600/800",
+    "description": "Một bí mật được giấu kín từ lâu cuối cùng cũng bị hé lộ. Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ. Ánh trăng làm bừng tỉnh những ký ức ngủ quên. Họ gặp nhau như một định mệnh, và chia tay như một phần của cuộc đời. Không ai biết được tương lai sẽ đưa họ đến đâu, chỉ có niềm tin dẫn đường. Họ đã vượt qua bao thử thách để giữ lấy nhau.",
+    "status": "rejected",
+    "createdAt": {
+      "$date": "2020-08-09T03:32:51Z"
+    },
+    "updatedAt": {
+      "$date": "2020-10-06T03:32:51Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e234a7069253c8acb3cc2c8c"
+    },
+    "title": "Sắc Hành Trình 43",
+    "slug": "sắc-hành-trình-43-e234a7",
+    "authorId": {
+      "$oid": "359d08056455e5003de41955"
+    },
+    "category": [
+      "romance"
+    ],
+    "coverUrl": "https://picsum.photos/seed/e234a7069253c8acb3cc2c8c/600/800",
+    "description": "Một bí mật được giấu kín từ lâu cuối cùng cũng bị hé lộ. Trên con đường vắng, chỉ còn lại tiếng thở dài của kẻ lữ hành. Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học. Một bí mật được giấu kín từ lâu cuối cùng cũng bị hé lộ. Họ gặp nhau như một định mệnh, và chia tay như một phần của cuộc đời.",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2021-03-17T21:54:22Z"
+    },
+    "updatedAt": {
+      "$date": "2021-08-11T21:54:22Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "965ac57c75bf758d954a624a"
+    },
+    "title": "Kỳ Đêm 44",
+    "slug": "kỳ-đêm-44-965ac5",
+    "authorId": {
+      "$oid": "4e407d5034606dd262af019f"
+    },
+    "category": [
+      "horror",
+      "comedy"
+    ],
+    "coverUrl": "https://picsum.photos/seed/965ac57c75bf758d954a624a/600/800",
+    "description": "Đêm dài hát rỉ nỗi nhớ, khiến trái tim không thể yên bình. Gió nhẹ thổi qua bức rèm cửa, mang theo mùi hoa và ký ức. Một bí mật được giấu kín từ lâu cuối cùng cũng bị hé lộ. Câu chuyện bắt đầu vào một buổi sớm mai khi mặt trời vừa ló dạng. Họ gặp nhau như một định mệnh, và chia tay như một phần của cuộc đời.",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2025-12-13T23:55:30Z"
+    },
+    "updatedAt": {
+      "$date": "2026-07-22T23:55:30Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "94d179b699781ed62bed992d"
+    },
+    "title": "Linh Nhật Ký 45",
+    "slug": "linh-nhật-ký-45-94d179",
+    "authorId": {
+      "$oid": "359d08056455e5003de41955"
+    },
+    "category": [
+      "comedy"
+    ],
+    "coverUrl": "https://picsum.photos/seed/94d179b699781ed62bed992d/600/800",
+    "description": "Câu chuyện bắt đầu vào một buổi sớm mai khi mặt trời vừa ló dạng. Ánh trăng làm bừng tỉnh những ký ức ngủ quên. Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ. Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học. Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói. Một bí mật được giấu kín từ lâu cuối cùng cũng bị hé lộ.",
+    "status": "rejected",
+    "createdAt": {
+      "$date": "2020-03-21T08:37:35Z"
+    },
+    "updatedAt": {
+      "$date": "2020-04-10T08:37:35Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a2c9e069756133d6c27588dd"
+    },
+    "title": "Vĩ Lữ Khách của Tam 46",
+    "slug": "vĩ-lữ-khách-của-tam-46-a2c9e0",
+    "authorId": {
+      "$oid": "a095caf3985b613af9a2d186"
+    },
+    "category": [
+      "action",
+      "slice-of-life",
+      "adventure"
+    ],
+    "coverUrl": "https://picsum.photos/seed/a2c9e069756133d6c27588dd/600/800",
+    "description": "Nỗi buồn và niềm vui đan xen, tạo thành một khúc ca của đời người. Họ đã vượt qua bao thử thách để giữ lấy nhau. Nỗi buồn và niềm vui đan xen, tạo thành một khúc ca của đời người. Nỗi buồn và niềm vui đan xen, tạo thành một khúc ca của đời người. Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ. Gió nhẹ thổi qua bức rèm cửa, mang theo mùi hoa và ký ức.",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2022-05-14T04:51:27Z"
+    },
+    "updatedAt": {
+      "$date": "2022-08-04T04:51:27Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "382d99f19964045852643e02"
+    },
+    "title": "Bí Kiếm 47",
+    "slug": "bí-kiếm-47-382d99",
+    "authorId": {
+      "$oid": "4e407d5034606dd262af019f"
+    },
+    "category": [
+      "fantasy",
+      "slice-of-life",
+      "adventure"
+    ],
+    "coverUrl": "https://picsum.photos/seed/382d99f19964045852643e02/600/800",
+    "description": "Tiếng bước chân vang lên trong con hẻm, mang theo lời hẹn chưa nói. Nỗi buồn và niềm vui đan xen, tạo thành một khúc ca của đời người. Gió nhẹ thổi qua bức rèm cửa, mang theo mùi hoa và ký ức. Ánh trăng làm bừng tỉnh những ký ức ngủ quên. Họ đã vượt qua bao thử thách để giữ lấy nhau. Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học.",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2025-08-20T13:48:33Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-10T13:48:33Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "795e5eeebb181f07ab03a7a9"
+    },
+    "title": "Huyền Ánh Sáng của Tuan 48",
+    "slug": "huyền-ánh-sáng-của-tuan-48-795e5e",
+    "authorId": {
+      "$oid": "1139055a3e7898e8a1aca18e"
+    },
+    "category": [
+      "horror"
+    ],
+    "coverUrl": "https://picsum.photos/seed/795e5eeebb181f07ab03a7a9/600/800",
+    "description": "Một bí mật được giấu kín từ lâu cuối cùng cũng bị hé lộ. Ánh trăng làm bừng tỉnh những ký ức ngủ quên. Đêm dài hát rỉ nỗi nhớ, khiến trái tim không thể yên bình. Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ. Đêm dài hát rỉ nỗi nhớ, khiến trái tim không thể yên bình. Ánh trăng làm bừng tỉnh những ký ức ngủ quên.",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2023-07-07T21:58:21Z"
+    },
+    "updatedAt": {
+      "$date": "2023-08-02T21:58:21Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d127dfb7dfa3262f2c1cd16a"
+    },
+    "title": "Bóng Cuộc Đời 49",
+    "slug": "bóng-cuộc-đời-49-d127df",
+    "authorId": {
+      "$oid": "c085c053a7f5c983e00073d6"
+    },
+    "category": [
+      "slice-of-life",
+      "adventure",
+      "fantasy"
+    ],
+    "coverUrl": "https://picsum.photos/seed/d127dfb7dfa3262f2c1cd16a/600/800",
+    "description": "Một bí mật được giấu kín từ lâu cuối cùng cũng bị hé lộ. Ánh trăng làm bừng tỉnh những ký ức ngủ quên. Không ai biết được tương lai sẽ đưa họ đến đâu, chỉ có niềm tin dẫn đường. Trên con đường vắng, chỉ còn lại tiếng thở dài của kẻ lữ hành. Anh nhìn ra ngoài cửa sổ, nơi thành phố vẫn còn say giấc ngủ.",
+    "status": "rejected",
+    "createdAt": {
+      "$date": "2022-06-13T21:00:35Z"
+    },
+    "updatedAt": {
+      "$date": "2022-11-19T21:00:35Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "764eb1cad4118da750babc42"
+    },
+    "title": "Sắc Rừng của Tuan 50",
+    "slug": "sắc-rừng-của-tuan-50-764eb1",
+    "authorId": {
+      "$oid": "3a6bc19ce900e54d6b7e5bdf"
+    },
+    "category": [
+      "slice-of-life"
+    ],
+    "coverUrl": "https://picsum.photos/seed/764eb1cad4118da750babc42/600/800",
+    "description": "Mưa rơi xuống nhẹ nhàng, rửa trôi những oán hờn cũ. Mỗi bước đi là một câu chuyện, mỗi câu chuyện là một bài học. Anh nhìn ra ngoài cửa sổ, nơi thành phố vẫn còn say giấc ngủ. Đêm dài hát rỉ nỗi nhớ, khiến trái tim không thể yên bình. Họ gặp nhau như một định mệnh, và chia tay như một phần của cuộc đời.",
+    "status": "published",
+    "createdAt": {
+      "$date": "2020-10-16T14:10:55Z"
+    },
+    "updatedAt": {
+      "$date": "2021-03-14T14:10:55Z"
+    }
+  }
+]

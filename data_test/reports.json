@@ -1,0 +1,382 @@
+[
+  {
+    "_id": {
+      "$oid": "10a794e9689529cb346db11e"
+    },
+    "userId": {
+      "$oid": "78897b1e81ccb78d304d7fe0"
+    },
+    "storyId": {
+      "$oid": "0e73eda23678ac58cff6a99b"
+    },
+    "chapterId": {
+      "$oid": "0b3b9af5efc3552f2319700f"
+    },
+    "reason": "spam",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2021-07-10T00:28:39Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d5473a8b7bf8b2e6fe3a6db8"
+    },
+    "userId": {
+      "$oid": "c37bc907080f968fd17b01aa"
+    },
+    "storyId": {
+      "$oid": "2d2744e6484b1e4b574b38c6"
+    },
+    "chapterId": {
+      "$oid": "4784fd1522b45b3341318931"
+    },
+    "reason": "spam",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2024-01-27T16:01:56Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e4566e63566d6b8bd16548b5"
+    },
+    "userId": {
+      "$oid": "51024c0f7149bfe40e726bdc"
+    },
+    "storyId": {
+      "$oid": "6abaa970829bea7ad18474ed"
+    },
+    "chapterId": {
+      "$oid": "7af20c24ec23bf8a732d4836"
+    },
+    "reason": "other",
+    "status": "resolved",
+    "createdAt": {
+      "$date": "2020-09-19T02:42:28Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a17e3fc19efefe91157ba172"
+    },
+    "userId": {
+      "$oid": "17c2c2546ab71a977b61172c"
+    },
+    "storyId": {
+      "$oid": "7bf5c7c5ad15d6f973af8f95"
+    },
+    "chapterId": {
+      "$oid": "f177a2d274673b2da5b20498"
+    },
+    "reason": "spam",
+    "status": "resolved",
+    "createdAt": {
+      "$date": "2023-11-21T00:39:59Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "9c7230ce4eee485906810f3c"
+    },
+    "userId": {
+      "$oid": "51024c0f7149bfe40e726bdc"
+    },
+    "storyId": {
+      "$oid": "a2c9e069756133d6c27588dd"
+    },
+    "chapterId": {
+      "$oid": "f57b540cb61d4e85809e5dec"
+    },
+    "reason": "other",
+    "status": "resolved",
+    "createdAt": {
+      "$date": "2022-05-30T04:51:27Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "01e1c5897c1cd26ac44d03af"
+    },
+    "userId": {
+      "$oid": "0f25891199beb260cad9c33a"
+    },
+    "storyId": {
+      "$oid": "94d179b699781ed62bed992d"
+    },
+    "chapterId": {
+      "$oid": "eae8f7edeee8b5b197ce8345"
+    },
+    "reason": "other",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2020-04-10T08:37:35Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "659363ebe93d8644c9ce8178"
+    },
+    "userId": {
+      "$oid": "1b467fd122f5a42929301569"
+    },
+    "storyId": {
+      "$oid": "6abaa970829bea7ad18474ed"
+    },
+    "chapterId": {
+      "$oid": "cb73fd8af2b664a11d613225"
+    },
+    "reason": "spam",
+    "status": "resolved",
+    "createdAt": {
+      "$date": "2020-10-18T02:42:28Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d3032a363a5880fbb7e6a67e"
+    },
+    "userId": {
+      "$oid": "519a765aa3c9eff26b32e958"
+    },
+    "storyId": {
+      "$oid": "6de6e293f2645b2c24cfc4a4"
+    },
+    "chapterId": {
+      "$oid": "2c0c28237bc9d9b9915b2e1c"
+    },
+    "reason": "spam",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2025-03-21T17:02:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "36c6ad9f3d1538d3a51e0828"
+    },
+    "userId": {
+      "$oid": "7fe0d1b2cd4df855cd4e962c"
+    },
+    "storyId": {
+      "$oid": "e7347fa93e153dd755fa66b9"
+    },
+    "chapterId": {
+      "$oid": "f825752fff111b44f6eaee63"
+    },
+    "reason": "other",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2024-09-02T17:16:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ffd90bf385428cbe90cb14e5"
+    },
+    "userId": {
+      "$oid": "99e1a645d9ec42a4798b8637"
+    },
+    "storyId": {
+      "$oid": "be258766fc6cc12bd0eaf85b"
+    },
+    "chapterId": {
+      "$oid": "59f55d3a6b1b61302d5eb564"
+    },
+    "reason": "copyright",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2025-11-28T02:34:43Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6139f9d712686f297d0d67df"
+    },
+    "userId": {
+      "$oid": "aee03fbc53756ca5fb85849c"
+    },
+    "storyId": {
+      "$oid": "1944a3acc740ccc1031b5218"
+    },
+    "chapterId": {
+      "$oid": "d04259066659a31b3cae964f"
+    },
+    "reason": "other",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2026-01-11T02:56:34Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "fa27753117a04e359c757bf5"
+    },
+    "userId": {
+      "$oid": "db844a7a4959f753c5350fab"
+    },
+    "storyId": {
+      "$oid": "cb54557657c51fc6f3428c6b"
+    },
+    "chapterId": {
+      "$oid": "c3c39d993fc33b1709bf7574"
+    },
+    "reason": "spam",
+    "status": "resolved",
+    "createdAt": {
+      "$date": "2022-03-26T15:46:32Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "2ad0551ce63c8eb3bb70edcc"
+    },
+    "userId": {
+      "$oid": "db844a7a4959f753c5350fab"
+    },
+    "storyId": {
+      "$oid": "91fef5cc8be914fb66ac10d5"
+    },
+    "chapterId": {
+      "$oid": "f956d10a2cabea2271b96ce5"
+    },
+    "reason": "inappropriate",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2021-10-26T00:38:03Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ddfc59bb8ffbcb439cb529cb"
+    },
+    "userId": {
+      "$oid": "6dc10e25f73464719c95c84a"
+    },
+    "storyId": {
+      "$oid": "21c9c77acb669be84cdc3014"
+    },
+    "chapterId": {
+      "$oid": "3baa5b1f76f74ec84b7ba21e"
+    },
+    "reason": "other",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2022-06-20T06:08:07Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "981646ea81232493d3350549"
+    },
+    "userId": {
+      "$oid": "ea27ff03adf04e89f716fb04"
+    },
+    "storyId": {
+      "$oid": "764eb1cad4118da750babc42"
+    },
+    "chapterId": {
+      "$oid": "4ad03280da150eafb9191d0f"
+    },
+    "reason": "other",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2020-11-30T14:10:55Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b20e2bff328289096950650"
+    },
+    "userId": {
+      "$oid": "1b467fd122f5a42929301569"
+    },
+    "storyId": {
+      "$oid": "9ed1d983bb3dc4b58d0f6905"
+    },
+    "chapterId": {
+      "$oid": "5937f0d6803d6cc2d0cf7ad6"
+    },
+    "reason": "spam",
+    "status": "resolved",
+    "createdAt": {
+      "$date": "2026-01-07T11:56:10Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "00f2008a7df8601105567889"
+    },
+    "userId": {
+      "$oid": "6a89efd5b14fbd7a85869348"
+    },
+    "storyId": {
+      "$oid": "2c3e8e2a7ccba3c0170ec718"
+    },
+    "chapterId": {
+      "$oid": "79dc584a61f4ac1cc0cfdab5"
+    },
+    "reason": "copyright",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2024-10-05T19:20:41Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "8c014a86f41d487b4cef34ca"
+    },
+    "userId": {
+      "$oid": "78897b1e81ccb78d304d7fe0"
+    },
+    "storyId": {
+      "$oid": "382d99f19964045852643e02"
+    },
+    "chapterId": {
+      "$oid": "a2582757c10e226961cb123a"
+    },
+    "reason": "spam",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2025-10-14T13:48:33Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "0e1a3b8fb45f5faaa1e30c0e"
+    },
+    "userId": {
+      "$oid": "df0cb6518fe427ceb6350599"
+    },
+    "storyId": {
+      "$oid": "874fdbe8c3a64d950f32c9b8"
+    },
+    "chapterId": {
+      "$oid": "97576cb66ec6eb7569c05d5f"
+    },
+    "reason": "copyright",
+    "status": "resolved",
+    "createdAt": {
+      "$date": "2025-06-24T05:45:02Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "4b57c9638725a77bcbfce61f"
+    },
+    "userId": {
+      "$oid": "519a765aa3c9eff26b32e958"
+    },
+    "storyId": {
+      "$oid": "ac45a57a65d7581bfb797f8b"
+    },
+    "chapterId": {
+      "$oid": "8711308bc503a6edc8ecc5b9"
+    },
+    "reason": "other",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2024-12-25T14:35:01Z"
+    }
+  }
+]

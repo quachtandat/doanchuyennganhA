@@ -1,0 +1,47 @@
+[
+  {
+    "_id": {
+      "$oid": "bc9be4f950a15cab22f294b5"
+    },
+    "code": "PROMO921",
+    "description": "Khuyến mãi nạp tiền",
+    "bonusPercent": 15,
+    "validFrom": {
+      "$date": "2024-06-21T02:03:34Z"
+    },
+    "validTo": {
+      "$date": "2024-09-04T02:03:34Z"
+    },
+    "status": "active"
+  },
+  {
+    "_id": {
+      "$oid": "9c4419925a582368cf33c445"
+    },
+    "code": "PROMO918",
+    "description": "Khuyến mãi nạp tiền",
+    "bonusPercent": 5,
+    "validFrom": {
+      "$date": "2025-06-24T21:48:21Z"
+    },
+    "validTo": {
+      "$date": "2025-07-18T21:48:21Z"
+    },
+    "status": "active"
+  },
+  {
+    "_id": {
+      "$oid": "9dde9e3aa03903a0c337e3c6"
+    },
+    "code": "PROMO898",
+    "description": "Khuyến mãi nạp tiền",
+    "bonusPercent": 5,
+    "validFrom": {
+      "$date": "2020-04-30T05:37:10Z"
+    },
+    "validTo": {
+      "$date": "2020-07-04T05:37:10Z"
+    },
+    "status": "active"
+  }
+]

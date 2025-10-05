@@ -1,0 +1,1202 @@
+[
+  {
+    "_id": {
+      "$oid": "58472457d0668ac0f4ff6638"
+    },
+    "userId": {
+      "$oid": "1ed85fd591c01255fabd21c4"
+    },
+    "storyId": {
+      "$oid": "795e5eeebb181f07ab03a7a9"
+    },
+    "chapterId": {
+      "$oid": "27fc133cc1202308530bfec6"
+    },
+    "priceCoins": 10,
+    "method": "wallet",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2023-09-07T21:58:21Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "bcb17a8d3670ffb83b8afb93"
+    },
+    "userId": {
+      "$oid": "717c9a4bfb611e07819b151a"
+    },
+    "storyId": {
+      "$oid": "be258766fc6cc12bd0eaf85b"
+    },
+    "chapterId": {
+      "$oid": "e7c2e8fd56dcf3a4e11eaabf"
+    },
+    "priceCoins": 0,
+    "method": "wallet",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2025-12-23T02:34:43Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "5bee9d82e855b91f1e0654fd"
+    },
+    "userId": {
+      "$oid": "99e1a645d9ec42a4798b8637"
+    },
+    "storyId": {
+      "$oid": "234b9cb3392a252c6bac0d80"
+    },
+    "chapterId": {
+      "$oid": "cd24790107409fd59901f346"
+    },
+    "priceCoins": 0,
+    "method": "gift",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2020-10-04T03:32:51Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d1c6d93c729f28cc6f536124"
+    },
+    "userId": {
+      "$oid": "e9e66423990c8bc35afa3629"
+    },
+    "storyId": {
+      "$oid": "ee31608df86c6d73a84fa2b2"
+    },
+    "chapterId": {
+      "$oid": "dea0a141d56e6fcd785d72f9"
+    },
+    "priceCoins": 0,
+    "method": "promo",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2021-06-08T12:58:40Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d3b46ebf68ec54a28aa1aff2"
+    },
+    "userId": {
+      "$oid": "17c2c2546ab71a977b61172c"
+    },
+    "storyId": {
+      "$oid": "a2c9e069756133d6c27588dd"
+    },
+    "chapterId": {
+      "$oid": "bd77956256041b20bac7f24d"
+    },
+    "priceCoins": 0,
+    "method": "promo",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2022-06-01T04:51:27Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "4c16502f1c76d088d4f4d7a4"
+    },
+    "userId": {
+      "$oid": "ace3fff0d88956af807c0f68"
+    },
+    "storyId": {
+      "$oid": "1944a3acc740ccc1031b5218"
+    },
+    "chapterId": {
+      "$oid": "c402a48c4d75c32dcce7b491"
+    },
+    "priceCoins": 0,
+    "method": "promo",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2025-12-14T02:56:34Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "99d7720dc56c6490b9e0e83e"
+    },
+    "userId": {
+      "$oid": "a6a05d3238d38669c4da68bf"
+    },
+    "storyId": {
+      "$oid": "493184876cadf7eb76c8371c"
+    },
+    "chapterId": {
+      "$oid": "5329b5f62286acac823243f7"
+    },
+    "priceCoins": 0,
+    "method": "promo",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2022-10-02T08:04:11Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "50b05dcfd599c9cbf6301990"
+    },
+    "userId": {
+      "$oid": "6a89efd5b14fbd7a85869348"
+    },
+    "storyId": {
+      "$oid": "9d626e009e34ea92a3dca28e"
+    },
+    "chapterId": {
+      "$oid": "85b3534c0aee1bcf10f3f614"
+    },
+    "priceCoins": 0,
+    "method": "wallet",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2022-06-19T04:05:58Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "8aa559b7f54ddbc3b2e020ff"
+    },
+    "userId": {
+      "$oid": "717c9a4bfb611e07819b151a"
+    },
+    "storyId": {
+      "$oid": "be258766fc6cc12bd0eaf85b"
+    },
+    "chapterId": {
+      "$oid": "07e16df27596f2082638641f"
+    },
+    "priceCoins": 0,
+    "method": "promo",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2025-11-29T02:34:43Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "19ab5b37f0bba94a3e091625"
+    },
+    "userId": {
+      "$oid": "c2fc9d9714e4d7e46ed78932"
+    },
+    "storyId": {
+      "$oid": "8eb384f2002f88b9d775a455"
+    },
+    "chapterId": {
+      "$oid": "8d6b4e842c489c197df1865c"
+    },
+    "priceCoins": 0,
+    "method": "wallet",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2025-05-09T10:12:29Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d617ee076fa21c422e3cc082"
+    },
+    "userId": {
+      "$oid": "13f142b33d8d51c4a08cddc2"
+    },
+    "storyId": {
+      "$oid": "8cdb6c21334e97875f5e60ca"
+    },
+    "chapterId": {
+      "$oid": "fa4d57dcd7e8a5cc7276a5c4"
+    },
+    "priceCoins": 0,
+    "method": "promo",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2021-07-23T06:06:01Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ae82f26d7a49729ac2f9df16"
+    },
+    "userId": {
+      "$oid": "e9e66423990c8bc35afa3629"
+    },
+    "storyId": {
+      "$oid": "be258766fc6cc12bd0eaf85b"
+    },
+    "chapterId": {
+      "$oid": "f36e773becfa8cac73ee0cb9"
+    },
+    "priceCoins": 0,
+    "method": "promo",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2025-11-15T02:34:43Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "268499dda3a88525048c501b"
+    },
+    "userId": {
+      "$oid": "db844a7a4959f753c5350fab"
+    },
+    "storyId": {
+      "$oid": "117e7554b97961dccf9ff4d1"
+    },
+    "chapterId": {
+      "$oid": "341ba3f0d1f14b01ea281717"
+    },
+    "priceCoins": 0,
+    "method": "promo",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2020-06-09T09:45:51Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a59be0b83edbfc3a8b856462"
+    },
+    "userId": {
+      "$oid": "1b467fd122f5a42929301569"
+    },
+    "storyId": {
+      "$oid": "42085256355f6c4f164d54fa"
+    },
+    "chapterId": {
+      "$oid": "50c44a3e23e3a29a5c4ddeee"
+    },
+    "priceCoins": 0,
+    "method": "wallet",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2025-10-31T04:32:34Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c2f07ff5cbe814dbbf8ec04a"
+    },
+    "userId": {
+      "$oid": "66022ebd28e4747e7593d1e8"
+    },
+    "storyId": {
+      "$oid": "ac45a57a65d7581bfb797f8b"
+    },
+    "chapterId": {
+      "$oid": "695b0768bd5e23f2b6ca6b5a"
+    },
+    "priceCoins": 0,
+    "method": "gift",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2025-01-26T14:35:01Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b88ec0d65d176493c6fe13c4"
+    },
+    "userId": {
+      "$oid": "717c9a4bfb611e07819b151a"
+    },
+    "storyId": {
+      "$oid": "bf1983b977d2862375c56ebd"
+    },
+    "chapterId": {
+      "$oid": "b73a7546022ea0597b2b63dd"
+    },
+    "priceCoins": 0,
+    "method": "promo",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2020-12-14T03:27:14Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "0e52bd5e493990978534da44"
+    },
+    "userId": {
+      "$oid": "717c9a4bfb611e07819b151a"
+    },
+    "storyId": {
+      "$oid": "117e7554b97961dccf9ff4d1"
+    },
+    "chapterId": {
+      "$oid": "064815c1d13f95937c06231e"
+    },
+    "priceCoins": 0,
+    "method": "wallet",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2020-07-16T09:45:51Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6f58db77bfa72a37a18a6d3b"
+    },
+    "userId": {
+      "$oid": "13f142b33d8d51c4a08cddc2"
+    },
+    "storyId": {
+      "$oid": "df9bcc269ca03f9bd46966bf"
+    },
+    "chapterId": {
+      "$oid": "2a53bfd7a35aafebd39fd1ee"
+    },
+    "priceCoins": 0,
+    "method": "gift",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2022-12-18T13:51:53Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "187ee2c4bbdd42b8449e2ee1"
+    },
+    "userId": {
+      "$oid": "99e1a645d9ec42a4798b8637"
+    },
+    "storyId": {
+      "$oid": "382d99f19964045852643e02"
+    },
+    "chapterId": {
+      "$oid": "fe6c13dbb8e3dfa0ddc5ce62"
+    },
+    "priceCoins": 0,
+    "method": "wallet",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2025-08-31T13:48:33Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d279e7630222716b9ed98898"
+    },
+    "userId": {
+      "$oid": "aee03fbc53756ca5fb85849c"
+    },
+    "storyId": {
+      "$oid": "795e5eeebb181f07ab03a7a9"
+    },
+    "chapterId": {
+      "$oid": "2b1f5e100b5c81d6b6bea7c3"
+    },
+    "priceCoins": 0,
+    "method": "gift",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2023-07-26T21:58:21Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "571ba2276d3c40ae6664f7de"
+    },
+    "userId": {
+      "$oid": "51024c0f7149bfe40e726bdc"
+    },
+    "storyId": {
+      "$oid": "e1b9a2ef0194551f31e1cfce"
+    },
+    "chapterId": {
+      "$oid": "ed18ad5f3da711103dfd303c"
+    },
+    "priceCoins": 0,
+    "method": "promo",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2024-02-06T07:31:06Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "41dbb0288711c0150c4a3dbe"
+    },
+    "userId": {
+      "$oid": "1ed85fd591c01255fabd21c4"
+    },
+    "storyId": {
+      "$oid": "42085256355f6c4f164d54fa"
+    },
+    "chapterId": {
+      "$oid": "b033d3199054f21b0bd5741f"
+    },
+    "priceCoins": 10,
+    "method": "gift",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2025-12-03T04:32:34Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a15e6ade7f497ddf42f0e733"
+    },
+    "userId": {
+      "$oid": "99e1a645d9ec42a4798b8637"
+    },
+    "storyId": {
+      "$oid": "94d179b699781ed62bed992d"
+    },
+    "chapterId": {
+      "$oid": "660a486ab3a204d7c9790075"
+    },
+    "priceCoins": 0,
+    "method": "wallet",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2020-05-10T08:37:35Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "873f4dd75b34cf44bfa0f472"
+    },
+    "userId": {
+      "$oid": "7fe0d1b2cd4df855cd4e962c"
+    },
+    "storyId": {
+      "$oid": "8eb384f2002f88b9d775a455"
+    },
+    "chapterId": {
+      "$oid": "324aaa2b69187c05035ada42"
+    },
+    "priceCoins": 0,
+    "method": "wallet",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2025-03-19T10:12:29Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e7214b84735c62479b5e7e00"
+    },
+    "userId": {
+      "$oid": "7fe0d1b2cd4df855cd4e962c"
+    },
+    "storyId": {
+      "$oid": "9ed1d983bb3dc4b58d0f6905"
+    },
+    "chapterId": {
+      "$oid": "dddee0de270f31246e525b25"
+    },
+    "priceCoins": 0,
+    "method": "promo",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2025-12-30T11:56:10Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "9744bf52482c25f1221ca44b"
+    },
+    "userId": {
+      "$oid": "66022ebd28e4747e7593d1e8"
+    },
+    "storyId": {
+      "$oid": "b29953b1bc978076c52ebbae"
+    },
+    "chapterId": {
+      "$oid": "07e5bba8bc959b1c278c16ce"
+    },
+    "priceCoins": 0,
+    "method": "wallet",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2023-07-04T01:10:53Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a0ca2eb70dfb76c307c732b8"
+    },
+    "userId": {
+      "$oid": "b016009c996e153ec54974bb"
+    },
+    "storyId": {
+      "$oid": "8eb384f2002f88b9d775a455"
+    },
+    "chapterId": {
+      "$oid": "67850310f32f495e0aa06161"
+    },
+    "priceCoins": 0,
+    "method": "wallet",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2025-03-07T10:12:29Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e651506a6b54f54b79869c61"
+    },
+    "userId": {
+      "$oid": "717c9a4bfb611e07819b151a"
+    },
+    "storyId": {
+      "$oid": "9ed1d983bb3dc4b58d0f6905"
+    },
+    "chapterId": {
+      "$oid": "5937f0d6803d6cc2d0cf7ad6"
+    },
+    "priceCoins": 0,
+    "method": "promo",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2026-01-30T11:56:10Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "5a79c2d48cedc4cb5cee1319"
+    },
+    "userId": {
+      "$oid": "c279e87f38891e4acc21a827"
+    },
+    "storyId": {
+      "$oid": "b29953b1bc978076c52ebbae"
+    },
+    "chapterId": {
+      "$oid": "bee44af60f7068899df3f41f"
+    },
+    "priceCoins": 0,
+    "method": "gift",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2023-06-28T01:10:53Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "bf004582a30c642529f85b67"
+    },
+    "userId": {
+      "$oid": "17c2c2546ab71a977b61172c"
+    },
+    "storyId": {
+      "$oid": "8cdb6c21334e97875f5e60ca"
+    },
+    "chapterId": {
+      "$oid": "fa4d57dcd7e8a5cc7276a5c4"
+    },
+    "priceCoins": 0,
+    "method": "promo",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2021-10-20T06:06:01Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "4a844fcd6ae0360f387ae01c"
+    },
+    "userId": {
+      "$oid": "1ed85fd591c01255fabd21c4"
+    },
+    "storyId": {
+      "$oid": "874fdbe8c3a64d950f32c9b8"
+    },
+    "chapterId": {
+      "$oid": "da3323ec1befb2515999c952"
+    },
+    "priceCoins": 0,
+    "method": "gift",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2025-08-18T05:45:02Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c6e7e51b9bdbd6d1572cbe82"
+    },
+    "userId": {
+      "$oid": "c37bc907080f968fd17b01aa"
+    },
+    "storyId": {
+      "$oid": "b617a31782b4d4f756f1abd2"
+    },
+    "chapterId": {
+      "$oid": "ba5f618e99d8cceb20b56cd0"
+    },
+    "priceCoins": 0,
+    "method": "gift",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2020-11-08T18:16:20Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "17d17e429e6a46675364256d"
+    },
+    "userId": {
+      "$oid": "b016009c996e153ec54974bb"
+    },
+    "storyId": {
+      "$oid": "df9bcc269ca03f9bd46966bf"
+    },
+    "chapterId": {
+      "$oid": "2af87864819a74b45d111ba7"
+    },
+    "priceCoins": 0,
+    "method": "gift",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2022-12-24T13:51:53Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ed5121502e6bd85e04df20d7"
+    },
+    "userId": {
+      "$oid": "66022ebd28e4747e7593d1e8"
+    },
+    "storyId": {
+      "$oid": "8eb384f2002f88b9d775a455"
+    },
+    "chapterId": {
+      "$oid": "34cc76b5c2b671836ddc6d79"
+    },
+    "priceCoins": 0,
+    "method": "wallet",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2025-05-06T10:12:29Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "0a2abbc7b3c3249e8987a3dc"
+    },
+    "userId": {
+      "$oid": "7fe0d1b2cd4df855cd4e962c"
+    },
+    "storyId": {
+      "$oid": "94d179b699781ed62bed992d"
+    },
+    "chapterId": {
+      "$oid": "35a460f27dec5631c3388e90"
+    },
+    "priceCoins": 0,
+    "method": "wallet",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2020-06-28T08:37:35Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "8c63635ddee82c476f7cc4be"
+    },
+    "userId": {
+      "$oid": "519a765aa3c9eff26b32e958"
+    },
+    "storyId": {
+      "$oid": "493184876cadf7eb76c8371c"
+    },
+    "chapterId": {
+      "$oid": "f45c128b94713ba46ab7f485"
+    },
+    "priceCoins": 0,
+    "method": "gift",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2022-10-05T08:04:11Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "14b9c997042371421a017107"
+    },
+    "userId": {
+      "$oid": "1ce14b72bfe95f7e6bb7ec4b"
+    },
+    "storyId": {
+      "$oid": "764eb1cad4118da750babc42"
+    },
+    "chapterId": {
+      "$oid": "03feb8b18fda192e804be004"
+    },
+    "priceCoins": 10,
+    "method": "wallet",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2020-12-21T14:10:55Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "0edaadf24daf205c75f03a12"
+    },
+    "userId": {
+      "$oid": "1b467fd122f5a42929301569"
+    },
+    "storyId": {
+      "$oid": "0e73eda23678ac58cff6a99b"
+    },
+    "chapterId": {
+      "$oid": "f768899f37f1f0e2e1f9c274"
+    },
+    "priceCoins": 0,
+    "method": "wallet",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2021-06-30T00:28:39Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "33f652cb796aa30ba434e858"
+    },
+    "userId": {
+      "$oid": "e00366f1191275610c41a6f6"
+    },
+    "storyId": {
+      "$oid": "6abaa970829bea7ad18474ed"
+    },
+    "chapterId": {
+      "$oid": "7af20c24ec23bf8a732d4836"
+    },
+    "priceCoins": 0,
+    "method": "wallet",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2020-10-08T02:42:28Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "40d2cb32601443ed230ed117"
+    },
+    "userId": {
+      "$oid": "e9e66423990c8bc35afa3629"
+    },
+    "storyId": {
+      "$oid": "5c481b53a1a01407eab5e2a3"
+    },
+    "chapterId": {
+      "$oid": "ab8db29129f35e52f0f5aad2"
+    },
+    "priceCoins": 0,
+    "method": "gift",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2023-02-05T08:25:18Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "49d27697ca00702edd3cd8d1"
+    },
+    "userId": {
+      "$oid": "606fa9a5e8a44450e840f319"
+    },
+    "storyId": {
+      "$oid": "795e5eeebb181f07ab03a7a9"
+    },
+    "chapterId": {
+      "$oid": "27fc133cc1202308530bfec6"
+    },
+    "priceCoins": 10,
+    "method": "wallet",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2023-10-13T21:58:21Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "4b06235d1398a4ccf4b02b3d"
+    },
+    "userId": {
+      "$oid": "0f25891199beb260cad9c33a"
+    },
+    "storyId": {
+      "$oid": "85a37baa2e7e4d7a8aba171e"
+    },
+    "chapterId": {
+      "$oid": "d4164294cff1ea74b6300b87"
+    },
+    "priceCoins": 0,
+    "method": "gift",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2024-05-06T21:01:43Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "9bca2d985f352c7f7aba4292"
+    },
+    "userId": {
+      "$oid": "cd45a941d26cd13e942fcac4"
+    },
+    "storyId": {
+      "$oid": "ee31608df86c6d73a84fa2b2"
+    },
+    "chapterId": {
+      "$oid": "6ef5395e0c0f3dbfe5367287"
+    },
+    "priceCoins": 10,
+    "method": "promo",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2021-06-07T12:58:40Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "8b3dc2aa1a55a231fcab3e60"
+    },
+    "userId": {
+      "$oid": "3ab6150e69ab6319fd7c790e"
+    },
+    "storyId": {
+      "$oid": "b617a31782b4d4f756f1abd2"
+    },
+    "chapterId": {
+      "$oid": "4827b1ebdec31378019d9259"
+    },
+    "priceCoins": 30,
+    "method": "gift",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2021-01-25T18:16:20Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6fb6c5036ebfa179903527b8"
+    },
+    "userId": {
+      "$oid": "606fa9a5e8a44450e840f319"
+    },
+    "storyId": {
+      "$oid": "2d2744e6484b1e4b574b38c6"
+    },
+    "chapterId": {
+      "$oid": "bf2396bab57b29ee09d24442"
+    },
+    "priceCoins": 0,
+    "method": "gift",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2023-12-23T16:01:56Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "dcfd2890485e56d222a828dd"
+    },
+    "userId": {
+      "$oid": "aee03fbc53756ca5fb85849c"
+    },
+    "storyId": {
+      "$oid": "382d99f19964045852643e02"
+    },
+    "chapterId": {
+      "$oid": "dffaf3cf7730139211f1df99"
+    },
+    "priceCoins": 0,
+    "method": "gift",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2025-12-09T13:48:33Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "d7f27f8ca85b4d1f9b0ac711"
+    },
+    "userId": {
+      "$oid": "cd45a941d26cd13e942fcac4"
+    },
+    "storyId": {
+      "$oid": "ee31608df86c6d73a84fa2b2"
+    },
+    "chapterId": {
+      "$oid": "440224bc43e7bdc3d529f934"
+    },
+    "priceCoins": 0,
+    "method": "wallet",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2021-07-26T12:58:40Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6fae27fb65fe2f89dedc1fe6"
+    },
+    "userId": {
+      "$oid": "1ed85fd591c01255fabd21c4"
+    },
+    "storyId": {
+      "$oid": "cb54557657c51fc6f3428c6b"
+    },
+    "chapterId": {
+      "$oid": "d788805f42ec7a325566389b"
+    },
+    "priceCoins": 0,
+    "method": "wallet",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2022-03-23T15:46:32Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "02a3ffec5ae83541c8f605cc"
+    },
+    "userId": {
+      "$oid": "8ba5c4657f518722c43041ff"
+    },
+    "storyId": {
+      "$oid": "6de6e293f2645b2c24cfc4a4"
+    },
+    "chapterId": {
+      "$oid": "0e0e25dc90a0524659a372de"
+    },
+    "priceCoins": 0,
+    "method": "gift",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2025-05-11T17:02:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "de18693239f2d911f3516e80"
+    },
+    "userId": {
+      "$oid": "a6a05d3238d38669c4da68bf"
+    },
+    "storyId": {
+      "$oid": "9d626e009e34ea92a3dca28e"
+    },
+    "chapterId": {
+      "$oid": "90afd0b5ea25412965766318"
+    },
+    "priceCoins": 0,
+    "method": "promo",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2022-05-18T04:05:58Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "4d6ecdedd265986eb35eec20"
+    },
+    "userId": {
+      "$oid": "717c9a4bfb611e07819b151a"
+    },
+    "storyId": {
+      "$oid": "795e5eeebb181f07ab03a7a9"
+    },
+    "chapterId": {
+      "$oid": "620af991929adb598a8edc7f"
+    },
+    "priceCoins": 0,
+    "method": "gift",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2023-09-03T21:58:21Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "36da40277c85a474b655d6a9"
+    },
+    "userId": {
+      "$oid": "99e1a645d9ec42a4798b8637"
+    },
+    "storyId": {
+      "$oid": "6de6e293f2645b2c24cfc4a4"
+    },
+    "chapterId": {
+      "$oid": "1de415aed438d74dd48c42a6"
+    },
+    "priceCoins": 0,
+    "method": "promo",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2025-02-07T17:02:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e0f12bfbd13bae916a2de573"
+    },
+    "userId": {
+      "$oid": "606fa9a5e8a44450e840f319"
+    },
+    "storyId": {
+      "$oid": "bf1983b977d2862375c56ebd"
+    },
+    "chapterId": {
+      "$oid": "cc76d55fe64f5a1b2367bfe4"
+    },
+    "priceCoins": 0,
+    "method": "wallet",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2020-12-29T03:27:14Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a904ac190453df7efc28465b"
+    },
+    "userId": {
+      "$oid": "0f25891199beb260cad9c33a"
+    },
+    "storyId": {
+      "$oid": "234b9cb3392a252c6bac0d80"
+    },
+    "chapterId": {
+      "$oid": "bb84a0efa8e38543387fad47"
+    },
+    "priceCoins": 0,
+    "method": "promo",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2020-11-11T03:32:51Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "fb8f34ad6a04644c67bccf9e"
+    },
+    "userId": {
+      "$oid": "db844a7a4959f753c5350fab"
+    },
+    "storyId": {
+      "$oid": "6abaa970829bea7ad18474ed"
+    },
+    "chapterId": {
+      "$oid": "36a4e7916662571ee2f46efc"
+    },
+    "priceCoins": 0,
+    "method": "gift",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2020-10-19T02:42:28Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "70b4381191d0efacba40b1ab"
+    },
+    "userId": {
+      "$oid": "17c2c2546ab71a977b61172c"
+    },
+    "storyId": {
+      "$oid": "d127dfb7dfa3262f2c1cd16a"
+    },
+    "chapterId": {
+      "$oid": "237db0a317d7da6dd37ce10d"
+    },
+    "priceCoins": 0,
+    "method": "gift",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2022-09-26T21:00:35Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ef60bba8ed385947d31e734a"
+    },
+    "userId": {
+      "$oid": "1ed85fd591c01255fabd21c4"
+    },
+    "storyId": {
+      "$oid": "5813d27ad75ea1b34692ef5c"
+    },
+    "chapterId": {
+      "$oid": "f3895c78a85a3085e7d04383"
+    },
+    "priceCoins": 0,
+    "method": "promo",
+    "status": "completed",
+    "purchaseAt": {
+      "$date": "2021-04-04T13:55:16Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "fa74df12faa2a072f26984bf"
+    },
+    "userId": {
+      "$oid": "ace3fff0d88956af807c0f68"
+    },
+    "storyId": {
+      "$oid": "6de6e293f2645b2c24cfc4a4"
+    },
+    "chapterId": {
+      "$oid": "6f6b70fe749ad223ea5891ae"
+    },
+    "priceCoins": 0,
+    "method": "wallet",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2025-02-11T17:02:00Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "65da53bfc9fc27d2aa464657"
+    },
+    "userId": {
+      "$oid": "a0b707cdc29162d4ad559502"
+    },
+    "storyId": {
+      "$oid": "234b9cb3392a252c6bac0d80"
+    },
+    "chapterId": {
+      "$oid": "242d22b7e1bc2aa641aa1fcb"
+    },
+    "priceCoins": 0,
+    "method": "gift",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2020-10-24T03:32:51Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "132e221fac4700314e40d055"
+    },
+    "userId": {
+      "$oid": "68e563266dd0e848a1291a3f"
+    },
+    "storyId": {
+      "$oid": "2e1de3b55369304d1535b427"
+    },
+    "chapterId": {
+      "$oid": "adf9ad96a909aff4baa2b4ff"
+    },
+    "priceCoins": 0,
+    "method": "gift",
+    "status": "refunded",
+    "purchaseAt": {
+      "$date": "2021-08-27T02:19:48Z"
+    }
+  }
+]

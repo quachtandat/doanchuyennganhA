@@ -1,0 +1,322 @@
+[
+  {
+    "_id": {
+      "$oid": "59008fc6b21e2d3cea3604db"
+    },
+    "actorId": {
+      "$oid": "78897b1e81ccb78d304d7fe0"
+    },
+    "action": "create_story",
+    "target": "",
+    "details": {
+      "info": "Auto generated log 0"
+    },
+    "createdAt": {
+      "$date": "2025-04-05T18:27:27Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c9087462c3c0db73e84f2397"
+    },
+    "actorId": {
+      "$oid": "ace3fff0d88956af807c0f68"
+    },
+    "action": "user_login",
+    "target": "",
+    "details": {
+      "info": "Auto generated log 1"
+    },
+    "createdAt": {
+      "$date": "2020-07-30T10:14:41Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c7219a088f61ce3a6033ec72"
+    },
+    "actorId": {
+      "$oid": "c085c053a7f5c983e00073d6"
+    },
+    "action": "update_chapter",
+    "target": "",
+    "details": {
+      "info": "Auto generated log 2"
+    },
+    "createdAt": {
+      "$date": "2022-07-05T16:09:42Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "0032e2a51cc49157dadbc9f9"
+    },
+    "actorId": {
+      "$oid": "3776b7e8c2c084c2f588dd33"
+    },
+    "action": "create_story",
+    "target": "",
+    "details": {
+      "info": "Auto generated log 3"
+    },
+    "createdAt": {
+      "$date": "2025-11-07T19:09:34Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "9a7eb5fdccc8b556985df3b1"
+    },
+    "actorId": {
+      "$oid": "c7a09cc0137e3fbebb74fd00"
+    },
+    "action": "delete_story",
+    "target": "",
+    "details": {
+      "info": "Auto generated log 4"
+    },
+    "createdAt": {
+      "$date": "2025-09-08T11:23:22Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "26a0f28ea74d0dccfcf8f3ef"
+    },
+    "actorId": {
+      "$oid": "a6a05d3238d38669c4da68bf"
+    },
+    "action": "user_register",
+    "target": "",
+    "details": {
+      "info": "Auto generated log 5"
+    },
+    "createdAt": {
+      "$date": "2025-11-22T14:40:53Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "b67670c8402ff98804472f9e"
+    },
+    "actorId": {
+      "$oid": "1139055a3e7898e8a1aca18e"
+    },
+    "action": "delete_story",
+    "target": "",
+    "details": {
+      "info": "Auto generated log 6"
+    },
+    "createdAt": {
+      "$date": "2020-10-21T11:11:11Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ec59f7826eee5e15e803a6b9"
+    },
+    "actorId": {
+      "$oid": "359d08056455e5003de41955"
+    },
+    "action": "delete_story",
+    "target": "",
+    "details": {
+      "info": "Auto generated log 7"
+    },
+    "createdAt": {
+      "$date": "2024-09-10T20:30:25Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "24cdf14f2bd4e6095f6f0847"
+    },
+    "actorId": {
+      "$oid": "13f142b33d8d51c4a08cddc2"
+    },
+    "action": "user_login",
+    "target": "",
+    "details": {
+      "info": "Auto generated log 8"
+    },
+    "createdAt": {
+      "$date": "2024-02-11T02:32:14Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "e7a0d7002a40580b6b8fb489"
+    },
+    "actorId": {
+      "$oid": "877cd6d3712a21fc926e304f"
+    },
+    "action": "user_register",
+    "target": "",
+    "details": {
+      "info": "Auto generated log 9"
+    },
+    "createdAt": {
+      "$date": "2023-07-24T01:02:14Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "9867f881a3da47841cd31590"
+    },
+    "actorId": {
+      "$oid": "1ed85fd591c01255fabd21c4"
+    },
+    "action": "delete_story",
+    "target": "",
+    "details": {
+      "info": "Auto generated log 10"
+    },
+    "createdAt": {
+      "$date": "2021-04-07T17:23:20Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "4bdde4d7bcae58b0bd7a654a"
+    },
+    "actorId": {
+      "$oid": "13f142b33d8d51c4a08cddc2"
+    },
+    "action": "update_chapter",
+    "target": "",
+    "details": {
+      "info": "Auto generated log 11"
+    },
+    "createdAt": {
+      "$date": "2022-06-27T06:47:13Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "25df04d1c9148239627d6aca"
+    },
+    "actorId": {
+      "$oid": "ace3fff0d88956af807c0f68"
+    },
+    "action": "user_login",
+    "target": "",
+    "details": {
+      "info": "Auto generated log 12"
+    },
+    "createdAt": {
+      "$date": "2020-07-03T05:17:23Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "9638f56903650b9f0ab3a52d"
+    },
+    "actorId": {
+      "$oid": "6dc10e25f73464719c95c84a"
+    },
+    "action": "delete_story",
+    "target": "",
+    "details": {
+      "info": "Auto generated log 13"
+    },
+    "createdAt": {
+      "$date": "2024-10-15T00:39:56Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "9c48912991cc04580f0a6577"
+    },
+    "actorId": {
+      "$oid": "7fe0d1b2cd4df855cd4e962c"
+    },
+    "action": "user_login",
+    "target": "",
+    "details": {
+      "info": "Auto generated log 14"
+    },
+    "createdAt": {
+      "$date": "2023-12-31T07:09:14Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "a0a3d2615a470c477cef084f"
+    },
+    "actorId": {
+      "$oid": "877cd6d3712a21fc926e304f"
+    },
+    "action": "create_story",
+    "target": "",
+    "details": {
+      "info": "Auto generated log 15"
+    },
+    "createdAt": {
+      "$date": "2020-02-18T16:33:47Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "483f568793a2781ef7fc7f21"
+    },
+    "actorId": {
+      "$oid": "c085c053a7f5c983e00073d6"
+    },
+    "action": "user_register",
+    "target": "",
+    "details": {
+      "info": "Auto generated log 16"
+    },
+    "createdAt": {
+      "$date": "2023-12-10T01:38:37Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "ed5d195725cb27319f602c80"
+    },
+    "actorId": {
+      "$oid": "e00366f1191275610c41a6f6"
+    },
+    "action": "create_story",
+    "target": "",
+    "details": {
+      "info": "Auto generated log 17"
+    },
+    "createdAt": {
+      "$date": "2021-12-18T11:25:29Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "279b7694a2b9fee27221387a"
+    },
+    "actorId": {
+      "$oid": "519a765aa3c9eff26b32e958"
+    },
+    "action": "update_chapter",
+    "target": "",
+    "details": {
+      "info": "Auto generated log 18"
+    },
+    "createdAt": {
+      "$date": "2022-10-10T18:39:51Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "c5399404470d6a20ef3ec277"
+    },
+    "actorId": {
+      "$oid": "e00366f1191275610c41a6f6"
+    },
+    "action": "create_story",
+    "target": "",
+    "details": {
+      "info": "Auto generated log 19"
+    },
+    "createdAt": {
+      "$date": "2025-11-22T21:12:46Z"
+    }
+  }
+]
