@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{chapter.title}} - {{story.title}}</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body>
+  <header>
+    <a href="/story/{{story.slug}}">← {{story.title}}</a>
+    <h1>Chương {{chapter.number}}: {{chapter.title}}</h1>
+  </header>
+
+  <main>
+    {{#if chapter.isVip}}
+      <div class="vip-warning">
+        ⚠️ Đây là chương VIP. Vui lòng mua để đọc.
+      </div>
+    {{else}}
+      <article class="chapter-content">
+        {{{chapter.content}}}
+      </article>
+    {{/if}}
+  </main>
+
+  <footer>
+    <nav class="chapter-nav">
+      {{#if prevChapter}}
+        <a href="/chapter/{{prevChapter._id}}" class="btn-prev">⬅ Trước</a>
+      {{/if}}
+      {{#if nextChapter}}
+        <a href="/chapter/{{nextChapter._id}}" class="btn-next">Tiếp ➡</a>
+      {{/if}}
+    </nav>
+  </footer>
+</body>
+</html>

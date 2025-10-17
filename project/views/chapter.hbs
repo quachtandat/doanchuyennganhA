@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="/assets/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/assets/app.css">
+
+    <title>{{title}}</title>
+    <meta name="description" content="Đọc truyện online, truyện hay. Demo Truyện luôn tổng hợp và cập nhật các chương truyện một cách nhanh nhất.">
+</head>
+
+<body>
+    <!-- Desktop Header -->
+    {{> header}}
+
+    <!-- Mobile Header -->
+    <div class="header-mobile d-sm-block d-lg-none">
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img src="/assets/images/logo_text.png" alt="Logo Suu Truyen" class="img-fluid" style="width: 200px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark w-75" tabindex="-1" id="offcanvasDarkNavbar">
+                    <div class="offcanvas-header">
+                        <img src="/assets/images/logo_text.png" alt="Logo Suu Truyen" class="img-fluid" style="width: 200px;">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 mb-3">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Thể loại
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-custom">
+                                    {{#each categories}}
+                                    <li><a class="dropdown-item" href="/category/{{this}}">{{this}}</a></li>
+                                    {{/each}}
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="form-check form-switch d-flex align-items-center mb-3 p-0">
+                            <label class="form-check-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-brightness-high" viewBox="0 0 16 16" style="fill: #fff;">
+                                    <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
+                                </svg>
+                            </label>
+                            <input class="form-check-input theme_mode" type="checkbox" style="transform: scale(1.3); margin-left: 12px; margin-right: 12px;">
+                            <label class="form-check-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 384 512" style="fill: #fff;">
+                                    <path d="M144.7 98.7c-21 34.1-33.1 74.3-33.1 117.3c0 98 62.8 181.4 150.4 211.7c-12.4 2.8-25.3 4.3-38.6 4.3C126.6 432 48 353.3 48 256c0-68.9 39.4-128.4 96.8-157.3zm62.1-66C91.1 41.2 0 137.9 0 256C0 379.7 100 480 223.5 480c47.8 0 92-15 128.4-40.6c1.9-1.3 3.7-2.7 5.5-4c4.8-3.6 9.4-7.4 13.9-11.4c2.7-2.4 5.3-4.8 7.9-7.3c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-3.7 .6-7.4 1.2-11.1 1.6c-5 .5-10.1 .9-15.3 1c-1.2 0-2.5 0-3.7 0c-.1 0-.2 0-.3 0c-96.8-.2-175.2-78.9-175.2-176c0-54.8 24.9-103.7 64.1-136c1-.9 2.1-1.7 3.2-2.6c4-3.2 8.2-6.2 12.5-9c3.1-2 6.3-4 9.6-5.8c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-3.6-.3-7.1-.5-10.7-.6c-2.7-.1-5.5-.1-8.2-.1c-3.3 0-6.5 .1-9.8 .2c-2.3 .1-4.6 .2-6.9 .4z"></path>
+                                </svg>
+                            </label>
+                        </div>
+
+                        <form class="d-flex header__form-search" action="/" method="GET">
+                            <input class="form-control search-story" type="text" placeholder="Tìm kiếm" name="key_word" value="">
+                            <button class="btn" type="submit">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                    <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="bg-light header-bottom">
+        <div class="container py-1">
+            <p class="mb-0">Đọc truyện online, đọc truyện chữ, truyện full, truyện hay. Tổng hợp đầy đủ và cập nhật liên tục.</p>
+        </div>
+    </div>
+
+    <main>
+        <div class="chapter-wrapper container my-5">
+            <a href="/story/{{story.id}}" class="text-decoration-none">
+                <h1 class="text-center text-success">{{story.title}}</h1>
+            </a>
+            <a href="/story/{{story.id}}/chapter/{{chapter.id}}" class="text-decoration-none">
+                <p class="text-center text-dark">{{chapter.title}}</p>
+            </a>
+            <hr class="chapter-start container-fluid">
+            
+            <!-- Chapter Navigation - Top -->
+            <div class="chapter-nav text-center">
+                <div class="chapter-actions chapter-actions-origin d-flex align-items-center justify-content-center">
+                    {{#if chapter.prevChapter}}
+                    <a class="btn btn-success me-1 chapter-prev" href="/story/{{story.id}}/chapter/{{chapter.prevChapter}}" title="Chương trước">
+                        <span>Chương </span>trước
+                    </a>
+                    {{else}}
+                    <a class="btn btn-success me-1 chapter-prev disabled" href="#" title="Chương trước">
+                        <span>Chương </span>trước
+                    </a>
+                    {{/if}}
+
+                    <button class="btn btn-success chapter_jump me-1">
+                        <span>
+                            <svg style="fill: #fff;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                                <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path>
+                            </svg>
+                        </span>
+                    </button>
+
+                    {{#if chapter.nextChapter}}
+                    <a class="btn btn-success chapter-next" href="/story/{{story.id}}/chapter/{{chapter.nextChapter}}" title="Chương tiếp">
+                        <span>Chương </span>tiếp
+                    </a>
+                    {{else}}
+                    <a class="btn btn-success chapter-next disabled" href="#" title="Chương tiếp">
+                        <span>Chương </span>tiếp
+                    </a>
+                    {{/if}}
+                </div>
+            </div>
+            <hr class="chapter-end container-fluid">
+
+            <!-- Chapter Content -->
+            <div class="chapter-content mb-3" style="white-space: pre-line;">
+             {{chapter.content}}
+            </div>
+
+
+            <div class="text-center px-2 py-2 alert alert-success d-none d-lg-block" role="alert">
+                Bạn có thể dùng phím mũi tên hoặc WASD để lùi/sang chương
+            </div>
+        </div>
+
+        <!-- Chapter Navigation - Bottom (Mobile) -->
+        <div class="chapter-actions chapter-actions-mobile d-flex align-items-center justify-content-center">
+            {{#if chapter.prevChapter}}
+            <a class="btn btn-success me-2 chapter-prev" href="/story/{{story.id}}/chapter/{{chapter.prevChapter}}" title="Chương trước">
+                <span>Chương </span>trước
+            </a>
+            {{else}}
+            <a class="btn btn-success me-2 chapter-prev disabled" href="#" title="Chương trước">
+                <span>Chương </span>trước
+            </a>
+            {{/if}}
+
+            <button class="btn btn-success chapter_jump me-2">
+                <span>
+                    <svg style="fill: #fff;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                        <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path>
+                    </svg>
+                </span>
+            </button>
+
+            {{#if chapter.nextChapter}}
+            <a class="btn btn-success chapter-next" href="/story/{{story.id}}/chapter/{{chapter.nextChapter}}" title="Chương tiếp">
+                <span>Chương </span>tiếp
+            </a>
+            {{else}}
+            <a class="btn btn-success chapter-next disabled" href="#" title="Chương tiếp">
+                <span>Chương </span>tiếp
+            </a>
+            {{/if}}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    {{> footer}}
+
+    <!-- Scripts -->
+    <script src="/assets/jquery.min.js"></script>
+    <script src="/assets/popper.min.js"></script>
+    <script src="/assets/bootstrap.min.js"></script>
+    <script src="/assets/app.js"></script>
+    <script src="/assets/common.js"></script>
+    <script src="/assets/chapter.js"></script>
+
+    <!-- Loading Spinner -->
+    <div id="loadingPage" class="loading-full">
+        <div class="loading-full_icon">
+            <div class="spinner-grow"><span class="visually-hidden">Loading...</span></div>
+        </div>
+    </div>
+
+</body>
+</html>

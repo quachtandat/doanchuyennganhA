@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Web Đọc Truyện</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>📚 Web Đọc Truyện Online</h1>
+    <nav>
+      <a href="/">Trang chủ</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>🔥 Truyện mới nhất</h2>
+      <div class="story-grid">
+        {{#each stories}}
+          <div class="story-card">
+            <a href="/story/{{this.slug}}">
+              <img src="{{this.coverUrl}}" alt="{{this.title}}" class="story-cover" />
+              <h3>{{this.title}}</h3>
+            </a>
+            <p>Tác giả: {{authorId}}</p>
+            <p>Thể loại: {{this.category}}</p>
+          </div>
+        {{/each}}
+      </div>
+    </section>
+
+    <section>
+      <h2>💎 Truyện khuyến mãi</h2>
+      <div class="story-grid">
+        {{#each promoStories}}
+          <div class="story-card">
+            <a href="/story/{{this.slug}}">
+              <img src="{{this.coverUrl}}" alt="{{this.title}}" class="story-cover" />
+              <h3>{{this.title}}</h3>
+            </a>
+            <p>Tác giả: {{this.author_info.display_name}}</p>
+            <p>Thể loại: {{this.category}}</p>
+          </div>
+        {{/each}}
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Web Đọc Truyện - All rights reserved.</p>
+  </footer>
+</body>
+</html>

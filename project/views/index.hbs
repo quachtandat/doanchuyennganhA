@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="/assets/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/assets/app.css">
+
+    <title>{{title}}</title>
+    <meta name="description" content="Đọc truyện online, truyện hay. Demo Truyện luôn tổng hợp và cập nhật các chương truyện một cách nhanh nhất.">
+</head>
+
+<body>
+    <!-- Desktop Header -->
+    
+    {{> header}}
+    <!-- Mobile Header -->
+    <div class="header-mobile d-sm-block d-lg-none">
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img src="/assets/images/logo_text.png" alt="Logo Suu Truyen" class="img-fluid" style="width: 200px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark w-75" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                    <div class="offcanvas-header">
+                        <img src="/assets/images/logo_text.png" alt="Logo Suu Truyen" class="img-fluid" style="width: 200px;">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 mb-3">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Thể loại
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-custom">
+                                    {{#each categories}}
+                                    <li><a class="dropdown-item" href="/category/{{this}}">{{this}}</a></li>
+                                    {{/each}}
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="form-check form-switch d-flex align-items-center mb-3 p-0">
+                            <label class="form-check-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-brightness-high" viewBox="0 0 16 16" style="fill: #fff;">
+                                    <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
+                                </svg>
+                            </label>
+                            <input class="form-check-input theme_mode" type="checkbox" style="transform: scale(1.3); margin-left: 12px; margin-right: 12px;">
+                            <label class="form-check-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 384 512" style="fill: #fff;">
+                                    <path d="M144.7 98.7c-21 34.1-33.1 74.3-33.1 117.3c0 98 62.8 181.4 150.4 211.7c-12.4 2.8-25.3 4.3-38.6 4.3C126.6 432 48 353.3 48 256c0-68.9 39.4-128.4 96.8-157.3zm62.1-66C91.1 41.2 0 137.9 0 256C0 379.7 100 480 223.5 480c47.8 0 92-15 128.4-40.6c1.9-1.3 3.7-2.7 5.5-4c4.8-3.6 9.4-7.4 13.9-11.4c2.7-2.4 5.3-4.8 7.9-7.3c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-3.7 .6-7.4 1.2-11.1 1.6c-5 .5-10.1 .9-15.3 1c-1.2 0-2.5 0-3.7 0c-.1 0-.2 0-.3 0c-96.8-.2-175.2-78.9-175.2-176c0-54.8 24.9-103.7 64.1-136c1-.9 2.1-1.7 3.2-2.6c4-3.2 8.2-6.2 12.5-9c3.1-2 6.3-4 9.6-5.8c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-3.6-.3-7.1-.5-10.7-.6c-2.7-.1-5.5-.1-8.2-.1c-3.3 0-6.5 .1-9.8 .2c-2.3 .1-4.6 .2-6.9 .4z"></path>
+                                </svg>
+                            </label>
+                        </div>
+
+                        <form class="d-flex header__form-search" action="/" method="GET">
+                            <input class="form-control search-story" type="text" placeholder="Tìm kiếm" name="key_word" value="{{keyword}}">
+                            <button class="btn" type="submit">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                    <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="bg-light header-bottom">
+        <div class="container py-1">
+            <p class="mb-0">Đọc truyện online, đọc truyện chữ, truyện full, truyện hay. Tổng hợp đầy đủ và cập nhật liên tục.</p>
+        </div>
+    </div>
+
+    <main>
+        <!-- Hot Stories Section -->
+        <div class="section-stories-hot mb-3">
+            <div class="container">
+                <div class="row">
+                    <div class="head-title-global d-flex justify-content-between mb-2">
+                        <div class="col-6 col-md-4 col-lg-4 head-title-global__left d-flex align-items-center">
+                            <h2 class="me-2 mb-0 border-bottom border-secondary pb-1">
+                                <a href="#" class="d-block text-decoration-none text-dark fs-4 story-name" title="Truyện Hot">Truyện Hot</a>
+                            </h2>
+                            <i class="fa-solid fa-fire-flame-curved"></i>
+                        </div>
+                        <div class="col-4 col-md-3 col-lg-2">
+                            <select class="form-select select-stories-hot" aria-label="Truyen hot">
+                                <option selected="">Tất cả</option>
+                                {{#each categories}}
+                                <option value="{{this}}">{{this}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-stories-hot__list">
+                            {{#each hotStories}}
+                            <div class="story-item">
+                                <a href="/story/{{this.id}}" class="d-block text-decoration-none">
+                                    <div class="story-item__image">
+                                        <img src="{{this.image}}" alt="{{this.title}}" class="img-fluid" width="150" height="230" loading="lazy">
+                                    </div>
+                                    <h3 class="story-item__name text-one-row story-name">{{this.title}}</h3>
+                                    <div class="list-badge">
+                                        {{#if this.isFull}}
+                                        <span class="story-item__badge badge text-bg-success">Full</span>
+                                        {{/if}}
+                                        {{#if this.isHot}}
+                                        <span class="story-item__badge story-item__badge-hot badge text-bg-danger">Hot</span>
+                                        {{/if}}
+                                        {{#if this.isNew}}
+                                        <span class="story-item__badge story-item__badge-new badge text-bg-info text-light">New</span>
+                                        {{/if}}
+                                    </div>
+                                </a>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row align-items-start">
+                <div class="col-12 col-md-8 col-lg-9">
+                    <!-- New Stories Section -->
+                    <div class="section-stories-new mb-3">
+                        <div class="row">
+                            <div class="head-title-global d-flex justify-content-between mb-2">
+                                <div class="col-6 col-md-4 col-lg-4 head-title-global__left d-flex align-items-center">
+                                    <h2 class="me-2 mb-0 border-bottom border-secondary pb-1">
+                                        <a href="#" class="d-block text-decoration-none text-dark fs-4 story-name" title="Truyện Mới">Truyện Mới</a>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="section-stories-new__list">
+                                    {{#each newStories}}
+                                    <div class="story-item-no-image">
+                                        <div class="story-item-no-image__name d-flex align-items-center">
+                                            <h3 class="me-1 mb-0 d-flex align-items-center">
+                                                <svg style="width: 10px; margin-right: 5px;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
+                                                    <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"></path>
+                                                </svg>
+                                                <a href="/story/{{this.id}}" class="text-decoration-none text-dark fs-6 hover-title text-one-row story-name">{{this.title}}</a>
+                                            </h3>
+                                            {{#if this.isNew}}
+                                            <span class="badge text-bg-info text-light me-1">New</span>
+                                            {{/if}}
+                                            {{#if this.isFull}}
+                                            <span class="badge text-bg-success text-light me-1">Full</span>
+                                            {{/if}}
+                                            {{#if this.isHot}}
+                                            <span class="badge text-bg-danger text-light">Hot</span>
+                                            {{/if}}
+                                        </div>
+
+                                        <div class="story-item-no-image__categories ms-2 d-none d-lg-block">
+                                            <p class="mb-0">
+                                                {{#each this.categories}}
+                                                <a href="/category/{{this}}" class="hover-title text-decoration-none text-dark category-name">{{this}}{{#unless @last}}, {{/unless}}</a>
+                                                {{/each}}
+                                            </p>
+                                        </div>
+
+                                        <div class="story-item-no-image__chapters ms-2">
+                                            <a href="/story/{{this.id}}/chapter/{{this.latestChapter}}" class="hover-title text-decoration-none text-info">Chương {{this.latestChapter}}</a>
+                                        </div>
+                                    </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category Sidebar -->
+                <div class="col-12 col-md-4 col-lg-3 sticky-md-top">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-list-category bg-light p-2 rounded card-custom">
+                                <div class="head-title-global mb-2">
+                                    <div class="col-12 col-md-12 head-title-global__left">
+                                        <h2 class="mb-0 border-bottom border-secondary pb-1">
+                                            <span class="d-block text-decoration-none text-dark fs-4" title="Thể loại truyện">Thể loại truyện</span>
+                                        </h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <ul class="list-category">
+                                        {{#each allCategories}}
+                                        <li><a href="/category/{{this}}" class="text-decoration-none text-dark hover-title">{{this}}</a></li>
+                                        {{/each}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Completed Stories Section -->
+        <div class="section-stories-full mb-3 mt-3">
+            <div class="container">
+                <div class="row">
+                    <div class="head-title-global d-flex justify-content-between mb-2">
+                        <div class="col-12 col-md-4 head-title-global__left d-flex">
+                            <h2 class="me-2 mb-0 border-bottom border-secondary pb-1">
+                                <span class="d-block text-decoration-none text-dark fs-4 title-head-name" title="Truyện đã hoàn thành">Truyện đã hoàn thành</span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-stories-full__list">
+                            {{#each completedStories}}
+                            <div class="story-item-full text-center">
+                                <a href="/story/{{this.id}}" class="d-block story-item-full__image">
+                                    <img src="{{this.image}}" alt="{{this.title}}" class="img-fluid w-100" width="150" height="230" loading="lazy">
+                                </a>
+                                <h3 class="fs-6 story-item-full__name fw-bold text-center mb-0">
+                                    <a href="/story/{{this.id}}" class="text-decoration-none text-one-row story-name">{{this.title}}</a>
+                                </h3>
+                                <span class="story-item-full__badge badge text-bg-success">Full - {{this.totalChapters}} chương</span>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    
+    {{> footer}}
+    <!-- Scripts -->
+    <script src="/assets/jquery.min.js"></script>
+    <script src="/assets/popper.min.js"></script>
+    <script src="/assets/bootstrap.min.js"></script>
+    <script src="/assets/app.js"></script>
+    <script src="/assets/common.js"></script>
+
+    <!-- Loading Spinner -->
+    <div id="loadingPage" class="loading-full">
+        <div class="loading-full_icon">
+            <div class="spinner-grow"><span class="visually-hidden">Loading...</span></div>
+        </div>
+    </div>
+
+</body>
+</html>

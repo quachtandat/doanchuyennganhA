@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{categoryName}} - Web Đọc Truyện</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body>
+  <header>
+    <a href="/">← Trang chủ</a>
+    <h1>{{categoryName}}</h1>
+  </header>
+
+  <main>
+    <div class="story-grid">
+      {{#each stories}}
+        <div class="story-card">
+          <a href="/story/{{this.slug}}">
+            <img src="{{this.coverUrl}}" alt="{{this.title}}" class="story-cover" />
+            <h3>{{this.title}}</h3>
+          </a>
+          <p>Tác giả: {{this.author_info.display_name}}</p>
+        </div>
+      {{/each}}
+    </div>
+  </main>
+</body>
+</html>

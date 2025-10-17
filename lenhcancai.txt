@@ -1,3 +1,4 @@
+npm install
 1. nest new backend 
 2. npm install @nestjs/mongoose mongoose
 3. npm install @nestjs/config
@@ -5,3 +6,6 @@
 5. npm install @nestjs/mapped-types
 6. npm i bcrypt
    npm i -D @types/bcrypt
+7. npm install hbs
+   npm install @nestjs/platform-express
+8. npm install --save-dev @types/hbs
