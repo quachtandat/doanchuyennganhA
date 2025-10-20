@@ -10,7 +10,7 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types, Document } from 'mongoose';
 
-// 1. IMPORT CÁC SCHEMA VÀ DOCUMENTS CẦN THIẾT
+// Import schemas
 import { Story, StoryDocument } from '../src/stories/schemas/stories.schema';
 import {
   Chapter,
@@ -396,6 +396,22 @@ export class ViewController {
       newStories: newStories,
       completedStories: completedStories,
     };
+  }
+
+  // ------------------------------------------------
+  // AUTH PAGES - Trang đăng nhập và đăng ký
+  // ------------------------------------------------
+
+  @Get('auth/login')
+  @Render('login')
+  getLogin() {
+    return {};
+  }
+
+  @Get('auth/register')
+  @Render('register')
+  getRegister() {
+    return {};
   }
 
   // ------------------------------------------------

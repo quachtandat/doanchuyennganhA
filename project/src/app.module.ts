@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ViewController } from '../views/view.controller';
+
 // Users
 import { UsersModule } from './users/users.module';
 import { User, UserSchema } from './users/schemas/user.schema';
@@ -58,6 +59,13 @@ import {
   AuditLogSchema,
 } from './audit_logs/schemas/audit-log.schema';
 
+// Auth Module
+import { AuthModule } from './auth/auth.module';
+
+// App Controller & Service
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -88,6 +96,7 @@ import {
     SettingsModule,
     PromotionsModule,
     AuditLogsModule,
+    AuthModule,
   ],
   controllers: [ViewController],
 })
