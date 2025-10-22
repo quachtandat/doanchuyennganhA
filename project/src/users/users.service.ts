@@ -38,6 +38,9 @@ export class UsersService {
       ? await bcrypt.hash(dto.password, salt)
       : undefined;
 
+    // ✅ FIX: Ensure display_name is always provided
+    const displayName = dto.author_info?.display_name || dto.name || 'User';
+
     // 🧩 Tạo user mới
     const createdUser = new this.userModel({
       name: dto.name,
@@ -47,9 +50,9 @@ export class UsersService {
       salt,
       role: dto.role ?? 'reader',
       wallet_coins: dto.wallet_coins ?? 0,
-      author_info: dto.author_info ?? {
-        display_name: dto.name ?? '',
-        verified: false,
+      author_info: {
+        display_name: displayName,
+        verified: dto.author_info?.verified ?? false,
       },
     });
 
@@ -83,8 +86,17 @@ export class UsersService {
     delete (obj as Partial<User>).salt;
     return obj;
   }
+
   // 🟠 Cập nhật user
   async update(id: string, updateUserDto: UpdateUserDto): Promise<User | null> {
+    // ✅ FIX: If updating author_info, ensure display_name exists
+    if (updateUserDto.author_info && !updateUserDto.author_info.display_name) {
+      const user = await this.userModel.findById(id);
+      if (user) {
+        updateUserDto.author_info.display_name = user.name || 'User';
+      }
+    }
+
     return this.userModel
       .findByIdAndUpdate(id, updateUserDto, { new: true })
       .exec();

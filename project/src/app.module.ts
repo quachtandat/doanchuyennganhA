@@ -62,6 +62,9 @@ import {
 // Auth Module
 import { AuthModule } from './auth/auth.module';
 
+// Wallet Module
+import { WalletModule } from './wallet/wallet.module';
+
 // App Controller & Service
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -97,6 +100,7 @@ import { AppService } from './app.service';
     PromotionsModule,
     AuditLogsModule,
     AuthModule,
+    WalletModule,
   ],
   controllers: [ViewController],
 })

@@ -9,7 +9,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { User, UserDocument } from './entities/user.entity';
+import { User, UserDocument } from '../users/schemas/user.schema';
 import { RegisterDto, LoginDto } from './dto/auth.dto';
 
 @Injectable()
@@ -32,7 +32,7 @@ export class AuthService {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Create new user
+    // Create new user matching users/schemas/user.schema.ts structure
     const newUser = new this.userModel({
       name,
       email,
@@ -43,10 +43,8 @@ export class AuthService {
       wallet_coins: 0,
       status: 'active',
       author_info: {
-        display_name: name, // ✅ FIX: Thêm display_name
-        bio: '',
-        website: '',
-        social_links: {},
+        display_name: name || 'User',
+        verified: false,
       },
     });
 
@@ -81,6 +79,11 @@ export class AuthService {
     // Find user by email
     const user = await this.userModel.findOne({ email });
     if (!user) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
+    // Check if password_hash exists
+    if (!user.password_hash) {
       throw new UnauthorizedException('Invalid credentials');
     }
 

@@ -6,10 +6,13 @@ import {
   Param,
   Patch,
   Delete,
+  UseGuards,
+  Request,
 } from '@nestjs/common';
 import { ChaptersService } from './chapters.service';
 import { CreateChapterDto } from './dto/create-chapter.dto';
 import { UpdateChapterDto } from './dto/update-chapter.dto';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @Controller('chapters')
 export class ChaptersController {
@@ -26,7 +29,13 @@ export class ChaptersController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  @UseGuards(JwtAuthGuard)
+  async findOne(@Param('id') id: string, @Request() req) {
+    return this.chaptersService.findOneWithPurchaseStatus(id, req.user?.userId);
+  }
+
+  @Get(':id/public')
+  async findOnePublic(@Param('id') id: string) {
     return this.chaptersService.findOne(id);
   }
 

@@ -30,10 +30,10 @@ export class User extends Document {
 
   @Prop({
     type: {
-      display_name: { type: String, required: true },
+      display_name: { type: String, required: false, default: '' },
       verified: { type: Boolean, default: false },
     },
-    default: { display_name: '', verified: false },
+    default: () => ({ display_name: '', verified: false }),
   })
   author_info: {
     display_name: string;
