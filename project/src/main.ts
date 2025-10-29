@@ -23,6 +23,21 @@ async function bootstrap() {
     return index % 2 === 0;
   });
 
+  // 2. ĐĂNG KÝ HELPER "eq" (equal)
+  hbs.registerHelper('eq', function (a, b) {
+    return a === b;
+  });
+
+  // 3. ĐĂNG KÝ HELPER "lt" (less than)
+  hbs.registerHelper('lt', function (a, b) {
+    return a < b;
+  });
+
+  // 4. ĐĂNG KÝ HELPER "inc" (increment)
+  hbs.registerHelper('inc', function (value) {
+    return parseInt(value) + 1;
+  });
+
   hbs.registerPartials(join(process.cwd(), 'views', 'partials'));
 
   app.useStaticAssets(join(process.cwd(), 'assets'), {

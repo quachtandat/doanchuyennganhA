@@ -24,6 +24,10 @@ export class Story {
   @Prop()
   description: string;
 
+  // Số chương dự tính để xác định hoàn thành hay chưa
+  @Prop({ type: Number, required: false, default: null })
+  expectedTotalChapters: number | null;
+
   @Prop({
     type: String,
     enum: ['pending', 'published', 'rejected'],

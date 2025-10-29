@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ViewController } from '../views/view.controller';
 
 // Users
 import { UsersModule } from './users/users.module';
@@ -65,6 +64,9 @@ import { AuthModule } from './auth/auth.module';
 // Wallet Module
 import { WalletModule } from './wallet/wallet.module';
 
+// View Module
+import { ViewModule } from '../views/view.module';
+
 // App Controller & Service
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -101,7 +103,7 @@ import { AppService } from './app.service';
     AuditLogsModule,
     AuthModule,
     WalletModule,
+    ViewModule,
   ],
-  controllers: [ViewController],
 })
 export class AppModule {}

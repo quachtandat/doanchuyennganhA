@@ -103,10 +103,10 @@
                     </a>
                     {{/if}}
 
-                    <button class="btn btn-success chapter_jump me-1">
+                    <button class="btn btn-success chapter_jump me-1" data-bs-toggle="modal" data-bs-target="#chapterListModal" id="openChapterListBtn">
                         <span>
                             <svg style="fill: #fff;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
-                                <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path>
+                                <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0 32 14.3 32 32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path>
                             </svg>
                         </span>
                     </button>
@@ -125,8 +125,30 @@
             <hr class="chapter-end container-fluid">
 
             <!-- Chapter Content -->
-            <div class="chapter-content mb-3" style="white-space: pre-line;">
+            <div class="chapter-content mb-3" style="white-space: pre-line;" id="chapterContent">
              {{chapter.content}}
+            </div>
+            
+            <!-- Text-to-Speech Controls -->
+            <div class="text-center mb-3">
+                <button class="btn btn-primary me-2" id="playBtn">
+                    <i class="fas fa-play"></i> Nghe truyện
+                </button>
+                <button class="btn btn-secondary me-2" id="pauseBtn" style="display: none;">
+                    <i class="fas fa-pause"></i> Tạm dừng
+                </button>
+                <button class="btn btn-warning me-2" id="stopBtn" style="display: none;">
+                    <i class="fas fa-stop"></i> Dừng
+                </button>
+                <div class="btn-group" role="group">
+                    <button class="btn btn-outline-secondary btn-sm" id="speedDown">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm" id="speedDisplay">1x</button>
+                    <button class="btn btn-outline-secondary btn-sm" id="speedUp">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
             </div>
 
 
@@ -147,10 +169,10 @@
             </a>
             {{/if}}
 
-            <button class="btn btn-success chapter_jump me-2">
+            <button class="btn btn-success chapter_jump me-2" data-bs-toggle="modal" data-bs-target="#chapterListModal">
                 <span>
                     <svg style="fill: #fff;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
-                        <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path>
+                        <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0 32 14.3 32 32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path>
                     </svg>
                 </span>
             </button>
@@ -178,7 +200,272 @@
     <script src="/assets/common.js"></script>
     <script src="/assets/chapter.js"></script>
     <script src="/assets/auth.js"></script>
+    
+    <!-- Modal: Danh sách chương -->
+    <div class="modal fade" id="chapterListModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Danh sách chương</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="chapters-container" class="row g-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <script>
+        // Text-to-Speech functionality
+        let speechSynthesis = window.speechSynthesis;
+        let currentUtterance = null;
+        let isPlaying = false;
+        let currentSpeed = 1;
+        let isPaused = false; // Trạng thái pause
+        
+        const playBtn = document.getElementById('playBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const speedDisplay = document.getElementById('speedDisplay');
+        const speedUp = document.getElementById('speedUp');
+        const speedDown = document.getElementById('speedDown');
+        const chapterContent = document.getElementById('chapterContent');
+        
+        // Get text content
+        function getTextContent() {
+            return chapterContent.textContent || chapterContent.innerText || '';
+        }
+        
+        // Play function
+        function playText() {
+            console.log('🎵 PLAY BUTTON CLICKED');
+            console.log('speechSynthesis.speaking:', speechSynthesis.speaking);
+            console.log('speechSynthesis.paused:', speechSynthesis.paused);
+            console.log('isPlaying:', isPlaying);
+            console.log('isPaused:', isPaused);
+            
+            const text = getTextContent();
+            if (!text.trim()) {
+                alert('Không có nội dung để đọc!');
+                return;
+            }
+            
+            // Nếu đang speaking và không pause thì không làm gì
+            if (speechSynthesis.speaking && !speechSynthesis.paused && !isPaused) {
+                console.log('❌ Already speaking, doing nothing');
+                return;
+            }
+            
+            // Nếu đang pause thì resume
+            if (isPaused) {
+                console.log('▶️ Resuming paused speech');
+                speechSynthesis.resume();
+                isPlaying = true;
+                isPaused = false;
+                playBtn.style.display = 'none';
+                pauseBtn.style.display = 'inline-block';
+                stopBtn.style.display = 'inline-block';
+                return;
+            }
+            
+            console.log('🆕 Creating new utterance');
+            // Dừng mọi utterance hiện tại
+            speechSynthesis.cancel();
+            
+            currentUtterance = new SpeechSynthesisUtterance(text);
+            currentUtterance.lang = 'vi-VN';
+            currentUtterance.rate = currentSpeed;
+            currentUtterance.pitch = 1;
+            currentUtterance.volume = 1;
+            
+            currentUtterance.onstart = function() {
+                console.log('🎤 Speech started');
+                isPlaying = true;
+                isPaused = false;
+                playBtn.style.display = 'none';
+                pauseBtn.style.display = 'inline-block';
+                stopBtn.style.display = 'inline-block';
+            };
+            
+            currentUtterance.onend = function() {
+                console.log('🏁 Speech ended');
+                isPlaying = false;
+                isPaused = false;
+                playBtn.style.display = 'inline-block';
+                pauseBtn.style.display = 'none';
+                stopBtn.style.display = 'none';
+            };
+            
+            currentUtterance.onerror = function(event) {
+                console.error('❌ Speech synthesis error:', event.error);
+                isPlaying = false;
+                isPaused = false;
+                playBtn.style.display = 'inline-block';
+                pauseBtn.style.display = 'none';
+                stopBtn.style.display = 'none';
+            };
+            
+            speechSynthesis.speak(currentUtterance);
+        }
+        
+        // Pause function
+        function pauseText() {
+            console.log('⏸️ PAUSE BUTTON CLICKED');
+            console.log('speechSynthesis.speaking:', speechSynthesis.speaking);
+            console.log('speechSynthesis.paused:', speechSynthesis.paused);
+            console.log('isPlaying:', isPlaying);
+            console.log('isPaused:', isPaused);
+            
+            if (speechSynthesis.speaking && !speechSynthesis.paused) {
+                console.log('⏸️ Pausing speech');
+                speechSynthesis.pause();
+                isPlaying = false;
+                isPaused = true;
+                playBtn.style.display = 'inline-block';
+                pauseBtn.style.display = 'none';
+            } else {
+                console.log('❌ Cannot pause - not speaking or already paused');
+            }
+        }
+        
+        // Stop function
+        function stopText() {
+            console.log('⏹️ STOP BUTTON CLICKED');
+            console.log('speechSynthesis.speaking:', speechSynthesis.speaking);
+            console.log('speechSynthesis.paused:', speechSynthesis.paused);
+            console.log('isPlaying:', isPlaying);
+            console.log('isPaused:', isPaused);
+            
+            speechSynthesis.cancel();
+            isPlaying = false;
+            isPaused = false;
+            playBtn.style.display = 'inline-block';
+            pauseBtn.style.display = 'none';
+            stopBtn.style.display = 'none';
+            
+            console.log('⏹️ Speech stopped and reset');
+        }
+        
+        // Speed control
+        function updateSpeed() {
+            if (currentUtterance) {
+                currentUtterance.rate = currentSpeed;
+            }
+            speedDisplay.textContent = currentSpeed + 'x';
+        }
+        
+        // Event listeners
+        playBtn.addEventListener('click', playText);
+        pauseBtn.addEventListener('click', pauseText);
+        stopBtn.addEventListener('click', stopText);
+        
+        speedUp.addEventListener('click', function() {
+            if (currentSpeed < 2) {
+                currentSpeed += 0.25;
+                updateSpeed();
+            }
+        });
+        
+        speedDown.addEventListener('click', function() {
+            if (currentSpeed > 0.25) {
+                currentSpeed -= 0.25;
+                updateSpeed();
+            }
+        });
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case ' ':
+                        e.preventDefault();
+                        if (isPlaying) {
+                            pauseText();
+                        } else {
+                            playText();
+                        }
+                        break;
+                    case 's':
+                        e.preventDefault();
+                        stopText();
+                        break;
+                }
+            }
+        });
+        
+        // Clean up on page unload
+        window.addEventListener('beforeunload', function() {
+            if (isPlaying) {
+                speechSynthesis.cancel();
+            }
+        });
+
+        // Load chapters list into modal
+        document.getElementById('openChapterListBtn')?.addEventListener('click', async function() {
+            try {
+                const res = await fetch('/api/story/{{story.id}}/chapters');
+                const data = await res.json();
+                const container = document.getElementById('chapters-container');
+                container.innerHTML = '';
+                const left = document.createElement('div');
+                left.className = 'col-12 col-md-6';
+                const right = document.createElement('div');
+                right.className = 'col-12 col-md-6';
+                const ulLeft = document.createElement('ul');
+                const ulRight = document.createElement('ul');
+                data.forEach((chap, idx) => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = '/story/{{story.id}}/chapter/' + chap.id;
+                    a.textContent = chap.title;
+                    a.className = 'text-decoration-none';
+                    li.appendChild(a);
+                    if (idx % 2 === 0) ulLeft.appendChild(li); else ulRight.appendChild(li);
+                });
+                left.appendChild(ulLeft);
+                right.appendChild(ulRight);
+                container.appendChild(left);
+                container.appendChild(right);
+            } catch (e) {
+                console.error(e);
+            }
+        });
+    </script>
+
+    <script>
+        // Auto-add token to chapter links for reading history
+        document.addEventListener('DOMContentLoaded', function() {
+            const token = localStorage.getItem('accessToken');
+            if (token) {
+                // Add token to all chapter links
+                const chapterLinks = document.querySelectorAll('a[href*="/story/"][href*="/chapter/"]');
+                chapterLinks.forEach(link => {
+                    const url = new URL(link.href, window.location.origin);
+                    url.searchParams.set('token', token);
+                    link.href = url.toString();
+                });
+                
+                // Add token to navigation buttons
+                const prevBtn = document.querySelector('.chapter-prev');
+                const nextBtn = document.querySelector('.chapter-next');
+                
+                if (prevBtn && prevBtn.href) {
+                    const prevUrl = new URL(prevBtn.href, window.location.origin);
+                    prevUrl.searchParams.set('token', token);
+                    prevBtn.href = prevUrl.toString();
+                }
+                
+                if (nextBtn && nextBtn.href) {
+                    const nextUrl = new URL(nextBtn.href, window.location.origin);
+                    nextUrl.searchParams.set('token', token);
+                    nextBtn.href = nextUrl.toString();
+                }
+                
+                console.log('[CHAPTER] Token added to links for reading history');
+            }
+        });
+    </script>
 
     <!-- Loading Spinner -->
     <div id="loadingPage" class="loading-full">

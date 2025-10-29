@@ -161,14 +161,15 @@
 
                         <div class="story-detail__list-chapter">
                             <div class="head-title-global d-flex justify-content-between mb-4">
-                                <div class="col-6 col-md-12 col-lg-4 head-title-global__left d-flex">
+                                <div class="col-12 head-title-global__left d-flex">
                                     <h2 class="me-2 mb-0 border-bottom border-secondary pb-1">
                                         <span class="d-block text-decoration-none text-dark fs-4 title-head-name">Danh sách chương</span>
                                     </h2>
                                 </div>
                             </div>
 
-                            <div class="story-detail__list-chapter--list">
+                            <div class="story-detail__list-chapter--list" id="chaptersList">
+                                {{#if story.chapters.length}}
                                 <div class="row">
                                     <div class="col-12 col-sm-6 col-lg-6 story-detail__list-chapter--list__item">
                                         <ul>
@@ -197,6 +198,11 @@
                                         </ul>
                                     </div>
                                 </div>
+                                {{else}}
+                                <div class="alert alert-warning">
+                                    <strong>Không có chương nào!</strong> Truyện này chưa có chương được xuất bản.
+                                </div>
+                                {{/if}}
                             </div>
                         </div>
                     </div>
@@ -324,6 +330,39 @@
     <script src="/assets/common.js"></script>
     <script src="/assets/story.js"></script>
     <script src="/assets/auth.js"></script>
+    
+    <script>
+        // Toggle chapters list
+        document.getElementById('toggleChaptersBtn').addEventListener('click', function() {
+            const chaptersList = document.getElementById('chaptersList');
+            const button = this;
+            
+            if (chaptersList.style.display === 'none') {
+                chaptersList.style.display = 'block';
+                button.innerHTML = '<i class="fas fa-list"></i> Ẩn danh sách chương';
+            } else {
+                chaptersList.style.display = 'none';
+                button.innerHTML = '<i class="fas fa-list"></i> Hiện danh sách chương';
+            }
+        });
+    </script>
+
+    <script>
+        // Ensure token is appended to all chapter links so reading history can be saved server-side
+        document.addEventListener('DOMContentLoaded', function() {
+            const token = localStorage.getItem('accessToken');
+            if (!token) return;
+            // Links in the chapter list (both columns)
+            const chapterLinks = document.querySelectorAll('a[href*="/story/"][href*="/chapter/"]');
+            chapterLinks.forEach(link => {
+                try {
+                    const url = new URL(link.href, window.location.origin);
+                    url.searchParams.set('token', token);
+                    link.href = url.toString();
+                } catch (_) {}
+            });
+        });
+    </script>
 
     <!-- Loading Spinner -->
     <div id="loadingPage" class="loading-full">

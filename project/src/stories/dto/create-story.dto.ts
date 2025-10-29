@@ -5,6 +5,7 @@ import {
   IsMongoId,
   IsArray,
   IsEnum,
+  IsNumber,
 } from 'class-validator';
 
 export class CreateStoryDto {
@@ -34,4 +35,8 @@ export class CreateStoryDto {
   @IsOptional()
   @IsEnum(['pending', 'published', 'rejected'])
   status?: string;
+
+  @IsOptional()
+  @IsNumber()
+  expectedTotalChapters?: number;
 }
