@@ -230,7 +230,7 @@ export class ViewService {
   async getNewStories(): Promise<any[]> {
     const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
     
-    const stories = await this.storyModel
+    let stories = await this.storyModel
       .find({
         status: 'published',
         createdAt: { $gte: sevenDaysAgo },
@@ -238,6 +238,15 @@ export class ViewService {
       .sort({ createdAt: -1 })
       .limit(10)
       .lean();
+
+    // Fallback: nếu 7 ngày qua không có truyện mới, lấy 10 truyện xuất bản gần nhất
+    if (!stories || stories.length === 0) {
+      stories = await this.storyModel
+        .find({ status: 'published' })
+        .sort({ createdAt: -1 })
+        .limit(10)
+        .lean();
+    }
 
     // Lấy chương mới nhất cho mỗi truyện
     const storyIds = stories.map(story => story._id.toString());
@@ -271,7 +280,10 @@ export class ViewService {
       image: story.coverUrl || '',
       categories: story.category,
       isHot: false,
-      isNew: true,
+      // Consider a story "new" if it's within the last 14 days
+      isNew: (story as any).createdAt
+        ? (new Date((story as any).createdAt).getTime() >= Date.now() - 14 * 24 * 60 * 60 * 1000)
+        : false,
       isFull: false,
       latestChapter: chapterMap.get(story._id.toString()) || 0,
     }));
