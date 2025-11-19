@@ -1,668 +1,882 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang='vi'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <title>Tài khoản của tôi - Sưu Truyện</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link
+      href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css'
+      rel='stylesheet'
+    />
+    <link rel='stylesheet' href='/assets/css/style.css' />
+    <link rel='stylesheet' href='/assets/deposit-modal.css' />
     <style>
-        :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --dark-bg: #1a1a2e;
-            --card-bg: #16213e;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0b0;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --success-color: #2ed573;
-            --warning-color: #feca57;
-            --danger-color: #ff6b6b;
-        }
+      :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --dark-bg: #1a1a2e;
+        --card-bg: #16213e;
+        --text-primary: #ffffff;
+        --text-secondary: #a0a0b0;
+        --border-color: rgba(255, 255, 255, 0.1);
+        --success-color: #2ed573;
+        --warning-color: #feca57;
+        --danger-color: #ff6b6b;
+      }
 
-        body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            min-height: 100vh;
-            color: var(--text-primary);
-        }
+      body {
+        background: linear-gradient(
+          135deg,
+          #1a1a2e 0%,
+          #16213e 50%,
+          #0f3460 100%
+        );
+        min-height: 100vh;
+        color: var(--text-primary);
+      }
 
-        .account-container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
+      .account-container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
 
-        .account-header {
-            background: rgba(26, 26, 46, 0.95);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
-        }
+      .account-header {
+        background: rgba(26, 26, 46, 0.95);
+        border-radius: 20px;
+        padding: 40px;
+        margin-bottom: 30px;
+        border: 1px solid var(--border-color);
+        backdrop-filter: blur(10px);
+      }
 
-        .account-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: var(--primary-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            font-weight: bold;
-            color: white;
-            margin: 0 auto 20px;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
+      .account-avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: var(--primary-gradient);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        font-weight: bold;
+        color: white;
+        margin: 0 auto 20px;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      }
 
-        .account-name {
-            font-size: 28px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 10px;
-        }
+      .account-name {
+        font-size: 28px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 10px;
+      }
 
-        .account-email {
-            text-align: center;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-        }
+      .account-email {
+        text-align: center;
+        color: var(--text-secondary);
+        margin-bottom: 20px;
+      }
 
+      .account-stats {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-value {
+        font-size: 32px;
+        font-weight: 700;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .stat-label {
+        color: var(--text-secondary);
+        font-size: 14px;
+        margin-top: 5px;
+      }
+
+      .account-card {
+        background: rgba(26, 26, 46, 0.95);
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 30px;
+        border: 1px solid var(--border-color);
+        backdrop-filter: blur(10px);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .card-title {
+        font-size: 22px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .card-title svg {
+        width: 24px;
+        height: 24px;
+        fill: #667eea;
+      }
+
+      .wallet-balance {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 25px;
+        background: var(--primary-gradient);
+        border-radius: 15px;
+        margin-bottom: 20px;
+      }
+
+      .balance-info h3 {
+        font-size: 18px;
+        margin-bottom: 5px;
+        opacity: 0.9;
+      }
+
+      .balance-amount {
+        font-size: 42px;
+        font-weight: 700;
+      }
+
+      .btn-custom {
+        padding: 12px 30px;
+        border-radius: 10px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary-custom {
+        background: white;
+        color: #667eea;
+      }
+
+      .btn-primary-custom:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+      }
+
+      .info-group {
+        margin-bottom: 20px;
+      }
+
+      .info-label {
+        color: var(--text-secondary);
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+
+      .info-value {
+        font-size: 16px;
+        color: var(--text-primary);
+        padding: 12px 15px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        border: 1px solid var(--border-color);
+      }
+
+      .badge-custom {
+        padding: 6px 15px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .badge-reader {
+        background: rgba(46, 213, 115, 0.2);
+        color: var(--success-color);
+      }
+
+      .badge-author {
+        background: rgba(254, 202, 87, 0.2);
+        color: var(--warning-color);
+      }
+
+      .badge-admin {
+        background: rgba(255, 107, 107, 0.2);
+        color: var(--danger-color);
+      }
+
+      .transaction-list {
+        max-height: 500px;
+        overflow-y: auto;
+      }
+
+      .transaction-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 10px;
+        margin-bottom: 10px;
+        border: 1px solid var(--border-color);
+      }
+
+      .transaction-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .btn-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-secondary);
+        text-decoration: none;
+        margin-bottom: 20px;
+        transition: color 0.3s ease;
+      }
+
+      .btn-back:hover {
+        color: var(--text-primary);
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: var(--text-secondary);
+      }
+
+      .empty-state svg {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 20px;
+        opacity: 0.3;
+      }
+
+      @media (max-width: 768px) {
         .account-stats {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            text-align: center;
+          gap: 20px;
         }
 
         .stat-value {
-            font-size: 32px;
-            font-weight: 700;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        .account-card {
-            background: rgba(26, 26, 46, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .card-title {
-            font-size: 22px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .card-title svg {
-            width: 24px;
-            height: 24px;
-            fill: #667eea;
-        }
-
-        .wallet-balance {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 25px;
-            background: var(--primary-gradient);
-            border-radius: 15px;
-            margin-bottom: 20px;
-        }
-
-        .balance-info h3 {
-            font-size: 18px;
-            margin-bottom: 5px;
-            opacity: 0.9;
+          font-size: 24px;
         }
 
         .balance-amount {
-            font-size: 42px;
-            font-weight: 700;
+          font-size: 32px;
         }
 
-        .btn-custom {
-            padding: 12px 30px;
-            border-radius: 10px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .wallet-balance {
+          flex-direction: column;
+          text-align: center;
+          gap: 20px;
         }
+      }
 
-        .btn-primary-custom {
-            background: white;
-            color: #667eea;
+      .qr-container canvas {
+        margin: 0 auto;
+        display: block;
+      }
+
+      #qrCodeModal .modal-content {
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
         }
-
-        .btn-primary-custom:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+        50% {
+          opacity: 0.5;
         }
+      }
 
-        .info-group {
-            margin-bottom: 20px;
-        }
-
-        .info-label {
-            color: var(--text-secondary);
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-
-        .info-value {
-            font-size: 16px;
-            color: var(--text-primary);
-            padding: 12px 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-        }
-
-        .badge-custom {
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .badge-reader {
-            background: rgba(46, 213, 115, 0.2);
-            color: var(--success-color);
-        }
-
-        .badge-author {
-            background: rgba(254, 202, 87, 0.2);
-            color: var(--warning-color);
-        }
-
-        .badge-admin {
-            background: rgba(255, 107, 107, 0.2);
-            color: var(--danger-color);
-        }
-
-        .transaction-list {
-            max-height: 500px;
-            overflow-y: auto;
-        }
-
-        .transaction-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 10px;
-            margin-bottom: 10px;
-            border: 1px solid var(--border-color);
-        }
-
-        .transaction-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .transaction-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-        }
-
-        .transaction-icon.income {
-            background: rgba(46, 213, 115, 0.2);
-            color: var(--success-color);
-        }
-
-        .transaction-icon.expense {
-            background: rgba(255, 107, 107, 0.2);
-            color: var(--danger-color);
-        }
-
-        .transaction-details h4 {
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-
-        .transaction-date {
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-
-        .transaction-amount {
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .transaction-amount.positive {
-            color: var(--success-color);
-        }
-
-        .transaction-amount.negative {
-            color: var(--danger-color);
-        }
-
-        .btn-back {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            margin-bottom: 20px;
-            transition: color 0.3s ease;
-        }
-
-        .btn-back:hover {
-            color: var(--text-primary);
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--text-secondary);
-        }
-
-        .empty-state svg {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 20px;
-            opacity: 0.3;
-        }
-
-        @media (max-width: 768px) {
-            .account-stats {
-                gap: 20px;
-            }
-
-            .stat-value {
-                font-size: 24px;
-            }
-
-            .balance-amount {
-                font-size: 32px;
-            }
-
-            .wallet-balance {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
-            }
-        }
+      .spinner-border {
+        animation: pulse 1.5s ease-in-out infinite;
+      }
     </style>
-</head>
-<body>
-    {{> header}}
+  </head>
+  <body>
 
-    <div class="account-container">
-        <a href="/" class="btn-back">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-            </svg>
-            Quay về trang chủ
-        </a>
+    <div class='account-container'>
+      <a href='/' class='btn-back'>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          width='20'
+          height='20'
+          fill='currentColor'
+          viewBox='0 0 16 16'
+        >
+          <path
+            fill-rule='evenodd'
+            d='M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z'
+          />
+        </svg>
+        Quay về trang chủ
+      </a>
 
-        <!-- Account Header -->
-        <div class="account-header">
-            <div class="account-avatar" id="user-avatar">U</div>
-            <h1 class="account-name" id="user-name">Loading...</h1>
-            <p class="account-email" id="user-email">email@example.com</p>
-            
-            <div class="account-stats">
-                <div class="stat-item">
-                    <div class="stat-value" id="wallet-balance">0</div>
-                    <div class="stat-label">Coins</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" id="stories-read">0</div>
-                    <div class="stat-label">Truyện đã đọc</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" id="chapters-purchased">0</div>
-                    <div class="stat-label">Chương đã mua</div>
-                </div>
+      <!-- Account Header -->
+      <div class='account-header'>
+        <div class='account-avatar' id='user-avatar'>U</div>
+        <h1 class='account-name' id='user-name'>Loading...</h1>
+        <p class='account-email' id='user-email'>email@example.com</p>
+
+        <div class='account-stats'>
+          <div class='stat-item'>
+            <div class='stat-value' id='wallet-balance'>0</div>
+            <div class='stat-label'>Coins</div>
+          </div>
+          <div class='stat-item'>
+            <div class='stat-value' id='stories-read'>0</div>
+            <div class='stat-label'>Truyện đã đọc</div>
+          </div>
+          <div class='stat-item'>
+            <div class='stat-value' id='chapters-purchased'>0</div>
+            <div class='stat-label'>Chương đã mua</div>
+          </div>
+        </div>
+      </div>
+
+      <div class='row'>
+        <!-- Wallet Section -->
+        <div class='col-lg-6'>
+          <div class='account-card'>
+            <div class='card-header'>
+              <div class='card-title'>
+                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>
+                  <path
+                    d='M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z'
+                  />
+                  <path
+                    d='M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z'
+                  />
+                </svg>
+                Ví của tôi
+              </div>
             </div>
+
+            <div class='wallet-balance'>
+              <div class='balance-info'>
+                <h3>Số dư hiện tại</h3>
+                <div class='balance-amount' id='wallet-coins'>0</div>
+              </div>
+              <button
+                class='btn-custom btn-primary-custom'
+                data-bs-toggle='modal'
+                data-bs-target='#depositModal'
+              >
+                💰 Nạp Coins
+              </button>
+            </div>
+
+            <div class='row'>
+              <div class='col-6'>
+                <div class='info-group'>
+                  <div class='info-label'>Tổng đã nạp</div>
+                  <div class='info-value' id='total-deposit'>0 Coins</div>
+                </div>
+              </div>
+              <div class='col-6'>
+                <div class='info-group'>
+                  <div class='info-label'>Tổng đã chi</div>
+                  <div class='info-value' id='total-spent'>0 Coins</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Account Info -->
+          <div class='account-card'>
+            <div class='card-header'>
+              <div class='card-title'>
+                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>
+                  <path
+                    d='M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z'
+                  />
+                </svg>
+                Thông tin tài khoản
+              </div>
+            </div>
+
+            <div class='info-group'>
+              <div class='info-label'>Họ và tên</div>
+              <div class='info-value' id='account-name'>Loading...</div>
+            </div>
+
+            <div class='info-group'>
+              <div class='info-label'>Email</div>
+              <div class='info-value' id='account-email'>email@example.com</div>
+            </div>
+
+            <div class='info-group'>
+              <div class='info-label'>Số điện thoại</div>
+              <div class='info-value' id='account-phone'>Chưa cập nhật</div>
+            </div>
+
+            <div class='info-group'>
+              <div class='info-label'>Vai trò</div>
+              <div class='info-value'>
+                <span
+                  class='badge-custom badge-reader'
+                  id='account-role'
+                >Reader</span>
+              </div>
+            </div>
+
+            <div class='info-group'>
+              <div class='info-label'>Ngày tham gia</div>
+              <div class='info-value' id='account-created'>Loading...</div>
+            </div>
+          </div>
         </div>
 
-        <div class="row">
-            <!-- Wallet Section -->
-            <div class="col-lg-6">
-                <div class="account-card">
-                    <div class="card-header">
-                        <div class="card-title">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                                <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
-                                <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z"/>
-                            </svg>
-                            Ví của tôi
-                        </div>
-                    </div>
-
-                    <div class="wallet-balance">
-                        <div class="balance-info">
-                            <h3>Số dư hiện tại</h3>
-                            <div class="balance-amount" id="wallet-coins">0</div>
-                        </div>
-                        <button class="btn-custom btn-primary-custom" onclick="alert('Tính năng nạp tiền sẽ sớm có!')">
-                            Nạp Coins
-                        </button>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="info-group">
-                                <div class="info-label">Tổng đã nạp</div>
-                                <div class="info-value" id="total-deposit">0 Coins</div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="info-group">
-                                <div class="info-label">Tổng đã chi</div>
-                                <div class="info-value" id="total-spent">0 Coins</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Account Info -->
-                <div class="account-card">
-                    <div class="card-header">
-                        <div class="card-title">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
-                            </svg>
-                            Thông tin tài khoản
-                        </div>
-                    </div>
-
-                    <div class="info-group">
-                        <div class="info-label">Họ và tên</div>
-                        <div class="info-value" id="account-name">Loading...</div>
-                    </div>
-
-                    <div class="info-group">
-                        <div class="info-label">Email</div>
-                        <div class="info-value" id="account-email">email@example.com</div>
-                    </div>
-
-                    <div class="info-group">
-                        <div class="info-label">Số điện thoại</div>
-                        <div class="info-value" id="account-phone">Chưa cập nhật</div>
-                    </div>
-
-                    <div class="info-group">
-                        <div class="info-label">Vai trò</div>
-                        <div class="info-value">
-                            <span class="badge-custom badge-reader" id="account-role">Reader</span>
-                        </div>
-                    </div>
-
-                    <div class="info-group">
-                        <div class="info-label">Ngày tham gia</div>
-                        <div class="info-value" id="account-created">Loading...</div>
-                    </div>
-                </div>
+        <!-- Reading History -->
+        <div class='col-lg-6'>
+          <div class='account-card'>
+            <div class='card-header'>
+              <div class='card-title'>
+                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>
+                  <path
+                    d='M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z'
+                  />
+                </svg>
+                Lịch sử đọc truyện
+              </div>
             </div>
 
-            <!-- Reading History -->
-            <div class="col-lg-6">
-                <div class="account-card">
-                    <div class="card-header">
-                        <div class="card-title">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-                                <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
-                            </svg>
-                            Lịch sử đọc truyện
-                        </div>
-                    </div>
-
-                    <div class="transaction-list" id="reading-history-list">
-                        {{#if readingHistory.length}}
-                            {{#each readingHistory}}
-                            <div class="transaction-item">
-                                <div class="transaction-info">
-                                    <div class="transaction-icon income">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="transaction-details">
-                                        <h4><a href="{{#if this.lastChapter}}/story/{{this.id}}/chapter/{{this.lastChapter.id}}{{else}}/story/{{this.id}}{{/if}}" class="text-decoration-none text-white">{{this.title}}</a></h4>
-                                        <div class="transaction-date">
-                                            {{#if this.lastChapter}}
-                                            Đọc đến: {{this.lastChapter.title}}
-                                            {{else}}
-                                            Chưa đọc chương nào
-                                            {{/if}}
-                                        </div>
-                                        <div class="transaction-date">
-                                            Lần cuối: {{formatDate this.lastReadAt}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="transaction-amount">
-                                    {{#if this.isFinished}}
-                                    <span class="badge bg-success">Hoàn thành</span>
-                                    {{else}}
-                                    <span class="badge bg-warning">{{this.progress}}%</span>
-                                    {{/if}}
-                                </div>
-                            </div>
-                            {{/each}}
-                        {{else}}
-                            <div class="empty-state">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
-                                </svg>
-                                <p>Chưa có lịch sử đọc truyện</p>
-                            </div>
-                        {{/if}}
-                    </div>
-                </div>
+            <div class='transaction-list' id='reading-history-list'>
+              <div class='empty-state'>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='currentColor'
+                  viewBox='0 0 16 16'
+                >
+                  <path
+                    d='M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z'
+                  />
+                </svg>
+                <p>Chưa có lịch sử đọc truyện</p>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
 
-    <script src="/assets/auth.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', async function() {
-            const token = localStorage.getItem('accessToken');
-            
-            if (!token) {
-                window.location.href = '/auth/login';
-                return;
-            }
+    <!-- Deposit Modal -->
+    <div class='modal fade deposit-modal' id='depositModal' tabindex='-1'>
+      <div class='modal-dialog modal-dialog-centered'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <h5 class='modal-title'>
+              <i class='fas fa-coins'></i>
+              Nạp Tiền Vào Tài Khoản
+            </h5>
+            <button
+              type='button'
+              class='btn-close'
+              data-bs-dismiss='modal'
+            ></button>
+          </div>
+          <div class='modal-body'>
+            <!-- Current Balance -->
+            <div class='current-balance-box'>
+              <div class='current-balance-label'>Số dư hiện tại</div>
+              <div class='current-balance-amount'>
+                <span id='modal-current-balance'>0</span>
+                <span class='coin-icon'>🪙</span>
+              </div>
+            </div>
 
-            try {
-                // Fetch user profile
-                const response = await fetch('/auth/profile', {
-                    headers: {
-                        'Authorization': 'Bearer ' + token
-                    }
-                });
+            <!-- Coin Packages -->
+            <div class='section-title'>Chọn gói nạp:</div>
+            <div class='coin-packages-grid' id='coinPackagesGrid'>
+              <div
+                class='coin-package-card'
+                data-amount='1000'
+                data-coins='100'
+              >
+                <div class='coin-package-amount'>100 🪙</div>
+                <div class='coin-package-price'>1,000đ</div>
+              </div>
 
-                if (!response.ok) {
-                    throw new Error('Failed to fetch profile');
-                }
+              <div
+                class='coin-package-card'
+                data-amount='10000'
+                data-coins='1000'
+              >
+                <div class='coin-package-amount'>1,000 🪙</div>
+                <div class='coin-package-price'>10,000đ</div>
+              </div>
 
-                const data = await response.json();
-                updateAccountInfo(data);
-                
-                // Fetch reading history
-                await loadReadingHistory(token);
-                
-            } catch (error) {
-                console.error('Error loading account:', error);
-                localStorage.removeItem('accessToken');
-                localStorage.removeItem('userData');
-                window.location.href = '/auth/login';
-            }
-        });
+              <div
+                class='coin-package-card'
+                data-amount='50000'
+                data-coins='5500'
+              >
+                <div class='coin-package-amount'>5,500 🪙</div>
+                <div class='coin-package-price'>50,000đ</div>
+                <div class='bonus-tag'>+10% Bonus</div>
+              </div>
 
-        async function loadReadingHistory(token) {
-            try {
-                console.log('Loading reading history with token:', token);
-                const response = await fetch(`/api/reading-history?token=${encodeURIComponent(token)}`);
-                const data = await response.json();
-                
-                console.log('Reading history response:', data);
-                
-                if (data.error) {
-                    console.log('Error loading reading history:', data.error);
-                    return;
-                }
-                
-                updateReadingHistoryList(data.readingHistory);
-            } catch (error) {
-                console.error('Error loading reading history:', error);
-            }
-        }
+              <div
+                class='coin-package-card'
+                data-amount='100000'
+                data-coins='12000'
+              >
+                <div class='coin-package-amount'>12,000 🪙</div>
+                <div class='coin-package-price'>100,000đ</div>
+                <div class='bonus-tag'>+20% Bonus</div>
+              </div>
 
-        // Refresh reading history when page becomes visible or restored from bfcache
-        (function setupAutoRefresh() {
-            const token = localStorage.getItem('accessToken');
-            // When tab becomes visible again
-            document.addEventListener('visibilitychange', async () => {
-                if (document.visibilityState === 'visible' && token) {
-                    await loadReadingHistory(token);
-                }
-            });
-            // When page is shown from back/forward cache
-            window.addEventListener('pageshow', async (event) => {
-                if (token) {
-                    await loadReadingHistory(token);
-                }
-            });
-        })();
+              <div
+                class='coin-package-card'
+                data-amount='200000'
+                data-coins='26000'
+              >
+                <div class='coin-package-amount'>26,000 🪙</div>
+                <div class='coin-package-price'>200,000đ</div>
+                <div class='bonus-tag'>+30% Bonus</div>
+              </div>
 
-        function updateReadingHistoryList(readingHistory) {
-            const listContainer = document.getElementById('reading-history-list');
-            
-            if (!readingHistory || readingHistory.length === 0) {
-                listContainer.innerHTML = `
-                    <div class="empty-state">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
-                        </svg>
-                        <p>Chưa có lịch sử đọc truyện</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            const html = readingHistory.map(item => `
-                <div class="transaction-item">
-                    <div class="transaction-info">
-                        <div class="story-cover me-3" style="width: 60px; height: 80px; flex-shrink: 0;">
-                            <img src="${item.image || '/assets/images/default-cover.jpg'}" 
-                                 alt="${item.title}" 
-                                 class="w-100 h-100 object-cover rounded"
-                                 style="object-fit: cover;"
-                                 onerror="this.src='/assets/images/default-cover.jpg'">
-                        </div>
-                        <div class="transaction-details flex-grow-1">
-                            <h4><a href="${item.lastChapter ? `/story/${item.id}/chapter/${item.lastChapter.id}` : `/story/${item.id}`}" class="text-decoration-none text-white">${item.title}</a></h4>
-                            <div class="transaction-date">
-                                ${item.lastChapter ? `Đọc đến: ${item.lastChapter.title}` : 'Chưa đọc chương nào'}
-                            </div>
-                            <div class="transaction-date">
-                                Lần cuối: ${new Date(item.lastReadAt).toLocaleDateString('vi-VN')}
-                            </div>
-                            <div class="progress-info mt-2">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <small class="text-muted">Tiến độ: ${item.readChapters || 0}/${item.totalChapters || 0} chương</small>
-                                    <small class="text-muted">${item.progress}%</small>
-                                </div>
-                                <div class="progress mt-1" style="height: 4px;">
-                                    <div class="progress-bar ${item.isFinished ? 'bg-success' : 'bg-primary'}" 
-                                         style="width: ${item.progress}%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="transaction-amount">
-                        ${item.isFinished ? '<span class="badge bg-success">Hoàn thành</span>' : `<span class="badge bg-warning">${item.progress}%</span>`}
-                    </div>
+              <div
+                class='coin-package-card'
+                data-amount='500000'
+                data-coins='75000'
+              >
+                <div class='coin-package-amount'>75,000 🪙</div>
+                <div class='coin-package-price'>500,000đ</div>
+                <div class='bonus-tag'>+50% Bonus</div>
+              </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class='section-title'>Phương thức thanh toán:</div>
+            <div class='payment-methods-grid' id='paymentMethodsGrid'>
+              <div class='payment-method-card' data-method='momo'>
+                <div class='payment-method-icon'>
+                  <img
+                    src='https://developers.momo.vn/v3/img/logo.png'
+                    alt='MoMo'
+                  />
                 </div>
-            `).join('');
-            
-            listContainer.innerHTML = html;
-        }
+                <div class='payment-method-info'>
+                  <div class='payment-method-name'>MoMo</div>
+                  <div class='payment-method-desc'>Ví điện tử</div>
+                </div>
+              </div>
 
-        function updateAccountInfo(user) {
-            // Avatar
-            const initials = user.name.split(' ')
-                .map(word => word.charAt(0).toUpperCase())
-                .join('')
-                .substring(0, 2);
-            document.getElementById('user-avatar').textContent = initials;
+              <div class='payment-method-card' data-method='bank'>
+                <div class='payment-method-icon'>
+                  <i
+                    class='fas fa-university fa-2x'
+                    style='color: #1e88e5;'
+                  ></i>
+                </div>
+                <div class='payment-method-info'>
+                  <div class='payment-method-name'>Ngân hàng</div>
+                  <div class='payment-method-desc'>Chuyển khoản</div>
+                </div>
+              </div>
+            </div>
 
-            // Header info
-            document.getElementById('user-name').textContent = user.name;
-            document.getElementById('user-email').textContent = user.email;
-            document.getElementById('wallet-balance').textContent = user.wallet_coins || 0;
-            document.getElementById('wallet-coins').textContent = user.wallet_coins || 0;
+            <!-- Submit Button -->
+            <button class='btn-deposit-submit' id='btnDepositSubmit' disabled>
+              <i class='fas fa-credit-card'></i>
+              Tiến Hành Nạp Tiền
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-            // Account details
-            document.getElementById('account-name').textContent = user.name;
-            document.getElementById('account-email').textContent = user.email;
-            document.getElementById('account-phone').textContent = user.phone || 'Chưa cập nhật';
-            
-            // Role badge
-            const roleBadge = document.getElementById('account-role');
-            roleBadge.textContent = user.role === 'reader' ? 'Độc giả' : 
-                                   user.role === 'author' ? 'Tác giả' : 'Quản trị';
-            roleBadge.className = 'badge-custom badge-' + user.role;
+    <!-- QR Code Modal -->
+    <div
+      class='modal fade'
+      id='qrCodeModal'
+      tabindex='-1'
+      data-bs-backdrop='static'
+      data-bs-keyboard='false'
+    >
+      <div class='modal-dialog modal-dialog-centered'>
+        <div
+          class='modal-content'
+          style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;'
+        >
+          <div class='modal-header border-0' style='padding: 30px 30px 0;'>
+            <h5 class='modal-title text-white fw-bold'>
+              <i class='fas fa-qrcode me-2'></i>
+              Quét mã QR để thanh toán
+            </h5>
+            <button
+              type='button'
+              class='btn-close btn-close-white'
+              data-bs-dismiss='modal'
+            ></button>
+          </div>
+          <div class='modal-body text-center' style='padding: 30px;'>
+            <!-- QR Code Container -->
+            <div
+              class='qr-container'
+              style='background: white; padding: 30px; border-radius: 20px; margin-bottom: 20px;'
+            >
+              <div
+                id='qrCodeDisplay'
+                style='min-height: 300px; display: flex; align-items: center; justify-content: center;'
+              >
+                <div class='spinner-border text-primary' role='status'>
+                  <span class='visually-hidden'>Loading...</span>
+                </div>
+              </div>
 
-            // Created date
-            if (user.createdAt) {
-                const date = new Date(user.createdAt);
-                document.getElementById('account-created').textContent = 
-                    date.toLocaleDateString('vi-VN', { 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                    });
-            }
+              <!-- Amount Info -->
+              <div
+                style='margin-top: 20px; padding-top: 20px; border-top: 2px dashed #e0e0e0;'
+              >
+                <div
+                  style='color: #666; font-size: 14px; margin-bottom: 5px;'
+                >Số tiền thanh toán</div>
+                <div
+                  id='qrAmount'
+                  style='font-size: 32px; font-weight: bold; color: #667eea;'
+                >0đ</div>
+                <div style='color: #999; font-size: 12px; margin-top: 5px;'>
+                  Coins nhận được:
+                  <span
+                    id='qrCoins'
+                    style='color: #667eea; font-weight: 600;'
+                  >0</span>
+                  🪙
+                </div>
+              </div>
+            </div>
 
-            // Stats (placeholder)
-            document.getElementById('stories-read').textContent = '0';
-            document.getElementById('chapters-purchased').textContent = '0';
-            document.getElementById('total-deposit').textContent = '0 Coins';
-            document.getElementById('total-spent').textContent = '0 Coins';
-        }
+            <!-- Instructions -->
+            <div
+              class='alert alert-light'
+              style='background: rgba(255,255,255,0.2); border: none; color: white;'
+            >
+              <div class='fw-bold mb-2'>📱 Hướng dẫn thanh toán:</div>
+              <ol class='text-start mb-0' style='font-size: 14px;'>
+                <li>Mở ứng dụng MoMo trên điện thoại</li>
+                <li>Chọn "Quét mã QR"</li>
+                <li>Quét mã QR bên trên</li>
+                <li>Xác nhận thanh toán</li>
+              </ol>
+            </div>
 
-        function loadTransactionHistory(token) {
-        }
+            <!-- Open MoMo App Button -->
+            <button
+              id='btnOpenMoMoApp'
+              class='btn btn-light btn-lg w-100 mb-2'
+              style='font-weight: 600;'
+            >
+              <img
+                src='https://developers.momo.vn/v3/img/logo.png'
+                alt='MoMo'
+                style='height: 24px; margin-right: 10px;'
+              />
+              Mở ứng dụng MoMo
+            </button>
+
+            <!-- Timer -->
+            <div style='color: rgba(255,255,255,0.8); font-size: 13px;'>
+              ⏱️ Mã QR hết hạn sau:
+              <span id='qrTimer' style='font-weight: bold;'>15:00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'
+    ></script>
+    <script
+      src='https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js'
+    ></script>
+    <script src='/assets/auth.js'></script>
+
+    <script>
+      const API_BASE_URL = 'http://localhost:3000'; let selectedAmount = 0; let
+      selectedMethod = ''; let isProcessing = false; let pollingInterval; let
+      timerInterval; document.addEventListener('DOMContentLoaded', async
+      function() { const token = localStorage.getItem('accessToken'); if
+      (!token) { window.location.href = '/auth/login'; return; } try { const
+      response = await fetch('/auth/profile', { headers: { 'Authorization':
+      'Bearer ' + token } }); if (!response.ok) { throw new Error('Failed to
+      fetch profile'); } const data = await response.json();
+      updateAccountInfo(data); await loadReadingHistory(token); } catch (error)
+      { console.error('Error loading account:', error);
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('userData'); window.location.href = '/auth/login';
+      } }); async function loadReadingHistory(token) { try { const response =
+      await fetch(`/api/reading-history?token=${encodeURIComponent(token)}`);
+      const data = await response.json(); if (data.error) { console.log('Error
+      loading reading history:', data.error); return; }
+      updateReadingHistoryList(data.readingHistory); } catch (error) {
+      console.error('Error loading reading history:', error); } } function
+      updateReadingHistoryList(readingHistory) { const listContainer =
+      document.getElementById('reading-history-list'); if (!readingHistory ||
+      readingHistory.length === 0) { listContainer.innerHTML = ` <div
+      class="empty-state"> <svg xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor" viewBox="0 0 16 16"> <path d="M1 2.828c.885-.37
+      2.154-.769 3.388-.893 1.33-.134 2.458.063
+      3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689
+      1.782-.886 3.112-.752 1.234.124 2.503.523
+      3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8
+      1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0
+      0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142
+      2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877
+      1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0
+      0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8
+      1.783z"/> </svg> <p>Chưa có lịch sử đọc truyện</p> </div> `; return; }
+      const html = readingHistory.map(item => ` <div class="transaction-item">
+      <div class="transaction-info"> <div class="story-cover me-3" style="width:
+      60px; height: 80px; flex-shrink: 0;"> <img src="${item.image ||
+      '/assets/images/default-cover.jpg'}" alt="${item.title}" class="w-100
+      h-100 object-cover rounded" style="object-fit: cover;"> </div> <div
+      class="transaction-details flex-grow-1"> <h4><a href="${item.lastChapter ?
+      `/story/${item.id}/chapter/${item.lastChapter.id}` : `/story/${item.id}`}"
+      class="text-decoration-none text-white">${item.title}</a></h4> <div
+      class="transaction-date"> ${item.lastChapter ? `Đọc đến:
+      ${item.lastChapter.title}` : 'Chưa đọc chương nào'} </div> <div
+      class="transaction-date"> Lần cuối: ${new
+      Date(item.lastReadAt).toLocaleDateString('vi-VN')} </div> </div> </div>
+      <div class="transaction-amount"> ${item.isFinished ? '<span class="badge
+      bg-success">Hoàn thành</span>' : `<span class="badge
+      bg-warning">${item.progress}%</span>`} </div> </div> `).join('');
+      listContainer.innerHTML = html; } function updateAccountInfo(user) { const
+      initials = user.name.split(' ') .map(word => word.charAt(0).toUpperCase())
+      .join('') .substring(0, 2);
+      document.getElementById('user-avatar').textContent = initials;
+      document.getElementById('user-name').textContent = user.name;
+      document.getElementById('user-email').textContent = user.email;
+      document.getElementById('wallet-balance').textContent = user.wallet_coins
+      || 0; document.getElementById('wallet-coins').textContent =
+      user.wallet_coins || 0;
+      document.getElementById('account-name').textContent = user.name;
+      document.getElementById('account-email').textContent = user.email;
+      document.getElementById('account-phone').textContent = user.phone || 'Chưa
+      cập nhật'; const roleBadge = document.getElementById('account-role');
+      roleBadge.textContent = user.role === 'reader' ? 'Độc giả' : user.role ===
+      'author' ? 'Tác giả' : 'Quản trị'; roleBadge.className = 'badge-custom
+      badge-' + user.role; if (user.createdAt) { const date = new
+      Date(user.createdAt);
+      document.getElementById('account-created').textContent =
+      date.toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day:
+      'numeric' }); } } // ============================================ //
+      DEPOSIT MODAL LOGIC // ============================================ const
+      depositModal = document.getElementById('depositModal');
+      depositModal.addEventListener('show.bs.modal', function() { const
+      currentBalance = document.getElementById('wallet-coins').textContent;
+      document.getElementById('modal-current-balance').textContent =
+      currentBalance; }); // Chọn gói coins
+      document.querySelectorAll('.coin-package-card').forEach(card => {
+      card.addEventListener('click', function() {
+      document.querySelectorAll('.coin-package-card').forEach(c =>
+      c.classList.remove('selected')); this.classList.add('selected');
+      selectedAmount = parseInt(this.dataset.amount); updateDepositButton(); });
+      }); // Chọn phương thức thanh toán
+      document.querySelectorAll('.payment-method-card').forEach(card => {
+      card.addEventListener('click', function() {
+      document.querySelectorAll('.payment-method-card').forEach(c =>
+      c.classList.remove('selected')); this.classList.add('selected');
+      selectedMethod = this.dataset.method; updateDepositButton(); }); });
+      function updateDepositButton() { const btn =
+      document.getElementById('btnDepositSubmit'); btn.disabled =
+      !(selectedAmount > 0 && selectedMethod); } // Xử lý nạp tiền MoMo
+      document.getElementById('btnDepositSubmit').addEventListener('click',
+      async function() { if (isProcessing) { console.log('⚠️ Already processing
+      payment...'); return; } const token = localStorage.getItem('accessToken');
+      if (!token) { showAlert('Vui lòng đăng nhập', 'warning');
+      window.location.href = '/auth/login'; return; } if (selectedMethod !==
+      'momo') { showAlert('Hiện tại chỉ hỗ trợ thanh toán qua MoMo', 'warning');
+      return; } isProcessing = true; this.disabled = true; this.innerHTML =
+      '<span class="spinner-border spinner-border-sm me-2"></span>Đang xử
+      lý...'; try { console.log('📤 Sending payment request:', { amount:
+      selectedAmount, method: selectedMethod }); const response = await
+      fetch(`${API_BASE_URL}/payment/momo/create`, { method: 'POST', headers: {
+      'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ amount: selectedAmount }) }); const data = await
+      response.json(); console.log('📥 Payment response:', data); if
+      (data.success && data.qrCodeUrl) { // Close deposit modal const modal =
+      bootstrap.Modal.getInstance(depositModal); modal.hide(); // Show QR code
+      modal showQRCodeModal(data); // Start polling for payment status
+      startPaymentPolling(data.orderId); } else { showAlert(data.message ||
+      'Không thể tạo giao dịch', 'danger'); } } catch (error) {
+      console.error('❌ Deposit error:', error); showAlert('Có lỗi xảy ra. Vui
+      lòng thử lại', 'danger'); } finally { isProcessing = false; this.disabled
+      = false; this.innerHTML = '<i class="fas fa-credit-card"></i> Tiến Hành
+      Nạp Tiền'; } }); // Show QR Code Modal function
+      showQRCodeModal(paymentData) { const modal = new
+      bootstrap.Modal(document.getElementById('qrCodeModal')); // Display amount
+      document.getElementById('qrAmount').textContent =
+      parseInt(paymentData.amount).toLocaleString('vi-VN') + 'đ'; // Calculate
+      coins const coins = Math.floor(paymentData.amount / 10);
+      document.getElementById('qrCoins').textContent =
+      coins.toLocaleString('vi-VN'); // Generate QR Code const qrContainer =
+      document.getElementById('qrCodeDisplay'); qrContainer.innerHTML = ''; //
+      Clear loading spinner new QRCode(qrContainer, { text:
+      paymentData.qrCodeUrl, width: 280, height: 280, colorDark: "#000000",
+      colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H }); // Setup
+      "Open MoMo App" button document.getElementById('btnOpenMoMoApp').onclick =
+      function() { window.location.href = paymentData.deeplink; }; // Start
+      countdown timer (15 minutes) startQRTimer(15 * 60); modal.show(); } // QR
+      Timer Countdown function startQRTimer(seconds) {
+      clearInterval(timerInterval); let remaining = seconds; const timerElement
+      = document.getElementById('qrTimer'); timerInterval = setInterval(() => {
+      const minutes = Math.floor(remaining / 60); const secs = remaining % 60;
+      timerElement.textContent = `${minutes}:${secs.toString().padStart(2,
+      '0')}`; if (remaining <= 0) { clearInterval(timerInterval);
+      timerElement.textContent = 'Hết hạn'; showAlert('Mã QR đã hết hạn. Vui
+      lòng tạo giao dịch mới.', 'warning');
+      bootstrap.Modal.getInstance(document.getElementById('qrCodeModal')).hide();
+      } remaining--; }, 1000); } // Poll payment status every 3 seconds function
+      startPaymentPolling(orderId) { clearInterval(pollingInterval);
+      pollingInterval = setInterval(async () => { try { const token =
+      localStorage.getItem('accessToken'); const response = await
+      fetch(`${API_BASE_URL}/payment/status/${orderId}`, { headers: {
+      'Authorization': `Bearer ${token}` } }); const data = await
+      response.json(); if (data.success && data.data.status === 'completed') {
+      clearInterval(pollingInterval); clearInterval(timerInterval); // Close QR
+      modal
+      bootstrap.Modal.getInstance(document.getElementById('qrCodeModal')).hide();
+      // Show success message showAlert('✅ Nạp tiền thành công!', 'success');
+      // Reload page to update balance setTimeout(() => {
+      window.location.reload(); }, 1500); } } catch (error) {
+      console.error('Error polling payment status:', error); } }, 3000); //
+      Check every 3 seconds } // Clean up when QR modal is closed
+      document.getElementById('qrCodeModal').addEventListener('hidden.bs.modal',
+      function() { clearInterval(pollingInterval); clearInterval(timerInterval);
+      }); function showAlert(message, type) { const alertDiv =
+      document.createElement('div'); alertDiv.className = `alert alert-${type}
+      alert-dismissible fade show position-fixed top-0 start-50
+      translate-middle-x mt-3`; alertDiv.style.zIndex = '9999';
+      alertDiv.innerHTML = ` ${message} <button type="button" class="btn-close"
+      data-bs-dismiss="alert"></button> `; document.body.appendChild(alertDiv);
+      setTimeout(() => alertDiv.remove(), 5000); } // Kiểm tra kết quả thanh
+      toán khi redirect về const urlParams = new
+      URLSearchParams(window.location.search); if
+      (urlParams.has('deposit_success')) { const success =
+      urlParams.get('deposit_success') === 'true'; const amount =
+      urlParams.get('amount'); if (success) { showAlert(`✅ Nạp tiền thành công!
+      Số tiền: ${parseInt(amount).toLocaleString('vi-VN')}đ`, 'success'); } else
+      { const message = urlParams.get('message') || 'Giao dịch thất bại';
+      showAlert(`❌ ${decodeURIComponent(message)}`, 'danger'); } // Clean URL
+      window.history.replaceState({}, document.title, '/account'); }
     </script>
-</body>
+  </body>
 </html>

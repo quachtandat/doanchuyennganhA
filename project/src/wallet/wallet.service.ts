@@ -27,6 +27,22 @@ export class WalletService {
   ) {}
 
   /**
+   * 🔍 CHECK IF USER PURCHASED CHAPTER
+   */
+  async checkPurchase(userId: string, chapterId: string) {
+    const purchase = await this.purchaseModel.findOne({
+      userId: new Types.ObjectId(userId),
+      chapterId: new Types.ObjectId(chapterId),
+      status: 'completed',
+    });
+
+    return {
+      isPurchased: !!purchase,
+      chapterId,
+    };
+  }
+
+  /**
    * 💰 MUA COINS
    */
   async buyCoins(userId: string, buyCoinsDto: BuyCoinsDto) {

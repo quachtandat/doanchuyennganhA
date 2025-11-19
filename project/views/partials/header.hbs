@@ -10,6 +10,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {{!-- ✅ THÊM LINK TẤT CẢ TRUYỆN --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/stories">
+                            Tất cả truyện
+                        </a>
+                    </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Thể loại
@@ -31,8 +38,13 @@
                             <li><a class="dropdown-item" href="/?chapters=over-1000">Trên 1000</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ranking">
+                            Top
+                        </a>
+                    </li>
                 </ul>
-
+    
                 <div class="form-check form-switch me-3 d-flex align-items-center">
                     <label class="form-check-label">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-brightness-high" viewBox="0 0 16 16" style="fill: #fff;">
@@ -148,5 +160,18 @@
 
 .dropdown-item-text {
     padding: 0.5rem 1rem;
+}
+
+.nav-link svg {
+    transition: transform 0.3s ease;
+}
+
+.nav-link:hover svg {
+    transform: translateY(-2px);
+}
+
+.nav-link.active {
+    color: #ffd700 !important;
+    font-weight: 600;
 }
 </style>

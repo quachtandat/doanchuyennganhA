@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+// Remove this line - ViewController is already in ViewModule
+// import { ViewController } from '../views/view.controller';
 
 // Users
 import { UsersModule } from './users/users.module';
@@ -30,8 +32,8 @@ import { ReportsModule } from './reports/reports.module';
 import { Report, ReportSchema } from './reports/schemas/reports.schema';
 
 // Payments
-import { PaymentsModule } from './payments/payments.module';
-import { Payment, PaymentSchema } from './payments/schemas/payments.schema';
+import { PaymentModule } from './payments/payment.module';
+import { Payment, PaymentSchema } from './payments/schemas/payment.schema';
 
 // Wallet transactions
 import { WalletTransactionsModule } from './wallet-transactions/wallet_transactions.module';
@@ -71,6 +73,8 @@ import { ViewModule } from '../views/view.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
+import { RankingModule } from './ranking/ranking.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -96,7 +100,7 @@ import { AppService } from './app.service';
     PurchasesModule,
     ReadingHistoriesModule,
     ReportsModule,
-    PaymentsModule,
+    PaymentModule,
     WalletTransactionsModule,
     SettingsModule,
     PromotionsModule,
@@ -104,6 +108,8 @@ import { AppService } from './app.service';
     AuthModule,
     WalletModule,
     ViewModule,
+    RankingModule,
   ],
+  providers: [AppService],
 })
 export class AppModule {}

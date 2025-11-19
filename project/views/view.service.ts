@@ -18,7 +18,7 @@ export class ViewService {
     @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
     @InjectModel(ReadingHistory.name) private readonly readingHistoryModel: Model<ReadingHistoryDocument>,
     @InjectModel(Purchase.name) private readonly purchaseModel: Model<PurchaseDocument>,
-  ) {}
+  ) { }
 
   /**
    * Lấy tất cả thể loại duy nhất
@@ -682,8 +682,8 @@ export class ViewService {
   }
 
   /**
-   * Lấy chi tiết chương
-   */
+  * Lấy chi tiết chương
+  */
   async getChapterDetail(storyId: string, chapterId: string, userId?: string): Promise<any> {
     const [chapter, story] = await Promise.all([
       this.chapterModel.findById(chapterId).lean(),
@@ -693,11 +693,11 @@ export class ViewService {
     if (!chapter || !story || story.status !== 'published' || chapter.status !== 'published') {
       return null;
     }
-    
+  
     // Kiểm tra storyId match với cả string và ObjectId format
-    const storyIdMatch = chapter.storyId.toString() === storyId || 
-                        chapter.storyId.toString() === new Types.ObjectId(storyId).toString();
-    
+    const storyIdMatch = chapter.storyId.toString() === storyId ||
+      chapter.storyId.toString() === new Types.ObjectId(storyId).toString();
+  
     if (!storyIdMatch) {
       return null;
     }
@@ -707,10 +707,10 @@ export class ViewService {
       storyId, // String format
       new Types.ObjectId(storyId) // ObjectId format
     ];
-    
+  
     let prevChapter: any = null;
     let nextChapter: any = null;
-    
+  
     // Thử tìm với cả hai format
     for (const storyIdQuery of storyIdQueries) {
       const [prev, next] = await Promise.all([
@@ -733,7 +733,7 @@ export class ViewService {
           .sort({ number: 1 })
           .lean(),
       ]);
-      
+    
       if (prev || next) {
         prevChapter = prev;
         nextChapter = next;
@@ -741,15 +741,11 @@ export class ViewService {
       }
     }
 
-    // Kiểm tra mua chương VIP
+    // ✅ FIX: Kiểm tra mua chương VIP
     let isPurchased = false;
-    let content = chapter.content || 'Nội dung chương đang được cập nhật.';
 
     if (chapter.isVip) {
-      if (!userId) {
-        isPurchased = false;
-        content = 'Chương này là Chương VIP. Vui lòng đăng nhập để xem hoặc mua chương.';
-      } else {
+      if (userId) {
         const purchase = await this.purchaseModel
           .findOne({
             userId: new Types.ObjectId(userId),
@@ -759,17 +755,17 @@ export class ViewService {
           .exec();
 
         isPurchased = !!purchase;
-
-        if (!isPurchased) {
-          content = `Chương này là Chương VIP với giá ${chapter.priceCoins} Coins. Vui lòng mua để mở khóa nội dung.`;
-        }
       }
     } else {
+      // Chương FREE -> luôn được mở
       isPurchased = true;
     }
 
-    // Lưu lịch sử đọc nếu có user
-    if (userId) {
+    // ✅ FIX: LUÔN trả về content thật - Frontend sẽ quyết định hiển thị
+    const content = chapter.content || 'Nội dung chương đang được cập nhật.';
+
+    // Lưu lịch sử đọc nếu có user VÀ đã mua (hoặc là free)
+    if (userId && isPurchased) {
       await this.saveReadingHistory(userId, storyId, chapterId, 0);
     }
 
@@ -781,10 +777,10 @@ export class ViewService {
       chapter: {
         id: chapter._id.toString(),
         title: `Chương ${chapter.number}: ${chapter.title}`,
-        content,
+        content: content, // ✅ Luôn trả content thật
         isVip: chapter.isVip,
         priceCoins: chapter.priceCoins,
-        isPurchased,
+        isPurchased: isPurchased, // ✅ Frontend dùng field này để hiện/ẩn
         prevChapter: prevChapter ? prevChapter._id.toString() : null,
         nextChapter: nextChapter ? nextChapter._id.toString() : null,
       },

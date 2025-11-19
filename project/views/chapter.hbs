@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="vi">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,9 +12,115 @@
     <link href="/assets/bootstrap.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/assets/app.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <title>{{title}}</title>
-    <meta name="description" content="Đọc truyện online, truyện hay. Demo Truyện luôn tổng hợp và cập nhật các chương truyện một cách nhanh nhất.">
+    <title>{{chapter.title}} - {{story.title}}</title>
+    <meta name="description" content="Đọc truyện online, truyện hay. Tổng hợp và cập nhật các chương truyện một cách nhanh nhất.">
+    
+    <style>
+        /* VIP Purchase Styles */
+        .vip-notice {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .vip-purchase-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .chapter-price {
+            background: #28a745;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .unlock-chapter-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .unlock-chapter-btn:hover:not(:disabled) {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .unlock-chapter-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .alert-custom {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 9999;
+            min-width: 350px;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Text-to-Speech Controls */
+        .tts-controls {
+            background: rgba(40, 167, 69, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .tts-controls .btn {
+            margin: 5px;
+        }
+
+        .speed-controls {
+            display: inline-flex;
+            gap: 0;
+            margin-left: 10px;
+        }
+
+        .speed-controls .btn {
+            border-radius: 0;
+        }
+
+        .speed-controls .btn:first-child {
+            border-radius: 0.25rem 0 0 0.25rem;
+        }
+
+        .speed-controls .btn:last-child {
+            border-radius: 0 0.25rem 0.25rem 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,20 +134,18 @@
                 <a class="navbar-brand" href="/">
                     <img src="/assets/images/logo_text.png" alt="Logo Suu Truyen" class="img-fluid" style="width: 200px;">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="offcanvas offcanvas-end text-bg-dark w-75" tabindex="-1" id="offcanvasDarkNavbar">
                     <div class="offcanvas-header">
                         <img src="/assets/images/logo_text.png" alt="Logo Suu Truyen" class="img-fluid" style="width: 200px;">
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
                     </div>
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 mb-3">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Thể loại
-                                </a>
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Thể loại</a>
                                 <ul class="dropdown-menu dropdown-menu-custom">
                                     {{#each categories}}
                                     <li><a class="dropdown-item" href="/category/{{this}}">{{this}}</a></li>
@@ -50,10 +153,9 @@
                                 </ul>
                             </li>
                         </ul>
-
                         <div class="form-check form-switch d-flex align-items-center mb-3 p-0">
                             <label class="form-check-label">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-brightness-high" viewBox="0 0 16 16" style="fill: #fff;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" viewBox="0 0 16 16" style="fill: #fff;">
                                     <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
                                 </svg>
                             </label>
@@ -64,7 +166,6 @@
                                 </svg>
                             </label>
                         </div>
-
                         <form class="d-flex header__form-search" action="/" method="GET">
                             <input class="form-control search-story" type="text" placeholder="Tìm kiếm" name="key_word" value="">
                             <button class="btn" type="submit">
@@ -78,7 +179,6 @@
             </div>
         </nav>
     </div>
-
 
     <main>
         <div class="chapter-wrapper container my-5">
@@ -124,32 +224,107 @@
             </div>
             <hr class="chapter-end container-fluid">
 
-            <!-- Chapter Content -->
-            <div class="chapter-content mb-3" style="white-space: pre-line;" id="chapterContent">
-             {{chapter.content}}
-            </div>
-            
-            <!-- Text-to-Speech Controls -->
-            <div class="text-center mb-3">
-                <button class="btn btn-primary me-2" id="playBtn">
-                    <i class="fas fa-play"></i> Nghe truyện
-                </button>
-                <button class="btn btn-secondary me-2" id="pauseBtn" style="display: none;">
-                    <i class="fas fa-pause"></i> Tạm dừng
-                </button>
-                <button class="btn btn-warning me-2" id="stopBtn" style="display: none;">
-                    <i class="fas fa-stop"></i> Dừng
-                </button>
-                <div class="btn-group" role="group">
-                    <button class="btn btn-outline-secondary btn-sm" id="speedDown">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button class="btn btn-outline-secondary btn-sm" id="speedDisplay">1x</button>
-                    <button class="btn btn-outline-secondary btn-sm" id="speedUp">
-                        <i class="fas fa-plus"></i>
-                    </button>
+            <!-- VIP Chapter Lock or Content -->
+            {{#if chapter.isVip}}
+                {{#if chapter.isPurchased}}
+                    <!-- Purchased - Show content + TTS -->
+                    <div class="chapter-content mb-3" style="white-space: pre-line; line-height: 2; font-size: 1.1rem;" id="chapterContent">
+                        {{{chapter.content}}}
+                    </div>
+                    
+                    <!-- Text-to-Speech Controls -->
+                    <div class="tts-controls">
+                        <button class="btn btn-primary me-2" id="playBtn">
+                            <i class="fas fa-play"></i> Nghe truyện
+                        </button>
+                        <button class="btn btn-secondary me-2" id="pauseBtn" style="display: none;">
+                            <i class="fas fa-pause"></i> Tạm dừng
+                        </button>
+                        <button class="btn btn-warning me-2" id="stopBtn" style="display: none;">
+                            <i class="fas fa-stop"></i> Dừng
+                        </button>
+                        <div class="speed-controls">
+                            <button class="btn btn-outline-secondary btn-sm" id="speedDown">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm" id="speedDisplay">1x</button>
+                            <button class="btn btn-outline-secondary btn-sm" id="speedUp">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                {{else}}
+                    <!-- Not purchased - Show VIP lock -->
+                    <div id="vip-lock-section">
+                        <div class="vip-notice">
+                            <p class="mb-0">⚠️ Chương này là Chương VIP. Vui lòng đăng nhập để xem hoặc mua chương.</p>
+                        </div>
+                        
+                        <div class="vip-purchase-section">
+                            <div class="chapter-price">
+                                💰 {{chapter.priceCoins}} Coins
+                            </div>
+                            <button class="unlock-chapter-btn" id="unlock-btn" onclick="unlockChapter()">
+                                Mua chương
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Content hidden (will show after purchase) -->
+                    <div id="chapter-content-vip" class="chapter-content mb-3" style="display: none; white-space: pre-line; line-height: 2; font-size: 1.1rem;">
+                        {{{chapter.content}}}
+                    </div>
+                    
+                    <!-- TTS Controls hidden initially -->
+                    <div class="tts-controls" id="tts-controls-vip" style="display: none;">
+                        <button class="btn btn-primary me-2" id="playBtn">
+                            <i class="fas fa-play"></i> Nghe truyện
+                        </button>
+                        <button class="btn btn-secondary me-2" id="pauseBtn" style="display: none;">
+                            <i class="fas fa-pause"></i> Tạm dừng
+                        </button>
+                        <button class="btn btn-warning me-2" id="stopBtn" style="display: none;">
+                            <i class="fas fa-stop"></i> Dừng
+                        </button>
+                        <div class="speed-controls">
+                            <button class="btn btn-outline-secondary btn-sm" id="speedDown">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm" id="speedDisplay">1x</button>
+                            <button class="btn btn-outline-secondary btn-sm" id="speedUp">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                {{/if}}
+            {{else}}
+                <!-- Free chapter - Show content + TTS -->
+                <div class="chapter-content mb-3" style="white-space: pre-line; line-height: 2; font-size: 1.1rem;" id="chapterContent">
+                    {{{chapter.content}}}
                 </div>
-            </div>
+                
+                <!-- Text-to-Speech Controls -->
+                <div class="text-center mb-3">
+                    <button class="btn btn-primary me-2" id="playBtn">
+                        <i class="fas fa-play"></i> Nghe truyện
+                    </button>
+                    <button class="btn btn-secondary me-2" id="pauseBtn" style="display: none;">
+                        <i class="fas fa-pause"></i> Tạm dừng
+                    </button>
+                    <button class="btn btn-warning me-2" id="stopBtn" style="display: none;">
+                        <i class="fas fa-stop"></i> Dừng
+                    </button>
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-outline-secondary btn-sm" id="speedDown">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm" id="speedDisplay">1x</button>
+                        <button class="btn btn-outline-secondary btn-sm" id="speedUp">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            {{/if}}
 
 
             <div class="text-center px-2 py-2 alert alert-success d-none d-lg-block" role="alert">
@@ -172,7 +347,7 @@
             <button class="btn btn-success chapter_jump me-2" data-bs-toggle="modal" data-bs-target="#chapterListModal">
                 <span>
                     <svg style="fill: #fff;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
-                        <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0 32 14.3 32 32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path>
+                        <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path>
                     </svg>
                 </span>
             </button>
@@ -192,6 +367,7 @@
     <!-- Footer -->
     {{> footer}}
 
+
     <!-- Scripts -->
     <script src="/assets/jquery.min.js"></script>
     <script src="/assets/popper.min.js"></script>
@@ -200,7 +376,129 @@
     <script src="/assets/common.js"></script>
     <script src="/assets/chapter.js"></script>
     <script src="/assets/auth.js"></script>
-    
+
+    <!-- VIP Chapter Unlock Script -->
+    <script>
+        const API_BASE_URL = 'http://localhost:3000';
+
+        // Check if chapter is already purchased on page load
+        document.addEventListener('DOMContentLoaded', async function() {
+            const isVip = {{#if chapter.isVip}}true{{else}}false{{/if}};
+            const isPurchased = {{#if chapter.isPurchased}}true{{else}}false{{/if}};
+            
+            // If server says it's already purchased, no need to check again
+            if (isVip && isPurchased) {
+                console.log('Chapter marked as purchased by server');
+                return;
+            }
+            
+            if (!isVip) {
+                console.log('Not a VIP chapter, skipping purchase check');
+                return;
+            }
+            
+            const token = localStorage.getItem('accessToken');
+            if (!token) {
+                console.log('No token found, user not logged in');
+                return;
+            }
+            
+            const chapterId = '{{chapter.id}}';
+            console.log('Checking purchase for chapter:', chapterId);
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/wallet/check-purchase/${chapterId}`, {
+                    headers: { 
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Purchase check result:', data);
+                    
+                    if (data.isPurchased) {
+                        console.log('Chapter already purchased, showing content');
+                        showPurchasedContent();
+                    }
+                }
+            } catch (error) {
+                console.error('Error checking purchase:', error);
+            }
+        });
+
+        // Function to show purchased content
+        function showPurchasedContent() {
+            const lockSection = document.getElementById('vip-lock-section');
+            if (lockSection) {
+                lockSection.style.display = 'none';
+            }
+            
+            const contentSection = document.getElementById('chapter-content-vip');
+            if (contentSection) {
+                contentSection.style.display = 'block';
+                contentSection.id = 'chapterContent'; // Rename for TTS
+            }
+            
+            const ttsControls = document.getElementById('tts-controls-vip');
+            if (ttsControls) {
+                ttsControls.style.display = 'block';
+            }
+        }
+
+        // Unlock chapter
+        async function unlockChapter() {
+            const token = localStorage.getItem('accessToken');
+            
+            if (!token) {
+                showAlert('⚠️ Vui lòng đăng nhập để mua chương', 'warning');
+                setTimeout(() => { window.location.href = '/auth/login'; }, 1500);
+                return;
+            }
+
+            const chapterId = '{{chapter.id}}';
+            const unlockBtn = document.getElementById('unlock-btn');
+            const originalHTML = unlockBtn.innerHTML;
+            
+            unlockBtn.disabled = true;
+            unlockBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Đang xử lý...';
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/wallet/unlock-chapter/${chapterId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showAlert('✔ Mua chương thành công! Đang tải lại trang...', 'success');
+                    setTimeout(() => { window.location.reload(); }, 1000);
+                } else {
+                    showAlert('✗ ' + (data.message || 'Mua chương thất bại'), 'danger');
+                    unlockBtn.disabled = false;
+                    unlockBtn.innerHTML = originalHTML;
+                }
+            } catch (error) {
+                showAlert('✗ Lỗi kết nối', 'danger');
+                unlockBtn.disabled = false;
+                unlockBtn.innerHTML = originalHTML;
+            }
+        }
+
+        function showAlert(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-custom alert-dismissible fade show`;
+            alertDiv.innerHTML = `${message}<button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
+            document.body.appendChild(alertDiv);
+            setTimeout(() => alertDiv.remove(), 5000);
+        }
+    </script>
+
     <!-- Modal: Danh sách chương -->
     <div class="modal fade" id="chapterListModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">

@@ -19,6 +19,15 @@ export class WalletController {
   constructor(private readonly walletService: WalletService) {}
 
   /**
+   * 🔍 KIỂM TRA ĐÃ MUA CHƯƠNG CHƯA
+   * GET /wallet/check-purchase/:chapterId
+   */
+  @Get('check-purchase/:chapterId')
+  async checkPurchase(@Request() req, @Param('chapterId') chapterId: string) {
+    return this.walletService.checkPurchase(req.user.userId, chapterId);
+  }
+
+  /**
    * 💰 MUA COINS (Dùng Postman để test)
    * POST /wallet/buy-coins
    * Body: { "amount": 1000, "paymentMethod": "test" }
@@ -26,15 +35,6 @@ export class WalletController {
   @Post('buy-coins')
   async buyCoins(@Request() req, @Body() buyCoinsDto: BuyCoinsDto) {
     return this.walletService.buyCoins(req.user.userId, buyCoinsDto);
-  }
-
-  /**
-   * 📊 LẤY THÔNG TIN VÍ
-   * GET /wallet/balance
-   */
-  @Get('balance')
-  async getBalance(@Request() req) {
-    return this.walletService.getBalance(req.user.userId);
   }
 
   /**

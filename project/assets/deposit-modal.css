@@ -1,0 +1,278 @@
+/* public/assets/css/deposit-modal.css */
+
+/* Deposit Modal Styles */
+.deposit-modal .modal-content {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 20px;
+    color: white;
+}
+
+.deposit-modal .modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 25px;
+}
+
+.deposit-modal .modal-title {
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.deposit-modal .modal-body {
+    padding: 30px 25px;
+}
+
+.deposit-modal .btn-close {
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+}
+
+.deposit-modal .btn-close:hover {
+    opacity: 1;
+}
+
+/* Current Balance */
+.current-balance-box {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.current-balance-label {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 8px;
+}
+
+.current-balance-amount {
+    font-size: 36px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.coin-icon {
+    font-size: 32px;
+    color: #ffd700;
+}
+
+/* Coin Packages */
+.coin-packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.coin-package-card {
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid transparent;
+    border-radius: 15px;
+    padding: 20px 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.coin-package-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.coin-package-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.coin-package-card:hover::before {
+    opacity: 1;
+}
+
+.coin-package-card.selected {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: white;
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+}
+
+.coin-package-amount {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.coin-package-price {
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: 8px;
+}
+
+.bonus-tag {
+    display: inline-block;
+    background: #ffd700;
+    color: #333;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+/* Payment Methods */
+.section-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    opacity: 0.95;
+}
+
+.payment-methods-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.payment-method-card {
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.payment-method-card:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.payment-method-card.selected {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: white;
+}
+
+.payment-method-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.payment-method-icon img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.payment-method-info {
+    flex: 1;
+}
+
+.payment-method-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.payment-method-desc {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* Action Button */
+.btn-deposit-submit {
+    width: 100%;
+    padding: 15px;
+    background: white;
+    color: #667eea;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-deposit-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.4);
+}
+
+.btn-deposit-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Alert Messages */
+.alert-floating {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    min-width: 300px;
+    animation: slideInRight 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+    .coin-packages-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .coin-package-amount {
+        font-size: 22px;
+    }
+    
+    .coin-package-price {
+        font-size: 14px;
+    }
+    
+    .payment-methods-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .current-balance-amount {
+        font-size: 28px;
+    }
+}

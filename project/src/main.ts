@@ -5,41 +5,36 @@ import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
-import hbs from 'hbs'; // Import hbs
+import hbs from 'hbs';
 import { AppModule } from './app.module';
+import { handlebarsHelpers } from './handlebars-helpers';
 
 async function bootstrap() {
-  // Dùng NestExpressApplication để bật view engine
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  // CORS - BẮT BUỘC PHẢI CÓ
+  app.enableCors({
+    origin: true,
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  });
+
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
   // Cấu hình view
   app.setBaseViewsDir(join(process.cwd(), 'views'));
   app.setViewEngine('hbs');
 
-  // 1. ĐĂNG KÝ HELPER "isEven" TẠI ĐÂY (FIX LỖI)
-  hbs.registerHelper('isEven', function (index) {
-    // Helper kiểm tra index (bắt đầu từ 0) có phải là số chẵn hay không
-    return index % 2 === 0;
+  // HANDLEBARS HELPERS
+  Object.keys(handlebarsHelpers).forEach((helperName) => {
+    hbs.registerHelper(helperName, handlebarsHelpers[helperName]);
   });
 
-  // 2. ĐĂNG KÝ HELPER "eq" (equal)
-  hbs.registerHelper('eq', function (a, b) {
-    return a === b;
-  });
-
-  // 3. ĐĂNG KÝ HELPER "lt" (less than)
-  hbs.registerHelper('lt', function (a, b) {
-    return a < b;
-  });
-
-  // 4. ĐĂNG KÝ HELPER "inc" (increment)
-  hbs.registerHelper('inc', function (value) {
-    return parseInt(value) + 1;
-  });
-
+  // Đăng ký partials
   hbs.registerPartials(join(process.cwd(), 'views', 'partials'));
 
+  // Static assets
   app.useStaticAssets(join(process.cwd(), 'assets'), {
     prefix: '/assets/',
   });
