@@ -68,6 +68,11 @@ import { WalletModule } from './wallet/wallet.module';
 
 // View Module
 import { ViewModule } from '../views/view.module';
+import { AuthorRequestsModule } from './author_requests/author_requests.module';
+import { AdminModule } from './admin/admin.module';
+import { AuthorModule } from './author/author.module';
+import { CommentsModule } from './comments/comments.module';
+import { RatingsModule } from './ratings/ratings.module';
 
 // App Controller & Service
 import { AppController } from './app.controller';
@@ -105,9 +110,14 @@ import { RankingModule } from './ranking/ranking.module';
     SettingsModule,
     PromotionsModule,
     AuditLogsModule,
+  RatingsModule,
     AuthModule,
     WalletModule,
-    ViewModule,
+    ViewModule, // ViewController is already declared here
+    AuthorRequestsModule,
+    AdminModule,
+    AuthorModule,
+    CommentsModule,
     RankingModule,
   ],
   providers: [AppService],

@@ -1,8 +1,9 @@
 import { IsMongoId, IsOptional, IsString, IsEnum } from 'class-validator';
 
 export class CreateReportDto {
+  @IsOptional()
   @IsMongoId()
-  userId: string;
+  userId?: string;
 
   @IsMongoId()
   storyId: string;

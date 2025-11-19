@@ -20,8 +20,31 @@ export class ChaptersService {
     return newChapter.save();
   }
 
-  async findAll(): Promise<any[]> {
-    return this.chapterModel.find().populate('storyId', 'title slug').exec();
+  async findAll(skip = 0, limit = 20, q?: string, storyTitle?: string): Promise<any[]> {
+    const filter: any = {};
+    if (q && q.trim()) {
+      filter.title = { $regex: q.trim(), $options: 'i' };
+    }
+
+    // If storyTitle filter provided, find matching story ids first
+    if (storyTitle && storyTitle.trim()) {
+      const storyModel = this.chapterModel.db.model('Story');
+      const matched = await storyModel
+        .find({ title: { $regex: storyTitle.trim(), $options: 'i' } })
+        .select('_id')
+        .limit(200)
+        .lean()
+        .exec();
+      const ids = (matched || []).map((s: any) => s._id);
+      filter.storyId = { $in: ids };
+    }
+
+    return this.chapterModel
+      .find(filter)
+      .skip(skip)
+      .limit(limit)
+      .populate('storyId', 'title slug')
+      .exec();
   }
 
   async findOne(id: string): Promise<any> {

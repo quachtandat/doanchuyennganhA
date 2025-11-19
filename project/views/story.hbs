@@ -101,16 +101,34 @@
                                 <div class="col-12 col-md-12 col-lg-9">
                                     <h3 class="text-center story-name">{{story.title}}</h3>
                                     
-                                    {{#if story.rating}}
-                                    <div class="rate-story mb-2">
-                                        <div class="rate-story__holder" data-score="{{story.rating}}">
-                                            {{! Star rating display would go here }}
+                                    {{!-- Rating block: interactive 1..5 stars + average/count --}}
+                                    <div id="story-rating" class="rate-story mb-2" data-story-id="{{story.id}}" data-original-average="{{#if story.ratingAverage}}{{story.ratingAverage}}{{else}}{{story.rating}}{{/if}}" data-count="{{#if story.ratingCount}}{{story.ratingCount}}{{else}}{{story.ratingCount}}{{/if}}">
+                                        <style>
+                                        /* Simple star display: back (gray) and front (gold) overlay */
+                                        .star-rating{font-size:20px;line-height:1;display:inline-block;position:relative;}
+                                        .star-back, .star-front{font-family: inherit;}
+                                        .star-back{color:#ccc}
+                                        .star-front{color:#ffc107;position:absolute;left:0;top:0;overflow:hidden;white-space:nowrap;width:0}
+                                        .star-interactive{display:inline-block;margin-left:8px}
+                                        .star-interactive .star-btn{background:none;border:0;padding:0;margin:0 2px;cursor:pointer}
+                                        .star-interactive .star-btn span{font-size:20px;color:#ffc107}
+                                        /* Visual indicator for user's selection */
+                                        .star-interactive .star-btn.selected span{transform:scale(1.2);text-shadow:0 2px 6px rgba(0,0,0,0.25)}
+                                        </style>
+
+                                        <div class="star-rating" aria-hidden="true">
+                                            <div class="star-back">★★★★★</div>
+                                            <div class="star-front" style="width:0">★★★★★</div>
                                         </div>
-                                        <div class="rate-story__value">
-                                            <em>Đánh giá: <strong>{{story.rating}}</strong> / 10 từ <strong>{{story.ratingCount}} lượt</strong></em>
+
+                                        <div class="rate-story__value d-inline-block ms-2">
+                                            <em>Đánh giá: <strong id="story-rating-average">{{#if story.ratingAverage}}{{story.ratingAverage}}{{else}}{{story.rating}}{{/if}}</strong> từ <strong id="story-rating-count">{{#if story.ratingCount}}{{story.ratingCount}}{{else}}0{{/if}} lượt đánh giá</strong></em>
+                                        </div>
+
+                                        <div class="star-interactive" title="Click để đánh giá">
+                                            {{!-- buttons injected by JS for accessibility/interaction --}}
                                         </div>
                                     </div>
-                                    {{/if}}
 
                                     <div class="story-detail__top--desc px-3" style="max-height: 285px; white-space: pre-line;">
                                         {{story.description}}

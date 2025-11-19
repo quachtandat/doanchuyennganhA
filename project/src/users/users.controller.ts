@@ -24,7 +24,7 @@ export class UsersController {
 
   @Get()
   findAll(@Query() q: QueryUserDto) {
-    return this.svc.findAll(q.skip, q.limit);
+    return this.svc.findAll(q.skip, q.limit, q.q, q.role);
   }
 
   @Get(':id')
@@ -33,7 +33,8 @@ export class UsersController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() dto: UpdateUserDto) {
+  update(@Param('id') id: string, @Body() dto: any) {
+    // Accept raw body so we can preserve only explicitly provided fields
     return this.svc.update(id, dto);
   }
 

@@ -471,6 +471,30 @@
               </div>
             </div>
           </div>
+
+          <!-- Author Request Section -->
+          <div class='account-card'>
+            <div class='card-header'>
+              <div class='card-title'>
+                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'>
+                  <path d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293z'/>
+                  <path d='M13.752 3.146l-10 10V14h.854l10-10-1-1z'/>
+                </svg>
+                Yêu cầu làm tác giả
+              </div>
+            </div>
+            <div class='d-flex gap-2'>
+              <input id='author-message' class='form-control' placeholder='Lời nhắn (tùy chọn)'>
+              <button id='btn-send-author-request' class='btn-custom btn-primary-custom'>Gửi yêu cầu</button>
+            </div>
+            <div class='mt-3'>
+              <h6>Trạng thái yêu cầu</h6>
+              <ul id='author-requests' class='list-group'></ul>
+            </div>
+            <div class='mt-3' id='author-mode' style='display:none;'>
+              <button class='btn-custom btn-primary-custom' id='btn-author-mode' style='background: linear-gradient(135deg,#ff7e5f 0%,#feb47b 100%); color: #1a1a2e; font-weight: 800;'>Vào chế độ tác giả</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -710,173 +734,352 @@
     <script src='/assets/auth.js'></script>
 
     <script>
-      const API_BASE_URL = 'http://localhost:3000'; let selectedAmount = 0; let
-      selectedMethod = ''; let isProcessing = false; let pollingInterval; let
-      timerInterval; document.addEventListener('DOMContentLoaded', async
-      function() { const token = localStorage.getItem('accessToken'); if
-      (!token) { window.location.href = '/auth/login'; return; } try { const
-      response = await fetch('/auth/profile', { headers: { 'Authorization':
-      'Bearer ' + token } }); if (!response.ok) { throw new Error('Failed to
-      fetch profile'); } const data = await response.json();
-      updateAccountInfo(data); await loadReadingHistory(token); } catch (error)
-      { console.error('Error loading account:', error);
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('userData'); window.location.href = '/auth/login';
-      } }); async function loadReadingHistory(token) { try { const response =
-      await fetch(`/api/reading-history?token=${encodeURIComponent(token)}`);
-      const data = await response.json(); if (data.error) { console.log('Error
-      loading reading history:', data.error); return; }
-      updateReadingHistoryList(data.readingHistory); } catch (error) {
-      console.error('Error loading reading history:', error); } } function
-      updateReadingHistoryList(readingHistory) { const listContainer =
-      document.getElementById('reading-history-list'); if (!readingHistory ||
-      readingHistory.length === 0) { listContainer.innerHTML = ` <div
-      class="empty-state"> <svg xmlns="http://www.w3.org/2000/svg"
-      fill="currentColor" viewBox="0 0 16 16"> <path d="M1 2.828c.885-.37
-      2.154-.769 3.388-.893 1.33-.134 2.458.063
-      3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689
-      1.782-.886 3.112-.752 1.234.124 2.503.523
-      3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8
-      1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0
-      0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142
-      2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877
-      1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0
-      0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8
-      1.783z"/> </svg> <p>Chưa có lịch sử đọc truyện</p> </div> `; return; }
-      const html = readingHistory.map(item => ` <div class="transaction-item">
-      <div class="transaction-info"> <div class="story-cover me-3" style="width:
-      60px; height: 80px; flex-shrink: 0;"> <img src="${item.image ||
-      '/assets/images/default-cover.jpg'}" alt="${item.title}" class="w-100
-      h-100 object-cover rounded" style="object-fit: cover;"> </div> <div
-      class="transaction-details flex-grow-1"> <h4><a href="${item.lastChapter ?
-      `/story/${item.id}/chapter/${item.lastChapter.id}` : `/story/${item.id}`}"
-      class="text-decoration-none text-white">${item.title}</a></h4> <div
-      class="transaction-date"> ${item.lastChapter ? `Đọc đến:
-      ${item.lastChapter.title}` : 'Chưa đọc chương nào'} </div> <div
-      class="transaction-date"> Lần cuối: ${new
-      Date(item.lastReadAt).toLocaleDateString('vi-VN')} </div> </div> </div>
-      <div class="transaction-amount"> ${item.isFinished ? '<span class="badge
-      bg-success">Hoàn thành</span>' : `<span class="badge
-      bg-warning">${item.progress}%</span>`} </div> </div> `).join('');
-      listContainer.innerHTML = html; } function updateAccountInfo(user) { const
-      initials = user.name.split(' ') .map(word => word.charAt(0).toUpperCase())
-      .join('') .substring(0, 2);
-      document.getElementById('user-avatar').textContent = initials;
-      document.getElementById('user-name').textContent = user.name;
-      document.getElementById('user-email').textContent = user.email;
-      document.getElementById('wallet-balance').textContent = user.wallet_coins
-      || 0; document.getElementById('wallet-coins').textContent =
-      user.wallet_coins || 0;
-      document.getElementById('account-name').textContent = user.name;
-      document.getElementById('account-email').textContent = user.email;
-      document.getElementById('account-phone').textContent = user.phone || 'Chưa
-      cập nhật'; const roleBadge = document.getElementById('account-role');
-      roleBadge.textContent = user.role === 'reader' ? 'Độc giả' : user.role ===
-      'author' ? 'Tác giả' : 'Quản trị'; roleBadge.className = 'badge-custom
-      badge-' + user.role; if (user.createdAt) { const date = new
-      Date(user.createdAt);
-      document.getElementById('account-created').textContent =
-      date.toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day:
-      'numeric' }); } } // ============================================ //
-      DEPOSIT MODAL LOGIC // ============================================ const
-      depositModal = document.getElementById('depositModal');
-      depositModal.addEventListener('show.bs.modal', function() { const
-      currentBalance = document.getElementById('wallet-coins').textContent;
-      document.getElementById('modal-current-balance').textContent =
-      currentBalance; }); // Chọn gói coins
+      const API_BASE_URL = 'http://localhost:3000';
+      let selectedAmount = 0;
+      let selectedMethod = '';
+      let isProcessing = false;
+      let pollingInterval;
+      let timerInterval;
+
+      document.addEventListener('DOMContentLoaded', async function() {
+        const token = localStorage.getItem('accessToken');
+        if (!token) {
+          window.location.href = '/auth/login';
+          return;
+        }
+
+        try {
+          const response = await fetch('/auth/profile', {
+            headers: { 'Authorization': 'Bearer ' + token }
+          });
+
+          if (!response.ok) {
+            throw new Error('Failed to fetch profile');
+          }
+
+          const data = await response.json();
+          updateAccountInfo(data);
+          await loadReadingHistory(token);
+        } catch (error) {
+          console.error('Error loading account:', error);
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('userData');
+          window.location.href = '/auth/login';
+        }
+      });
+
+      async function loadReadingHistory(token) {
+        try {
+          const response = await fetch(`/api/reading-history?token=${encodeURIComponent(token)}`);
+          const data = await response.json();
+
+          if (data.error) {
+            console.log('Error loading reading history:', data.error);
+            return;
+          }
+
+          updateReadingHistoryList(data.readingHistory);
+        } catch (error) {
+          console.error('Error loading reading history:', error);
+        }
+      }
+
+      function updateReadingHistoryList(readingHistory) {
+        const listContainer = document.getElementById('reading-history-list');
+
+        if (!readingHistory || readingHistory.length === 0) {
+          listContainer.innerHTML = `
+            <div class="empty-state">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+              </svg>
+              <p>Chưa có lịch sử đọc truyện</p>
+            </div>
+          `;
+          return;
+        }
+
+        const html = readingHistory.map(item => `
+          <div class="transaction-item">
+            <div class="transaction-info">
+              <div class="story-cover me-3" style="width: 60px; height: 80px; flex-shrink: 0;">
+                <img src="${item.image || '/assets/images/default-cover.jpg'}" 
+                     alt="${item.title}" 
+                     class="w-100 h-100 object-cover rounded" 
+                     style="object-fit: cover;">
+              </div>
+              <div class="transaction-details flex-grow-1">
+                <h4><a href="${item.lastChapter ? `/story/${item.id}/chapter/${item.lastChapter.id}` : `/story/${item.id}`}" 
+                       class="text-decoration-none text-white">${item.title}</a></h4>
+                <div class="transaction-date">
+                  ${item.lastChapter ? `Đọc đến: ${item.lastChapter.title}` : 'Chưa đọc chương nào'}
+                </div>
+                <div class="transaction-date">
+                  Lần cuối: ${new Date(item.lastReadAt).toLocaleDateString('vi-VN')}
+                </div>
+              </div>
+            </div>
+            <div class="transaction-amount">
+              ${item.isFinished ? '<span class="badge bg-success">Hoàn thành</span>' : `<span class="badge bg-warning">${item.progress}%</span>`}
+            </div>
+          </div>
+        `).join('');
+
+        listContainer.innerHTML = html;
+      }
+
+      function updateAccountInfo(user) {
+        const initials = user.name.split(' ')
+          .map(word => word.charAt(0).toUpperCase())
+          .join('')
+          .substring(0, 2);
+
+        document.getElementById('user-avatar').textContent = initials;
+        document.getElementById('user-name').textContent = user.name;
+        document.getElementById('user-email').textContent = user.email;
+        document.getElementById('wallet-balance').textContent = user.wallet_coins || 0;
+        document.getElementById('wallet-coins').textContent = user.wallet_coins || 0;
+        document.getElementById('account-name').textContent = user.name;
+        document.getElementById('account-email').textContent = user.email;
+        document.getElementById('account-phone').textContent = user.phone || 'Chưa cập nhật';
+
+        const roleBadge = document.getElementById('account-role');
+        roleBadge.textContent = user.role === 'reader' ? 'Độc giả' : user.role === 'author' ? 'Tác giả' : 'Quản trị';
+        roleBadge.className = 'badge-custom badge-' + user.role;
+
+        if (user.createdAt) {
+          const date = new Date(user.createdAt);
+          document.getElementById('account-created').textContent = date.toLocaleDateString('vi-VN', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+        }
+      }
+
+      // ============================================
+      // DEPOSIT MODAL LOGIC
+      // ============================================
+
+      const depositModal = document.getElementById('depositModal');
+      depositModal.addEventListener('show.bs.modal', function() {
+        const currentBalance = document.getElementById('wallet-coins').textContent;
+        document.getElementById('modal-current-balance').textContent = currentBalance;
+      });
+
+      // Chọn gói coins
       document.querySelectorAll('.coin-package-card').forEach(card => {
-      card.addEventListener('click', function() {
-      document.querySelectorAll('.coin-package-card').forEach(c =>
-      c.classList.remove('selected')); this.classList.add('selected');
-      selectedAmount = parseInt(this.dataset.amount); updateDepositButton(); });
-      }); // Chọn phương thức thanh toán
+        card.addEventListener('click', function() {
+          document.querySelectorAll('.coin-package-card').forEach(c => c.classList.remove('selected'));
+          this.classList.add('selected');
+          selectedAmount = parseInt(this.dataset.amount);
+          updateDepositButton();
+        });
+      });
+
+      // Chọn phương thức thanh toán
       document.querySelectorAll('.payment-method-card').forEach(card => {
-      card.addEventListener('click', function() {
-      document.querySelectorAll('.payment-method-card').forEach(c =>
-      c.classList.remove('selected')); this.classList.add('selected');
-      selectedMethod = this.dataset.method; updateDepositButton(); }); });
-      function updateDepositButton() { const btn =
-      document.getElementById('btnDepositSubmit'); btn.disabled =
-      !(selectedAmount > 0 && selectedMethod); } // Xử lý nạp tiền MoMo
-      document.getElementById('btnDepositSubmit').addEventListener('click',
-      async function() { if (isProcessing) { console.log('⚠️ Already processing
-      payment...'); return; } const token = localStorage.getItem('accessToken');
-      if (!token) { showAlert('Vui lòng đăng nhập', 'warning');
-      window.location.href = '/auth/login'; return; } if (selectedMethod !==
-      'momo') { showAlert('Hiện tại chỉ hỗ trợ thanh toán qua MoMo', 'warning');
-      return; } isProcessing = true; this.disabled = true; this.innerHTML =
-      '<span class="spinner-border spinner-border-sm me-2"></span>Đang xử
-      lý...'; try { console.log('📤 Sending payment request:', { amount:
-      selectedAmount, method: selectedMethod }); const response = await
-      fetch(`${API_BASE_URL}/payment/momo/create`, { method: 'POST', headers: {
-      'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ amount: selectedAmount }) }); const data = await
-      response.json(); console.log('📥 Payment response:', data); if
-      (data.success && data.qrCodeUrl) { // Close deposit modal const modal =
-      bootstrap.Modal.getInstance(depositModal); modal.hide(); // Show QR code
-      modal showQRCodeModal(data); // Start polling for payment status
-      startPaymentPolling(data.orderId); } else { showAlert(data.message ||
-      'Không thể tạo giao dịch', 'danger'); } } catch (error) {
-      console.error('❌ Deposit error:', error); showAlert('Có lỗi xảy ra. Vui
-      lòng thử lại', 'danger'); } finally { isProcessing = false; this.disabled
-      = false; this.innerHTML = '<i class="fas fa-credit-card"></i> Tiến Hành
-      Nạp Tiền'; } }); // Show QR Code Modal function
-      showQRCodeModal(paymentData) { const modal = new
-      bootstrap.Modal(document.getElementById('qrCodeModal')); // Display amount
-      document.getElementById('qrAmount').textContent =
-      parseInt(paymentData.amount).toLocaleString('vi-VN') + 'đ'; // Calculate
-      coins const coins = Math.floor(paymentData.amount / 10);
-      document.getElementById('qrCoins').textContent =
-      coins.toLocaleString('vi-VN'); // Generate QR Code const qrContainer =
-      document.getElementById('qrCodeDisplay'); qrContainer.innerHTML = ''; //
-      Clear loading spinner new QRCode(qrContainer, { text:
-      paymentData.qrCodeUrl, width: 280, height: 280, colorDark: "#000000",
-      colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H }); // Setup
-      "Open MoMo App" button document.getElementById('btnOpenMoMoApp').onclick =
-      function() { window.location.href = paymentData.deeplink; }; // Start
-      countdown timer (15 minutes) startQRTimer(15 * 60); modal.show(); } // QR
-      Timer Countdown function startQRTimer(seconds) {
-      clearInterval(timerInterval); let remaining = seconds; const timerElement
-      = document.getElementById('qrTimer'); timerInterval = setInterval(() => {
-      const minutes = Math.floor(remaining / 60); const secs = remaining % 60;
-      timerElement.textContent = `${minutes}:${secs.toString().padStart(2,
-      '0')}`; if (remaining <= 0) { clearInterval(timerInterval);
-      timerElement.textContent = 'Hết hạn'; showAlert('Mã QR đã hết hạn. Vui
-      lòng tạo giao dịch mới.', 'warning');
-      bootstrap.Modal.getInstance(document.getElementById('qrCodeModal')).hide();
-      } remaining--; }, 1000); } // Poll payment status every 3 seconds function
-      startPaymentPolling(orderId) { clearInterval(pollingInterval);
-      pollingInterval = setInterval(async () => { try { const token =
-      localStorage.getItem('accessToken'); const response = await
-      fetch(`${API_BASE_URL}/payment/status/${orderId}`, { headers: {
-      'Authorization': `Bearer ${token}` } }); const data = await
-      response.json(); if (data.success && data.data.status === 'completed') {
-      clearInterval(pollingInterval); clearInterval(timerInterval); // Close QR
-      modal
-      bootstrap.Modal.getInstance(document.getElementById('qrCodeModal')).hide();
-      // Show success message showAlert('✅ Nạp tiền thành công!', 'success');
-      // Reload page to update balance setTimeout(() => {
-      window.location.reload(); }, 1500); } } catch (error) {
-      console.error('Error polling payment status:', error); } }, 3000); //
-      Check every 3 seconds } // Clean up when QR modal is closed
-      document.getElementById('qrCodeModal').addEventListener('hidden.bs.modal',
-      function() { clearInterval(pollingInterval); clearInterval(timerInterval);
-      }); function showAlert(message, type) { const alertDiv =
-      document.createElement('div'); alertDiv.className = `alert alert-${type}
-      alert-dismissible fade show position-fixed top-0 start-50
-      translate-middle-x mt-3`; alertDiv.style.zIndex = '9999';
-      alertDiv.innerHTML = ` ${message} <button type="button" class="btn-close"
-      data-bs-dismiss="alert"></button> `; document.body.appendChild(alertDiv);
-      setTimeout(() => alertDiv.remove(), 5000); } // Kiểm tra kết quả thanh
-      toán khi redirect về const urlParams = new
-      URLSearchParams(window.location.search); if
-      (urlParams.has('deposit_success')) { const success =
-      urlParams.get('deposit_success') === 'true'; const amount =
-      urlParams.get('amount'); if (success) { showAlert(`✅ Nạp tiền thành công!
-      Số tiền: ${parseInt(amount).toLocaleString('vi-VN')}đ`, 'success'); } else
-      { const message = urlParams.get('message') || 'Giao dịch thất bại';
-      showAlert(`❌ ${decodeURIComponent(message)}`, 'danger'); } // Clean URL
-      window.history.replaceState({}, document.title, '/account'); }
+        card.addEventListener('click', function() {
+          document.querySelectorAll('.payment-method-card').forEach(c => c.classList.remove('selected'));
+          this.classList.add('selected');
+          selectedMethod = this.dataset.method;
+          updateDepositButton();
+        });
+      });
+
+      function updateDepositButton() {
+        const btn = document.getElementById('btnDepositSubmit');
+        btn.disabled = !(selectedAmount > 0 && selectedMethod);
+      }
+
+      // Xử lý nạp tiền MoMo
+      document.getElementById('btnDepositSubmit').addEventListener('click', async function() {
+        if (isProcessing) {
+          console.log('⚠️ Already processing payment...');
+          return;
+        }
+
+        const token = localStorage.getItem('accessToken');
+        if (!token) {
+          showAlert('Vui lòng đăng nhập', 'warning');
+          window.location.href = '/auth/login';
+          return;
+        }
+
+        if (selectedMethod !== 'momo') {
+          showAlert('Hiện tại chỉ hỗ trợ thanh toán qua MoMo', 'warning');
+          return;
+        }
+
+        isProcessing = true;
+        this.disabled = true;
+        this.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Đang xử lý...';
+
+        try {
+          console.log('📤 Sending payment request:', { amount: selectedAmount, method: selectedMethod });
+
+          const response = await fetch(`${API_BASE_URL}/payment/momo/create`, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ amount: selectedAmount })
+          });
+
+          const data = await response.json();
+          console.log('📥 Payment response:', data);
+
+          if (data.success && data.qrCodeUrl) {
+            // Close deposit modal
+            const modal = bootstrap.Modal.getInstance(depositModal);
+            modal.hide();
+
+            // Show QR code modal
+            showQRCodeModal(data);
+
+            // Start polling for payment status
+            startPaymentPolling(data.orderId);
+          } else {
+            showAlert(data.message || 'Không thể tạo giao dịch', 'danger');
+          }
+        } catch (error) {
+          console.error('❌ Deposit error:', error);
+          showAlert('Có lỗi xảy ra. Vui lòng thử lại', 'danger');
+        } finally {
+          isProcessing = false;
+          this.disabled = false;
+          this.innerHTML = '<i class="fas fa-credit-card"></i> Tiến Hành Nạp Tiền';
+        }
+      });
+
+      // Show QR Code Modal
+      function showQRCodeModal(paymentData) {
+        const modal = new bootstrap.Modal(document.getElementById('qrCodeModal'));
+
+        // Display amount
+        document.getElementById('qrAmount').textContent = parseInt(paymentData.amount).toLocaleString('vi-VN') + 'đ';
+
+        // Calculate coins
+        const coins = Math.floor(paymentData.amount / 10);
+        document.getElementById('qrCoins').textContent = coins.toLocaleString('vi-VN');
+
+        // Generate QR Code
+        const qrContainer = document.getElementById('qrCodeDisplay');
+        qrContainer.innerHTML = ''; // Clear loading spinner
+
+        new QRCode(qrContainer, {
+          text: paymentData.qrCodeUrl,
+          width: 280,
+          height: 280,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H
+        });
+
+        // Setup "Open MoMo App" button
+        document.getElementById('btnOpenMoMoApp').onclick = function() {
+          window.location.href = paymentData.deeplink;
+        };
+
+        // Start countdown timer (15 minutes)
+        startQRTimer(15 * 60);
+
+        modal.show();
+      }
+
+      // QR Timer Countdown
+      function startQRTimer(seconds) {
+        clearInterval(timerInterval);
+        let remaining = seconds;
+        const timerElement = document.getElementById('qrTimer');
+
+        timerInterval = setInterval(() => {
+          const minutes = Math.floor(remaining / 60);
+          const secs = remaining % 60;
+          timerElement.textContent = `${minutes}:${secs.toString().padStart(2, '0')}`;
+
+          if (remaining <= 0) {
+            clearInterval(timerInterval);
+            timerElement.textContent = 'Hết hạn';
+            showAlert('Mã QR đã hết hạn. Vui lòng tạo giao dịch mới.', 'warning');
+            bootstrap.Modal.getInstance(document.getElementById('qrCodeModal')).hide();
+          }
+
+          remaining--;
+        }, 1000);
+      }
+
+      // Poll payment status every 3 seconds
+      function startPaymentPolling(orderId) {
+        clearInterval(pollingInterval);
+
+        pollingInterval = setInterval(async () => {
+          try {
+            const token = localStorage.getItem('accessToken');
+            const response = await fetch(`${API_BASE_URL}/payment/status/${orderId}`, {
+              headers: {
+                'Authorization': `Bearer ${token}`
+              }
+            });
+
+            const data = await response.json();
+
+            if (data.success && data.data.status === 'completed') {
+              clearInterval(pollingInterval);
+              clearInterval(timerInterval);
+
+              // Close QR modal
+              bootstrap.Modal.getInstance(document.getElementById('qrCodeModal')).hide();
+
+              // Show success message
+              showAlert('✅ Nạp tiền thành công!', 'success');
+
+              // Reload page to update balance
+              setTimeout(() => {
+                window.location.reload();
+              }, 1500);
+            }
+          } catch (error) {
+            console.error('Error polling payment status:', error);
+          }
+        }, 3000); // Check every 3 seconds
+      }
+
+      // Clean up when QR modal is closed
+      document.getElementById('qrCodeModal').addEventListener('hidden.bs.modal', function() {
+        clearInterval(pollingInterval);
+        clearInterval(timerInterval);
+      });
+
+      function showAlert(message, type) {
+        const alertDiv = document.createElement('div');
+        alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3`;
+        alertDiv.style.zIndex = '9999';
+        alertDiv.innerHTML = `
+          ${message}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+        document.body.appendChild(alertDiv);
+        setTimeout(() => alertDiv.remove(), 5000);
+      }
+
+      // Kiểm tra kết quả thanh toán khi redirect về
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('deposit_success')) {
+        const success = urlParams.get('deposit_success') === 'true';
+        const amount = urlParams.get('amount');
+
+        if (success) {
+          showAlert(`✅ Nạp tiền thành công! Số tiền: ${parseInt(amount).toLocaleString('vi-VN')}đ`, 'success');
+        } else {
+          const message = urlParams.get('message') || 'Giao dịch thất bại';
+          showAlert(`❌ ${decodeURIComponent(message)}`, 'danger');
+        }
+
+        // Clean URL
+        window.history.replaceState({}, document.title, '/account');
+      }
     </script>
   </body>
 </html>

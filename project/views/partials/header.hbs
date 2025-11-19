@@ -27,17 +27,15 @@
                             {{/each}}
                         </ul>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Theo số chương
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-custom">
-                            <li><a class="dropdown-item" href="/?chapters=under-100">Dưới 100</a></li>
-                            <li><a class="dropdown-item" href="/?chapters=100-500">100 - 500</a></li>
-                            <li><a class="dropdown-item" href="/?chapters=500-1000">500 - 1000</a></li>
-                            <li><a class="dropdown-item" href="/?chapters=over-1000">Trên 1000</a></li>
-                        </ul>
+                    
+                    {{!-- Hide Explore link when hideExplore flag is set (defaults to visible) --}}
+                    {{#unless hideExplore}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/explore">Khám phá tất cả</a>
                     </li>
+                    {{/unless}}
+                    
+                    {{!-- ✅ TOP LINK - Always visible --}}
                     <li class="nav-item">
                         <a class="nav-link" href="/ranking">
                             Top

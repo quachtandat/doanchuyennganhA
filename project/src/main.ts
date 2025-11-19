@@ -4,7 +4,8 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { join } from 'path';
+import { join, relative, extname } from 'path';
+import { readdirSync, statSync, readFileSync } from 'fs';
 import hbs from 'hbs';
 import { AppModule } from './app.module';
 import { handlebarsHelpers } from './handlebars-helpers';
@@ -31,8 +32,26 @@ async function bootstrap() {
     hbs.registerHelper(helperName, handlebarsHelpers[helperName]);
   });
 
+  // Register partials recursively so nested partials keep their folder path
+  const partialsRoot = join(process.cwd(), 'views', 'partials');
+  function registerPartialsRecursive(dir: string) {
+    const entries = readdirSync(dir);
+    for (const name of entries) {
+      const full = join(dir, name);
+      const stat = statSync(full);
+      if (stat.isDirectory()) {
+        registerPartialsRecursive(full);
+      } else if (stat.isFile()) {
+        const rel = relative(partialsRoot, full).replace(/\\/g, '/');
+        const key = rel.replace(extname(rel), '');
+        const content = readFileSync(full, 'utf8');
+        hbs.registerPartial(key, content);
+      }
+    }
+  }
+
   // Đăng ký partials
-  hbs.registerPartials(join(process.cwd(), 'views', 'partials'));
+  registerPartialsRecursive(partialsRoot);
 
   // Static assets
   app.useStaticAssets(join(process.cwd(), 'assets'), {

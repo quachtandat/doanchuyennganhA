@@ -326,6 +326,26 @@
                 </div>
             {{/if}}
 
+            <!-- Comments and Report -->
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h5 class="mb-3">Bình luận</h5>
+                        <div id="comments-list" class="mb-3"></div>
+                        <div class="input-group mb-3">
+                            <input id="comment-input" type="text" class="form-control" placeholder="Viết bình luận của bạn...">
+                            <button id="comment-submit" class="btn btn-success">Gửi</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <h5 class="mb-3">Báo cáo chương</h5>
+                        <div class="input-group">
+                            <input id="report-reason" type="text" class="form-control" placeholder="Lý do báo cáo">
+                            <button id="report-submit" class="btn btn-outline-danger">Báo cáo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="text-center px-2 py-2 alert alert-success d-none d-lg-block" role="alert">
                 Bạn có thể dùng phím mũi tên hoặc WASD để lùi/sang chương
@@ -496,6 +516,72 @@
             alertDiv.innerHTML = `${message}<button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
             document.body.appendChild(alertDiv);
             setTimeout(() => alertDiv.remove(), 5000);
+        }
+    </script>
+
+    <script>
+        // Load comments for this story/chapter and allow posting
+        document.addEventListener('DOMContentLoaded', async function() {
+            const storyId = '{{story.id}}';
+            const chapterId = '{{chapter.id}}';
+            await loadComments(storyId);
+            document.getElementById('comment-submit').onclick = async () => {
+                const token = localStorage.getItem('accessToken')||'';
+                const content = document.getElementById('comment-input').value.trim();
+                if (!content) return;
+                const res = await fetch('/comments', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+                    body: JSON.stringify({ storyId, chapterId, content })
+                });
+                if (res.ok) {
+                    document.getElementById('comment-input').value = '';
+                    await loadComments(storyId);
+                }
+            };
+
+            document.getElementById('report-submit').onclick = async () => {
+                const token = localStorage.getItem('accessToken')||'';
+                const reason = document.getElementById('report-reason').value.trim();
+                if (!reason) return;
+                const headers = { 'Content-Type': 'application/json' };
+                if (token) headers['Authorization'] = 'Bearer ' + token;
+                // include userId if we have userData in localStorage
+                let userId = undefined;
+                try {
+                    const ud = JSON.parse(localStorage.getItem('userData') || 'null');
+                    userId = ud && (ud.id || ud._id || ud.userId || ud.user?.id) ? (ud.id || ud._id || ud.userId || ud.user?.id) : undefined;
+                } catch (e) { /* ignore */ }
+
+                const body = { storyId, chapterId, reason };
+                if (userId) body.userId = userId;
+
+                const res = await fetch('/reports', {
+                    method: 'POST',
+                    headers,
+                    body: JSON.stringify(body)
+                });
+                if (res.ok) {
+                    document.getElementById('report-reason').value='';
+                    alert('Đã gửi báo cáo');
+                }
+            };
+        });
+
+        async function loadComments(storyId) {
+            const res = await fetch('/comments/story/' + storyId);
+            const list = await res.json();
+            const wrap = document.getElementById('comments-list');
+            wrap.innerHTML = '';
+            list
+              .filter(c => !c.isHidden)
+              .filter(c => !c.chapterId || c.chapterId === '{{chapter.id}}')
+              .forEach(c => {
+                const div = document.createElement('div');
+                div.className = 'border rounded p-2 mb-2';
+                div.textContent = (c.userId?.name||'Người dùng') + ': ' + c.content;
+                wrap.appendChild(div);
+            });
         }
     </script>
 

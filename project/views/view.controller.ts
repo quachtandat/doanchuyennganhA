@@ -11,6 +11,7 @@ import {
   Redirect,
   Post,
   Body,
+  Res,
 } from '@nestjs/common';
 import type { Request } from 'express';
 import { InjectModel } from '@nestjs/mongoose';
@@ -200,7 +201,7 @@ export class ViewController {
   ) {}
 
   /**
-   * HÀM TRUY VẤN TOP STORIES SỬ DỤNG AGGREGATION
+   * 🛠️ HÀM TRUY VẤN TOP STORIES SỬ DỤNG AGGREGATION
    */
   private async getTopStories(days: number): Promise<StorySummaryViewModel[]> {
     // Sử dụng kiểu rõ ràng cho điều kiện match (Khắc phục lỗi ESLint/TS về 'any')
@@ -257,7 +258,7 @@ export class ViewController {
   }
 
   /**
-   * HÀM TRUY VẤN TẤT CẢ CÁC DANH MỤC ĐỘC NHẤT
+   * 🛠️ HÀM TRUY VẤN TẤT CẢ CÁC DANH MỤC ĐỘC NHẤT
    */
   private async getAllUniqueCategories(): Promise<string[]> {
     const results = await this.storyModel
@@ -275,7 +276,7 @@ export class ViewController {
   }
 
   /**
-   * HÀM HỖ TRỢ EXTRACT USER ID
+   * 🛠️ HÀM HỖ TRỢ EXTRACT USER ID
    */
   private extractUserId(req: Request, token?: string): string | null {
     let userId = (req as any).user?.id;
@@ -316,6 +317,8 @@ export class ViewController {
       hotStories: hotStories,
       newStories: newStories,
       completedStories: completedStories,
+      // Hide the global "Explore" link on the index page
+      hideExplore: true,
     };
   }
 
@@ -325,14 +328,16 @@ export class ViewController {
 
   @Get('auth/login')
   @Render('login')
-  getLogin() {
-    return {};
+  async getLogin() {
+    const allCategories = await this.viewService.getAllCategories();
+    return { allCategories };
   }
 
   @Get('auth/register')
   @Render('register')
-  getRegister() {
-    return {};
+  async getRegister() {
+    const allCategories = await this.viewService.getAllCategories();
+    return { allCategories };
   }
 
   // ===================================================================
@@ -349,10 +354,57 @@ export class ViewController {
       readingHistory = await this.viewService.getUserReadingHistory(userId);
     }
 
+    const allCategories = await this.viewService.getAllCategories();
+
     return {
       readingHistory,
       userId,
+      allCategories,
     };
+  }
+
+  // ===================================================================
+  // ⚙️ ADMIN PAGE
+  // ===================================================================
+  @Get('admin')
+  @Render('admin')
+  async getAdmin() {
+    const allCategories = await this.viewService.getAllCategories();
+    return { allCategories };
+  }
+
+  // ===================================================================
+  // ✏️ AUTHOR PAGE
+  // ===================================================================
+  @Get('author')
+  async getAuthor(
+    @Req() req: Request,
+    @Query('token') token?: string,
+    @Res() res?: any,
+  ) {
+    // Try to extract role from session user first
+    const sessionUser: any = (req as any).user;
+    if (sessionUser && sessionUser.role === 'author') {
+      const allCategories = await this.viewService.getAllCategories();
+      return res.render('author', { allCategories });
+    }
+
+    // If token provided (we will pass it from client when navigating), decode and check role
+    if (token) {
+      try {
+        const jwt = require('jsonwebtoken');
+        const decoded: any = jwt.decode(token);
+        if (decoded && decoded.role === 'author') {
+          const allCategories = await this.viewService.getAllCategories();
+          return res.render('author', { allCategories });
+        }
+      } catch (e) {
+        // ignore decode errors
+      }
+    }
+
+    // Not authorized to view author page
+    return res.redirect('/');
   }
 
   // ===================================================================
@@ -389,7 +441,7 @@ export class ViewController {
   }
 
   // ===================================================================
-  //  CATEGORY - Trang thể loại
+  // 📖 CATEGORY - Trang thể loại
   // ===================================================================
 
   @Get('category/:categoryName')
@@ -444,7 +496,13 @@ export class ViewController {
       throw new NotFoundException('Không tìm thấy chương hoặc truyện.');
     }
 
-    return result;
+    // Ensure header/category partial has categories available
+    const allCategories = await this.viewService.getAllCategories();
+
+    return {
+      ...result,
+      allCategories,
+    };
   }
 
   // ===================================================================
@@ -455,8 +513,33 @@ export class ViewController {
     return await this.viewService.getStoryChapters(storyId);
   }
 
+  // ------------------------------------------------
+  // Explore API + page
+  // ------------------------------------------------
+  @Get('explore')
+  @Render('explore')
+  async getExplorePage() {
+    const allCategories = await this.viewService.getAllCategories();
+    return { allCategories };
+  }
+
+  @Get('api/explore')
+  async apiExplore(
+    @Query('category') category?: string,
+    @Query('status') status?: string,
+    @Query('sort') sort?: string,
+  ) {
+    // delegate to viewService with filters
+    const stories = await this.viewService.getExploreStories({
+      category,
+      status,
+      sort,
+    });
+    return { stories };
+  }
+
   // ===================================================================
-  //  DEBUG: Hot Stories
+  // 🛠 DEBUG: Hot Stories
   // ===================================================================
   @Get('debug/hot-stories')
   async debugHotStories() {
@@ -464,7 +547,7 @@ export class ViewController {
   }
 
   // ===================================================================
-  //  API: Lấy reading history
+  // 📖 API: Lấy reading history
   // ===================================================================
   @Get('api/reading-history')
   async getReadingHistory(@Req() req: Request, @Query('token') token?: string) {
@@ -479,7 +562,7 @@ export class ViewController {
   }
 
   // ===================================================================
-  //  STORY LIST - Trang danh sách truyện với filter
+  // 📚 STORY LIST - Trang danh sách truyện với filter
   // ===================================================================
 
   @Get('stories')

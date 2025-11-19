@@ -365,19 +365,31 @@ export class ViewService {
     const searchRegex = new RegExp(query.trim(), 'i');
     
     // Get author IDs that match the search query - search both name and display_name
-    const authorIds = await this.userModel.find({
-      $or: [
-        { name: searchRegex },
-        { 'author_info.display_name': searchRegex }
-      ]
-    }).distinct('_id');
-    
+    const authorIds = await this.userModel
+      .find({
+        $or: [
+          { name: searchRegex },
+          { 'author_info.display_name': searchRegex },
+        ],
+      })
+      .distinct('_id');
+
+    // Normalize author id formats to handle mixed storage (string or ObjectId)
+    const authorIdStrings = authorIds.map((id: any) => id.toString());
+    const authorIdObjectIds = authorIds
+      .filter((id: any) => Types.ObjectId.isValid(id))
+      .map((id: any) => new Types.ObjectId(id));
+
+    const authorIdMixed = Array.from(
+      new Set<string | Types.ObjectId>([...authorIdStrings, ...authorIdObjectIds]),
+    );
+
     const stories = await this.storyModel
       .find({
         status: 'published',
         $or: [
           { title: searchRegex },
-          { 'authorId': { $in: authorIds } }
+          { authorId: { $in: authorIdMixed } },
         ],
       })
       .populate('authorId', 'name author_info.display_name')
@@ -395,6 +407,42 @@ export class ViewService {
       isHot: false,
       isNew: false,
       isFull: false,
+    }));
+  }
+
+  /**
+   * Explore stories with filters used by the Explore page
+   */
+  async getExploreStories(filters: { category?: string; status?: string; sort?: string }): Promise<any[]> {
+    const { category, status, sort } = filters || {};
+    const q: any = { status: 'published' };
+    if (status === 'published' || status === 'Đang ra') q.status = 'published';
+    if (status === 'completed' || status === 'Đã hoàn thành') q.status = 'completed';
+    if (category) q.category = { $in: [new RegExp(category, 'i')] };
+
+    let cursor = this.storyModel.find(q).lean();
+
+    // Sorting
+    if (sort === 'most_viewed') {
+      // sort by reading history count (best effort via lookup/aggregation is heavier); fallback to createdAt
+      cursor = this.storyModel.find(q).sort({ createdAt: -1 }).lean();
+    } else if (sort === 'top_rated') {
+      cursor = this.storyModel.find(q).sort({ ratingAverage: -1 }).lean();
+    } else if (sort === 'updated') {
+      cursor = this.storyModel.find(q).sort({ updatedAt: -1 }).lean();
+    } else {
+      cursor = this.storyModel.find(q).sort({ createdAt: -1 }).lean();
+    }
+
+    const docs = await cursor.limit(100).exec();
+    return docs.map(story => ({
+      id: (story as any)._id.toString(),
+      title: (story as any).title,
+      slug: (story as any).slug,
+      image: (story as any).coverUrl || '',
+      categories: (story as any).category || [],
+      author: (story as any).author || '',
+      description: (story as any).description || '',
     }));
   }
 
