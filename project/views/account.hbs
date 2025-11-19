@@ -426,6 +426,14 @@
                         </div>
                     </div>
 
+                    <div class="info-group" id="author-nickname-group" style="display:none;">
+                        <div class="info-label">Biệt danh tác giả</div>
+                        <div class="d-flex gap-2">
+                            <input id="author-nickname" class="form-control" placeholder="Nhập biệt danh">
+                            <button id="btn-save-nickname" class="btn-custom btn-primary-custom">Lưu</button>
+                        </div>
+                    </div>
+
                     <div class="info-group">
                         <div class="info-label">Ngày tham gia</div>
                         <div class="info-value" id="account-created">Loading...</div>
@@ -488,6 +496,29 @@
                         {{/if}}
                     </div>
                 </div>
+                <!-- Author Request -->
+                <div class="account-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293z"/>
+                                <path d="M13.752 3.146l-10 10V14h.854l10-10-1-1z"/>
+                            </svg>
+                            Yêu cầu làm tác giả
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <input id="author-message" class="form-control" placeholder="Lời nhắn (tuỳ chọn)">
+                        <button id="btn-send-author-request" class="btn-custom btn-primary-custom">Gửi yêu cầu</button>
+                    </div>
+                    <div class="mt-3">
+                        <h6>Trạng thái yêu cầu</h6>
+                        <ul id="author-requests" class="list-group"></ul>
+                    </div>
+                    <div class="mt-3" id="author-mode" style="display:none;">
+                        <button class="btn-custom btn-primary-custom" id="btn-author-mode" style="background: linear-gradient(135deg,#ff7e5f 0%,#feb47b 100%); color: #1a1a2e; font-weight: 800;">Vào chế độ tác giả</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -515,6 +546,8 @@
                 }
 
                 const data = await response.json();
+                // persist latest profile so header and other pages remain consistent
+                try { localStorage.setItem('userData', JSON.stringify(data)); } catch (e) {}
                 updateAccountInfo(data);
                 
                 // Fetch reading history
@@ -643,6 +676,20 @@
                                    user.role === 'author' ? 'Tác giả' : 'Quản trị';
             roleBadge.className = 'badge-custom badge-' + user.role;
 
+            // Author mode & nickname
+            const authorMode = document.getElementById('author-mode');
+            const authorGroup = document.getElementById('author-nickname-group');
+            if (user.role === 'author') {
+                if (authorMode) authorMode.style.display = 'block';
+                if (authorGroup) authorGroup.style.display = 'block';
+                const nick = (user.author_info && user.author_info.display_name) || '';
+                const nickInput = document.getElementById('author-nickname');
+                if (nickInput) nickInput.value = nick;
+            } else {
+                if (authorMode) authorMode.style.display = 'none';
+                if (authorGroup) authorGroup.style.display = 'none';
+            }
+
             // Created date
             if (user.createdAt) {
                 const date = new Date(user.createdAt);
@@ -662,6 +709,59 @@
         }
 
         function loadTransactionHistory(token) {
+        }
+
+        // Author request actions
+        async function loadAuthorRequests(){
+            try {
+                const res = await fetch('/author-requests/my', { headers: { 'Authorization': 'Bearer ' + (localStorage.getItem('accessToken')||'') } });
+                if (!res.ok) return;
+                const list = await res.json();
+                const ul = document.getElementById('author-requests');
+                ul.innerHTML = '';
+                list.forEach(r => {
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item bg-transparent text-white d-flex justify-content-between';
+                    li.innerHTML = `<span>${r.status}</span><small>${new Date(r.createdAt).toLocaleString('vi-VN')}</small>`;
+                    ul.appendChild(li);
+                });
+            } catch(e) {}
+        }
+        document.getElementById('btn-send-author-request').onclick = async () => {
+            const token = localStorage.getItem('accessToken')||'';
+            const message = document.getElementById('author-message').value;
+            await fetch('/author-requests', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }, body: JSON.stringify({ message }) });
+            document.getElementById('author-message').value = '';
+            loadAuthorRequests();
+            alert('Đã gửi yêu cầu');
+        };
+        loadAuthorRequests();
+
+        // Author mode button - include token in query so server-side view can validate role
+        const btnAuthorMode = document.getElementById('btn-author-mode');
+        if (btnAuthorMode) {
+            btnAuthorMode.onclick = () => { 
+                const token = localStorage.getItem('accessToken') || '';
+                window.location.href = '/author' + (token ? '?token=' + encodeURIComponent(token) : '');
+            };
+        }
+
+        // Save author nickname
+        const btnSaveNick = document.getElementById('btn-save-nickname');
+        if (btnSaveNick) {
+            btnSaveNick.onclick = async () => {
+                try {
+                    const token = localStorage.getItem('accessToken')||'';
+                    const user = JSON.parse(localStorage.getItem('userData')||'{}');
+                    const display_name = document.getElementById('author-nickname').value;
+                    await fetch(`/users/${user.id || user._id}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+                        body: JSON.stringify({ author_info: { display_name } })
+                    });
+                    alert('Đã lưu biệt danh tác giả');
+                } catch(e) { alert('Lưu thất bại'); }
+            };
         }
     </script>
 </body>

@@ -34,6 +34,17 @@ export class Story {
     default: 'pending',
   })
   status: string;
+
+  @Prop({ default: false })
+  isHidden: boolean;
+
+  // Average rating (scale 0..5)
+  @Prop({ type: Number, default: 0 })
+  ratingAverage: number;
+
+  // Number of ratings
+  @Prop({ type: Number, default: 0 })
+  ratingCount: number;
 }
 
 export const StorySchema = SchemaFactory.createForClass(Story);

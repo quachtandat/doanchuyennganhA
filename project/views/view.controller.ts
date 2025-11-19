@@ -11,6 +11,7 @@ import {
   Redirect,
   Post,
   Body,
+  Res,
 } from '@nestjs/common';
 import type { Request } from 'express';
 import { InjectModel } from '@nestjs/mongoose';
@@ -300,7 +301,6 @@ export class ViewController {
   async getHome(@Query('key_word') keyWord?: string) {
     if (keyWord && keyWord.trim()) {
       // This should be handled by search route
-      // For now, just ignore the search parameter on home page
     }
 
     const [allCategories, hotStories, newStories, completedStories] =
@@ -317,6 +317,8 @@ export class ViewController {
       hotStories: hotStories,
       newStories: newStories,
       completedStories: completedStories,
+      // Hide the global "Explore" link on the index page
+      hideExplore: true,
     };
   }
 
@@ -326,14 +328,16 @@ export class ViewController {
 
   @Get('auth/login')
   @Render('login')
-  getLogin() {
-    return {};
+  async getLogin() {
+    const allCategories = await this.viewService.getAllCategories();
+    return { allCategories };
   }
 
   @Get('auth/register')
   @Render('register')
-  getRegister() {
-    return {};
+  async getRegister() {
+    const allCategories = await this.viewService.getAllCategories();
+    return { allCategories };
   }
 
   // ===================================================================
@@ -350,10 +354,53 @@ export class ViewController {
       readingHistory = await this.viewService.getUserReadingHistory(userId);
     }
 
+    const allCategories = await this.viewService.getAllCategories();
+
     return {
       readingHistory,
       userId,
+      allCategories,
     };
+  }
+
+  // ===================================================================
+  // ⚙️ ADMIN PAGE
+  // ===================================================================
+  @Get('admin')
+  @Render('admin')
+  async getAdmin() {
+    const allCategories = await this.viewService.getAllCategories();
+    return { allCategories };
+  }
+
+  // ===================================================================
+  // ✍️ AUTHOR PAGE
+  // ===================================================================
+  @Get('author')
+  async getAuthor(@Req() req: Request, @Query('token') token?: string, @Res() res?: any) {
+    // Try to extract role from session user first
+    const sessionUser: any = (req as any).user;
+    if (sessionUser && sessionUser.role === 'author') {
+      const allCategories = await this.viewService.getAllCategories();
+      return res.render('author', { allCategories });
+    }
+
+    // If token provided (we will pass it from client when navigating), decode and check role
+    if (token) {
+      try {
+        const jwt = require('jsonwebtoken');
+        const decoded: any = jwt.decode(token);
+        if (decoded && decoded.role === 'author') {
+          const allCategories = await this.viewService.getAllCategories();
+          return res.render('author', { allCategories });
+        }
+      } catch (e) {
+        // ignore decode errors
+      }
+    }
+
+    // Not authorized to view author page
+    return res.redirect('/');
   }
 
   // ===================================================================
@@ -438,14 +485,20 @@ export class ViewController {
     const result = await this.viewService.getChapterDetail(
       storyId,
       chapterId,
-      userId,
+      userId || undefined,
     );
 
     if (!result) {
       throw new NotFoundException('Không tìm thấy chương hoặc truyện.');
     }
 
-    return result;
+    // Ensure header/category partial has categories available
+    const allCategories = await this.viewService.getAllCategories();
+
+    return {
+      ...result,
+      allCategories,
+    };
   }
 
   // ===================================================================
@@ -454,6 +507,23 @@ export class ViewController {
   @Get('api/story/:storyId/chapters')
   async apiGetStoryChapters(@Param('storyId') storyId: string) {
     return await this.viewService.getStoryChapters(storyId);
+  }
+
+  // ------------------------------------------------
+  // Explore API + page
+  // ------------------------------------------------
+  @Get('explore')
+  @Render('explore')
+  async getExplorePage() {
+    const allCategories = await this.viewService.getAllCategories();
+    return { allCategories };
+  }
+
+  @Get('api/explore')
+  async apiExplore(@Query('category') category?: string, @Query('status') status?: string, @Query('sort') sort?: string) {
+    // delegate to viewService with filters
+    const stories = await this.viewService.getExploreStories({ category, status, sort });
+    return { stories };
   }
 
   // ===================================================================

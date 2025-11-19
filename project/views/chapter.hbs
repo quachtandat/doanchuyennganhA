@@ -203,10 +203,10 @@
                     </a>
                     {{/if}}
 
-                    <button class="btn btn-success chapter_jump me-1" data-bs-toggle="modal" data-bs-target="#chapterListModal">
+                    <button class="btn btn-success chapter_jump me-1" data-bs-toggle="modal" data-bs-target="#chapterListModal" id="openChapterListBtn">
                         <span>
                             <svg style="fill: #fff;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
-                                <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path>
+                                <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0 32 14.3 32 32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path>
                             </svg>
                         </span>
                     </button>
@@ -274,6 +274,28 @@
                     <div id="chapter-content-vip" class="chapter-content mb-3" style="display: none; white-space: pre-line; line-height: 2; font-size: 1.1rem;">
                         {{{chapter.content}}}
                     </div>
+                    
+                    <!-- TTS Controls hidden initially -->
+                    <div class="tts-controls" id="tts-controls-vip" style="display: none;">
+                        <button class="btn btn-primary me-2" id="playBtn">
+                            <i class="fas fa-play"></i> Nghe truyện
+                        </button>
+                        <button class="btn btn-secondary me-2" id="pauseBtn" style="display: none;">
+                            <i class="fas fa-pause"></i> Tạm dừng
+                        </button>
+                        <button class="btn btn-warning me-2" id="stopBtn" style="display: none;">
+                            <i class="fas fa-stop"></i> Dừng
+                        </button>
+                        <div class="speed-controls">
+                            <button class="btn btn-outline-secondary btn-sm" id="speedDown">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm" id="speedDisplay">1x</button>
+                            <button class="btn btn-outline-secondary btn-sm" id="speedUp">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
                 {{/if}}
             {{else}}
                 <!-- Free chapter - Show content + TTS -->
@@ -282,7 +304,7 @@
                 </div>
                 
                 <!-- Text-to-Speech Controls -->
-                <div class="tts-controls">
+                <div class="text-center mb-3">
                     <button class="btn btn-primary me-2" id="playBtn">
                         <i class="fas fa-play"></i> Nghe truyện
                     </button>
@@ -292,7 +314,7 @@
                     <button class="btn btn-warning me-2" id="stopBtn" style="display: none;">
                         <i class="fas fa-stop"></i> Dừng
                     </button>
-                    <div class="speed-controls">
+                    <div class="btn-group" role="group">
                         <button class="btn btn-outline-secondary btn-sm" id="speedDown">
                             <i class="fas fa-minus"></i>
                         </button>
@@ -303,6 +325,27 @@
                     </div>
                 </div>
             {{/if}}
+
+            <!-- Comments and Report -->
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h5 class="mb-3">Bình luận</h5>
+                        <div id="comments-list" class="mb-3"></div>
+                        <div class="input-group mb-3">
+                            <input id="comment-input" type="text" class="form-control" placeholder="Viết bình luận của bạn...">
+                            <button id="comment-submit" class="btn btn-success">Gửi</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <h5 class="mb-3">Báo cáo chương</h5>
+                        <div class="input-group">
+                            <input id="report-reason" type="text" class="form-control" placeholder="Lý do báo cáo">
+                            <button id="report-submit" class="btn btn-outline-danger">Báo cáo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="text-center px-2 py-2 alert alert-success d-none d-lg-block" role="alert">
                 Bạn có thể dùng phím mũi tên hoặc WASD để lùi/sang chương
@@ -344,20 +387,6 @@
     <!-- Footer -->
     {{> footer}}
 
-    <!-- Modal: Danh sách chương -->
-    <div class="modal fade" id="chapterListModal" tabindex="-1">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Danh sách chương</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="chapters-container" class="row g-3"></div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Scripts -->
     <script src="/assets/jquery.min.js"></script>
@@ -375,6 +404,13 @@
         // Check if chapter is already purchased on page load
         document.addEventListener('DOMContentLoaded', async function() {
             const isVip = {{#if chapter.isVip}}true{{else}}false{{/if}};
+            const isPurchased = {{#if chapter.isPurchased}}true{{else}}false{{/if}};
+            
+            // If server says it's already purchased, no need to check again
+            if (isVip && isPurchased) {
+                console.log('Chapter marked as purchased by server');
+                return;
+            }
             
             if (!isVip) {
                 console.log('Not a VIP chapter, skipping purchase check');
@@ -404,23 +440,32 @@
                     
                     if (data.isPurchased) {
                         console.log('Chapter already purchased, showing content');
-                        
-                        const lockSection = document.getElementById('vip-lock-section');
-                        if (lockSection) {
-                            lockSection.style.display = 'none';
-                        }
-                        
-                        const contentSection = document.getElementById('chapter-content-vip');
-                        if (contentSection) {
-                            contentSection.style.display = 'block';
-                            contentSection.id = 'chapterContent'; // Rename for TTS
-                        }
+                        showPurchasedContent();
                     }
                 }
             } catch (error) {
                 console.error('Error checking purchase:', error);
             }
         });
+
+        // Function to show purchased content
+        function showPurchasedContent() {
+            const lockSection = document.getElementById('vip-lock-section');
+            if (lockSection) {
+                lockSection.style.display = 'none';
+            }
+            
+            const contentSection = document.getElementById('chapter-content-vip');
+            if (contentSection) {
+                contentSection.style.display = 'block';
+                contentSection.id = 'chapterContent'; // Rename for TTS
+            }
+            
+            const ttsControls = document.getElementById('tts-controls-vip');
+            if (ttsControls) {
+                ttsControls.style.display = 'block';
+            }
+        }
 
         // Unlock chapter
         async function unlockChapter() {
@@ -451,7 +496,7 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    showAlert('✓ Mua chương thành công! Đang tải lại trang...', 'success');
+                    showAlert('✔ Mua chương thành công! Đang tải lại trang...', 'success');
                     setTimeout(() => { window.location.reload(); }, 1000);
                 } else {
                     showAlert('✗ ' + (data.message || 'Mua chương thất bại'), 'danger');
@@ -474,13 +519,94 @@
         }
     </script>
 
-    <!-- Text-to-Speech Script -->
     <script>
+        // Load comments for this story/chapter and allow posting
+        document.addEventListener('DOMContentLoaded', async function() {
+            const storyId = '{{story.id}}';
+            const chapterId = '{{chapter.id}}';
+            await loadComments(storyId);
+            document.getElementById('comment-submit').onclick = async () => {
+                const token = localStorage.getItem('accessToken')||'';
+                const content = document.getElementById('comment-input').value.trim();
+                if (!content) return;
+                const res = await fetch('/comments', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+                    body: JSON.stringify({ storyId, chapterId, content })
+                });
+                if (res.ok) {
+                    document.getElementById('comment-input').value = '';
+                    await loadComments(storyId);
+                }
+            };
+
+            document.getElementById('report-submit').onclick = async () => {
+                const token = localStorage.getItem('accessToken')||'';
+                const reason = document.getElementById('report-reason').value.trim();
+                if (!reason) return;
+                const headers = { 'Content-Type': 'application/json' };
+                if (token) headers['Authorization'] = 'Bearer ' + token;
+                // include userId if we have userData in localStorage
+                let userId = undefined;
+                try {
+                    const ud = JSON.parse(localStorage.getItem('userData') || 'null');
+                    userId = ud && (ud.id || ud._id || ud.userId || ud.user?.id) ? (ud.id || ud._id || ud.userId || ud.user?.id) : undefined;
+                } catch (e) { /* ignore */ }
+
+                const body = { storyId, chapterId, reason };
+                if (userId) body.userId = userId;
+
+                const res = await fetch('/reports', {
+                    method: 'POST',
+                    headers,
+                    body: JSON.stringify(body)
+                });
+                if (res.ok) {
+                    document.getElementById('report-reason').value='';
+                    alert('Đã gửi báo cáo');
+                }
+            };
+        });
+
+        async function loadComments(storyId) {
+            const res = await fetch('/comments/story/' + storyId);
+            const list = await res.json();
+            const wrap = document.getElementById('comments-list');
+            wrap.innerHTML = '';
+            list
+              .filter(c => !c.isHidden)
+              .filter(c => !c.chapterId || c.chapterId === '{{chapter.id}}')
+              .forEach(c => {
+                const div = document.createElement('div');
+                div.className = 'border rounded p-2 mb-2';
+                div.textContent = (c.userId?.name||'Người dùng') + ': ' + c.content;
+                wrap.appendChild(div);
+            });
+        }
+    </script>
+
+    <!-- Modal: Danh sách chương -->
+    <div class="modal fade" id="chapterListModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Danh sách chương</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="chapters-container" class="row g-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Text-to-Speech functionality
         let speechSynthesis = window.speechSynthesis;
         let currentUtterance = null;
         let isPlaying = false;
         let currentSpeed = 1;
-        let isPaused = false;
+        let isPaused = false; // Trạng thái pause
         
         const playBtn = document.getElementById('playBtn');
         const pauseBtn = document.getElementById('pauseBtn');
@@ -488,24 +614,36 @@
         const speedDisplay = document.getElementById('speedDisplay');
         const speedUp = document.getElementById('speedUp');
         const speedDown = document.getElementById('speedDown');
+        const chapterContent = document.getElementById('chapterContent');
         
+        // Get text content
         function getTextContent() {
-            const content = document.getElementById('chapterContent');
-            return content ? (content.textContent || content.innerText || '') : '';
+            return chapterContent.textContent || chapterContent.innerText || '';
         }
         
+        // Play function
         function playText() {
+            console.log('🎵 PLAY BUTTON CLICKED');
+            console.log('speechSynthesis.speaking:', speechSynthesis.speaking);
+            console.log('speechSynthesis.paused:', speechSynthesis.paused);
+            console.log('isPlaying:', isPlaying);
+            console.log('isPaused:', isPaused);
+            
             const text = getTextContent();
             if (!text.trim()) {
                 alert('Không có nội dung để đọc!');
                 return;
             }
             
+            // Nếu đang speaking và không pause thì không làm gì
             if (speechSynthesis.speaking && !speechSynthesis.paused && !isPaused) {
+                console.log('❌ Already speaking, doing nothing');
                 return;
             }
             
+            // Nếu đang pause thì resume
             if (isPaused) {
+                console.log('▶️ Resuming paused speech');
                 speechSynthesis.resume();
                 isPlaying = true;
                 isPaused = false;
@@ -515,6 +653,8 @@
                 return;
             }
             
+            console.log('🆕 Creating new utterance');
+            // Dừng mọi utterance hiện tại
             speechSynthesis.cancel();
             
             currentUtterance = new SpeechSynthesisUtterance(text);
@@ -524,6 +664,7 @@
             currentUtterance.volume = 1;
             
             currentUtterance.onstart = function() {
+                console.log('🎤 Speech started');
                 isPlaying = true;
                 isPaused = false;
                 playBtn.style.display = 'none';
@@ -532,6 +673,7 @@
             };
             
             currentUtterance.onend = function() {
+                console.log('🏁 Speech ended');
                 isPlaying = false;
                 isPaused = false;
                 playBtn.style.display = 'inline-block';
@@ -540,7 +682,7 @@
             };
             
             currentUtterance.onerror = function(event) {
-                console.error('Speech error:', event.error);
+                console.error('❌ Speech synthesis error:', event.error);
                 isPlaying = false;
                 isPaused = false;
                 playBtn.style.display = 'inline-block';
@@ -550,3 +692,171 @@
             
             speechSynthesis.speak(currentUtterance);
         }
+        
+        // Pause function
+        function pauseText() {
+            console.log('⏸️ PAUSE BUTTON CLICKED');
+            console.log('speechSynthesis.speaking:', speechSynthesis.speaking);
+            console.log('speechSynthesis.paused:', speechSynthesis.paused);
+            console.log('isPlaying:', isPlaying);
+            console.log('isPaused:', isPaused);
+            
+            if (speechSynthesis.speaking && !speechSynthesis.paused) {
+                console.log('⏸️ Pausing speech');
+                speechSynthesis.pause();
+                isPlaying = false;
+                isPaused = true;
+                playBtn.style.display = 'inline-block';
+                pauseBtn.style.display = 'none';
+            } else {
+                console.log('❌ Cannot pause - not speaking or already paused');
+            }
+        }
+        
+        // Stop function
+        function stopText() {
+            console.log('⏹️ STOP BUTTON CLICKED');
+            console.log('speechSynthesis.speaking:', speechSynthesis.speaking);
+            console.log('speechSynthesis.paused:', speechSynthesis.paused);
+            console.log('isPlaying:', isPlaying);
+            console.log('isPaused:', isPaused);
+            
+            speechSynthesis.cancel();
+            isPlaying = false;
+            isPaused = false;
+            playBtn.style.display = 'inline-block';
+            pauseBtn.style.display = 'none';
+            stopBtn.style.display = 'none';
+            
+            console.log('⏹️ Speech stopped and reset');
+        }
+        
+        // Speed control
+        function updateSpeed() {
+            if (currentUtterance) {
+                currentUtterance.rate = currentSpeed;
+            }
+            speedDisplay.textContent = currentSpeed + 'x';
+        }
+        
+        // Event listeners
+        playBtn.addEventListener('click', playText);
+        pauseBtn.addEventListener('click', pauseText);
+        stopBtn.addEventListener('click', stopText);
+        
+        speedUp.addEventListener('click', function() {
+            if (currentSpeed < 2) {
+                currentSpeed += 0.25;
+                updateSpeed();
+            }
+        });
+        
+        speedDown.addEventListener('click', function() {
+            if (currentSpeed > 0.25) {
+                currentSpeed -= 0.25;
+                updateSpeed();
+            }
+        });
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case ' ':
+                        e.preventDefault();
+                        if (isPlaying) {
+                            pauseText();
+                        } else {
+                            playText();
+                        }
+                        break;
+                    case 's':
+                        e.preventDefault();
+                        stopText();
+                        break;
+                }
+            }
+        });
+        
+        // Clean up on page unload
+        window.addEventListener('beforeunload', function() {
+            if (isPlaying) {
+                speechSynthesis.cancel();
+            }
+        });
+
+        // Load chapters list into modal
+        document.getElementById('openChapterListBtn')?.addEventListener('click', async function() {
+            try {
+                const res = await fetch('/api/story/{{story.id}}/chapters');
+                const data = await res.json();
+                const container = document.getElementById('chapters-container');
+                container.innerHTML = '';
+                const left = document.createElement('div');
+                left.className = 'col-12 col-md-6';
+                const right = document.createElement('div');
+                right.className = 'col-12 col-md-6';
+                const ulLeft = document.createElement('ul');
+                const ulRight = document.createElement('ul');
+                data.forEach((chap, idx) => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = '/story/{{story.id}}/chapter/' + chap.id;
+                    a.textContent = chap.title;
+                    a.className = 'text-decoration-none';
+                    li.appendChild(a);
+                    if (idx % 2 === 0) ulLeft.appendChild(li); else ulRight.appendChild(li);
+                });
+                left.appendChild(ulLeft);
+                right.appendChild(ulRight);
+                container.appendChild(left);
+                container.appendChild(right);
+            } catch (e) {
+                console.error(e);
+            }
+        });
+    </script>
+
+    <script>
+        // Auto-add token to chapter links for reading history
+        document.addEventListener('DOMContentLoaded', function() {
+            const token = localStorage.getItem('accessToken');
+            if (token) {
+                // Add token to all chapter links
+                const chapterLinks = document.querySelectorAll('a[href*="/story/"][href*="/chapter/"]');
+                chapterLinks.forEach(link => {
+                    const url = new URL(link.href, window.location.origin);
+                    url.searchParams.set('token', token);
+                    link.href = url.toString();
+                });
+                
+                // Add token to navigation buttons
+                const prevBtn = document.querySelector('.chapter-prev');
+                const nextBtn = document.querySelector('.chapter-next');
+                
+                if (prevBtn && prevBtn.href) {
+                    const prevUrl = new URL(prevBtn.href, window.location.origin);
+                    prevUrl.searchParams.set('token', token);
+                    prevBtn.href = prevUrl.toString();
+                }
+                
+                if (nextBtn && nextBtn.href) {
+                    const nextUrl = new URL(nextBtn.href, window.location.origin);
+                    nextUrl.searchParams.set('token', token);
+                    nextBtn.href = nextUrl.toString();
+                }
+                
+                console.log('[CHAPTER] Token added to links for reading history');
+            }
+        });
+    </script>
+
+    <!-- Loading Spinner -->
+    <div id="loadingPage" class="loading-full">
+        <div class="loading-full_icon">
+            <div class="spinner-grow"><span class="visually-hidden">Loading...</span></div>
+        </div>
+    </div>
+
+</body>
+</html>

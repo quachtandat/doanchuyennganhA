@@ -30,6 +30,9 @@ export class Chapter {
     default: 'draft',
   })
   status: string;
+
+  @Prop({ default: false })
+  isHidden: boolean;
 }
 
 export const ChapterSchema = SchemaFactory.createForClass(Chapter);

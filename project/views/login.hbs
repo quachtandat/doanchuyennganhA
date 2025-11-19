@@ -425,9 +425,16 @@
                     successMsg.textContent = '✓ Đăng nhập thành công! Đang chuyển hướng...';
                     successMsg.style.display = 'block';
                     
-                    // Redirect to homepage with reload
+                    // Role-based redirect
                     setTimeout(() => {
-                        window.location.replace('/');
+                        const role = (data && data.user && data.user.role) || 'reader';
+                        if (role === 'admin') {
+                            window.location.replace('/admin');
+                        } else if (role === 'author') {
+                            window.location.replace('/author');
+                        } else {
+                            window.location.replace('/');
+                        }
                     }, 1000);
                 } else {
                     errorMsg.textContent = '✗ ' + (data.message || 'Email hoặc mật khẩu không đúng. Vui lòng thử lại.');

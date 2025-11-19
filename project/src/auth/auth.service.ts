@@ -66,9 +66,11 @@ export class AuthService {
         name: newUser.name,
         email: newUser.email,
         phone: newUser.phone,
+        author_info: newUser.author_info,
         role: newUser.role,
         wallet_coins: newUser.wallet_coins,
         status: newUser.status,
+  // timestamps are available via /auth/profile endpoint
       },
     };
   }
@@ -95,7 +97,10 @@ export class AuthService {
 
     // Check if user is active
     if (user.status !== 'active') {
-      throw new UnauthorizedException('Account is not active');
+      if (user.status === 'blocked') {
+        throw new UnauthorizedException('Tài khoản của bạn đã bị khóa');
+      }
+      throw new UnauthorizedException('Tài khoản chưa ở trạng thái hoạt động');
     }
 
     // Generate JWT token
@@ -110,9 +115,11 @@ export class AuthService {
         name: user.name,
         email: user.email,
         phone: user.phone,
+        author_info: user.author_info,
         role: user.role,
         wallet_coins: user.wallet_coins,
         status: user.status,
+  // timestamps are available via /auth/profile endpoint
       },
     };
   }

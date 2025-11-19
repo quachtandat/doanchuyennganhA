@@ -1,0 +1,198 @@
+/* ==============================
+   AUTHOR DASHBOARD THEME
+   ============================== */
+
+/* ==== Base layout ==== */
+body {
+  background-color: #f8f9fa;
+  color: #212529;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.sidebar {
+  background-color: #f1f3f5;
+  border-right: 1px solid #dee2e6;
+}
+
+.nav-link {
+  color: #333;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background-color 0.2s, color 0.2s;
+}
+.nav-link:hover {
+  background-color: #e9ecef;
+  color: #000;
+}
+.nav-link.active {
+  background-color: #0d6efd;
+  color: #fff !important;
+}
+
+.card {
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.card h5, .card h6 {
+  font-weight: 600;
+}
+
+#author-avatar-mini {
+  font-weight: 600;
+}
+
+/* Table and list styles */
+.list-group-item {
+  border-color: #dee2e6;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* Charts */
+canvas {
+  background-color: transparent;
+}
+
+/* =======================================
+   DARK THEME
+   Activated when <body class="dark-theme">
+   ======================================= */
+body.dark-theme {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-theme .navbar,
+body.dark-theme .sidebar,
+body.dark-theme .card {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border-color: #333;
+}
+
+body.dark-theme .sidebar {
+  border-right: 1px solid #2a2a2a;
+}
+
+body.dark-theme .nav-link {
+  color: #bbb;
+}
+body.dark-theme .nav-link:hover {
+  background-color: #2a2a2a;
+  color: #fff;
+}
+body.dark-theme .nav-link.active {
+  background-color: #0d6efd;
+  color: #fff !important;
+}
+
+body.dark-theme .btn {
+  color: #fff;
+  border-color: #444;
+}
+body.dark-theme .btn:hover {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+body.dark-theme .form-control,
+body.dark-theme .form-select,
+body.dark-theme textarea {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border-color: #444;
+}
+body.dark-theme .form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: none;
+}
+
+body.dark-theme .dropdown-menu {
+  background-color: #1e1e1e;
+  color: #fff;
+  border-color: #333;
+}
+body.dark-theme .dropdown-item:hover {
+  background-color: #2a2a2a;
+}
+
+body.dark-theme .list-group-item {
+  background-color: #1e1e1e;
+  border-color: #333;
+  color: #ddd;
+}
+
+/* Charts in dark mode */
+body.dark-theme canvas {
+  background-color: transparent;
+}
+
+/* Toggle Button */
+#author-theme-toggle {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1;
+  padding: 6px;
+}
+
+/* Strong overrides for stubborn Bootstrap classes and header/sidebar elements */
+body.dark-theme .bg-white,
+body.dark-theme .bg-light {
+  background-color: #1e1e1e !important;
+  color: #e0e0e0 !important;
+}
+
+/* Ensure navbar brand, buttons and dropdowns follow dark theme */
+body.dark-theme .navbar-brand,
+body.dark-theme .navbar .nav-link,
+body.dark-theme .navbar .btn,
+body.dark-theme .navbar .dropdown-toggle,
+body.dark-theme .navbar .dropdown-item {
+  color: #e0e0e0 !important;
+}
+
+/* Outline secondary buttons inside header/sidebar */
+body.dark-theme .btn-outline-secondary {
+  color: #e0e0e0;
+  border-color: #444;
+  background-color: transparent;
+}
+body.dark-theme .btn-outline-secondary:hover {
+  background-color: rgba(255,255,255,0.03);
+}
+
+/* Avatar mini circle */
+body.dark-theme #author-avatar-mini {
+  background-color: #2b2b2b !important;
+  color: #fff !important;
+}
+
+/* Make sidebar icons inherit nav-link color */
+body.dark-theme .nav-link i,
+body.dark-theme .nav-pills .nav-link {
+  color: inherit;
+}
+
+/* Dropdown menu items */
+body.dark-theme .dropdown-menu {
+  background-color: #1e1e1e !important;
+  color: #e0e0e0 !important;
+}
+body.dark-theme .dropdown-menu .dropdown-item {
+  color: #ddd !important;
+}
+
+/* Slightly darker cards for contrast in header/sidebar area */
+body.dark-theme .card.p-3,
+body.dark-theme .card.mb-4 {
+  background-color: #1b1b1b;
+  border-color: #2a2a2a;
+}

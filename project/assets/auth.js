@@ -28,6 +28,9 @@
           }
         })
         .then(function (data) {
+          // Keep local copy of latest profile so other parts of UI (header, account)
+          // can use up-to-date user info after a refresh.
+          try { localStorage.setItem('userData', JSON.stringify(data)); } catch (e) {}
           showUserProfile(data);
         })
         .catch(function () {
@@ -58,8 +61,9 @@
 
   // Show user profile (hide login buttons)
   function showUserProfile(userData) {
-    const firstName = userData.name.split(' ')[0];
-    const initials = userData.name.split(' ')
+    const displayName = (userData.author_info && userData.author_info.display_name) || userData.name || '';
+    const firstName = displayName.split(' ')[0];
+    const initials = displayName.split(' ')
       .map(function (word) { return word.charAt(0).toUpperCase(); })
       .join('')
       .substring(0, 2);
@@ -85,8 +89,8 @@
     const walletCoins = document.getElementById('wallet-coins');
 
     if (userAvatar) userAvatar.textContent = initials;
-    if (userNameDisplay) userNameDisplay.textContent = firstName;
-    if (userNameMenu) userNameMenu.textContent = userData.name;
+  if (userNameDisplay) userNameDisplay.textContent = firstName;
+  if (userNameMenu) userNameMenu.textContent = displayName || userData.name;
     if (userEmailMenu) userEmailMenu.textContent = userData.email;
     if (walletCoins) walletCoins.textContent = userData.wallet_coins || 0;
   }

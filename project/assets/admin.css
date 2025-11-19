@@ -1,0 +1,246 @@
+/* Small admin UI overrides */
+/* Light theme (defaults provided by Bootstrap) */
+.sidebar { border-right: 1px solid rgba(0,0,0,0.06); }
+.main-table td, .main-table th { vertical-align: middle; }
+.table-responsive { overflow: auto; }
+
+/* Dark theme support */
+/* Add the class `dark-theme` to <body> to enable */
+body.dark-theme, body.theme-dark {
+  background-color: #0f1720 !important;
+  color: #e6eef6 !important;
+}
+body.dark-theme .navbar, body.theme-dark .navbar {
+  background-color: #0b1220 !important;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+/* Make header text, brand and controls clearly visible in dark mode */
+body.dark-theme header.navbar.navbar-light, body.theme-dark header.navbar.navbar-light {
+  color: #e6eef6 !important;
+}
+body.dark-theme .navbar .navbar-brand, body.theme-dark .navbar .navbar-brand {
+  color: #e6eef6 !important;
+}
+body.dark-theme .navbar .nav-link, body.theme-dark .navbar .nav-link {
+  color: #cfe8ff !important;
+}
+body.dark-theme .navbar .form-control, body.theme-dark .navbar .form-control,
+body.dark-theme .navbar .form-select, body.theme-dark .navbar .form-select {
+  background-color: #071422 !important;
+  color: #e6eef6 !important;
+  border: 1px solid rgba(255,255,255,0.03) !important;
+}
+body.dark-theme .navbar .form-control::placeholder, body.theme-dark .navbar .form-control::placeholder {
+  color: rgba(230,238,246,0.6) !important;
+}
+/* Buttons in navbar: make outline buttons readable and adjust contrast for danger */
+body.dark-theme .navbar .btn, body.theme-dark .navbar .btn {
+  color: #e6eef6 !important;
+  border-color: rgba(255,255,255,0.06) !important;
+}
+body.dark-theme .navbar .btn.btn-outline-secondary, body.theme-dark .navbar .btn.btn-outline-secondary {
+  background-color: transparent !important;
+  color: #cfe8ff !important;
+  border-color: rgba(255,255,255,0.06) !important;
+}
+body.dark-theme .navbar .btn.btn-danger, body.theme-dark .navbar .btn.btn-danger {
+  background-color: #8b1d1d !important;
+  border-color: #7a1a1a !important;
+  color: #fff !important;
+}
+body.dark-theme .card, body.theme-dark .card {
+  background-color: #0b1220 !important;
+  color: #e6eef6 !important;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+body.dark-theme .sidebar, body.theme-dark .sidebar {
+  background-color: #07101a !important;
+  color: #dbe9f8 !important;
+  border-right: 1px solid rgba(255,255,255,0.03);
+}
+body.dark-theme .nav-link, body.theme-dark .nav-link {
+  color: #cfe8ff !important;
+}
+body.dark-theme .nav-link.active, body.theme-dark .nav-link.active {
+  background-color: rgba(255,255,255,0.04) !important;
+}
+body.dark-theme table.table, body.theme-dark table.table {
+  color: #dbe9f8;
+}
+body.dark-theme input.form-control, body.theme-dark input.form-control,
+body.dark-theme select.form-select, body.theme-dark select.form-select {
+  background-color: #071422;
+  color: #e6eef6;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Stronger rules for all form controls (including -sm variants and textareas) */
+body.dark-theme .form-control, body.theme-dark .form-control,
+body.dark-theme .form-control-sm, body.theme-dark .form-control-sm,
+body.dark-theme textarea.form-control, body.theme-dark textarea.form-control,
+body.dark-theme .form-select, body.theme-dark .form-select,
+body.dark-theme .form-select-sm, body.theme-dark .form-select-sm {
+  background-color: #071422 !important;
+  color: #e6eef6 !important;
+  border: 1px solid rgba(255,255,255,0.04) !important;
+}
+
+body.dark-theme .form-control::placeholder, body.theme-dark .form-control::placeholder,
+body.dark-theme .form-select::placeholder, body.theme-dark .form-select::placeholder {
+  color: rgba(230,238,246,0.6) !important;
+}
+
+body.dark-theme .form-control:focus, body.theme-dark .form-control:focus,
+body.dark-theme .form-select:focus, body.theme-dark .form-select:focus,
+body.dark-theme textarea.form-control:focus, body.theme-dark textarea.form-control:focus {
+  background-color: #071422 !important;
+  color: #e6eef6 !important;
+  border-color: rgba(47, 117, 173, 0.6) !important;
+  box-shadow: 0 0 0 0.15rem rgba(47, 117, 173, 0.12) !important;
+}
+
+/* Date input cosmetics and custom trigger */
+.date-input-wrap { position: relative; display: inline-block; }
+.date-input-wrap input[type="date"] {
+  padding-right: 2.4rem; /* space for the trigger */
+}
+.date-input-wrap .date-trigger {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: inherit;
+  background: transparent;
+  border: none;
+}
+/* Calendar icon color in light/dark */
+body.dark-theme .date-input-wrap .date-trigger {
+  color: #cfe8ff !important;
+}
+
+/* WebKit native calendar icon tweak: invert it on dark backgrounds */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) hue-rotate(180deg) brightness(1.2) !important;
+  opacity: 0.9;
+}
+
+/* Ensure the trigger is not visible when native indicator is sufficient on some browsers */
+.date-input-wrap .date-trigger.hidden { display: none !important; }
+
+/* Section / content area dark-mode rules */
+body.dark-theme main, body.theme-dark main,
+body.dark-theme main section, body.theme-dark main section,
+body.dark-theme .card-body, body.theme-dark .card-body {
+  background-color: transparent !important;
+  color: #dbe9f8 !important;
+}
+
+/* Card headers */
+body.dark-theme .card-header, body.theme-dark .card-header {
+  background-color: rgba(255,255,255,0.02) !important;
+  color: #e6eef6 !important;
+  border-bottom: 1px solid rgba(255,255,255,0.03) !important;
+}
+
+/* Tables: rows, borders, striped background */
+body.dark-theme table.table, body.theme-dark table.table {
+  color: #dbe9f8 !important;
+  border-color: rgba(255,255,255,0.04) !important;
+}
+body.dark-theme table.table th, body.theme-dark table.table th,
+body.dark-theme table.table td, body.theme-dark table.table td {
+  border-color: rgba(255,255,255,0.03) !important;
+}
+body.dark-theme table.table.table-striped>tbody>tr:nth-of-type(odd),
+body.theme-dark table.table.table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: rgba(255,255,255,0.01) !important;
+}
+
+/* Stronger overrides for table elements to win over Bootstrap defaults */
+body.dark-theme .table, body.theme-dark .table {
+  background-color: transparent !important;
+  color: #dbe9f8 !important;
+}
+body.dark-theme .table thead th, body.theme-dark .table thead th {
+  color: #e6eef6 !important;
+  background-color: rgba(255,255,255,0.02) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.04) !important;
+}
+body.dark-theme .table tbody td, body.theme-dark .table tbody td {
+  color: #dbe9f8 !important;
+  background-color: transparent !important;
+  border-top: 1px solid rgba(255,255,255,0.03) !important;
+}
+body.dark-theme .table.table-striped>tbody>tr:nth-of-type(odd),
+body.theme-dark .table.table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: rgba(255,255,255,0.015) !important;
+}
+body.dark-theme .table-hover tbody tr:hover, body.theme-dark .table-hover tbody tr:hover {
+  background-color: rgba(255,255,255,0.03) !important;
+}
+/* Ensure small text like table captions and small muted text are visible */
+body.dark-theme table.table small, body.theme-dark table.table small,
+body.dark-theme .text-muted, body.theme-dark .text-muted {
+  color: rgba(230,238,246,0.7) !important;
+}
+
+/* List-group (used for grouped chapters) in dark mode */
+body.dark-theme .list-group, body.theme-dark .list-group {
+  background-color: transparent !important;
+}
+body.dark-theme .list-group-item, body.theme-dark .list-group-item {
+  background-color: rgba(255,255,255,0.02) !important;
+  color: #e6eef6 !important;
+  border: 1px solid rgba(255,255,255,0.03) !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+body.dark-theme .list-group-item + .list-group-item, body.theme-dark .list-group-item + .list-group-item {
+  border-top: 1px solid rgba(255,255,255,0.03) !important;
+}
+body.dark-theme .card .list-group-item:first-child, body.theme-dark .card .list-group-item:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+body.dark-theme .card .list-group-item:last-child, body.theme-dark .card .list-group-item:last-child {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+
+/* Buttons within content area */
+body.dark-theme .btn, body.theme-dark .btn {
+  color: #e6eef6 !important;
+}
+body.dark-theme .btn-primary, body.theme-dark .btn-primary {
+  background-color: #0f4b84 !important;
+  border-color: #0d4073 !important;
+}
+body.dark-theme .btn-outline-secondary, body.theme-dark .btn-outline-secondary {
+  color: #cfe8ff !important;
+  border-color: rgba(255,255,255,0.05) !important;
+}
+body.dark-theme .btn-danger, body.theme-dark .btn-danger {
+  background-color: #8b1d1d !important;
+  border-color: #7a1a1a !important;
+}
+
+/* Misc: separators and borders */
+body.dark-theme hr, body.theme-dark hr {
+  border-color: rgba(255,255,255,0.03) !important;
+}
+body.dark-theme .form-control:focus, body.theme-dark .form-control:focus,
+body.dark-theme .form-select:focus, body.theme-dark .form-select:focus {
+  box-shadow: 0 0 0 0.15rem rgba(47, 117, 173, 0.25) !important;
+}
+
+@media (max-width: 767px) {
+  nav.sidebar { display: none; }
+}

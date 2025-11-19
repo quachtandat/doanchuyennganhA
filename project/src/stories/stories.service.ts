@@ -29,8 +29,56 @@ export class StoriesService {
   }
 
   // 🟡 Get all
-  async findAll(skip = 0, limit = 20): Promise<Story[]> {
-    return this.storyModel.find().skip(skip).limit(limit).exec();
+  async findAll(
+    skip = 0,
+    limit = 20,
+    filter: Partial<Story> = {},
+    populateAuthor = false,
+    authorName?: string,
+  ): Promise<Story[]> {
+    // If authorName provided, perform aggregation lookup to users and match by author_info.display_name or name
+    if (authorName && authorName.trim()) {
+      const pipeline: any[] = [];
+      if (filter && Object.keys(filter).length > 0) pipeline.push({ $match: filter as any });
+      pipeline.push({
+        $lookup: {
+          from: 'users',
+          localField: 'authorId',
+          foreignField: '_id',
+          as: 'author',
+        },
+      });
+      pipeline.push({ $unwind: '$author' });
+      pipeline.push({
+        $match: {
+          $or: [
+            { 'author.author_info.display_name': { $regex: authorName.trim(), $options: 'i' } },
+            { 'author.name': { $regex: authorName.trim(), $options: 'i' } },
+          ],
+        },
+      });
+      if (populateAuthor) {
+        // project to include author info
+        pipeline.push({
+          $project: {
+            title: 1,
+            slug: 1,
+            status: 1,
+            isHidden: 1,
+            authorId: '$author',
+          },
+        });
+      }
+      pipeline.push({ $skip: Number(skip) });
+      pipeline.push({ $limit: Number(limit) });
+      return this.storyModel.aggregate(pipeline).exec() as any;
+    }
+
+    const q = this.storyModel.find(filter as any).skip(skip).limit(limit);
+    if (populateAuthor) {
+      q.populate({ path: 'authorId', select: 'name author_info' });
+    }
+    return q.exec();
   }
 
   // 🟣 Get by ID

@@ -27,6 +27,10 @@ $(document).ready(function () {
 
     const chapterJump = $('.chapter_jump')
     $(document).keydown(function (e) {
+        // Don't trigger navigation when focus is on input/textarea or contenteditable elements
+        const tag = (e.target && e.target.tagName || '').toLowerCase();
+        if (tag === 'input' || tag === 'textarea' || (e.target && e.target.isContentEditable)) return;
+
         switch (e.which) {
             case 87: // W key
                 window.scrollBy(0, -70);

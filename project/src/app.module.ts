@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ViewController } from '../views/view.controller';
+// Remove this line - ViewController is already in ViewModule
+// import { ViewController } from '../views/view.controller';
 
 // Users
 import { UsersModule } from './users/users.module';
@@ -67,6 +68,11 @@ import { WalletModule } from './wallet/wallet.module';
 
 // View Module
 import { ViewModule } from '../views/view.module';
+import { AuthorRequestsModule } from './author_requests/author_requests.module';
+import { AdminModule } from './admin/admin.module';
+import { AuthorModule } from './author/author.module';
+import { CommentsModule } from './comments/comments.module';
+import { RatingsModule } from './ratings/ratings.module';
 
 // App Controller & Service
 import { AppController } from './app.controller';
@@ -102,10 +108,15 @@ import { AppService } from './app.service';
     SettingsModule,
     PromotionsModule,
     AuditLogsModule,
+  RatingsModule,
     AuthModule,
     WalletModule,
-    ViewModule,
+    ViewModule, // ViewController is already declared here
+    AuthorRequestsModule,
+    AdminModule,
+    AuthorModule,
+    CommentsModule,
   ],
-  controllers: [ViewController],
+  providers: [AppService],
 })
 export class AppModule {}

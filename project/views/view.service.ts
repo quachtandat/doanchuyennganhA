@@ -18,7 +18,7 @@ export class ViewService {
     @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
     @InjectModel(ReadingHistory.name) private readonly readingHistoryModel: Model<ReadingHistoryDocument>,
     @InjectModel(Purchase.name) private readonly purchaseModel: Model<PurchaseDocument>,
-  ) {}
+  ) { }
 
   /**
    * Lấy tất cả thể loại duy nhất
@@ -365,19 +365,31 @@ export class ViewService {
     const searchRegex = new RegExp(query.trim(), 'i');
     
     // Get author IDs that match the search query - search both name and display_name
-    const authorIds = await this.userModel.find({
-      $or: [
-        { name: searchRegex },
-        { 'author_info.display_name': searchRegex }
-      ]
-    }).distinct('_id');
-    
+    const authorIds = await this.userModel
+      .find({
+        $or: [
+          { name: searchRegex },
+          { 'author_info.display_name': searchRegex },
+        ],
+      })
+      .distinct('_id');
+
+    // Normalize author id formats to handle mixed storage (string or ObjectId)
+    const authorIdStrings = authorIds.map((id: any) => id.toString());
+    const authorIdObjectIds = authorIds
+      .filter((id: any) => Types.ObjectId.isValid(id))
+      .map((id: any) => new Types.ObjectId(id));
+
+    const authorIdMixed = Array.from(
+      new Set<string | Types.ObjectId>([...authorIdStrings, ...authorIdObjectIds]),
+    );
+
     const stories = await this.storyModel
       .find({
         status: 'published',
         $or: [
           { title: searchRegex },
-          { 'authorId': { $in: authorIds } }
+          { authorId: { $in: authorIdMixed } },
         ],
       })
       .populate('authorId', 'name author_info.display_name')
@@ -395,6 +407,42 @@ export class ViewService {
       isHot: false,
       isNew: false,
       isFull: false,
+    }));
+  }
+
+  /**
+   * Explore stories with filters used by the Explore page
+   */
+  async getExploreStories(filters: { category?: string; status?: string; sort?: string }): Promise<any[]> {
+    const { category, status, sort } = filters || {};
+    const q: any = { status: 'published' };
+    if (status === 'published' || status === 'Đang ra') q.status = 'published';
+    if (status === 'completed' || status === 'Đã hoàn thành') q.status = 'completed';
+    if (category) q.category = { $in: [new RegExp(category, 'i')] };
+
+    let cursor = this.storyModel.find(q).lean();
+
+    // Sorting
+    if (sort === 'most_viewed') {
+      // sort by reading history count (best effort via lookup/aggregation is heavier); fallback to createdAt
+      cursor = this.storyModel.find(q).sort({ createdAt: -1 }).lean();
+    } else if (sort === 'top_rated') {
+      cursor = this.storyModel.find(q).sort({ ratingAverage: -1 }).lean();
+    } else if (sort === 'updated') {
+      cursor = this.storyModel.find(q).sort({ updatedAt: -1 }).lean();
+    } else {
+      cursor = this.storyModel.find(q).sort({ createdAt: -1 }).lean();
+    }
+
+    const docs = await cursor.limit(100).exec();
+    return docs.map(story => ({
+      id: (story as any)._id.toString(),
+      title: (story as any).title,
+      slug: (story as any).slug,
+      image: (story as any).coverUrl || '',
+      categories: (story as any).category || [],
+      author: (story as any).author || '',
+      description: (story as any).description || '',
     }));
   }
 
@@ -682,8 +730,8 @@ export class ViewService {
   }
 
   /**
-   * Lấy chi tiết chương
-   */
+  * Lấy chi tiết chương
+  */
   async getChapterDetail(storyId: string, chapterId: string, userId?: string): Promise<any> {
     const [chapter, story] = await Promise.all([
       this.chapterModel.findById(chapterId).lean(),
@@ -693,11 +741,11 @@ export class ViewService {
     if (!chapter || !story || story.status !== 'published' || chapter.status !== 'published') {
       return null;
     }
-    
+  
     // Kiểm tra storyId match với cả string và ObjectId format
-    const storyIdMatch = chapter.storyId.toString() === storyId || 
-                        chapter.storyId.toString() === new Types.ObjectId(storyId).toString();
-    
+    const storyIdMatch = chapter.storyId.toString() === storyId ||
+      chapter.storyId.toString() === new Types.ObjectId(storyId).toString();
+  
     if (!storyIdMatch) {
       return null;
     }
@@ -707,10 +755,10 @@ export class ViewService {
       storyId, // String format
       new Types.ObjectId(storyId) // ObjectId format
     ];
-    
+  
     let prevChapter: any = null;
     let nextChapter: any = null;
-    
+  
     // Thử tìm với cả hai format
     for (const storyIdQuery of storyIdQueries) {
       const [prev, next] = await Promise.all([
@@ -733,7 +781,7 @@ export class ViewService {
           .sort({ number: 1 })
           .lean(),
       ]);
-      
+    
       if (prev || next) {
         prevChapter = prev;
         nextChapter = next;
@@ -741,15 +789,11 @@ export class ViewService {
       }
     }
 
-    // Kiểm tra mua chương VIP
+    // ✅ FIX: Kiểm tra mua chương VIP
     let isPurchased = false;
-    let content = chapter.content || 'Nội dung chương đang được cập nhật.';
 
     if (chapter.isVip) {
-      if (!userId) {
-        isPurchased = false;
-        content = 'Chương này là Chương VIP. Vui lòng đăng nhập để xem hoặc mua chương.';
-      } else {
+      if (userId) {
         const purchase = await this.purchaseModel
           .findOne({
             userId: new Types.ObjectId(userId),
@@ -759,17 +803,17 @@ export class ViewService {
           .exec();
 
         isPurchased = !!purchase;
-
-        if (!isPurchased) {
-          content = `Chương này là Chương VIP với giá ${chapter.priceCoins} Coins. Vui lòng mua để mở khóa nội dung.`;
-        }
       }
     } else {
+      // Chương FREE -> luôn được mở
       isPurchased = true;
     }
 
-    // Lưu lịch sử đọc nếu có user
-    if (userId) {
+    // ✅ FIX: LUÔN trả về content thật - Frontend sẽ quyết định hiển thị
+    const content = chapter.content || 'Nội dung chương đang được cập nhật.';
+
+    // Lưu lịch sử đọc nếu có user VÀ đã mua (hoặc là free)
+    if (userId && isPurchased) {
       await this.saveReadingHistory(userId, storyId, chapterId, 0);
     }
 
@@ -781,10 +825,10 @@ export class ViewService {
       chapter: {
         id: chapter._id.toString(),
         title: `Chương ${chapter.number}: ${chapter.title}`,
-        content,
+        content: content, // ✅ Luôn trả content thật
         isVip: chapter.isVip,
         priceCoins: chapter.priceCoins,
-        isPurchased,
+        isPurchased: isPurchased, // ✅ Frontend dùng field này để hiện/ẩn
         prevChapter: prevChapter ? prevChapter._id.toString() : null,
         nextChapter: nextChapter ? nextChapter._id.toString() : null,
       },

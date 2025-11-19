@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Dashboard</title>
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/admin.css">
+  </head>
+  <body>
+    {{> admin/header}}
+
+    <div class="container-fluid">
+      <div class="row">
+        {{> admin/sidebar}}
+
+        <main class="col-12 col-md-9 col-lg-10 py-4">
+          {{> admin/dashboard}}
+
+          <!-- Requests -->
+          <section id="requests" class="d-none mb-4">
+            <div class="card">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Yêu cầu làm tác giả</h5>
+              </div>
+              <div class="card-body table-responsive">
+                <table id="requests-table" class="table table-hover align-middle mb-0"><thead><tr><th>User</th><th>Message</th><th>Status</th><th>Actions</th></tr></thead><tbody></tbody></table>
+              </div>
+            </div>
+          </section>
+
+          <!-- Users -->
+          <section id="users" class="d-none mb-4">
+            <div class="card">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Quản lý người dùng</h5>
+                <div class="d-flex gap-2 align-items-center">
+                  <input id="user-search" class="form-control form-control-sm" placeholder="Tìm tên người dùng..." style="width:220px;">
+                  <select id="user-role-filter" class="form-select form-select-sm" style="width:140px;"><option value="">Tất cả</option><option value="reader">reader</option><option value="author">author</option></select>
+                  <button id="user-search-btn" class="btn btn-primary btn-sm">Tìm</button>
+                  <button id="user-clear-btn" class="btn btn-outline-secondary btn-sm">Xóa</button>
+                </div>
+              </div>
+              <div class="card-body table-responsive"><table id="users-table" class="table table-striped align-middle mb-0"><thead><tr><th>Tên</th><th>Email</th><th>Role</th><th>Status</th><th>Actions</th></tr></thead><tbody></tbody></table></div>
+            </div>
+          </section>
+
+          <!-- Stories -->
+          <section id="stories" class="d-none mb-4">
+            <div class="card">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Quản trị truyện</h5>
+                <div class="d-flex gap-2 align-items-center">
+                  <input id="story-search" class="form-control form-control-sm" placeholder="Tìm tiêu đề truyện..." style="width:220px;">
+                  <input id="story-author-filter" class="form-control form-control-sm" placeholder="Tác giả..." style="width:180px;">
+                  <button id="story-search-btn" class="btn btn-primary btn-sm">Tìm</button>
+                  <button id="story-clear-btn" class="btn btn-outline-secondary btn-sm">Xóa</button>
+                </div>
+              </div>
+              <div class="card-body table-responsive"><table id="stories-table" class="table table-striped align-middle mb-0"><thead><tr><th>Tiêu đề</th><th>Tác giả</th><th>Trạng thái</th><th>Hành động</th></tr></thead><tbody></tbody></table></div>
+            </div>
+          </section>
+
+          <!-- Chapters -->
+          <section id="chapters" class="d-none mb-4">
+            <div class="card">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Quản trị chương</h5>
+                <div class="d-flex gap-2 align-items-center">
+                  <input id="chapter-search" class="form-control form-control-sm" placeholder="Tìm tên chương..." style="width:220px;">
+                  <input id="chapter-story-filter" class="form-control form-control-sm" placeholder="Tên truyện..." style="width:180px;">
+                  <button id="chapter-search-btn" class="btn btn-primary btn-sm">Tìm</button>
+                  <button id="chapter-clear-btn" class="btn btn-outline-secondary btn-sm">Xóa</button>
+                </div>
+              </div>
+              <div class="card-body table-responsive">
+                <div id="chapters-list" class="mb-2"></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Reports -->
+          <section id="reports" class="d-none mb-4">
+            <div class="card">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Báo cáo từ độc giả</h5>
+                <div class="d-flex gap-2 align-items-center">
+                  <input id="report-story-filter" class="form-control form-control-sm" placeholder="Tìm truyện..." style="width:220px;">
+                  <input id="report-from" type="date" class="form-control form-control-sm" style="width:160px;">
+                  <input id="report-to" type="date" class="form-control form-control-sm" style="width:160px;">
+                  <button id="report-search-btn" class="btn btn-primary btn-sm">Lọc</button>
+                  <button id="report-clear-btn" class="btn btn-outline-secondary btn-sm">Xóa</button>
+                </div>
+              </div>
+              <div class="card-body table-responsive"><table id="reports-table" class="table table-striped align-middle mb-0"><thead><tr><th>Thời gian</th><th>Truyện</th><th>Chương</th><th>Người báo cáo</th><th>Nội dung</th><th>Hành động</th></tr></thead><tbody></tbody></table></div>
+            </div>
+          </section>
+
+          {{> admin/modals}}
+
+        </main>
+      </div>
+    </div>
+
+    <script src="/assets/jquery.min.js"></script>
+    <script src="/assets/popper.min.js"></script>
+    <script src="/assets/bootstrap.min.js"></script>
+    <script src="/assets/common.js"></script>
+    <script src="/assets/auth.js"></script>
+    <script src="/assets/admin.js"></script>
+  </body>
+</html>

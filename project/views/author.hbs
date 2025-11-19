@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tác giả</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/author.css">
+</head>
+<body>
+    {{> author/header}}
+
+    <div class="container-fluid">
+      <div class="row">
+        {{> author/sidebar}}
+        <main class="col-12 col-md-9 col-lg-10 py-4">
+          {{> author/dashboard}}
+          <section id="author-stories" class="d-none mb-4">
+            <h1 class="mb-4">Bảng điều khiển tác giả</h1>
+
+            <div class="card mb-4 p-3">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 class="mb-0">Tạo truyện mới</h5>
+                <div>
+                  <button id="btn-open-create-story" class="btn btn-sm btn-primary">Tạo truyện mới</button>
+                </div>
+              </div>
+
+              <div id="create-story-panel" style="display:none;" class="mt-2">
+                <form id="create-story-form">
+                  <input type="hidden" name="_id" />
+                  <div class="row g-2">
+                    <div class="col-md-4"><input class="form-control" placeholder="Tiêu đề" name="title" required></div>
+                    <div class="col-md-4"><input class="form-control" placeholder="Slug" name="slug" required></div>
+                    <div class="col-md-4"><input class="form-control" placeholder="Ảnh bìa URL" name="coverUrl"></div>
+                    <div class="col-md-4"><input class="form-control" placeholder="Thể loại (phân tách bởi dấu ,)" name="category"></div>
+                    <div class="col-md-4"><input class="form-control" placeholder="Số chương dự kiến" name="expectedTotalChapters" type="number" min="0"></div>
+                    <div class="col-12"><textarea class="form-control" placeholder="Mô tả" name="description"></textarea></div>
+                  </div>
+                  <div class="mt-2">
+                    <button id="btn-submit-create" class="btn btn-primary">Tạo</button>
+                    <button id="btn-cancel-create" type="button" class="btn btn-secondary">Hủy</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="card p-3">
+              <h5>Truyện của tôi</h5>
+              <div id="my-stories" class="list-group"></div>
+            </div>
+
+            <div id="chapters-panel" class="card p-3 mt-3" style="display:none;">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5 id="chapters-title">Danh sách chương</h5>
+                <div>
+                  <button id="btn-back-to-stories" class="btn btn-sm btn-secondary">Quay lại truyện</button>
+                  <button id="btn-add-chapter-panel" class="btn btn-sm btn-primary">Thêm chương</button>
+                </div>
+              </div>
+              <div id="chapters-list" class="list-group"></div>
+            </div>
+          </section>
+          
+          <section id="author-comments" class="d-none mb-4">
+            <h5 class="mt-4">Bình luận mới nhất</h5>
+            <div class="d-flex gap-2 mb-2 align-items-center">
+              <select id="comment-filter-story" class="form-select" style="width: 250px;"><option value="">-- Tất cả truyện --</option></select>
+              <input id="comment-filter-chapter" class="form-control" placeholder="Tên chương (tìm kiếm)" style="width: 220px;" />
+              <button id="comment-filter-apply" class="btn btn-sm btn-primary">Lọc</button>
+              <button id="comment-filter-clear" class="btn btn-sm btn-secondary">Xóa</button>
+            </div>
+            <ul id="my-comments" class="list-group"></ul>
+          </section>
+        </main>
+      </div>
+    </div>
+  
+  <!-- Footer -->  
+
+  <!-- Chart.js for author statistics -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/assets/author.js"></script>
+  <!-- Scripts -->
+  <script src="/assets/jquery.min.js"></script>
+  <script src="/assets/popper.min.js"></script>
+  <script src="/assets/bootstrap.min.js"></script>
+  <script src="/assets/app.js"></script>
+  <script src="/assets/common.js"></script>
+  <script src="/assets/auth.js"></script>
+
+ 
+</body>
+</html>

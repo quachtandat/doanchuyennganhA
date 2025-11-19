@@ -122,9 +122,15 @@
                                             </p>
                                         </div>
 
-                                        <div class="story-item-no-image__chapters ms-2">
-                                            <a href="/story/{{this.id}}/chapter/{{this.latestChapter}}" class="hover-title text-decoration-none text-info">Chương {{this.latestChapter}}</a>
-                                        </div>
+                                                                                <div class="story-item-no-image__chapters ms-2">
+                                                                                        <a href="/story/{{this.id}}/chapter/{{this.latestChapter}}" class="hover-title text-decoration-none text-info">
+                                                                                                {{#if this.latestChapter}}
+                                                                                                    Chương {{this.latestChapter}}
+                                                                                                {{else}}
+                                                                                                    Chương mới nhất
+                                                                                                {{/if}}
+                                                                                        </a>
+                                                                                </div>
                                     </div>
                                     {{/each}}
                                 </div>

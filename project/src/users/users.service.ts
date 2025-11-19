@@ -67,8 +67,11 @@ export class UsersService {
   }
 
   // 🟡 Lấy tất cả user (ẩn password + salt)
-  async findAll(skip = 0, limit = 20): Promise<Partial<User>[]> {
-    const users = await this.userModel.find().skip(skip).limit(limit).exec();
+  async findAll(skip = 0, limit = 20, q?: string, role?: string): Promise<Partial<User>[]> {
+    const filter: any = {};
+    if (role) filter.role = role;
+    if (q && q.trim()) filter.name = { $regex: q.trim(), $options: 'i' };
+    const users = await this.userModel.find(filter).skip(skip).limit(limit).exec();
     return users.map((u) => {
       const obj = u.toObject();
       delete (obj as Partial<User>).password_hash;
@@ -88,18 +91,61 @@ export class UsersService {
   }
 
   // 🟠 Cập nhật user
-  async update(id: string, updateUserDto: UpdateUserDto): Promise<User | null> {
-    // ✅ FIX: If updating author_info, ensure display_name exists
-    if (updateUserDto.author_info && !updateUserDto.author_info.display_name) {
-      const user = await this.userModel.findById(id);
-      if (user) {
-        updateUserDto.author_info.display_name = user.name || 'User';
+  async update(id: string, payload: any): Promise<User | null> {
+    // Only copy explicitly provided fields from payload to avoid DTO defaults overwriting existing values
+    const allowed = [
+      'name',
+      'email',
+      'phone',
+      'password',
+      'role',
+      'wallet_coins',
+      'status',
+      'author_info',
+    ];
+
+    const update: any = {};
+    for (const key of allowed) {
+      if (Object.prototype.hasOwnProperty.call(payload, key)) {
+        update[key] = payload[key];
       }
     }
 
-    return this.userModel
-      .findByIdAndUpdate(id, updateUserDto, { new: true })
+    // Ensure if updating author_info but no display_name provided, keep existing display_name
+    if (update.author_info && !update.author_info.display_name) {
+      const user = await this.userModel.findById(id).exec();
+      if (user) {
+        update.author_info.display_name = user.name || 'User';
+      }
+    }
+
+    // If client provided a plain `password`, hash it and store as password_hash + salt
+    if (Object.prototype.hasOwnProperty.call(update, 'password')) {
+      const salt = await bcrypt.genSalt(10);
+      const password_hash = await bcrypt.hash(update.password, salt);
+      update.password_hash = password_hash;
+      update.salt = salt;
+      // remove plain password before saving
+      delete update.password;
+    }
+
+    if (Object.keys(update).length === 0) {
+      // nothing to update
+      return this.findOne(id) as any;
+    }
+
+    const updated = await this.userModel
+      .findByIdAndUpdate(id, update, { new: true })
       .exec();
+
+    if (!updated) return null;
+
+    const obj = updated.toObject();
+    // remove sensitive fields before returning
+    delete (obj as Partial<User>).password_hash;
+    delete (obj as Partial<User>).salt;
+
+    return obj as any;
   }
 
   // 🔴 Xóa user
