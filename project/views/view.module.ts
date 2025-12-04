@@ -13,6 +13,8 @@ import {
   ReadingHistorySchema,
 } from '../src/reading_histories/schemas/reading_histories.schema';
 import { Purchase, PurchaseSchema } from '../src/purchases/schemas/purchases.schema';
+import { Payment, PaymentSchema } from '../src/payments/schemas/payment.schema';
+import { Report, ReportSchema } from '../src/reports/schemas/reports.schema';
 
 @Module({
   imports: [
@@ -21,7 +23,9 @@ import { Purchase, PurchaseSchema } from '../src/purchases/schemas/purchases.sch
       { name: Chapter.name, schema: ChapterSchema },
       { name: User.name, schema: UserSchema },
       { name: ReadingHistory.name, schema: ReadingHistorySchema },
-      { name: Purchase.name, schema: PurchaseSchema },
+        { name: Purchase.name, schema: PurchaseSchema },
+        { name: Payment.name, schema: PaymentSchema },
+      { name: Report.name, schema: ReportSchema },
     ]),
   ],
   controllers: [ViewController],

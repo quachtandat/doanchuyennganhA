@@ -1,246 +1,506 @@
-/* Small admin UI overrides */
-/* Light theme (defaults provided by Bootstrap) */
-.sidebar { border-right: 1px solid rgba(0,0,0,0.06); }
-.main-table td, .main-table th { vertical-align: middle; }
-.table-responsive { overflow: auto; }
+/* styles.css */
 
-/* Dark theme support */
-/* Add the class `dark-theme` to <body> to enable */
-body.dark-theme, body.theme-dark {
-  background-color: #0f1720 !important;
-  color: #e6eef6 !important;
-}
-body.dark-theme .navbar, body.theme-dark .navbar {
-  background-color: #0b1220 !important;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-}
-/* Make header text, brand and controls clearly visible in dark mode */
-body.dark-theme header.navbar.navbar-light, body.theme-dark header.navbar.navbar-light {
-  color: #e6eef6 !important;
-}
-body.dark-theme .navbar .navbar-brand, body.theme-dark .navbar .navbar-brand {
-  color: #e6eef6 !important;
-}
-body.dark-theme .navbar .nav-link, body.theme-dark .navbar .nav-link {
-  color: #cfe8ff !important;
-}
-body.dark-theme .navbar .form-control, body.theme-dark .navbar .form-control,
-body.dark-theme .navbar .form-select, body.theme-dark .navbar .form-select {
-  background-color: #071422 !important;
-  color: #e6eef6 !important;
-  border: 1px solid rgba(255,255,255,0.03) !important;
-}
-body.dark-theme .navbar .form-control::placeholder, body.theme-dark .navbar .form-control::placeholder {
-  color: rgba(230,238,246,0.6) !important;
-}
-/* Buttons in navbar: make outline buttons readable and adjust contrast for danger */
-body.dark-theme .navbar .btn, body.theme-dark .navbar .btn {
-  color: #e6eef6 !important;
-  border-color: rgba(255,255,255,0.06) !important;
-}
-body.dark-theme .navbar .btn.btn-outline-secondary, body.theme-dark .navbar .btn.btn-outline-secondary {
-  background-color: transparent !important;
-  color: #cfe8ff !important;
-  border-color: rgba(255,255,255,0.06) !important;
-}
-body.dark-theme .navbar .btn.btn-danger, body.theme-dark .navbar .btn.btn-danger {
-  background-color: #8b1d1d !important;
-  border-color: #7a1a1a !important;
-  color: #fff !important;
-}
-body.dark-theme .card, body.theme-dark .card {
-  background-color: #0b1220 !important;
-  color: #e6eef6 !important;
-  border: 1px solid rgba(255,255,255,0.03);
-}
-body.dark-theme .sidebar, body.theme-dark .sidebar {
-  background-color: #07101a !important;
-  color: #dbe9f8 !important;
-  border-right: 1px solid rgba(255,255,255,0.03);
-}
-body.dark-theme .nav-link, body.theme-dark .nav-link {
-  color: #cfe8ff !important;
-}
-body.dark-theme .nav-link.active, body.theme-dark .nav-link.active {
-  background-color: rgba(255,255,255,0.04) !important;
-}
-body.dark-theme table.table, body.theme-dark table.table {
-  color: #dbe9f8;
-}
-body.dark-theme input.form-control, body.theme-dark input.form-control,
-body.dark-theme select.form-select, body.theme-dark select.form-select {
-  background-color: #071422;
-  color: #e6eef6;
-  border: 1px solid rgba(255,255,255,0.03);
+/* Global Reset/Base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Use a clean, readable font */
 }
 
-/* Stronger rules for all form controls (including -sm variants and textareas) */
-body.dark-theme .form-control, body.theme-dark .form-control,
-body.dark-theme .form-control-sm, body.theme-dark .form-control-sm,
-body.dark-theme textarea.form-control, body.theme-dark textarea.form-control,
-body.dark-theme .form-select, body.theme-dark .form-select,
-body.dark-theme .form-select-sm, body.theme-dark .form-select-sm {
-  background-color: #071422 !important;
-  color: #e6eef6 !important;
-  border: 1px solid rgba(255,255,255,0.04) !important;
+body {
+    background-color: #f4f7f9; /* Light grey background for the whole page */
 }
 
-body.dark-theme .form-control::placeholder, body.theme-dark .form-control::placeholder,
-body.dark-theme .form-select::placeholder, body.theme-dark .form-select::placeholder {
-  color: rgba(230,238,246,0.6) !important;
+/* Dashboard Layout */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
 }
 
-body.dark-theme .form-control:focus, body.theme-dark .form-control:focus,
-body.dark-theme .form-select:focus, body.theme-dark .form-select:focus,
-body.dark-theme textarea.form-control:focus, body.theme-dark textarea.form-control:focus {
-  background-color: #071422 !important;
-  color: #e6eef6 !important;
-  border-color: rgba(47, 117, 173, 0.6) !important;
-  box-shadow: 0 0 0 0.15rem rgba(47, 117, 173, 0.12) !important;
+/* 1. Sidebar Styling */
+.sidebar {
+    width: 250px; /* Fixed width for the sidebar */
+    background-color: #ffffff; /* White background */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+    padding-top: 20px;
+    border-right: 1px solid #e0e0e0;
 }
 
-/* Date input cosmetics and custom trigger */
-.date-input-wrap { position: relative; display: inline-block; }
-.date-input-wrap input[type="date"] {
-  padding-right: 2.4rem; /* space for the trigger */
-}
-.date-input-wrap .date-trigger {
-  position: absolute;
-  right: 6px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 28px;
-  height: 28px;
-  border-radius: 4px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: inherit;
-  background: transparent;
-  border: none;
-}
-/* Calendar icon color in light/dark */
-body.dark-theme .date-input-wrap .date-trigger {
-  color: #cfe8ff !important;
+.sidebar-header {
+    padding: 15px 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
 }
 
-/* WebKit native calendar icon tweak: invert it on dark backgrounds */
-input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(1) hue-rotate(180deg) brightness(1.2) !important;
-  opacity: 0.9;
+.sidebar-nav ul {
+    list-style: none;
 }
 
-/* Ensure the trigger is not visible when native indicator is sufficient on some browsers */
-.date-input-wrap .date-trigger.hidden { display: none !important; }
-
-/* Section / content area dark-mode rules */
-body.dark-theme main, body.theme-dark main,
-body.dark-theme main section, body.theme-dark main section,
-body.dark-theme .card-body, body.theme-dark .card-body {
-  background-color: transparent !important;
-  color: #dbe9f8 !important;
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    color: #555;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
-/* Card headers */
-body.dark-theme .card-header, body.theme-dark .card-header {
-  background-color: rgba(255,255,255,0.02) !important;
-  color: #e6eef6 !important;
-  border-bottom: 1px solid rgba(255,255,255,0.03) !important;
+.nav-item:hover {
+    background-color: #f0f0f0;
 }
 
-/* Tables: rows, borders, striped background */
-body.dark-theme table.table, body.theme-dark table.table {
-  color: #dbe9f8 !important;
-  border-color: rgba(255,255,255,0.04) !important;
-}
-body.dark-theme table.table th, body.theme-dark table.table th,
-body.dark-theme table.table td, body.theme-dark table.table td {
-  border-color: rgba(255,255,255,0.03) !important;
-}
-body.dark-theme table.table.table-striped>tbody>tr:nth-of-type(odd),
-body.theme-dark table.table.table-striped>tbody>tr:nth-of-type(odd) {
-  background-color: rgba(255,255,255,0.01) !important;
+.nav-item.active {
+    background-color: #e6f7ff; /* Light blue background for active state */
+    color: #1890ff; /* Blue text */
+    border-left: 4px solid #1890ff; /* Blue highlight bar */
+    font-weight: bold;
 }
 
-/* Stronger overrides for table elements to win over Bootstrap defaults */
-body.dark-theme .table, body.theme-dark .table {
-  background-color: transparent !important;
-  color: #dbe9f8 !important;
-}
-body.dark-theme .table thead th, body.theme-dark .table thead th {
-  color: #e6eef6 !important;
-  background-color: rgba(255,255,255,0.02) !important;
-  border-bottom: 1px solid rgba(255,255,255,0.04) !important;
-}
-body.dark-theme .table tbody td, body.theme-dark .table tbody td {
-  color: #dbe9f8 !important;
-  background-color: transparent !important;
-  border-top: 1px solid rgba(255,255,255,0.03) !important;
-}
-body.dark-theme .table.table-striped>tbody>tr:nth-of-type(odd),
-body.theme-dark .table.table-striped>tbody>tr:nth-of-type(odd) {
-  background-color: rgba(255,255,255,0.015) !important;
-}
-body.dark-theme .table-hover tbody tr:hover, body.theme-dark .table-hover tbody tr:hover {
-  background-color: rgba(255,255,255,0.03) !important;
-}
-/* Ensure small text like table captions and small muted text are visible */
-body.dark-theme table.table small, body.theme-dark table.table small,
-body.dark-theme .text-muted, body.theme-dark .text-muted {
-  color: rgba(230,238,246,0.7) !important;
+.nav-item .icon {
+    margin-right: 10px;
+    font-size: 1.2em;
 }
 
-/* List-group (used for grouped chapters) in dark mode */
-body.dark-theme .list-group, body.theme-dark .list-group {
-  background-color: transparent !important;
-}
-body.dark-theme .list-group-item, body.theme-dark .list-group-item {
-  background-color: rgba(255,255,255,0.02) !important;
-  color: #e6eef6 !important;
-  border: 1px solid rgba(255,255,255,0.03) !important;
-  border-left: none !important;
-  border-right: none !important;
-}
-body.dark-theme .list-group-item + .list-group-item, body.theme-dark .list-group-item + .list-group-item {
-  border-top: 1px solid rgba(255,255,255,0.03) !important;
-}
-body.dark-theme .card .list-group-item:first-child, body.theme-dark .card .list-group-item:first-child {
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-}
-body.dark-theme .card .list-group-item:last-child, body.theme-dark .card .list-group-item:last-child {
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+/* Main Content Area */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
-
-/* Buttons within content area */
-body.dark-theme .btn, body.theme-dark .btn {
-  color: #e6eef6 !important;
-}
-body.dark-theme .btn-primary, body.theme-dark .btn-primary {
-  background-color: #0f4b84 !important;
-  border-color: #0d4073 !important;
-}
-body.dark-theme .btn-outline-secondary, body.theme-dark .btn-outline-secondary {
-  color: #cfe8ff !important;
-  border-color: rgba(255,255,255,0.05) !important;
-}
-body.dark-theme .btn-danger, body.theme-dark .btn-danger {
-  background-color: #8b1d1d !important;
-  border-color: #7a1a1a !important;
+/* 2. Header Styling */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    height: 60px;
 }
 
-/* Misc: separators and borders */
-body.dark-theme hr, body.theme-dark hr {
-  border-color: rgba(255,255,255,0.03) !important;
-}
-body.dark-theme .form-control:focus, body.theme-dark .form-control:focus,
-body.dark-theme .form-select:focus, body.theme-dark .form-select:focus {
-  box-shadow: 0 0 0 0.15rem rgba(47, 117, 173, 0.25) !important;
+.search-bar input {
+    width: 400px;
+    padding: 8px 15px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    font-size: 14px;
 }
 
-@media (max-width: 767px) {
-  nav.sidebar { display: none; }
+.header-icons {
+    display: flex;
+    align-items: center;
+}
+
+.header-icons .icon {
+    margin-left: 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    position: relative;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ff4d4f;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.7em;
+    line-height: 1;
+}
+
+/* 3. Dashboard Body and Cards */
+.dashboard-body {
+    padding: 30px;
+}
+
+.dashboard-body h1 {
+    font-size: 2em;
+    margin-bottom: 5px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns in the top row */
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.stat-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.card-content h3 {
+    font-size: 1em;
+    color: #8c8c8c;
+    margin-bottom: 5px;
+}
+
+.card-content .value {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.card-content .change.up {
+    color: #52c41a; /* Green for positive change */
+    font-weight: bold;
+}
+
+.card-content .change.down {
+    color: #ff4d4f; /* Red for negative change */
+    font-weight: bold;
+}
+
+.card-icon {
+    font-size: 2.5em;
+    color: #d9d9d9;
+}
+
+/* Chart Section */
+.charts-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.chart-box {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.chart-box h3 {
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.chart-box canvas {
+    max-height: 400px;
+}
+
+.chart-placeholder {
+    height: 250px;
+    background-color: #f7f7f7;
+    border: 1px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    color: #aaa;
+}
+
+/* --- STORY MANAGEMENT STYLES --- */
+.page-header {
+    margin-bottom: 20px;
+}
+
+.page-header h1 {
+    font-size: 1.8rem;
+    margin: 0 0 5px 0;
+    font-weight: 700;
+}
+
+.page-header p {
+    color: var(--secondary-text);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.filters-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.filter-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-weight: 500;
+    user-select: none;
+    transition: all 0.2s;
+}
+
+.filter-dropdown:hover {
+    background-color: #e5e7eb;
+}
+
+.filter-dropdown span {
+    margin-right: 10px;
+}
+
+.filter-dropdown i {
+    font-size: 1rem;
+    color: var(--secondary-text);
+    margin-left: 5px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+    min-width: 150px;
+    padding: 5px 0;
+    display: none;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-menu div {
+    padding: 8px 15px;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+.dropdown-menu div:hover {
+    background-color: #f3f4f6;
+    color: var(--primary-color);
+}
+
+.stories-list-header {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    padding-left: 5px;
+}
+
+.stories-table-container {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.stories-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.stories-table th,
+.stories-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+.stories-table th {
+    background-color: #f9fafb;
+    font-weight: 600;
+    color: #4b5563;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.stories-table tr:hover {
+    background-color: #f3f4f6;
+}
+
+.status-tag {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.75rem;
+    line-height: 1;
+}
+
+.status-approved {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.status-pending {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.status-rejected {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.genre-tag {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    background-color: #e5e7eb;
+    color: #4b5563;
+}
+
+.actions-cell i {
+    margin-right: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--secondary-text);
+    transition: color 0.2s;
+}
+
+.actions-cell i:hover {
+    color: var(--primary-color);
+}
+
+.actions-cell .delete-icon:hover {
+    color: #ef4444;
+}
+
+.actions-cell .approve-icon {
+    color: #10b981;
+}
+
+.hidden-section {
+    display: none;
+}
+
+/* Dark Mode Styles */
+body.dark {
+    background: #0f1722;
+    color: #e6eef8;
+}
+
+body.dark .sidebar {
+    background: #0b1220;
+}
+
+body.dark .stat-card {
+    background: #0f1a2b;
+    color: #d7e7fb;
+}
+
+/* Icon alignment fix */
+.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transform: none;
+    font-style: normal;
+}
+
+.dropdown-arrow {
+    margin-left: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+}
+
+/* Confirmation modal */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.modal-backdrop.show { display: flex; }
+.modal {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 20px;
+    width: 420px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+.modal h3 { margin-bottom: 8px; }
+.modal .modal-actions { display:flex; gap:10px; justify-content:flex-end; margin-top:16px; }
+.btn { padding:8px 12px; border-radius:6px; cursor:pointer; border:1px solid transparent; }
+.btn.ghost { background: transparent; border-color: var(--border-color); }
+.btn.danger { background:#ef4444; color:#fff; border-color: #ef4444; }
+
+body.dark .chart-box {
+    background: #0f1a2b;
+}
+
+body.dark .filter-dropdown {
+    background-color: #1f2937;
+    border-color: #374151;
+}
+
+body.dark .filter-dropdown:hover {
+    background-color: #111827;
+}
+
+body.dark .dropdown-menu {
+    background-color: #1f2937;
+    border-color: #374151;
+}
+
+body.dark .dropdown-menu div:hover {
+    background-color: #374151;
+}
+
+body.dark .stories-table-container {
+    background-color: #0f1a2b;
+}
+
+body.dark .stories-table th {
+    background-color: #1f2937;
+    color: #e5e7eb;
+}
+
+body.dark .stories-table tr:hover {
+    background-color: #1f2937;
+}
+
+body.dark .filters-container {
+    background-color: #0f1a2b;
+}
+
+#admin-search-results {
+    background: #fff;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+body.dark #admin-search-results {
+    background: #08121a;
+    color: #d7e7fb;
+}
+
+/* CSS Variables for consistency */
+:root {
+    --card-bg: #ffffff;
+    --primary-color: #1890ff;
+    --secondary-text: #8c8c8c;
+    --border-color: #d9d9d9;
+}
+
+body.dark {
+    --card-bg: #0f1a2b;
+    --primary-color: #3b82f6;
+    --secondary-text: #9ca3af;
+    --border-color: #374151;
 }

@@ -6,9 +6,12 @@ import { Chapter, ChapterDocument } from '../src/chapters/schemas/chapters.schem
 import { User, UserDocument } from '../src/users/schemas/user.schema';
 import { ReadingHistory } from '../src/reading_histories/schemas/reading_histories.schema';
 import { Purchase } from '../src/purchases/schemas/purchases.schema';
+import { Payment } from '../src/payments/schemas/payment.schema';
+import { Report } from '../src/reports/schemas/reports.schema';
 
 type ReadingHistoryDocument = ReadingHistory & Document;
 type PurchaseDocument = Purchase & Document;
+type PaymentDocument = Payment & Document;
 
 @Injectable()
 export class ViewService {
@@ -18,6 +21,8 @@ export class ViewService {
     @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
     @InjectModel(ReadingHistory.name) private readonly readingHistoryModel: Model<ReadingHistoryDocument>,
     @InjectModel(Purchase.name) private readonly purchaseModel: Model<PurchaseDocument>,
+    @InjectModel(Payment.name) private readonly paymentModel: Model<PaymentDocument>,
+    @InjectModel(Report.name) private readonly reportModel: Model<Report & Document>,
   ) { }
 
   /**
@@ -674,6 +679,35 @@ export class ViewService {
   }
 
   /**
+   * Lấy thống kê tổng quan cho admin dashboard
+   */
+  async getAdminOverview(): Promise<any> {
+    const [usersCount, storiesCount, chaptersCount, readsCount] = await Promise.all([
+      this.userModel.countDocuments({}),
+      this.storyModel.countDocuments({}),
+      this.chapterModel.countDocuments({}),
+      this.readingHistoryModel.countDocuments({}),
+    ]);
+    
+    // Tổng doanh thu từ Payment (amount lưu bằng VNĐ)
+    const revenueAgg = await this.paymentModel.aggregate([
+      { $match: { status: 'completed' } },
+      { $group: { _id: null, total: { $sum: { $ifNull: ['$amount', 0] } } } },
+    ]).exec();
+
+    const revenue = revenueAgg && revenueAgg.length > 0 ? Math.floor(revenueAgg[0].total) : 0;
+
+    return {
+      users: usersCount,
+      stories: storiesCount,
+      chapters: chaptersCount,
+      reads: readsCount,
+      revenue,
+    };
+  }
+
+
+  /**
    * Lấy chi tiết truyện
    */
   async getStoryDetail(slug: string): Promise<any> {
@@ -833,5 +867,205 @@ export class ViewService {
         nextChapter: nextChapter ? nextChapter._id.toString() : null,
       },
     };
+  }
+
+  /**
+   * Lấy dữ liệu lượt đọc theo ngày (30 ngày gần nhất)
+   */
+  async getReadingStatsDaily(): Promise<any[]> {
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
+    const stats = await this.readingHistoryModel
+      .aggregate([
+        {
+          $match: {
+            lastReadAt: { $gte: thirtyDaysAgo },
+          },
+        },
+        {
+          $group: {
+            _id: {
+              $dateToString: {
+                format: '%Y-%m-%d',
+                date: '$lastReadAt',
+                timezone: 'Asia/Ho_Chi_Minh',
+              },
+            },
+            count: { $sum: 1 },
+          },
+        },
+        {
+          $sort: { _id: 1 },
+        },
+      ])
+      .exec();
+
+    return stats;
+  }
+
+  /**
+   * Lấy dữ liệu doanh thu theo tháng (12 tháng gần nhất) từ Purchase - tính bằng COIN
+   */
+  async getRevenueStatsMonthlyCoins(): Promise<any[]> {
+    const twelveMonthsAgo = new Date();
+    twelveMonthsAgo.setMonth(twelveMonthsAgo.getMonth() - 12);
+
+    console.log('[Revenue Coins] Query from:', twelveMonthsAgo);
+
+    // Lấy từ bảng Purchase (doanh thu từ mua chương)
+    const stats = await this.purchaseModel
+      .aggregate([
+        {
+          $match: {
+            status: 'completed',
+            purchaseAt: { $gte: twelveMonthsAgo },
+          },
+        },
+        {
+          $group: {
+            _id: {
+              $dateToString: {
+                format: '%Y-%m',
+                date: '$purchaseAt',
+                timezone: 'Asia/Ho_Chi_Minh',
+              },
+            },
+            total: { $sum: { $ifNull: ['$priceCoins', 0] } },
+          },
+        },
+        {
+          $sort: { _id: 1 },
+        },
+      ])
+      .exec();
+
+    console.log('[Revenue Coins] Stats result:', stats);
+    return stats || [];
+  }
+  /**
+   * Lấy dữ liệu doanh thu theo tháng (12 tháng gần nhất) từ Payment - tính bằng VNĐ
+   */
+  async getRevenueStatsMonthlyVnd(): Promise<any[]> {
+    const twelveMonthsAgo = new Date();
+    twelveMonthsAgo.setMonth(twelveMonthsAgo.getMonth() - 12);
+
+    console.log('[Revenue VND] Query from (payments):', twelveMonthsAgo);
+
+    // Lấy từ bảng Payment (amount đã là VNĐ)
+    const stats = await this.paymentModel
+      .aggregate([
+        {
+          $match: {
+            status: 'completed',
+            createdAt: { $gte: twelveMonthsAgo },
+          },
+        },
+        {
+          $group: {
+            _id: {
+              $dateToString: {
+                format: '%Y-%m',
+                date: '$createdAt',
+                timezone: 'Asia/Ho_Chi_Minh',
+              },
+            },
+            total: { $sum: { $ifNull: ['$amount', 0] } },
+          },
+        },
+        {
+          $sort: { _id: 1 },
+        },
+      ])
+      .exec();
+
+    console.log('[Revenue VND] Stats result (payments):', stats);
+    return stats || [];
+  }
+
+  /**
+   * Lấy dữ liệu doanh thu theo tháng (deprecated)
+   */
+  async getRevenueStatsMonthly(): Promise<any[]> {
+    return this.getRevenueStatsMonthlyVnd();
+  }
+
+  /**
+   * Lấy báo cáo gần đây (từ bảng Report)
+   */
+  async getRecentReports(): Promise<any[]> {
+    // Lấy báo cáo từ 90 ngày trước (không giới hạn bởi thời gian, chỉ lấy 15 cái mới nhất)
+    const reports = await this.reportModel
+      .find()
+      .populate('chapterId', 'title number')
+      .populate('userId', 'name')
+      .populate('storyId', 'title')
+      .sort({ createdAt: -1 })
+      .limit(15)
+      .lean();
+
+    return reports.map(r => ({
+      chapter: (r.chapterId as any)?.title ? `Chương ${(r.chapterId as any)?.number}: ${(r.chapterId as any)?.title}` : 'N/A',
+      content: r.reason || '',
+      reporter: (r.userId as any)?.name || 'Ẩn danh',
+      status: r.status === 'pending' ? 'Chờ xử lý' : 'Đã xử lý',
+      statusClass: r.status === 'pending' ? 'pending' : 'resolved',
+      createdAt: r.createdAt,
+    }));
+  }
+
+  /**
+   * Lấy danh sách truyện cho admin dashboard
+   */
+  async getAdminStories(status?: string, q?: string): Promise<any[]> {
+    const query: any = {};
+    
+    if (status && status !== 'all') {
+      query.status = status;
+    }
+
+    const stories = await this.storyModel
+      .find(query)
+      .populate('authorId', 'name author_info.display_name')
+      .sort({ createdAt: -1 })
+      .lean();
+
+    // If search query provided, filter by title or author name (case-insensitive)
+    let filtered = stories;
+    if (q && q.trim().length > 0) {
+      const qLower = q.trim().toLowerCase();
+      filtered = stories.filter((s: any) => {
+        const title = (s.title || '').toLowerCase();
+        const author = ((s.authorId && (s.authorId.author_info?.display_name || s.authorId.name)) || '').toLowerCase();
+        return title.includes(qLower) || author.includes(qLower);
+      });
+    }
+
+    return filtered.map((story: any) => ({
+      id: story._id.toString(),
+      title: story.title,
+      author: story.authorId?.author_info?.display_name || story.authorId?.name || 'Ẩn danh',
+      category: story.category && story.category.length > 0 ? story.category[0] : 'N/A',
+      status: story.status,
+      createdAt: story.createdAt ? new Date(story.createdAt).toLocaleDateString('vi-VN') : 'N/A',
+    }));
+  }
+  
+  /** Approve a story (set status to 'published') */
+  async approveStory(id: string): Promise<boolean> {
+    const res = await this.storyModel.updateOne({ _id: id }, { $set: { status: 'published' } }).exec();
+    return res.matchedCount > 0;
+  }
+  
+  /** Reject a story (set status to 'rejected') */
+  async rejectStory(id: string): Promise<boolean> {
+    const res = await this.storyModel.updateOne({ _id: id }, { $set: { status: 'rejected' } }).exec();
+    return res.matchedCount > 0;
+  }
+  
+  /** Delete a story */
+  async deleteStory(id: string): Promise<boolean> {
+    const res = await this.storyModel.deleteOne({ _id: id }).exec();
+    return res.deletedCount > 0;
   }
 }

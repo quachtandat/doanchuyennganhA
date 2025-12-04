@@ -10,6 +10,7 @@ import {
   Req,
   Redirect,
   Post,
+  Delete,
   Body,
   Res,
 } from '@nestjs/common';
@@ -373,6 +374,12 @@ export class ViewController {
     return { allCategories };
   }
 
+  // API: Admin overview statistics
+  @Get('api/admin/overview')
+  async apiAdminOverview() {
+    return await this.viewService.getAdminOverview();
+  }
+
   // ===================================================================
   // ✏️ AUTHOR PAGE
   // ===================================================================
@@ -544,6 +551,57 @@ export class ViewController {
   @Get('debug/hot-stories')
   async debugHotStories() {
     return await this.viewService.debugHotStories();
+  }
+
+  // ===================================================================
+  // 📊 API: Lấy dữ liệu biểu đồ
+  // ===================================================================
+  @Get('api/admin/reading-stats-daily')
+  async apiReadingStatsDaily() {
+    const stats = await this.viewService.getReadingStatsDaily();
+    return { data: stats };
+  }
+
+  @Get('api/admin/revenue-stats-monthly-coins')
+  async apiRevenueStatsMonthlyCoins() {
+    const stats = await this.viewService.getRevenueStatsMonthlyCoins();
+    return { data: stats };
+  }
+
+  @Get('api/admin/revenue-stats-monthly')
+  async apiRevenueStatsMonthly() {
+    const stats = await this.viewService.getRevenueStatsMonthly();
+    return { data: stats };
+  }
+
+  @Get('api/admin/recent-reports')
+  async apiRecentReports() {
+    const reports = await this.viewService.getRecentReports();
+    return { data: reports };
+  }
+
+  @Get('api/admin/stories')
+  async apiAdminStories(@Query('status') status?: string, @Query('q') q?: string) {
+    const stories = await this.viewService.getAdminStories(status, q);
+    return { data: stories };
+  }
+
+  @Post('api/admin/stories/:id/approve')
+  async apiApproveStory(@Param('id') id: string) {
+    const ok = await this.viewService.approveStory(id);
+    return { success: ok };
+  }
+
+  @Post('api/admin/stories/:id/reject')
+  async apiRejectStory(@Param('id') id: string) {
+    const ok = await this.viewService.rejectStory(id);
+    return { success: ok };
+  }
+
+  @Delete('api/admin/stories/:id')
+  async apiDeleteStory(@Param('id') id: string) {
+    const ok = await this.viewService.deleteStory(id);
+    return { success: ok };
   }
 
   // ===================================================================
