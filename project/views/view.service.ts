@@ -8,6 +8,7 @@ import { ReadingHistory } from '../src/reading_histories/schemas/reading_histori
 import { Purchase } from '../src/purchases/schemas/purchases.schema';
 import { Payment } from '../src/payments/schemas/payment.schema';
 import { Report } from '../src/reports/schemas/reports.schema';
+import { AuthorRequest, AuthorRequestDocument } from '../src/author_requests/schemas/author_request.schema';
 
 type ReadingHistoryDocument = ReadingHistory & Document;
 type PurchaseDocument = Purchase & Document;
@@ -23,6 +24,7 @@ export class ViewService {
     @InjectModel(Purchase.name) private readonly purchaseModel: Model<PurchaseDocument>,
     @InjectModel(Payment.name) private readonly paymentModel: Model<PaymentDocument>,
     @InjectModel(Report.name) private readonly reportModel: Model<Report & Document>,
+    @InjectModel(AuthorRequest.name) private readonly authorRequestModel: Model<AuthorRequestDocument>,
   ) { }
 
   /**
@@ -1017,31 +1019,36 @@ export class ViewService {
   /**
    * Lấy danh sách truyện cho admin dashboard
    */
-  async getAdminStories(status?: string, q?: string): Promise<any[]> {
+  async getAdminStories(status?: string, q?: string, page: number = 1, pageSize: number = 10): Promise<{ data: any[], total: number }> {
     const query: any = {};
-    
     if (status && status !== 'all') {
       query.status = status;
     }
 
-    const stories = await this.storyModel
-      .find(query)
-      .populate('authorId', 'name author_info.display_name')
-      .sort({ createdAt: -1 })
-      .lean();
-
-    // If search query provided, filter by title or author name (case-insensitive)
-    let filtered = stories;
+    // Build search filter for MongoDB if possible
+    let mongoFilter: any = { ...query };
     if (q && q.trim().length > 0) {
       const qLower = q.trim().toLowerCase();
-      filtered = stories.filter((s: any) => {
-        const title = (s.title || '').toLowerCase();
-        const author = ((s.authorId && (s.authorId.author_info?.display_name || s.authorId.name)) || '').toLowerCase();
-        return title.includes(qLower) || author.includes(qLower);
-      });
+      mongoFilter.$or = [
+        { title: { $regex: qLower, $options: 'i' } },
+        { 'authorId.name': { $regex: qLower, $options: 'i' } },
+        { 'authorId.author_info.display_name': { $regex: qLower, $options: 'i' } }
+      ];
     }
 
-    return filtered.map((story: any) => ({
+    // Get total count first
+    const total = await this.storyModel.countDocuments(mongoFilter);
+
+    // Query paginated results
+    const stories = await this.storyModel
+      .find(mongoFilter)
+      .populate('authorId', 'name author_info.display_name')
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * pageSize)
+      .limit(pageSize)
+      .lean();
+
+    const mapped = stories.map((story: any) => ({
       id: story._id.toString(),
       title: story.title,
       author: story.authorId?.author_info?.display_name || story.authorId?.name || 'Ẩn danh',
@@ -1049,6 +1056,8 @@ export class ViewService {
       status: story.status,
       createdAt: story.createdAt ? new Date(story.createdAt).toLocaleDateString('vi-VN') : 'N/A',
     }));
+
+    return { data: mapped, total };
   }
   
   /** Approve a story (set status to 'published') */
@@ -1067,5 +1076,256 @@ export class ViewService {
   async deleteStory(id: string): Promise<boolean> {
     const res = await this.storyModel.deleteOne({ _id: id }).exec();
     return res.deletedCount > 0;
+  }
+
+  /**
+   * Lấy danh sách chương cho admin dashboard với phân trang
+   */
+  async getAdminChapters(status?: string, q?: string, page: number = 1, pageSize: number = 10): Promise<{ data: any[], total: number }> {
+    const query: any = {};
+    if (status && status !== 'all') {
+      query.status = status;
+    }
+
+    // Get total count first
+    const total = await this.chapterModel.countDocuments(query);
+
+    // Query paginated results without search filter (will filter after populate)
+    const chapters = await this.chapterModel
+      .find(query)
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * pageSize)
+      .limit(pageSize)
+      .lean();
+
+    // Populate story and author info manually since storyId is a string
+    let enrichedChapters: any[] = [];
+    for (const chapter of chapters) {
+      let storyTitle = 'N/A';
+      let authorName = 'Ẩn danh';
+
+      if (chapter.storyId) {
+        try {
+          const story = await this.storyModel.findById(chapter.storyId).populate('authorId', 'name author_info.display_name').lean();
+          if (story) {
+            storyTitle = story.title;
+            authorName = (story.authorId as any)?.author_info?.display_name || (story.authorId as any)?.name || 'Ẩn danh';
+          }
+        } catch (e) {
+          // Silent fail
+        }
+      }
+
+      enrichedChapters.push({
+        id: chapter._id.toString(),
+        title: chapter.title,
+        story: storyTitle,
+        author: authorName,
+        status: chapter.status || 'draft',
+        createdAt: (chapter as any).createdAt ? new Date((chapter as any).createdAt).toLocaleDateString('vi-VN') : 'N/A',
+        updatedAt: (chapter as any).updatedAt ? new Date((chapter as any).updatedAt).toLocaleDateString('vi-VN') : 'N/A',
+      });
+    }
+
+    // Filter by search query if provided
+    if (q && q.trim().length > 0) {
+      const qLower = q.trim().toLowerCase();
+      enrichedChapters = enrichedChapters.filter(ch => 
+        ch.title.toLowerCase().includes(qLower) ||
+        ch.story.toLowerCase().includes(qLower) ||
+        ch.author.toLowerCase().includes(qLower)
+      );
+    }
+
+    return { data: enrichedChapters, total };
+  }
+
+  /** Approve a chapter (set status to 'published') */
+  async approveChapter(id: string): Promise<boolean> {
+    const res = await this.chapterModel.updateOne({ _id: id }, { $set: { status: 'published' } }).exec();
+    return res.matchedCount > 0;
+  }
+
+  /** Reject a chapter (set status to 'rejected') */
+  async rejectChapter(id: string): Promise<boolean> {
+    const res = await this.chapterModel.updateOne({ _id: id }, { $set: { status: 'rejected' } }).exec();
+    return res.matchedCount > 0;
+  }
+
+  /** Delete a chapter */
+  async deleteChapter(id: string): Promise<boolean> {
+    const res = await this.chapterModel.deleteOne({ _id: id }).exec();
+    return res.deletedCount > 0;
+  }
+
+  /**
+   * Lấy danh sách người dùng cho admin dashboard với phân trang
+   */
+  async getAdminUsers(role?: string, q?: string, page: number = 1, pageSize: number = 10): Promise<{ data: any[], total: number }> {
+    const query: any = {};
+    if (role && role !== 'all') {
+      query.role = role;
+    }
+
+    // Get total count first
+    const total = await this.userModel.countDocuments(query);
+
+    // Query paginated results
+    const users = await this.userModel
+      .find(query)
+      .select('_id name email role isLocked createdAt')
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * pageSize)
+      .limit(pageSize)
+      .lean();
+
+    let mappedUsers = users.map((user: any) => ({
+      id: user._id.toString(),
+      name: user.name || 'N/A',
+      email: user.email || 'N/A',
+      role: user.role || 'user',
+      isLocked: user.isLocked || false,
+      createdAt: user.createdAt ? new Date(user.createdAt).toLocaleDateString('vi-VN') : 'N/A',
+    }));
+
+    // Filter by search query if provided
+    if (q && q.trim().length > 0) {
+      const qLower = q.trim().toLowerCase();
+      mappedUsers = mappedUsers.filter(u =>
+        u.name.toLowerCase().includes(qLower) ||
+        u.email.toLowerCase().includes(qLower)
+      );
+    }
+
+    return { data: mappedUsers, total };
+  }
+
+  /** Lock a user account */
+  async lockUser(id: string): Promise<boolean> {
+    const res = await this.userModel.updateOne({ _id: id }, { $set: { isLocked: true } }).exec();
+    return res.matchedCount > 0;
+  }
+
+  /** Unlock a user account */
+  async unlockUser(id: string): Promise<boolean> {
+    const res = await this.userModel.updateOne({ _id: id }, { $set: { isLocked: false } }).exec();
+    return res.matchedCount > 0;
+  }
+
+  /** Demote author to user (remove author role) */
+  async demoteAuthor(id: string): Promise<boolean> {
+    const res = await this.userModel.updateOne({ _id: id }, { $set: { role: 'user' } }).exec();
+    return res.matchedCount > 0;
+  }
+
+  /**
+   * Lấy danh sách báo cáo cho admin dashboard với phân trang
+   */
+  async getAdminReports(status?: string, q?: string, page: number = 1, pageSize: number = 10): Promise<{ data: any[], total: number }> {
+    const query: any = {};
+    if (status && status !== 'all') {
+      query.status = status;
+    }
+
+    // Get total count first
+    const total = await this.reportModel.countDocuments(query);
+
+    // Query paginated results
+    const reports = await this.reportModel
+      .find(query)
+      .populate('storyId', 'title')
+      .populate('chapterId', 'title number')
+      .populate('userId', 'name email')
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * pageSize)
+      .limit(pageSize)
+      .lean();
+
+    let mappedReports = reports.map((report: any) => ({
+      id: report._id.toString(),
+      story: (report.storyId as any)?.title || 'N/A',
+      chapter: (report.chapterId as any)?.title ? `Chương ${(report.chapterId as any)?.number}: ${(report.chapterId as any)?.title}` : 'N/A',
+      reporter: (report.userId as any)?.name || 'Ẩn danh',
+      reason: report.reason || 'N/A',
+      status: report.status || 'pending',
+      createdAt: report.createdAt ? new Date(report.createdAt).toLocaleDateString('vi-VN') : 'N/A',
+    }));
+
+    // Filter by search query if provided (search in story, chapter, reason, or reporter)
+    if (q && q.trim().length > 0) {
+      const qLower = q.trim().toLowerCase();
+      mappedReports = mappedReports.filter(r =>
+        r.story.toLowerCase().includes(qLower) ||
+        r.chapter.toLowerCase().includes(qLower) ||
+        r.reporter.toLowerCase().includes(qLower) ||
+        r.reason.toLowerCase().includes(qLower)
+      );
+    }
+
+    return { data: mappedReports, total };
+  }
+
+  /** Mark report as resolved */
+  async resolveReport(id: string): Promise<boolean> {
+    const res = await this.reportModel.updateOne({ _id: id }, { $set: { status: 'resolved' } }).exec();
+    return res.matchedCount > 0;
+  }
+
+  /** Mark report as pending */
+  async pendingReport(id: string): Promise<boolean> {
+    const res = await this.reportModel.updateOne({ _id: id }, { $set: { status: 'pending' } }).exec();
+    return res.matchedCount > 0;
+  }
+
+  /** Get pending author requests for admin review */
+  async getAdminAuthorRequests(page: number = 1, pageSize: number = 10): Promise<{ data: any[], total: number }> {
+    // Only show pending requests
+    const query = { status: 'pending' };
+    
+    const total = await this.authorRequestModel.countDocuments(query);
+
+    const requests = await this.authorRequestModel
+      .find(query)
+      .populate('userId', 'name email')
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * pageSize)
+      .limit(pageSize)
+      .lean();
+
+    const mappedRequests = requests.map((req: any) => ({
+      id: req._id.toString(),
+      userId: req.userId?._id?.toString() || '',
+      userName: req.userId?.name || 'N/A',
+      userEmail: req.userId?.email || 'N/A',
+      message: req.message || 'N/A',
+      createdAt: req.createdAt ? new Date(req.createdAt).toLocaleDateString('vi-VN') : 'N/A',
+      status: req.status,
+    }));
+
+    return { data: mappedRequests, total };
+  }
+
+  /** Approve author request */
+  async approveAuthorRequest(id: string): Promise<boolean> {
+    try {
+      const req = await this.authorRequestModel.findById(id);
+      if (!req) return false;
+
+      // Update user role to author
+      await this.userModel.updateOne({ _id: req.userId }, { $set: { role: 'author' } });
+
+      // Update request status to approved
+      const res = await this.authorRequestModel.updateOne({ _id: id }, { $set: { status: 'approved' } });
+      return res.matchedCount > 0;
+    } catch (e) {
+      console.error('Approve author request error:', e);
+      return false;
+    }
+  }
+
+  /** Reject author request */
+  async rejectAuthorRequest(id: string): Promise<boolean> {
+    const res = await this.authorRequestModel.updateOne({ _id: id }, { $set: { status: 'rejected' } }).exec();
+    return res.matchedCount > 0;
   }
 }

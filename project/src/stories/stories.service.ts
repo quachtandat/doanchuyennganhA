@@ -6,10 +6,10 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Story, StoryDocument } from './schemas/stories.schema';
+import { Chapter, ChapterDocument } from '../chapters/schemas/chapters.schema';
 import { CreateStoryDto } from './dto/create-story.dto';
 import { UpdateStoryDto } from './dto/update-story.dto';
 
-// THÊM INTERFACE
 interface FilterOptions {
   sortBy: string;
   order: string;
@@ -23,20 +23,19 @@ export class StoriesService {
   constructor(
     @InjectModel(Story.name)
     private readonly storyModel: Model<StoryDocument>,
+    @InjectModel(Chapter.name)
+    private readonly chapterModel: Model<ChapterDocument>,
   ) {}
 
-  // Create
   async create(dto: CreateStoryDto): Promise<Story> {
     const exists = await this.storyModel.findOne({ slug: dto.slug });
     if (exists) {
       throw new ConflictException('Slug already exists');
     }
-
     const story = new this.storyModel(dto);
     return story.save();
   }
 
-  // 🟡 Get all
   async findAll(
     skip = 0,
     limit = 20,
@@ -44,10 +43,10 @@ export class StoriesService {
     populateAuthor = false,
     authorName?: string,
   ): Promise<Story[]> {
-    // If authorName provided, perform aggregation lookup to users and match by author_info.display_name or name
     if (authorName && authorName.trim()) {
       const pipeline: any[] = [];
-      if (filter && Object.keys(filter).length > 0) pipeline.push({ $match: filter as any });
+      if (filter && Object.keys(filter).length > 0)
+        pipeline.push({ $match: filter as any });
       pipeline.push({
         $lookup: {
           from: 'users',
@@ -60,13 +59,17 @@ export class StoriesService {
       pipeline.push({
         $match: {
           $or: [
-            { 'author.author_info.display_name': { $regex: authorName.trim(), $options: 'i' } },
+            {
+              'author.author_info.display_name': {
+                $regex: authorName.trim(),
+                $options: 'i',
+              },
+            },
             { 'author.name': { $regex: authorName.trim(), $options: 'i' } },
           ],
         },
       });
       if (populateAuthor) {
-        // project to include author info
         pipeline.push({
           $project: {
             title: 1,
@@ -82,31 +85,36 @@ export class StoriesService {
       return this.storyModel.aggregate(pipeline).exec() as any;
     }
 
-    const q = this.storyModel.find(filter as any).skip(skip).limit(limit);
+    const q = this.storyModel
+      .find(filter as any)
+      .skip(skip)
+      .limit(limit);
     if (populateAuthor) {
       q.populate({ path: 'authorId', select: 'name author_info' });
     }
     return q.exec();
   }
 
-  // THÊM METHOD NÀY - Advanced filter với aggregation
   async filterStories(options: FilterOptions) {
     const { sortBy, order, status, page, limit } = options;
     const skip = (page - 1) * limit;
 
-    // Build aggregation pipeline
+    // ✅ Vietnamese collation for proper sorting
+    const collationOptions = {
+      locale: 'vi',
+      strength: 1, // Case insensitive, ignore accents for primary sorting
+    };
+
+    // ✅ FIXED: Don't overwrite chapterCount, just use the stored value
     const pipeline: any[] = [
-      // Step 1: Lookup chapters
+      // Step 1: Convert story _id (ObjectId) to string for matching
       {
-        $lookup: {
-          from: 'chapters',
-          localField: '_id',
-          foreignField: 'storyId',
-          as: 'chapters',
+        $addFields: {
+          storyIdAsString: { $toString: '$_id' },
         },
       },
 
-      // Step 2: Lookup reading histories
+      // Step 2: Lookup reading histories for totalReads
       {
         $lookup: {
           from: 'readinghistories',
@@ -116,13 +124,14 @@ export class StoriesService {
         },
       },
 
-      // Step 3: Add computed fields
+      // Step 3: Add computed fields (use existing chapterCount!)
       {
         $addFields: {
-          chapterCount: { $size: '$chapters' },
+          // ✅ USE STORED chapterCount instead of computing from chapters array
+          // chapterCount already exists in the document, no need to overwrite it
+
           totalReads: { $size: '$readingHistories' },
 
-          // Compute story status
           computedStatus: {
             $cond: {
               if: { $eq: ['$status', 'pending'] },
@@ -134,7 +143,7 @@ export class StoriesService {
                       { $ne: ['$expectedTotalChapters', null] },
                       {
                         $gte: [
-                          { $size: '$chapters' },
+                          '$chapterCount', // ✅ Use stored value
                           '$expectedTotalChapters',
                         ],
                       },
@@ -146,15 +155,10 @@ export class StoriesService {
               },
             },
           },
-
-          // Last chapter update time
-          lastChapterUpdate: {
-            $max: '$chapters.createdAt',
-          },
         },
       },
 
-      // Step 4: Match by status (if not 'all')
+      // Step 4: Filter by status if needed
       ...(status !== 'all' ? [{ $match: { computedStatus: status } }] : []),
 
       // Step 5: Sort
@@ -171,8 +175,9 @@ export class StoriesService {
             { $limit: limit },
             {
               $project: {
-                chapters: 0,
-                readingHistories: 0,
+                storyIdAsString: 0, // Remove temp field
+                readingHistories: 0, // Remove joined data
+                // ✅ Keep chapterCount in the response!
               },
             },
           ],
@@ -180,7 +185,10 @@ export class StoriesService {
       },
     ];
 
-    const result = await this.storyModel.aggregate(pipeline);
+    // ✅ Apply Vietnamese collation to the aggregation
+    const result = await this.storyModel
+      .aggregate(pipeline)
+      .collation(collationOptions);
 
     const total = result[0]?.metadata[0]?.total || 0;
     const stories = result[0]?.data || [];
@@ -195,32 +203,37 @@ export class StoriesService {
     };
   }
 
-  // THÊM HELPER METHOD
   private getSortStage(sortBy: string, order: string) {
     const sortOrder = order === 'asc' ? 1 : -1;
 
     const sortMap: Record<string, any> = {
-      lastUpdated: { lastChapterUpdate: sortOrder, updatedAt: sortOrder },
-      chapters: { chapterCount: sortOrder },
-      readers: { totalReads: sortOrder },
-      title: { title: sortOrder },
-      rating: { rating: sortOrder },
-      reviews: { reviewCount: sortOrder },
-      rank: { totalReads: sortOrder, chapterCount: sortOrder },
-      frequency: { lastChapterUpdate: sortOrder },
+      lastUpdated: {
+        updatedAt: sortOrder,
+      },
+      chapters: {
+        chapterCount: sortOrder, // ✅ Sort by stored chapterCount
+      },
+      readers: {
+        totalReads: sortOrder,
+      },
+      title: {
+        title: sortOrder,
+      },
+      rating: {
+        ratingAverage: sortOrder,
+        ratingCount: sortOrder,
+      },
     };
 
     return sortMap[sortBy] || sortMap.lastUpdated;
   }
 
-  // Get by ID
   async findOne(id: string): Promise<Story> {
     const story = await this.storyModel.findById(id).exec();
     if (!story) throw new NotFoundException('Story not found');
     return story;
   }
 
-  // Update
   async update(id: string, dto: UpdateStoryDto): Promise<Story> {
     const story = await this.storyModel.findByIdAndUpdate(id, dto, {
       new: true,
@@ -229,7 +242,6 @@ export class StoriesService {
     return story;
   }
 
-  // Delete
   async remove(id: string): Promise<Story> {
     const story = await this.storyModel.findByIdAndDelete(id);
     if (!story) throw new NotFoundException('Story not found');

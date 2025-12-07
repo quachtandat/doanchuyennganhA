@@ -362,11 +362,8 @@
                 <div class="filter-title">Sort by</div>
                 <div class="filter-options">
                     <button class="filter-btn" data-sort="chapters">Chapters</button>
-                    <button class="filter-btn" data-sort="frequency">Frequency</button>
-                    <button class="filter-btn" data-sort="rank">Rank</button>
                     <button class="filter-btn" data-sort="rating">Rating</button>
                     <button class="filter-btn" data-sort="readers">Readers</button>
-                    <button class="filter-btn" data-sort="reviews">Reviews</button>
                     <button class="filter-btn" data-sort="title">Title</button>
                     <button class="filter-btn active" data-sort="lastUpdated">Last Updated</button>
                 </div>
@@ -413,14 +410,13 @@
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- ✅ LOAD SCRIPTS IN CORRECT ORDER -->
     <script src="/assets/jquery.min.js"></script>
     <script src="/assets/popper.min.js"></script>
     <script src="/assets/bootstrap.min.js"></script>
-    <script src="/assets/app.js"></script>
     <script src="/assets/common.js"></script>
     <script src="/assets/auth.js"></script>
-
+    
     <script>
         // State management
         let currentFilters = {
@@ -513,7 +509,7 @@
                 });
 
                 const url = `/api/stories/filter?${params.toString()}`;
-                console.log('📤 Fetching:', url);
+                console.log('🔤 Fetching:', url);
 
                 const response = await fetch(url);
                 
@@ -674,6 +670,5 @@
             `;
         }
     </script>
-
 </body>
 </html>

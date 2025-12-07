@@ -75,7 +75,7 @@ import { CommentsModule } from './comments/comments.module';
 import { RatingsModule } from './ratings/ratings.module';
 
 // App Controller & Service
-import { AppController } from './app.controller';
+
 import { AppService } from './app.service';
 
 import { RankingModule } from './ranking/ranking.module';
@@ -110,7 +110,7 @@ import { RankingModule } from './ranking/ranking.module';
     SettingsModule,
     PromotionsModule,
     AuditLogsModule,
-  RatingsModule,
+    RatingsModule,
     AuthModule,
     WalletModule,
     ViewModule, // ViewController is already declared here

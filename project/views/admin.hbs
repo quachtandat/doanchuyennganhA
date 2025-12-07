@@ -23,17 +23,17 @@
                     <li class="nav-item" data-section="stories">
                         <i class="icon">📚</i> <span>Quản lý Truyện</span>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" data-section="chapters">
                         <i class="icon">📑</i> <span>Quản lý Chương</span>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" data-section="users">
                         <i class="icon">👥</i> <span>Quản lý Người dùng</span>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" data-section="reports">
                         <i class="icon">📰</i> <span>Báo cáo</span>
                     </li>
-                    <li class="nav-item">
-                        <i class="icon">✔️</i> <span>Trung tâm Duyệt</span>
+                    <li class="nav-item" data-section="author-requests">
+                        <i class="icon">✔️</i> <span>Duyệt Tác giả</span>
                     </li>
                 </ul>
             </nav>
@@ -45,7 +45,7 @@
 
               <div class="header-icons">
                   <button id="theme-toggle" title="Chuyển chế độ sáng/tối">🌙</button>
-                  <i class="icon profile-pic">👤</i>
+                  <button id="logout-btn" class="logout-btn" title="Đăng xuất">Đăng xuất</button>
               </div>
             </header>
 
@@ -173,6 +173,186 @@
                             <tr><td colspan="5" style="padding: 20px; text-align: center; color: #999;">Đang tải...</td></tr>
                         </tbody>
                     </table>
+                    <div id="stories-pagination" class="pagination-bar" style="margin-top:16px; display:none;"></div>
+                </div>
+            </div>
+
+            <div class="dashboard-body hidden-section" id="chapters-section">
+                <div class="page-header">
+                    <h1>Quản lý Chương</h1>
+                    <p>Quản lý tất cả chương trên hệ thống</p>
+                </div>
+
+                <div class="filters-container">
+                    <div class="filter-dropdown">
+                        <span>Lọc:</span> 
+                    </div>
+                    
+                    <div class="search-bar">
+                        <input id="admin-chapter-search-input" type="text" placeholder="Tìm kiếm chương, truyện, tác giả...">
+                    </div>
+
+                    <div id="chapter-status-filter" class="filter-dropdown" tabindex="0">
+                        <span id="chapter-status-label">Tất cả trạng thái</span>
+                        <i class="icon dropdown-arrow">▾</i>
+                        <div class="dropdown-menu">
+                            <div data-value="all">Tất cả trạng thái</div>
+                            <div data-value="published">Đã duyệt</div>
+                            <div data-value="pending">Chờ duyệt</div>
+                            <div data-value="rejected">Từ chối</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stories-list-header">
+                    Danh sách chương (<span id="chapters-count">0</span>)
+                </div>
+                <div class="stories-table-container">
+                    <table class="stories-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 20%;">Tên chương</th>
+                                <th style="width: 20%;">Truyện</th>
+                                <th style="width: 15%;">Tác giả</th>
+                                <th style="width: 10%;">Trạng thái</th>
+                                <th style="width: 15%;">Ngày tạo</th>
+                                <th style="width: 15%;">Cập nhật</th>
+                                <th style="width: 5%;">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="chaptersTableBody">
+                            <tr><td colspan="7" style="padding: 20px; text-align: center; color: #999;">Đang tải...</td></tr>
+                        </tbody>
+                    </table>
+                    <div id="chapters-pagination" class="pagination-bar" style="margin-top:16px; display:none;"></div>
+                </div>
+            </div>
+
+            <div class="dashboard-body hidden-section" id="users-section">
+                <div class="page-header">
+                    <h1>Quản lý Người dùng</h1>
+                    <p>Quản lý tất cả người dùng trên hệ thống</p>
+                </div>
+
+                <div class="filters-container">
+                    <div class="filter-dropdown">
+                        <span>Lọc:</span> 
+                    </div>
+                    
+                    <div class="search-bar">
+                        <input id="admin-user-search-input" type="text" placeholder="Tìm kiếm người dùng, email...">
+                    </div>
+
+                    <div id="user-role-filter" class="filter-dropdown" tabindex="0">
+                        <span id="user-role-label">Tất cả vai trò</span>
+                        <i class="icon dropdown-arrow">▾</i>
+                        <div class="dropdown-menu">
+                            <div data-value="all">Tất cả vai trò</div>
+                            <div data-value="reader">Độc giả</div>
+                            <div data-value="author">Tác giả</div>
+                            <div data-value="admin">Quản trị viên</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stories-list-header">
+                    Danh sách người dùng (<span id="users-count">0</span>)
+                </div>
+                <div class="stories-table-container">
+                    <table class="stories-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 20%;">Tên người dùng</th>
+                                <th style="width: 25%;">Email</th>
+                                <th style="width: 15%;">Vai trò</th>
+                                <th style="width: 15%;">Trạng thái</th>
+                                <th style="width: 15%;">Ngày tham gia</th>
+                                <th style="width: 10%;">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <tr><td colspan="6" style="padding: 20px; text-align: center; color: #999;">Đang tải...</td></tr>
+                        </tbody>
+                    </table>
+                    <div id="users-pagination" class="pagination-bar" style="margin-top:16px; display:none;"></div>
+                </div>
+            </div>
+
+            <div class="dashboard-body hidden-section" id="reports-section">
+                <div class="page-header">
+                    <h1>Báo cáo</h1>
+                    <p>Quản lý báo cáo từ người dùng</p>
+                </div>
+
+                <div class="filters-container">
+                    <div class="filter-dropdown">
+                        <span>Lọc:</span> 
+                    </div>
+                    
+                    <div class="search-bar">
+                        <input id="admin-report-search-input" type="text" placeholder="Tìm kiếm truyện, chương, lý do, báo cáo viên...">
+                    </div>
+
+                    <div id="report-status-filter" class="filter-dropdown" tabindex="0">
+                        <span id="report-status-label">Chờ xử lý</span>
+                        <i class="icon dropdown-arrow">▾</i>
+                        <div class="dropdown-menu">
+                            <div data-value="all">Tất cả trạng thái</div>
+                            <div data-value="pending">Chờ xử lý</div>
+                            <div data-value="resolved">Đã xử lý</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stories-list-header">
+                    Danh sách báo cáo (<span id="reports-count">0</span>)
+                </div>
+                <div class="stories-table-container">
+                    <table class="stories-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 15%;">Tên truyện</th>
+                                <th style="width: 15%;">Tên chương</th>
+                                <th style="width: 15%;">Người báo cáo</th>
+                                <th style="width: 20%;">Lý do</th>
+                                <th style="width: 15%;">Ngày báo cáo</th>
+                                <th style="width: 10%;">Trạng thái</th>
+                                <th style="width: 10%;">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reportsTableBody">
+                            <tr><td colspan="7" style="padding: 20px; text-align: center; color: #999;">Đang tải...</td></tr>
+                        </tbody>
+                    </table>
+                    <div id="reports-pagination" class="pagination-bar" style="margin-top:16px; display:none;"></div>
+                </div>
+            </div>
+
+            <div class="dashboard-body hidden-section" id="author-requests-section">
+                <div class="page-header">
+                    <h1>Duyệt Tác giả</h1>
+                    <p>Quản lý yêu cầu trở thành tác giả từ người dùng</p>
+                </div>
+
+                <div class="stories-list-header">
+                    Danh sách yêu cầu (<span id="author-requests-count">0</span>)
+                </div>
+                <div class="stories-table-container">
+                    <table class="stories-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 20%;">Tên người dùng</th>
+                                <th style="width: 25%;">Email</th>
+                                <th style="width: 25%;">Lý do</th>
+                                <th style="width: 15%;">Ngày yêu cầu</th>
+                                <th style="width: 15%;">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="authorRequestsTableBody">
+                            <tr><td colspan="5" style="padding: 20px; text-align: center; color: #999;">Đang tải...</td></tr>
+                        </tbody>
+                    </table>
+                    <div id="author-requests-pagination" class="pagination-bar" style="margin-top:16px; display:none;"></div>
                 </div>
             </div>
             

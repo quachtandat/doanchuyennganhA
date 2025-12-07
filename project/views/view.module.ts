@@ -15,6 +15,7 @@ import {
 import { Purchase, PurchaseSchema } from '../src/purchases/schemas/purchases.schema';
 import { Payment, PaymentSchema } from '../src/payments/schemas/payment.schema';
 import { Report, ReportSchema } from '../src/reports/schemas/reports.schema';
+import { AuthorRequest, AuthorRequestSchema } from '../src/author_requests/schemas/author_request.schema';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { Report, ReportSchema } from '../src/reports/schemas/reports.schema';
         { name: Purchase.name, schema: PurchaseSchema },
         { name: Payment.name, schema: PaymentSchema },
       { name: Report.name, schema: ReportSchema },
+      { name: AuthorRequest.name, schema: AuthorRequestSchema },
     ]),
   ],
   controllers: [ViewController],

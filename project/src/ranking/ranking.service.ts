@@ -62,8 +62,8 @@ export class RankingService {
         status: 'published', // Chỉ lấy truyện đã xuất bản
       })
       .select(
-        'title slug coverUrl description category status expectedTotalChapters',
-      )
+        'title slug coverUrl description category status expectedTotalChapters chapterCount',
+      ) // ✅ Added chapterCount
       .lean();
 
     // 3. Tạo map để match story với readCount
@@ -71,42 +71,34 @@ export class RankingService {
       topStoryIds.map((item) => [item._id.toString(), item.readCount]),
     );
 
-    // 4. Format kết quả
-    const formattedStories = await Promise.all(
-      stories.map(async (story: any) => {
-        // Đếm số chương
-        const chapterCount = await this.storyModel.db
-          .collection('chapters')
-          .countDocuments({
-            storyId: story._id,
-            status: 'published',
-          });
+    // 4. Format kết quả - ✅ Use stored chapterCount instead of counting
+    const formattedStories = stories.map((story: any) => {
+      const chapterCount = story.chapterCount || 0;
 
-        const isCompleted = story.expectedTotalChapters
-          ? chapterCount >= story.expectedTotalChapters
-          : false;
+      const isCompleted = story.expectedTotalChapters
+        ? chapterCount >= story.expectedTotalChapters
+        : false;
 
-        const readCount = readCountMap.get(story._id.toString()) || 0;
+      const readCount = readCountMap.get(story._id.toString()) || 0;
 
-        return {
-          id: story._id.toString(),
-          title: story.title,
-          slug: story.slug,
-          coverUrl: story.coverUrl || '/assets/images/default-cover.jpg',
-          description: story.description
-            ? story.description.substring(0, 150) + '...'
-            : 'Chưa có mô tả',
-          category: story.category || [],
-          status: story.status,
-          chapterCount,
-          expectedTotalChapters: story.expectedTotalChapters,
-          isCompleted,
-          statusText: isCompleted ? 'Hoàn thành' : 'Đang ra',
-          statusClass: isCompleted ? 'published' : 'pending',
-          readCount, // Số lượt đọc
-        };
-      }),
-    );
+      return {
+        id: story._id.toString(),
+        title: story.title,
+        slug: story.slug,
+        coverUrl: story.coverUrl || '/assets/images/default-cover.jpg',
+        description: story.description
+          ? story.description.substring(0, 150) + '...'
+          : 'Chưa có mô tả',
+        category: story.category || [],
+        status: story.status,
+        chapterCount, // ✅ Use stored value
+        expectedTotalChapters: story.expectedTotalChapters,
+        isCompleted,
+        statusText: isCompleted ? 'Hoàn thành' : 'Đang ra',
+        statusClass: isCompleted ? 'published' : 'pending',
+        readCount, // Số lượt đọc
+      };
+    });
 
     // 5. Sắp xếp lại theo thứ tự topStoryIds (để giữ đúng thứ tự ranking)
     const sortedStories = storyIds

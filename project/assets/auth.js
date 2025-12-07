@@ -28,16 +28,28 @@
           }
         })
         .then(function (data) {
-          // Keep local copy of latest profile so other parts of UI (header, account)
-          // can use up-to-date user info after a refresh.
-          try { localStorage.setItem('userData', JSON.stringify(data)); } catch (e) {}
+          // Update local storage with fresh data
+          localStorage.setItem('userData', JSON.stringify(data));
           showUserProfile(data);
         })
-        .catch(function () {
-          // Token is invalid, clear and show login
-          localStorage.removeItem('accessToken');
-          localStorage.removeItem('userData');
-          showLoginButtons();
+        .catch(function (error) {
+          console.error('Auth check failed:', error);
+          // Only clear auth data if we're NOT on the account page
+          // This prevents the redirect loop
+          if (!window.location.pathname.includes('/account')) {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('userData');
+            showLoginButtons();
+          } else {
+            // On account page, try to show profile with cached data
+            try {
+              const cachedData = JSON.parse(userData);
+              showUserProfile(cachedData);
+            } catch (e) {
+              // If that fails, then redirect to login
+              window.location.href = '/auth/login';
+            }
+          }
         });
     } else {
       showLoginButtons();
@@ -89,8 +101,8 @@
     const walletCoins = document.getElementById('wallet-coins');
 
     if (userAvatar) userAvatar.textContent = initials;
-  if (userNameDisplay) userNameDisplay.textContent = firstName;
-  if (userNameMenu) userNameMenu.textContent = displayName || userData.name;
+    if (userNameDisplay) userNameDisplay.textContent = firstName;
+    if (userNameMenu) userNameMenu.textContent = displayName || userData.name;
     if (userEmailMenu) userEmailMenu.textContent = userData.email;
     if (walletCoins) walletCoins.textContent = userData.wallet_coins || 0;
   }

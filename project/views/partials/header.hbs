@@ -10,7 +10,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    {{!-- ✅ THÊM LINK TẤT CẢ TRUYỆN --}}
                     <li class="nav-item">
                         <a class="nav-link" href="/stories">
                             Tất cả truyện
@@ -27,15 +26,7 @@
                             {{/each}}
                         </ul>
                     </li>
-                    
-                    {{!-- Hide Explore link when hideExplore flag is set (defaults to visible) --}}
-                    {{#unless hideExplore}}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/explore">Khám phá tất cả</a>
-                    </li>
-                    {{/unless}}
-                    
-                    {{!-- ✅ TOP LINK - Always visible --}}
+                
                     <li class="nav-item">
                         <a class="nav-link" href="/ranking">
                             Top
@@ -139,6 +130,40 @@
 </div>
 
 <style>
+.header {
+    position: relative;
+    z-index: 1030; /* Bootstrap's z-index for fixed-top navbar */
+}
+
+.header .navbar {
+    position: relative;
+    z-index: 1031;
+}
+
+.dropdown-menu {
+    z-index: 1032 !important;
+    min-width: 250px;
+}
+
+#user-profile.dropdown {
+    position: relative;
+    z-index: 1031;
+}
+
+#user-profile .dropdown-menu {
+    position: absolute !important;
+    top: 100% !important;
+    right: 0 !important;
+    left: auto !important;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+#user-profile.dropdown.show .dropdown-menu {
+    display: block !important;
+    z-index: 1032 !important;
+}
+
 .user-avatar {
     width: 35px;
     height: 35px;
@@ -150,10 +175,6 @@
     color: white;
     font-weight: bold;
     font-size: 14px;
-}
-
-.dropdown-menu {
-    min-width: 250px;
 }
 
 .dropdown-item-text {
@@ -171,5 +192,18 @@
 .nav-link.active {
     color: #ffd700 !important;
     font-weight: 600;
+}
+
+.navbar-nav .dropdown-menu {
+    z-index: 1032 !important;
+}
+
+.navbar-collapse {
+    overflow: visible !important;
+}
+
+#auth-section {
+    position: relative;
+    z-index: 1031;
 }
 </style>

@@ -81,17 +81,35 @@ body {
     height: 60px;
 }
 
+body.dark .header {
+    background-color: #1f2937;
+    border-bottom-color: #374151;
+}
+
 .search-bar input {
     width: 400px;
     padding: 8px 15px;
     border: 1px solid #d9d9d9;
     border-radius: 4px;
     font-size: 14px;
+    background-color: #ffffff;
+    color: #333;
+}
+
+body.dark .search-bar input {
+    background-color: #374151;
+    border-color: #4b5563;
+    color: #e5e7eb;
+}
+
+body.dark .search-bar input::placeholder {
+    color: #9ca3af;
 }
 
 .header-icons {
     display: flex;
     align-items: center;
+    gap: 15px;
 }
 
 .header-icons .icon {
@@ -99,6 +117,43 @@ body {
     font-size: 1.2em;
     cursor: pointer;
     position: relative;
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+.logout-btn {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.logout-btn:hover {
+    background-color: #dc2626;
+}
+
+body.dark .logout-btn {
+    background-color: #991b1b;
+}
+
+body.dark .logout-btn:hover {
+    background-color: #7f1d1d;
 }
 
 .notification-badge {
@@ -503,4 +558,61 @@ body.dark {
     --primary-color: #3b82f6;
     --secondary-text: #9ca3af;
     --border-color: #374151;
+}
+
+/* Pagination Bar */
+.pagination-bar {
+    display: flex;
+    gap: 8px;
+    padding: 12px 0;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.pagination-btn {
+    padding: 6px 10px;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    color: var(--secondary-text);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.pagination-btn:hover {
+    background-color: #f0f0f0;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.pagination-btn.active {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+}
+
+body.dark .pagination-btn {
+    background-color: #1f2937;
+    color: #d7e7fb;
+    border-color: #374151;
+}
+
+body.dark .pagination-btn:hover {
+    background-color: #374151;
+    color: #3b82f6;
+}
+
+/* User action icons styling */
+.actions-cell .lock-icon {
+    color: #ef4444;
+}
+
+.actions-cell .unlock-icon {
+    color: #10b981;
+}
+
+.actions-cell .demote-icon {
+    color: #f59e0b;
 }

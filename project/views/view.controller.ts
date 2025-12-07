@@ -8,10 +8,8 @@ import {
   NotFoundException,
   Query,
   Req,
-  Redirect,
   Post,
   Delete,
-  Body,
   Res,
 } from '@nestjs/common';
 import type { Request } from 'express';
@@ -165,9 +163,15 @@ export interface ChapterReadPageViewModel {
 }
 
 // Dùng cho chapter sau khi .lean() (có đủ field)
-export interface ChapterFullLean extends Omit<ChapterDocument, '_id'> {
-  _id: Types.ObjectId;
-  storyId: Types.ObjectId; // Đảm bảo storyId là ObjectId
+export interface ChapterFullLean
+  extends Omit<ChapterDocument, '_id' | 'storyId'> {
+  _id: string;
+  storyId: string; // ✅ Changed from ObjectId to string
+  storyInfo?: {
+    _id: string;
+    title: string;
+    slug: string;
+  };
 }
 
 // Dùng cho story sau khi .lean() (chỉ cần title và status)
@@ -581,9 +585,16 @@ export class ViewController {
   }
 
   @Get('api/admin/stories')
-  async apiAdminStories(@Query('status') status?: string, @Query('q') q?: string) {
-    const stories = await this.viewService.getAdminStories(status, q);
-    return { data: stories };
+  async apiAdminStories(
+    @Query('status') status?: string,
+    @Query('q') q?: string,
+    @Query('page') page?: string,
+    @Query('pageSize') pageSize?: string,
+  ) {
+    const pageNum = page ? parseInt(page, 10) : 1;
+    const pageSizeNum = pageSize ? parseInt(pageSize, 10) : 10;
+    const result = await this.viewService.getAdminStories(status, q, pageNum, pageSizeNum);
+    return result;
   }
 
   @Post('api/admin/stories/:id/approve')
@@ -622,6 +633,125 @@ export class ViewController {
   // ===================================================================
   // 📚 STORY LIST - Trang danh sách truyện với filter
   // ===================================================================
+
+  // ===================================================================
+  // 📋 API: Admin Chapters Management
+  // ===================================================================
+  @Get('api/admin/chapters')
+  async apiAdminChapters(
+    @Query('status') status?: string,
+    @Query('q') q?: string,
+    @Query('page') page?: string,
+    @Query('pageSize') pageSize?: string,
+  ) {
+    const pageNum = page ? parseInt(page, 10) : 1;
+    const pageSizeNum = pageSize ? parseInt(pageSize, 10) : 10;
+    const result = await this.viewService.getAdminChapters(status, q, pageNum, pageSizeNum);
+    return result;
+  }
+
+  @Post('api/admin/chapters/:id/approve')
+  async apiApproveChapter(@Param('id') id: string) {
+    const ok = await this.viewService.approveChapter(id);
+    return { success: ok };
+  }
+
+  @Post('api/admin/chapters/:id/reject')
+  async apiRejectChapter(@Param('id') id: string) {
+    const ok = await this.viewService.rejectChapter(id);
+    return { success: ok };
+  }
+
+  @Delete('api/admin/chapters/:id')
+  async apiDeleteChapter(@Param('id') id: string) {
+    const ok = await this.viewService.deleteChapter(id);
+    return { success: ok };
+  }
+
+  // ===================================================================
+  // 👥 API: Admin Users Management
+  // ===================================================================
+  @Get('api/admin/users')
+  async apiAdminUsers(
+    @Query('role') role?: string,
+    @Query('q') q?: string,
+    @Query('page') page?: string,
+    @Query('pageSize') pageSize?: string,
+  ) {
+    const pageNum = page ? parseInt(page, 10) : 1;
+    const pageSizeNum = pageSize ? parseInt(pageSize, 10) : 10;
+    const result = await this.viewService.getAdminUsers(role, q, pageNum, pageSizeNum);
+    return result;
+  }
+
+  @Post('api/admin/users/:id/lock')
+  async apiLockUser(@Param('id') id: string) {
+    const ok = await this.viewService.lockUser(id);
+    return { success: ok };
+  }
+
+  @Post('api/admin/users/:id/unlock')
+  async apiUnlockUser(@Param('id') id: string) {
+    const ok = await this.viewService.unlockUser(id);
+    return { success: ok };
+  }
+
+  @Post('api/admin/users/:id/demote')
+  async apiDemoteUser(@Param('id') id: string) {
+    const ok = await this.viewService.demoteAuthor(id);
+    return { success: ok };
+  }
+
+  // ===================================================================
+  // 📋 API: Admin Reports Management
+  // ===================================================================
+  @Get('api/admin/reports')
+  async apiAdminReports(
+    @Query('status') status?: string,
+    @Query('q') q?: string,
+    @Query('page') page?: string,
+    @Query('pageSize') pageSize?: string,
+  ) {
+    const pageNum = page ? parseInt(page, 10) : 1;
+    const pageSizeNum = pageSize ? parseInt(pageSize, 10) : 10;
+    const result = await this.viewService.getAdminReports(status, q, pageNum, pageSizeNum);
+    return result;
+  }
+
+  @Post('api/admin/reports/:id/resolve')
+  async apiResolveReport(@Param('id') id: string) {
+    const ok = await this.viewService.resolveReport(id);
+    return { success: ok };
+  }
+
+  @Post('api/admin/reports/:id/pending')
+  async apiPendingReport(@Param('id') id: string) {
+    const ok = await this.viewService.pendingReport(id);
+    return { success: ok };
+  }
+
+  @Get('api/admin/author-requests')
+  async apiGetAuthorRequests(
+    @Query('page') page: string = '1',
+    @Query('pageSize') pageSize: string = '10',
+  ) {
+    const pageNum = Math.max(1, parseInt(page) || 1);
+    const pageSizeNum = Math.max(1, parseInt(pageSize) || 10);
+    const { data, total } = await this.viewService.getAdminAuthorRequests(pageNum, pageSizeNum);
+    return { data, total };
+  }
+
+  @Post('api/admin/author-requests/:id/approve')
+  async apiApproveAuthorRequest(@Param('id') id: string) {
+    const ok = await this.viewService.approveAuthorRequest(id);
+    return { success: ok };
+  }
+
+  @Post('api/admin/author-requests/:id/reject')
+  async apiRejectAuthorRequest(@Param('id') id: string) {
+    const ok = await this.viewService.rejectAuthorRequest(id);
+    return { success: ok };
+  }
 
   @Get('stories')
   @Render('story-list')

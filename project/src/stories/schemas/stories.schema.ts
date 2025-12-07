@@ -24,6 +24,10 @@ export class Story {
   @Prop()
   description: string;
 
+  // ✅ NEW: Track chapter count directly
+  @Prop({ type: Number, default: 0 })
+  chapterCount: number;
+
   // Số chương dự tính để xác định hoàn thành hay chưa
   @Prop({ type: Number, required: false, default: null })
   expectedTotalChapters: number | null;
@@ -48,15 +52,14 @@ export class Story {
 }
 
 export const StorySchema = SchemaFactory.createForClass(Story);
+
 /**
  * 🧹 Hook cascade delete
  */
-
 StorySchema.pre('findOneAndDelete', async function (next) {
   const query = this.getQuery() as Record<string, unknown>;
   const storyId = query['_id'] as string;
 
-  // ✅ ép kiểu rõ ràng, không còn "any"
   const model = this.model as Model<Story>;
   const conn: Connection = model.db as unknown as Connection;
 
