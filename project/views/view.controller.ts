@@ -11,11 +11,13 @@ import {
   Post,
   Delete,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import type { Request } from 'express';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types, Document } from 'mongoose';
 import { ViewService } from './view.service';
+import { AdminGuard } from '../src/auth/guards/admin.guard';
 
 // Import schemas
 import { Story, StoryDocument } from '../src/stories/schemas/stories.schema';
@@ -371,16 +373,18 @@ export class ViewController {
   // ===================================================================
   // ⚙️ ADMIN PAGE
   // ===================================================================
+  @UseGuards(AdminGuard)
   @Get('admin')
   @Render('admin')
-  async getAdmin() {
+  async getAdmin(@Req() req: Request) {
     const allCategories = await this.viewService.getAllCategories();
     return { allCategories };
   }
 
   // API: Admin overview statistics
+  @UseGuards(AdminGuard)
   @Get('api/admin/overview')
-  async apiAdminOverview() {
+  async apiGetAdminOverview() {
     return await this.viewService.getAdminOverview();
   }
 
@@ -560,30 +564,35 @@ export class ViewController {
   // ===================================================================
   // 📊 API: Lấy dữ liệu biểu đồ
   // ===================================================================
+  @UseGuards(AdminGuard)
   @Get('api/admin/reading-stats-daily')
-  async apiReadingStatsDaily() {
+  async apiGetReadingStatsDaily() {
     const stats = await this.viewService.getReadingStatsDaily();
     return { data: stats };
   }
 
+  @UseGuards(AdminGuard)
   @Get('api/admin/revenue-stats-monthly-coins')
   async apiRevenueStatsMonthlyCoins() {
     const stats = await this.viewService.getRevenueStatsMonthlyCoins();
     return { data: stats };
   }
 
+  @UseGuards(AdminGuard)
   @Get('api/admin/revenue-stats-monthly')
   async apiRevenueStatsMonthly() {
     const stats = await this.viewService.getRevenueStatsMonthly();
     return { data: stats };
   }
 
+  @UseGuards(AdminGuard)
   @Get('api/admin/recent-reports')
-  async apiRecentReports() {
+  async apiGetRecentReports() {
     const reports = await this.viewService.getRecentReports();
     return { data: reports };
   }
 
+  @UseGuards(AdminGuard)
   @Get('api/admin/stories')
   async apiAdminStories(
     @Query('status') status?: string,
@@ -597,18 +606,21 @@ export class ViewController {
     return result;
   }
 
+  @UseGuards(AdminGuard)
   @Post('api/admin/stories/:id/approve')
   async apiApproveStory(@Param('id') id: string) {
     const ok = await this.viewService.approveStory(id);
     return { success: ok };
   }
 
+  @UseGuards(AdminGuard)
   @Post('api/admin/stories/:id/reject')
   async apiRejectStory(@Param('id') id: string) {
     const ok = await this.viewService.rejectStory(id);
     return { success: ok };
   }
 
+  @UseGuards(AdminGuard)
   @Delete('api/admin/stories/:id')
   async apiDeleteStory(@Param('id') id: string) {
     const ok = await this.viewService.deleteStory(id);
@@ -637,6 +649,7 @@ export class ViewController {
   // ===================================================================
   // 📋 API: Admin Chapters Management
   // ===================================================================
+  @UseGuards(AdminGuard)
   @Get('api/admin/chapters')
   async apiAdminChapters(
     @Query('status') status?: string,
@@ -650,18 +663,21 @@ export class ViewController {
     return result;
   }
 
+  @UseGuards(AdminGuard)
   @Post('api/admin/chapters/:id/approve')
   async apiApproveChapter(@Param('id') id: string) {
     const ok = await this.viewService.approveChapter(id);
     return { success: ok };
   }
 
+  @UseGuards(AdminGuard)
   @Post('api/admin/chapters/:id/reject')
   async apiRejectChapter(@Param('id') id: string) {
     const ok = await this.viewService.rejectChapter(id);
     return { success: ok };
   }
 
+  @UseGuards(AdminGuard)
   @Delete('api/admin/chapters/:id')
   async apiDeleteChapter(@Param('id') id: string) {
     const ok = await this.viewService.deleteChapter(id);
@@ -671,6 +687,7 @@ export class ViewController {
   // ===================================================================
   // 👥 API: Admin Users Management
   // ===================================================================
+  @UseGuards(AdminGuard)
   @Get('api/admin/users')
   async apiAdminUsers(
     @Query('role') role?: string,
@@ -684,18 +701,21 @@ export class ViewController {
     return result;
   }
 
+  @UseGuards(AdminGuard)
   @Post('api/admin/users/:id/lock')
   async apiLockUser(@Param('id') id: string) {
     const ok = await this.viewService.lockUser(id);
     return { success: ok };
   }
 
+  @UseGuards(AdminGuard)
   @Post('api/admin/users/:id/unlock')
   async apiUnlockUser(@Param('id') id: string) {
     const ok = await this.viewService.unlockUser(id);
     return { success: ok };
   }
 
+  @UseGuards(AdminGuard)
   @Post('api/admin/users/:id/demote')
   async apiDemoteUser(@Param('id') id: string) {
     const ok = await this.viewService.demoteAuthor(id);
@@ -705,6 +725,7 @@ export class ViewController {
   // ===================================================================
   // 📋 API: Admin Reports Management
   // ===================================================================
+  @UseGuards(AdminGuard)
   @Get('api/admin/reports')
   async apiAdminReports(
     @Query('status') status?: string,
@@ -718,18 +739,21 @@ export class ViewController {
     return result;
   }
 
+  @UseGuards(AdminGuard)
   @Post('api/admin/reports/:id/resolve')
   async apiResolveReport(@Param('id') id: string) {
     const ok = await this.viewService.resolveReport(id);
     return { success: ok };
   }
 
+  @UseGuards(AdminGuard)
   @Post('api/admin/reports/:id/pending')
   async apiPendingReport(@Param('id') id: string) {
     const ok = await this.viewService.pendingReport(id);
     return { success: ok };
   }
 
+  @UseGuards(AdminGuard)
   @Get('api/admin/author-requests')
   async apiGetAuthorRequests(
     @Query('page') page: string = '1',
@@ -741,12 +765,14 @@ export class ViewController {
     return { data, total };
   }
 
+  @UseGuards(AdminGuard)
   @Post('api/admin/author-requests/:id/approve')
   async apiApproveAuthorRequest(@Param('id') id: string) {
     const ok = await this.viewService.approveAuthorRequest(id);
     return { success: ok };
   }
 
+  @UseGuards(AdminGuard)
   @Post('api/admin/author-requests/:id/reject')
   async apiRejectAuthorRequest(@Param('id') id: string) {
     const ok = await this.viewService.rejectAuthorRequest(id);

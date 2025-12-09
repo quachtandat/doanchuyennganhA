@@ -37,6 +37,45 @@
     });
 })();
 
+// If the server redirected with ?token=..., save it so subsequent fetches can use it,
+// then remove the token from the URL to avoid leaking it in referers.
+(function(){
+    try{
+        const params = new URLSearchParams(window.location.search);
+        const t = params.get('token');
+        if(t){
+            try{ localStorage.setItem('accessToken', t); }catch(e){}
+            params.delete('token');
+            const newSearch = params.toString();
+            const newUrl = window.location.pathname + (newSearch ? ('?' + newSearch) : '');
+            history.replaceState(null, '', newUrl);
+        }
+    }catch(e){ /* ignore */ }
+})();
+
+// Auto-insert Authorization header for admin API fetches
+(function(){
+    const _fetch = window.fetch.bind(window);
+    window.fetch = function(input, init){
+        try{
+            let url = '';
+            if(typeof input === 'string') url = input;
+            else if(input && input.url) url = input.url;
+
+            if(typeof url === 'string' && url.startsWith('/api/admin')){
+                init = init || {};
+                init.headers = init.headers || {};
+                const token = localStorage.getItem('accessToken');
+                if(token){
+                    if(init.headers instanceof Headers) init.headers.set('Authorization', 'Bearer ' + token);
+                    else init.headers['Authorization'] = 'Bearer ' + token;
+                }
+            }
+        }catch(e){ /* best effort */ }
+        return _fetch(input, init);
+    };
+})();
+
 // Fetch admin overview
 async function loadOverview(){
     try{
@@ -1214,4 +1253,27 @@ if (reportStatusFilterDropdown) {
             } catch (err) { console.error(err); }
         }
     });
+})();
+
+// Ensure admin API requests include Authorization header from localStorage
+(function(){
+    try {
+        const originalFetch = window.fetch.bind(window);
+        window.fetch = async (input, init = {}) => {
+            try {
+                const url = typeof input === 'string' ? input : (input && input.url) || '';
+                if (typeof url === 'string' && url.startsWith('/api/admin')) {
+                    const token = localStorage.getItem('accessToken');
+                    if (token) {
+                        init.headers = Object.assign({}, init.headers || {}, { 'Authorization': `Bearer ${token}` });
+                    }
+                }
+            } catch (e) {
+                // ignore
+            }
+            return originalFetch(input, init);
+        };
+    } catch (e) {
+        // ignore if fetch cannot be wrapped
+    }
 })();

@@ -17,6 +17,25 @@ export class Comment extends Document {
 
   @Prop({ default: false })
   isHidden: boolean;
+
+  @Prop({
+    type: [
+      {
+        _id: false,
+        content: String,
+        authorId: String,
+        authorName: String,
+        createdAt: { type: Date, default: Date.now },
+      },
+    ],
+    default: [],
+  })
+  replies?: Array<{
+    content: string;
+    authorId: string;
+    authorName: string;
+    createdAt: Date;
+  }>;
 }
 
 export type CommentDocument = Comment & Document;

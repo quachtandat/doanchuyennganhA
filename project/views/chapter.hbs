@@ -188,8 +188,31 @@
             <a href="/story/{{story.id}}/chapter/{{chapter.id}}" class="text-decoration-none">
                 <p class="text-center text-dark">{{chapter.title}}</p>
             </a>
+            
             <hr class="chapter-start container-fluid">
             
+            <!-- Text-to-Speech Controls -->
+                <div class="text-center mb-3">
+                    <button class="btn btn-primary me-2" id="playBtn">
+                        <i class="fas fa-play"></i> Nghe truyện
+                    </button>
+                    <button class="btn btn-secondary me-2" id="pauseBtn" style="display: none;">
+                        <i class="fas fa-pause"></i> Tạm dừng
+                    </button>
+                    <button class="btn btn-warning me-2" id="stopBtn" style="display: none;">
+                        <i class="fas fa-stop"></i> Dừng
+                    </button>
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-outline-secondary btn-sm" id="speedDown">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm" id="speedDisplay">1x</button>
+                        <button class="btn btn-outline-secondary btn-sm" id="speedUp">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
             <!-- Chapter Navigation - Top -->
             <div class="chapter-nav text-center">
                 <div class="chapter-actions chapter-actions-origin d-flex align-items-center justify-content-center">
@@ -231,6 +254,8 @@
                     <div class="chapter-content mb-3" style="white-space: pre-line; line-height: 2; font-size: 1.1rem;" id="chapterContent">
                         {{{chapter.content}}}
                     </div>
+
+                    
                     
                     <!-- Text-to-Speech Controls -->
                     <div class="tts-controls">
@@ -253,6 +278,9 @@
                             </button>
                         </div>
                     </div>
+
+
+
                 {{else}}
                     <!-- Not purchased - Show VIP lock -->
                     <div id="vip-lock-section">
@@ -302,28 +330,69 @@
                 <div class="chapter-content mb-3" style="white-space: pre-line; line-height: 2; font-size: 1.1rem;" id="chapterContent">
                     {{{chapter.content}}}
                 </div>
-                
-                <!-- Text-to-Speech Controls -->
-                <div class="text-center mb-3">
-                    <button class="btn btn-primary me-2" id="playBtn">
-                        <i class="fas fa-play"></i> Nghe truyện
+
+            <div class="text-center px-2 py-2 alert alert-success d-none d-lg-block" role="alert">
+                Bạn có thể dùng phím mũi tên hoặc WASD để lùi/sang chương
+            </div>
+              
+            <hr class="chapter-start container-fluid">
+            
+            <!-- Text-to-Speech Controls -->
+            
+            <div class="text-center mb-3">
+                <button class="btn btn-primary me-2" id="playBtn">
+                    <i class="fas fa-play"></i> Nghe truyện
+                </button>
+                <button class="btn btn-secondary me-2" id="pauseBtn" style="display: none;">
+                    <i class="fas fa-pause"></i> Tạm dừng
+                </button>
+                <button class="btn btn-warning me-2" id="stopBtn" style="display: none;">
+                    <i class="fas fa-stop"></i> Dừng
+                </button>
+                <div class="btn-group" role="group">
+                    <button class="btn btn-outline-secondary btn-sm" id="speedDown">
+                        <i class="fas fa-minus"></i>
                     </button>
-                    <button class="btn btn-secondary me-2" id="pauseBtn" style="display: none;">
-                        <i class="fas fa-pause"></i> Tạm dừng
+                    <button class="btn btn-outline-secondary btn-sm" id="speedDisplay">1x</button>
+                    <button class="btn btn-outline-secondary btn-sm" id="speedUp">
+                        <i class="fas fa-plus"></i>
                     </button>
-                    <button class="btn btn-warning me-2" id="stopBtn" style="display: none;">
-                        <i class="fas fa-stop"></i> Dừng
-                    </button>
-                    <div class="btn-group" role="group">
-                        <button class="btn btn-outline-secondary btn-sm" id="speedDown">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button class="btn btn-outline-secondary btn-sm" id="speedDisplay">1x</button>
-                        <button class="btn btn-outline-secondary btn-sm" id="speedUp">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
                 </div>
+            </div>
+
+            <!-- Chapter Navigation - Top -->
+            <div class="chapter-nav text-center">
+                <div class="chapter-actions chapter-actions-origin d-flex align-items-center justify-content-center">
+                    {{#if chapter.prevChapter}}
+                    <a class="btn btn-success me-1 chapter-prev" href="/story/{{story.id}}/chapter/{{chapter.prevChapter}}" title="Chương trước">
+                        <span>Chương </span>trước
+                    </a>
+                    {{else}}
+                    <a class="btn btn-success me-1 chapter-prev disabled" href="#" title="Chương trước">
+                        <span>Chương </span>trước
+                    </a>
+                    {{/if}}
+
+                    <button class="btn btn-success chapter_jump me-1" data-bs-toggle="modal" data-bs-target="#chapterListModal" id="openChapterListBtn">
+                        <span>
+                            <svg style="fill: #fff;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                                <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0 32 14.3 32 32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path>
+                            </svg>
+                        </span>
+                    </button>
+
+                    {{#if chapter.nextChapter}}
+                    <a class="btn btn-success chapter-next" href="/story/{{story.id}}/chapter/{{chapter.nextChapter}}" title="Chương tiếp">
+                        <span>Chương </span>tiếp
+                    </a>
+                    {{else}}
+                    <a class="btn btn-success chapter-next disabled" href="#" title="Chương tiếp">
+                        <span>Chương </span>tiếp
+                    </a>
+                    {{/if}}
+                </div>
+            </div>
+            <hr class="chapter-end container-fluid">
             {{/if}}
 
             <!-- Comments and Report -->
@@ -347,9 +416,7 @@
                 </div>
             </div>
 
-            <div class="text-center px-2 py-2 alert alert-success d-none d-lg-block" role="alert">
-                Bạn có thể dùng phím mũi tên hoặc WASD để lùi/sang chương
-            </div>
+            
         </div>
 
         <!-- Chapter Navigation - Bottom (Mobile) -->

@@ -17,8 +17,9 @@ export class CreateStoryDto {
   @IsNotEmpty()
   slug: string;
 
+  @IsOptional()
   @IsMongoId()
-  authorId: string;
+  authorId?: string;
 
   @IsOptional()
   @IsArray()

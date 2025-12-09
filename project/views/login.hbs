@@ -429,7 +429,9 @@
                     setTimeout(() => {
                         const role = (data && data.user && data.user.role) || 'reader';
                         if (role === 'admin') {
-                            window.location.replace('/admin');
+                            // Include token in query so server-side AdminGuard can validate on initial page load
+                            const token = encodeURIComponent(data.accessToken || '');
+                            window.location.replace('/admin' + (token ? ('?token=' + token) : ''));
                         } else if (role === 'author') {
                             window.location.replace('/author');
                         } else {

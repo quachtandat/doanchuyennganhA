@@ -16,6 +16,7 @@ import { Purchase, PurchaseSchema } from '../src/purchases/schemas/purchases.sch
 import { Payment, PaymentSchema } from '../src/payments/schemas/payment.schema';
 import { Report, ReportSchema } from '../src/reports/schemas/reports.schema';
 import { AuthorRequest, AuthorRequestSchema } from '../src/author_requests/schemas/author_request.schema';
+import { AuthModule } from '../src/auth/auth.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { AuthorRequest, AuthorRequestSchema } from '../src/author_requests/schem
       { name: Report.name, schema: ReportSchema },
       { name: AuthorRequest.name, schema: AuthorRequestSchema },
     ]),
+    AuthModule,
   ],
   controllers: [ViewController],
   providers: [ViewService],

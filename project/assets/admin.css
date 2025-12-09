@@ -12,6 +12,12 @@ body {
     background-color: #f4f7f9; /* Light grey background for the whole page */
 }
 
+/* Layout variables */
+:root {
+    --sidebar-width: 250px;
+    --header-height: 60px;
+}
+
 /* Dashboard Layout */
 .dashboard-container {
     display: flex;
@@ -20,11 +26,18 @@ body {
 
 /* 1. Sidebar Styling */
 .sidebar {
-    width: 250px; /* Fixed width for the sidebar */
-    background-color: #ffffff; /* White background */
+    width: var(--sidebar-width);
+    background-color: #ffffff;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
     padding-top: 20px;
     border-right: 1px solid #e0e0e0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar-header {
@@ -34,9 +47,21 @@ body {
     color: #333;
 }
 
-.sidebar-nav ul {
-    list-style: none;
+.sidebar-nav {
+    overflow: auto;
+    flex: 1 1 auto;
 }
+
+.sidebar-nav ul { list-style: none; padding: 0; margin: 0; }
+
+.sidebar-footer {
+    padding: 12px 16px;
+    border-top: 1px solid #e9eef3;
+    background: transparent;
+}
+
+.sidebar-divider { height: 1px; background: #e9eef3; margin: 8px 0; }
+.sidebar-logout-wrap { display:flex; justify-content:center; }
 
 .nav-item {
     display: flex;
@@ -68,6 +93,7 @@ body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    margin-left: var(--sidebar-width);
 }
 
 /* 2. Header Styling */
@@ -78,7 +104,12 @@ body {
     padding: 10px 30px;
     background-color: #ffffff;
     border-bottom: 1px solid #e0e0e0;
-    height: 60px;
+    height: var(--header-height);
+    position: fixed;
+    top: 0;
+    left: var(--sidebar-width);
+    right: 0;
+    z-index: 60;
 }
 
 body.dark .header {
@@ -171,6 +202,7 @@ body.dark .logout-btn:hover {
 /* 3. Dashboard Body and Cards */
 .dashboard-body {
     padding: 30px;
+    padding-top: calc(var(--header-height) + 30px);
 }
 
 .dashboard-body h1 {

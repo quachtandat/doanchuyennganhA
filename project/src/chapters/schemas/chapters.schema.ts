@@ -26,7 +26,7 @@ export class Chapter {
 
   @Prop({
     type: String,
-    enum: ['draft', 'published', 'removed'],
+    enum: ['draft', 'pending', 'published', 'removed'],
     default: 'draft',
   })
   status: string;
