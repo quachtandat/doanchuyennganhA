@@ -100,35 +100,6 @@
                                 </div>
                                 <div class="col-12 col-md-12 col-lg-9">
                                     <h3 class="text-center story-name">{{story.title}}</h3>
-                                    
-                                    {{!-- Rating block: interactive 1..5 stars + average/count --}}
-                                    <div id="story-rating" class="rate-story mb-2" data-story-id="{{story.id}}" data-original-average="{{#if story.ratingAverage}}{{story.ratingAverage}}{{else}}{{story.rating}}{{/if}}" data-count="{{#if story.ratingCount}}{{story.ratingCount}}{{else}}{{story.ratingCount}}{{/if}}">
-                                        <style>
-                                        /* Simple star display: back (gray) and front (gold) overlay */
-                                        .star-rating{font-size:20px;line-height:1;display:inline-block;position:relative;}
-                                        .star-back, .star-front{font-family: inherit;}
-                                        .star-back{color:#ccc}
-                                        .star-front{color:#ffc107;position:absolute;left:0;top:0;overflow:hidden;white-space:nowrap;width:0}
-                                        .star-interactive{display:inline-block;margin-left:8px}
-                                        .star-interactive .star-btn{background:none;border:0;padding:0;margin:0 2px;cursor:pointer}
-                                        .star-interactive .star-btn span{font-size:20px;color:#ffc107}
-                                        /* Visual indicator for user's selection */
-                                        .star-interactive .star-btn.selected span{transform:scale(1.2);text-shadow:0 2px 6px rgba(0,0,0,0.25)}
-                                        </style>
-
-                                        <div class="star-rating" aria-hidden="true">
-                                            <div class="star-back">★★★★★</div>
-                                            <div class="star-front" style="width:0">★★★★★</div>
-                                        </div>
-
-                                        <div class="rate-story__value d-inline-block ms-2">
-                                            <em>Đánh giá: <strong id="story-rating-average">{{#if story.ratingAverage}}{{story.ratingAverage}}{{else}}{{story.rating}}{{/if}}</strong> từ <strong id="story-rating-count">{{#if story.ratingCount}}{{story.ratingCount}}{{else}}0{{/if}} lượt đánh giá</strong></em>
-                                        </div>
-
-                                        <div class="star-interactive" title="Click để đánh giá">
-                                            {{!-- buttons injected by JS for accessibility/interaction --}}
-                                        </div>
-                                    </div>
 
                                     <div class="story-detail__top--desc px-3" style="max-height: 285px; white-space: pre-line;">
                                         {{story.description}}
@@ -161,7 +132,7 @@
                                     </p>
                                     <div class="d-flex align-items-center mb-1 flex-wrap">
                                         <strong class="me-1">Thể loại:</strong>
-                                        <div class="d-flex align-items-center flex-warp">
+                                        <div class="d-flex align-items-center flex-wrap">
                                             {{#each story.categories}}
                                             <a href="/category/{{this}}" class="text-decoration-none text-dark hover-title me-1">
                                                 {{this}}{{#unless @last}},{{/unless}}
@@ -172,6 +143,84 @@
                                     <p class="mb-1">
                                         <strong>Trạng thái:</strong>
                                         <span class="text-info">{{story.status}}</span>
+                                    </p>
+                                    <p class="mb-1">
+                                        <strong>Đánh giá:</strong>
+                                        <div id="story-rating" class="d-inline-flex align-items-center gap-2" data-story-id="{{story.id}}" data-original-average="{{#if story.ratingAverage}}{{story.ratingAverage}}{{else}}{{story.rating}}{{/if}}" data-count="{{#if story.ratingCount}}{{story.ratingCount}}{{else}}{{story.ratingCount}}{{/if}}">
+                                            <style>
+                                            #story-rating {
+                                                gap: 8px;
+                                            }
+                                            
+                                            #story-rating .star-display {
+                                                display: inline-block;
+                                                font-size: 16px;
+                                                color: #d4a574;
+                                                min-width: 80px;
+                                                cursor: pointer;
+                                            }
+                                            
+                                            #story-rating .star-interactive {
+                                                display: none;
+                                                margin-top: 5px;
+                                                text-align: center;
+                                            }
+                                            
+                                            #story-rating .star-interactive.active {
+                                                display: inline-flex;
+                                                
+                                            }
+                                            
+                                            #story-rating .star-interactive .star-btn {
+                                                background: none;
+                                                border: none;
+                                                padding: 0px 2px;
+                                                margin: 0;
+                                                cursor: pointer;
+                                                font-size: 16px;
+                                                color: #d4a574;
+                                                transition: all 0.2s ease;
+                                                display: inline-block;
+                                            }
+                                            
+                                            #story-rating .star-interactive .star-btn:hover {
+                                                transform: scale(1.2);
+                                                filter: drop-shadow(0 1px 3px rgba(0,0,0,0.2));
+                                            }
+                                            
+                                            #story-rating .rating-value-text {
+                                                display: inline-flex;
+                                                align-items: center;
+                                                gap: 6px;
+                                                font-size: 14px;
+                                            }
+                                            
+                                            #story-rating .rating-score {
+                                                font-weight: bold;
+                                                color: #333;
+                                            }
+                                            
+                                            #story-rating .rating-count {
+                                                color: #666;
+                                            }
+                                            
+                                            #story-rating .star-display {
+                                                color: #FFA500;
+                                                font-size: 18px;
+                                                letter-spacing: 2px;
+                                            }
+                                            </style>
+                                            
+                                            <span class="star-display" id="star-display" title="Click để đánh giá">★★★★☆</span>
+                                            
+                                            <div class="star-interactive" title="Click để đánh giá">
+                                                {{!-- buttons injected by JS for accessibility/interaction --}}
+                                            </div>
+                                            
+                                            <span class="rating-value-text">
+                                                <span class="rating-score" id="story-rating-average">{{#if story.ratingAverage}}{{story.ratingAverage}}{{else}}{{story.rating}}{{/if}}</span>
+                                            </span>
+                                        </div>
                                     </p>
                                 </div>
                             </div>

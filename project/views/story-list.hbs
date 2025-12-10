@@ -347,6 +347,157 @@
                 font-size: 12px;
             }
         }
+
+        .dark-theme body {
+            background-color: #514F4F !important;
+        }
+
+        .dark-theme .container h1,
+        .dark-theme h1 {
+            color: #fff !important;
+        }
+
+        .dark-theme .filter-container {
+            background: #3d3c3c !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .dark-theme .filter-title {
+            color: #b0b0b0 !important;
+        }
+
+        .dark-theme .filter-btn {
+            background: #2d2d2d !important;
+            color: #e9ecef !important;
+            border: 2px solid rgba(255, 255, 255, 0.15) !important;
+        }
+
+        .dark-theme .filter-btn:hover {
+            border-color: #667eea !important;
+            background: rgba(102, 126, 234, 0.2) !important;
+            color: #fff !important;
+        }
+
+        .dark-theme .filter-btn.active {
+            background: #667eea !important;
+            border-color: #667eea !important;
+            color: white !important;
+        }
+
+        .dark-theme .story-card {
+            background: #3d3c3c !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+        }
+
+        .dark-theme .story-card:hover {
+            border-color: #667eea !important;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3) !important;
+        }
+
+        .dark-theme .story-cover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
+        }
+
+        .dark-theme .story-title {
+            color: #fff !important;
+        }
+
+        .dark-theme .story-title a {
+            color: #fff !important;
+        }
+
+        .dark-theme .story-title a:hover {
+            color: #667eea !important;
+        }
+
+        .dark-theme .story-meta {
+            color: #b0b0b0 !important;
+        }
+
+        .dark-theme .story-meta svg {
+            fill: #b0b0b0 !important;
+        }
+
+        .dark-theme .story-meta-item {
+            color: #b0b0b0 !important;
+        }
+
+        .dark-theme .story-description {
+            color: #d0d0d0 !important;
+        }
+
+        .dark-theme .read-more {
+            color: #667eea !important;
+        }
+
+        .dark-theme .read-more:hover {
+            color: #8b9aee !important;
+        }
+
+        .dark-theme .loading {
+            color: #b0b0b0 !important;
+        }
+
+        .dark-theme .loading p {
+            color: #b0b0b0 !important;
+        }
+
+        .dark-theme .spinner-border {
+            color: #667eea !important;
+            border-color: #667eea !important;
+        }
+
+        .dark-theme .empty-state {
+            color: #b0b0b0 !important;
+        }
+
+        .dark-theme .empty-state h3 {
+            color: #fff !important;
+        }
+
+        .dark-theme .empty-state p {
+            color: #b0b0b0 !important;
+        }
+
+        .dark-theme .empty-state svg {
+            fill: #b0b0b0 !important;
+        }
+
+        .dark-theme .pagination {
+            background: transparent !important;
+        }
+
+        .dark-theme .pagination button {
+            background: #3d3c3c !important;
+            color: #e9ecef !important;
+            border: 2px solid rgba(255, 255, 255, 0.15) !important;
+        }
+
+        .dark-theme .pagination button:hover:not(:disabled) {
+            border-color: #667eea !important;
+            background: rgba(102, 126, 234, 0.2) !important;
+            color: #fff !important;
+        }
+
+        .dark-theme .pagination button:disabled {
+            background: #2d2d2d !important;
+            color: #666 !important;
+            opacity: 0.5 !important;
+        }
+
+        .dark-theme .pagination .page-info {
+            color: #b0b0b0 !important;
+        }
+
+        /* Ensure active buttons work in dark mode */
+        .dark-theme .filter-btn.active,
+        .dark-theme button.filter-btn.active {
+            background: #667eea !important;
+            border-color: #667eea !important;
+            color: white !important;
+        }
     </style>
 </head>
 <body>
@@ -416,6 +567,7 @@
     <script src="/assets/bootstrap.min.js"></script>
     <script src="/assets/common.js"></script>
     <script src="/assets/auth.js"></script>
+    <script src="/assets/app.js"></script>
     
     <script>
         // State management
@@ -669,6 +821,18 @@
                 </div>
             `;
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const bgColor = window.getCookie('bg_color');
+            const themeCheckbox = document.querySelector('.theme_mode');
+            
+            if (bgColor === 'dark') {
+                document.body.classList.add('dark-theme');
+                if (themeCheckbox) {
+                    themeCheckbox.checked = true;
+                }
+            }
+        });
     </script>
 </body>
 </html>

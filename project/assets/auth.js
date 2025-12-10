@@ -30,6 +30,7 @@
         .then(function (data) {
           // Update local storage with fresh data
           localStorage.setItem('userData', JSON.stringify(data));
+          localStorage.setItem('userId', data._id || data.id || '');
           showUserProfile(data);
         })
         .catch(function (error) {
@@ -39,6 +40,7 @@
           if (!window.location.pathname.includes('/account')) {
             localStorage.removeItem('accessToken');
             localStorage.removeItem('userData');
+            localStorage.removeItem('userId');
             showLoginButtons();
           } else {
             // On account page, try to show profile with cached data
@@ -112,6 +114,7 @@
     if (confirm('Bạn có chắc muốn đăng xuất?')) {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('userData');
+      localStorage.removeItem('userId');
       window.location.href = '/';
     }
   };

@@ -121,16 +121,17 @@
                                                 {{/each}}
                                             </p>
                                         </div>
-
-                                                                                <div class="story-item-no-image__chapters ms-2">
-                                                                                        <a href="/story/{{this.id}}/chapter/{{this.latestChapter}}" class="hover-title text-decoration-none text-info">
-                                                                                                {{#if this.latestChapter}}
-                                                                                                    Chương {{this.latestChapter}}
-                                                                                                {{else}}
-                                                                                                    Chương mới nhất
-                                                                                                {{/if}}
-                                                                                        </a>
-                                                                                </div>
+                                        <div class="story-item-no-image__chapters ms-2">
+                                            {{#if this.latestChapterId}}
+                                                <a href="/story/{{this.id}}/chapter/{{this.latestChapterId}}" class="hover-title text-decoration-none text-info">
+                                                    Chương {{this.latestChapterNumber}}
+                                                </a>
+                                            {{else}}
+                                                <a href="/story/{{this.id}}" class="hover-title text-decoration-none text-info">
+                                                    Chương mới nhất
+                                                </a>
+                                            {{/if}}
+                                        </div>
                                     </div>
                                     {{/each}}
                                 </div>

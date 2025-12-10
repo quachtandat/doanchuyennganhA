@@ -133,6 +133,7 @@ settingBackground.on('change', function (e) {
     window.location.reload()
 })
 
+
 $(document).ready(function () {
     const selectStoriesHot = $(".select-stories-hot")
     const wrapperSkeletonStoriesHot = $(".wrapper-skeleton")

@@ -6,8 +6,7 @@ $(document).ready(function () {
 
         // inject interactive star buttons (1..5)
         const interactiveHolder = ratingContainer.querySelector('.star-interactive');
-        const starRatingVisual = ratingContainer.querySelector('.star-rating');
-        const starFront = ratingContainer.querySelector('.star-front');
+        const starDisplay = document.getElementById('star-display');
         const avgEl = document.getElementById('story-rating-average');
         const countEl = document.getElementById('story-rating-count');
 
@@ -15,18 +14,23 @@ $(document).ready(function () {
         let avg = origAvgRaw;
         // if original scale is out of 5 (e.g., out of 10), normalize: if >5 assume it's out of 10
         if (origAvgRaw > 5) avg = origAvgRaw / 2;
-        const count = parseInt(ratingContainer.dataset.count) || 0;
+        let count = parseInt(ratingContainer.dataset.count) || 0;
 
-        function setVisualAverage(v) {
-            const pct = Math.max(0, Math.min(100, (v / 5) * 100));
-            if (starFront) starFront.style.width = pct + '%';
-            if (avgEl) avgEl.textContent = (Math.round(v * 10) / 10).toFixed(1);
-            if (countEl) countEl.textContent = (count || 0) + ' lượt đánh giá';
+        function updateDisplay(newAvg, newCount) {
+            if (avgEl) avgEl.textContent = (Math.round(newAvg * 10) / 10).toFixed(1);
+            if (countEl) countEl.textContent = newCount;
+            updateStarDisplay(newAvg);
         }
 
-        setVisualAverage(avg);
+        function updateStarDisplay(rating) {
+            const fullStars = Math.floor(rating);
+            const stars = '★'.repeat(fullStars) + '☆'.repeat(5 - fullStars);
+            if (starDisplay) starDisplay.textContent = stars;
+        }
 
-        // create buttons
+        updateDisplay(avg, count);
+
+        // create star buttons
         if (interactiveHolder) {
             for (let i = 1; i <= 5; i++) {
                 const btn = document.createElement('button');
@@ -34,63 +38,65 @@ $(document).ready(function () {
                 btn.className = 'star-btn';
                 btn.dataset.value = i;
                 btn.title = i + ' sao';
-                btn.innerHTML = '<span>★</span>';
-                btn.addEventListener('mouseover', function () {
-                    const v = Number(this.dataset.value);
-                    if (starFront) starFront.style.width = (v / 5 * 100) + '%';
-                });
-                btn.addEventListener('mouseout', function () {
-                    setVisualAverage(avg);
-                });
-                btn.addEventListener('click', async function () {
-                    const v = Number(this.dataset.value);
+                btn.innerHTML = '★';
+                
+                btn.addEventListener('click', async function (e) {
+                    e.preventDefault();
+                    const ratingValue = Number(this.dataset.value);
+                    
                     // require login
                     const token = localStorage.getItem('accessToken');
                     if (!token) return window.location.href = '/auth/login';
+                    
                     const storyId = ratingContainer.dataset.storyId;
                     try {
                         const res = await fetch(`/stories/${encodeURIComponent(storyId)}/rating`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
-                            body: JSON.stringify({ rating: v })
+                            body: JSON.stringify({ rating: ratingValue })
                         });
+                        
                         if (!res.ok) {
                             const txt = await res.text();
                             console.warn('Submit rating failed', res.status, txt);
-                            alert('Không thể gửi đánh giá.');
+                            showThankYouModal('Lỗi', 'Không thể gửi đánh giá.');
                             return;
                         }
+                        
                         const json = await res.json();
-                        // expected { average: number, count: number } (avg may be on 10-scale)
-                        let newAvg = json.average ?? json.avg ?? json.rating ?? null;
-                        const newCount = json.count ?? json.total ?? null;
-                        if (newAvg !== null && newAvg !== undefined) {
-                            if (newAvg > 5) newAvg = newAvg / 2;
-                            avg = Number(newAvg);
-                        }
-                        if (newCount !== null && newCount !== undefined) {
-                            if (countEl) countEl.textContent = newCount + ' lượt đánh giá';
-                        }
-                        setVisualAverage(avg);
-                        // highlight user selection
-                        try { highlightUserRating(v); } catch(e) {}
-                        alert('Cảm ơn bạn đã đánh giá!');
+                        let newAvg = json.average ?? json.avg ?? json.rating ?? avg;
+                        const newCount = json.count ?? json.total ?? count;
+                        
+                        if (newAvg > 5) newAvg = newAvg / 2;
+                        avg = Number(newAvg);
+                        count = newCount;
+                        
+                        updateDisplay(avg, count);
+                        showThankYouModal('Cảm ơn!', 'Cảm ơn bạn đã đánh giá!');
+                        hideRatingButtons();
                     } catch (e) {
                         console.error('Error submitting rating', e);
-                        alert('Lỗi khi gửi đánh giá');
+                        showThankYouModal('Lỗi', 'Lỗi khi gửi đánh giá');
                     }
                 });
+                
                 interactiveHolder.appendChild(btn);
             }
 
-            // helper: highlight user's rating (fill selected buttons up to value)
-            function highlightUserRating(val) {
-                const buttons = Array.from(interactiveHolder.querySelectorAll('.star-btn'));
-                buttons.forEach(b => {
-                    const v = Number(b.dataset.value);
-                    if (v <= val) b.classList.add('selected'); else b.classList.remove('selected');
-                });
+            // Show rating buttons on hover/click of star display
+            function showRatingButtons() {
+                interactiveHolder.classList.add('active');
             }
+
+            function hideRatingButtons() {
+                interactiveHolder.classList.remove('active');
+            }
+
+            starDisplay.addEventListener('click', showRatingButtons);
+            starDisplay.addEventListener('mouseover', showRatingButtons);
+            
+            // Hide buttons when mouse leaves rating container
+            ratingContainer.addEventListener('mouseleave', hideRatingButtons);
 
             // If user is logged in, fetch their existing rating and update UI
             (async function fetchMyRating(){
@@ -101,21 +107,55 @@ $(document).ready(function () {
                     const resp = await fetch(`/stories/${encodeURIComponent(storyId)}/rating`, { headers: { 'Authorization': 'Bearer ' + token } });
                     if (!resp.ok) return;
                     const j = await resp.json();
+                    
                     if (j.average !== undefined && j.average !== null) {
                         let readAvg = j.average;
                         if (readAvg > 5) readAvg = readAvg / 2;
                         avg = Number(readAvg);
-                        setVisualAverage(avg);
+                        updateDisplay(avg, count);
                     }
                     if (j.count !== undefined && j.count !== null) {
-                        if (countEl) countEl.textContent = j.count + ' lượt đánh giá';
-                    }
-                    if (j.myRating) {
-                        highlightUserRating(j.myRating);
+                        count = j.count;
+                        countEl.textContent = count;
                     }
                 } catch (e) { console.warn('Could not fetch my rating', e); }
             })();
         }
     } catch (e) { console.warn('story rating init failed', e); }
+
+    // Helper function to show thank you modal
+    function showThankYouModal(title, message) {
+        // Create modal if it doesn't exist
+        let modal = document.getElementById('ratingModal');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'ratingModal';
+            modal.className = 'modal fade';
+            modal.tabIndex = -1;
+            modal.innerHTML = `
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title" id="ratingModalTitle"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <div id="ratingModalMessage"></div>
+                        </div>
+                        <div class="modal-footer border-0">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // Update and show
+        document.getElementById('ratingModalTitle').textContent = title;
+        document.getElementById('ratingModalMessage').innerHTML = message;
+        const bsModal = new bootstrap.Modal(modal, { backdrop: 'static', keyboard: true });
+        bsModal.show();
+    }
 
 })

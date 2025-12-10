@@ -9,6 +9,7 @@ import { Purchase } from '../src/purchases/schemas/purchases.schema';
 import { Payment } from '../src/payments/schemas/payment.schema';
 import { Report } from '../src/reports/schemas/reports.schema';
 import { AuthorRequest, AuthorRequestDocument } from '../src/author_requests/schemas/author_request.schema';
+import { Comment, CommentDocument } from '../src/comments/schemas/comment.schema';
 
 type ReadingHistoryDocument = ReadingHistory & Document;
 type PurchaseDocument = Purchase & Document;
@@ -25,6 +26,7 @@ export class ViewService {
     @InjectModel(Payment.name) private readonly paymentModel: Model<PaymentDocument>,
     @InjectModel(Report.name) private readonly reportModel: Model<Report & Document>,
     @InjectModel(AuthorRequest.name) private readonly authorRequestModel: Model<AuthorRequestDocument>,
+    @InjectModel(Comment.name) private readonly commentModel: Model<CommentDocument>,
   ) { }
 
   /**
@@ -37,104 +39,93 @@ export class ViewService {
   }
 
   /**
-   * Lấy truyện hot (top 5 lượt truy cập cao nhất)
+   * Lấy truyện hot dựa trên HotScore
+   * HotScore = (ViewToday - ViewYesterday)*0.6 
+   *          + (ViewToday / (ViewLast7Days / 7))*0.3
+   *          + (CommentToday * 0.1)
    */
   async getHotStories(): Promise<any[]> {
-    // Nếu không có reading history, lấy truyện mới nhất làm hot stories
-    const readingHistoryCount = await this.readingHistoryModel.countDocuments();
-    console.log(`[HOT STORIES] Total reading history: ${readingHistoryCount}`);
-    
-    if (readingHistoryCount === 0) {
-      console.log('[HOT STORIES] No reading history, using fallback');
-      // Fallback: lấy truyện mới nhất nếu không có reading history
-      const stories = await this.storyModel
-        .find({ status: 'published' })
-        .sort({ createdAt: -1 })
-        .limit(5)
-        .lean();
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+    const sevenDaysAgo = new Date(today);
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
-      return stories.map((story, index) => ({
-        id: story._id.toString(),
-        title: story.title,
-        slug: story.slug,
-        image: story.coverUrl || '',
-        categories: story.category,
-        isHot: true,
-        isNew: false,
-        isFull: false,
-      }));
+    console.log(`[HOT STORIES] Today: ${today.toISOString()}, Yesterday: ${yesterday.toISOString()}, 7DaysAgo: ${sevenDaysAgo.toISOString()}`);
+
+    // Lấy tất cả truyện published
+    const allStories = await this.storyModel.find({ status: 'published' }).lean();
+    
+    if (allStories.length === 0) {
+      console.log('[HOT STORIES] No published stories found');
+      return [];
     }
 
-    // Sử dụng aggregation với xử lý cả string và ObjectId
-    // Tạm thời bỏ filter date để test với data cũ
-    const sevenDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000); // 30 ngày thay vì 7 ngày
-    console.log(`[HOT STORIES] Looking for history after: ${sevenDaysAgo}`);
-    
-    const results = await this.readingHistoryModel
-      .aggregate([
-        { $match: { lastReadAt: { $gte: sevenDaysAgo } } },
-        {
-          $addFields: {
-            storyObjectId: {
-              $cond: {
-                if: { $type: "$storyId" },
-                then: { $toObjectId: "$storyId" },
-                else: "$storyId"
-              }
-            }
-          }
-        },
-        {
-          $lookup: {
-            from: 'stories',
-            localField: 'storyObjectId',
-            foreignField: '_id',
-            as: 'story',
-          },
-        },
-        { $unwind: '$story' },
-        { $match: { 'story.status': 'published' } },
-        {
-          $group: {
-            _id: '$storyId',
-            title: { $first: '$story.title' },
-            slug: { $first: '$story.slug' },
-            coverUrl: { $first: '$story.coverUrl' },
-            category: { $first: '$story.category' },
-            totalReads: { $sum: 1 },
-          },
-        },
-        { $sort: { totalReads: -1 } },
-        { $limit: 5 },
-      ])
-      .exec();
+    // Tính toán HotScore cho mỗi truyện
+    const storiesWithScores = await Promise.all(
+      allStories.map(async (story) => {
+        const storyId = story._id.toString();
+        const storyObjectId = new Types.ObjectId(storyId);
 
-    console.log(`[HOT STORIES] Aggregation found ${results.length} results`);
-    console.log('[HOT STORIES] Results:', results);
+        // Tính views của hôm nay
+        const viewToday = await this.readingHistoryModel.countDocuments({
+          storyId: { $in: [storyId, storyObjectId] },
+          lastReadAt: { $gte: today },
+        });
 
-    // Nếu không có kết quả từ reading history, fallback về truyện mới nhất
-    if (results.length === 0) {
-      console.log('[HOT STORIES] No aggregation results, using fallback');
-      const stories = await this.storyModel
-        .find({ status: 'published' })
-        .sort({ createdAt: -1 })
-        .limit(5)
-        .lean();
+        // Tính views của hôm qua
+        const viewYesterday = await this.readingHistoryModel.countDocuments({
+          storyId: { $in: [storyId, storyObjectId] },
+          lastReadAt: { $gte: yesterday, $lt: today },
+        });
 
-      return stories.map((story, index) => ({
-        id: story._id.toString(),
-        title: story.title,
-        slug: story.slug,
-        image: story.coverUrl || '',
-        categories: story.category,
-        isHot: true,
-        isNew: false,
-        isFull: false,
-      }));
-    }
+        // Tính views trong 7 ngày
+        const viewLast7Days = await this.readingHistoryModel.countDocuments({
+          storyId: { $in: [storyId, storyObjectId] },
+          lastReadAt: { $gte: sevenDaysAgo },
+        });
 
-    console.log('[HOT STORIES] Using aggregation results');
-    return results.map((story) => ({
+        // Tính comments của hôm nay
+        const commentToday = await this.commentModel.countDocuments({
+          storyId: { $in: [storyId, storyObjectId] },
+          createdAt: { $gte: today },
+        });
+
+        // Tính HotScore
+        let hotScore = 0;
+        
+        // Thành phần 1: (ViewToday - ViewYesterday) * 0.6
+        hotScore += (viewToday - viewYesterday) * 0.6;
+        
+        // Thành phần 2: (ViewToday / (ViewLast7Days / 7)) * 0.3
+        const avgViewPerDay = viewLast7Days > 0 ? viewLast7Days / 7 : 1;
+        hotScore += (viewToday / avgViewPerDay) * 0.3;
+        
+        // Thành phần 3: CommentToday * 0.1
+        hotScore += commentToday * 0.1;
+
+        console.log(`[HOT STORIES] ${story.title}: viewToday=${viewToday}, viewYesterday=${viewYesterday}, viewLast7Days=${viewLast7Days}, commentToday=${commentToday}, hotScore=${hotScore.toFixed(2)}`);
+
+        return {
+          ...story,
+          hotScore,
+          viewToday,
+          viewYesterday,
+          viewLast7Days,
+          commentToday,
+        };
+      }),
+    );
+
+    // Sắp xếp theo HotScore giảm dần và lấy top 8
+    const topHotStories = storiesWithScores
+      .sort((a, b) => b.hotScore - a.hotScore)
+      .slice(0, 8);
+
+    console.log(`[HOT STORIES] Top 8 stories:`, topHotStories.map(s => ({ title: s.title, hotScore: s.hotScore })));
+
+    return topHotStories.map((story) => ({
       id: story._id.toString(),
       title: story.title,
       slug: story.slug,
@@ -270,15 +261,19 @@ export class ViewService {
       {
         $group: {
           _id: '$storyId',
+          latestChapterId: { $first: '$_id' },
           latestChapterNumber: { $first: '$number' },
         },
       },
     ]);
 
     const chapterMap = latestChapters.reduce((map, chapter) => {
-      map.set(chapter._id.toString(), chapter.latestChapterNumber);
+      map.set(chapter._id.toString(), {
+        id: chapter.latestChapterId.toString(),
+        number: chapter.latestChapterNumber,
+      });
       return map;
-    }, new Map<string, number>());
+    }, new Map<string, { id: string; number: number }>());
 
     return stories.map((story, index) => ({
       id: story._id.toString(),
@@ -292,7 +287,8 @@ export class ViewService {
         ? (new Date((story as any).createdAt).getTime() >= Date.now() - 14 * 24 * 60 * 60 * 1000)
         : false,
       isFull: false,
-      latestChapter: chapterMap.get(story._id.toString()) || 0,
+      latestChapterId: chapterMap.get(story._id.toString())?.id || null,
+      latestChapterNumber: chapterMap.get(story._id.toString())?.number || 0,
     }));
   }
 
@@ -494,40 +490,42 @@ export class ViewService {
 
     // Tính tiến độ dựa trên số chương đã đọc
     const historiesWithProgress = await Promise.all(
-      histories.map(async (history) => {
-        const storyId = (history.storyId as any)._id.toString();
-        
-        // Đếm tổng số chương của truyện
-        const totalChapters = await this.chapterModel.countDocuments({
-          storyId: { $in: [storyId, new Types.ObjectId(storyId)] },
-          status: 'published'
-        });
-        
-        // Đếm số chương đã đọc (dựa trên chương cuối đã đọc)
-        const lastChapterNumber = history.lastChapterId ? (history.lastChapterId as any).number : 0;
-        const readChapters = Math.max(0, lastChapterNumber);
-        
-        // Tính tiến độ phần trăm
-        const progress = totalChapters > 0 ? Math.min(100, Math.round((readChapters / totalChapters) * 100)) : 0;
-        const isFinished = progress >= 100;
+      histories
+        .filter(history => history.storyId !== null) // Lọc bỏ stories bị xóa
+        .map(async (history) => {
+          const storyId = (history.storyId as any)._id.toString();
+          
+          // Đếm tổng số chương của truyện
+          const totalChapters = await this.chapterModel.countDocuments({
+            storyId: { $in: [storyId, new Types.ObjectId(storyId)] },
+            status: 'published'
+          });
+          
+          // Đếm số chương đã đọc (dựa trên chương cuối đã đọc)
+          const lastChapterNumber = history.lastChapterId ? (history.lastChapterId as any).number : 0;
+          const readChapters = Math.max(0, lastChapterNumber);
+          
+          // Tính tiến độ phần trăm
+          const progress = totalChapters > 0 ? Math.min(100, Math.round((readChapters / totalChapters) * 100)) : 0;
+          const isFinished = progress >= 100;
 
-        return {
-          id: storyId,
-          title: (history.storyId as any).title,
-          slug: (history.storyId as any).slug,
-          image: (history.storyId as any).coverUrl || '',
-          categories: (history.storyId as any).category,
-          lastChapter: history.lastChapterId ? {
-            id: (history.lastChapterId as any)._id.toString(),
-            title: (history.lastChapterId as any).title,
-            number: (history.lastChapterId as any).number,
-          } : null,
-          lastReadAt: history.lastReadAt,
-          progress,
-          isFinished,
-          totalChapters,
-          readChapters,
-        };
+          return {
+            id: storyId,
+            title: (history.storyId as any).title,
+            slug: (history.storyId as any).slug,
+            image: (history.storyId as any).coverUrl || '',
+            categories: (history.storyId as any).category,
+            lastChapter: history.lastChapterId ? {
+              id: (history.lastChapterId as any)._id.toString(),
+              title: (history.lastChapterId as any).title,
+              number: (history.lastChapterId as any).number,
+            } : null,
+            lastReadAt: history.lastReadAt,
+            progressText: `${readChapters}/${totalChapters}`,
+            isFinished,
+            totalChapters,
+            readChapters,
+          };
       })
     );
 

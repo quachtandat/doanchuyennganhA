@@ -400,17 +400,20 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <h5 class="mb-3">Bình luận</h5>
-                        <div id="comments-list" class="mb-3"></div>
-                        <div class="input-group mb-3">
-                            <input id="comment-input" type="text" class="form-control" placeholder="Viết bình luận của bạn...">
-                            <button id="comment-submit" class="btn btn-success">Gửi</button>
+
+                        <div class="mb-3">
+                            <textarea id="comment-input" class="form-control" rows="3" placeholder="Viết bình luận của bạn..." style="resize:vertical"></textarea>
+                            <div class="text-end mt-2">
+                                <button id="comment-submit" class="btn btn-success">Gửi</button>
+                            </div>
                         </div>
+
+                        <div id="comments-list" class="mb-3"></div>
                     </div>
                     <div class="col-lg-4">
                         <h5 class="mb-3">Báo cáo chương</h5>
-                        <div class="input-group">
-                            <input id="report-reason" type="text" class="form-control" placeholder="Lý do báo cáo">
-                            <button id="report-submit" class="btn btn-outline-danger">Báo cáo</button>
+                        <div>
+                            <button id="open-chapter-report" class="btn btn-outline-danger">Báo cáo</button>
                         </div>
                     </div>
                 </div>
@@ -587,6 +590,60 @@
     </script>
 
     <script>
+        // Open report modal for a specific comment
+        function openReportModal({ commentId }){
+            let modalEl = document.getElementById('commentReportModal');
+            if (!modalEl) {
+                modalEl = document.createElement('div');
+                modalEl.className = 'modal fade';
+                modalEl.id = 'commentReportModal';
+                modalEl.tabIndex = -1;
+                modalEl.innerHTML = `
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Báo cáo chương</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <textarea id="report-comment-reason" class="form-control" rows="4" placeholder="Mô tả lý do báo cáo..."></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                            <button type="button" id="send-comment-report" class="btn btn-danger">Gửi báo cáo</button>
+                        </div>
+                    </div>
+                </div>`;
+                document.body.appendChild(modalEl);
+            }
+
+            modalEl.dataset.commentId = commentId || '';
+            const bs = new bootstrap.Modal(modalEl);
+            bs.show();
+
+            const sendBtn = modalEl.querySelector('#send-comment-report');
+            sendBtn.onclick = async function(){
+                const reason = modalEl.querySelector('#report-comment-reason').value.trim();
+                if (!reason) return alert('Vui lòng nhập lý do');
+                const token = localStorage.getItem('accessToken')||'';
+                const userId = localStorage.getItem('userId')||'';
+                const headers = { 'Content-Type': 'application/json' };
+                if (token) headers['Authorization'] = 'Bearer ' + token;
+                const body = { userId, storyId: '{{story.id}}', chapterId: '{{chapter.id}}', reason };
+                if (modalEl.dataset.commentId) body.commentId = modalEl.dataset.commentId;
+                const res = await fetch('/reports', { method: 'POST', headers, body: JSON.stringify(body) });
+                if (res.ok) {
+                    alert('Đã gửi báo cáo');
+                    bs.hide();
+                    modalEl.querySelector('#report-comment-reason').value = '';
+                } else {
+                    alert('Gửi báo cáo thất bại');
+                }
+            };
+        }
+    </script>
+
+    <script>
         // Load comments for this story/chapter and allow posting
         document.addEventListener('DOMContentLoaded', async function() {
             const storyId = '{{story.id}}';
@@ -606,33 +663,13 @@
                     await loadComments(storyId);
                 }
             };
-
-            document.getElementById('report-submit').onclick = async () => {
-                const token = localStorage.getItem('accessToken')||'';
-                const reason = document.getElementById('report-reason').value.trim();
-                if (!reason) return;
-                const headers = { 'Content-Type': 'application/json' };
-                if (token) headers['Authorization'] = 'Bearer ' + token;
-                // include userId if we have userData in localStorage
-                let userId = undefined;
-                try {
-                    const ud = JSON.parse(localStorage.getItem('userData') || 'null');
-                    userId = ud && (ud.id || ud._id || ud.userId || ud.user?.id) ? (ud.id || ud._id || ud.userId || ud.user?.id) : undefined;
-                } catch (e) { /* ignore */ }
-
-                const body = { storyId, chapterId, reason };
-                if (userId) body.userId = userId;
-
-                const res = await fetch('/reports', {
-                    method: 'POST',
-                    headers,
-                    body: JSON.stringify(body)
+            // Open chapter report modal when clicking the button
+            const openChapterReportBtn = document.getElementById('open-chapter-report');
+            if (openChapterReportBtn) {
+                openChapterReportBtn.addEventListener('click', function(){
+                    openReportModal({ commentId: '' });
                 });
-                if (res.ok) {
-                    document.getElementById('report-reason').value='';
-                    alert('Đã gửi báo cáo');
-                }
-            };
+            }
         });
 
         async function loadComments(storyId) {
@@ -644,10 +681,42 @@
               .filter(c => !c.isHidden)
               .filter(c => !c.chapterId || c.chapterId === '{{chapter.id}}')
               .forEach(c => {
-                const div = document.createElement('div');
-                div.className = 'border rounded p-2 mb-2';
-                div.textContent = (c.userId?.name||'Người dùng') + ': ' + c.content;
-                wrap.appendChild(div);
+                const container = document.createElement('div');
+                container.className = 'border rounded p-2 mb-2 comment-item';
+
+                // Header: name + actions
+                const header = document.createElement('div');
+                header.className = 'd-flex justify-content-between align-items-start';
+                const nameDiv = document.createElement('div');
+                nameDiv.innerHTML = '<strong>' + (c.userId?.name||'Người dùng') + '</strong>';
+                header.appendChild(nameDiv);
+
+                // no per-comment actions (report handled via chapter report button)
+
+                container.appendChild(header);
+
+                // Content (allow long text to wrap and preserve line breaks)
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'comment-content mt-2';
+                contentDiv.style.whiteSpace = 'pre-wrap';
+                contentDiv.style.wordBreak = 'break-word';
+                contentDiv.textContent = c.content || '';
+                container.appendChild(contentDiv);
+
+                // Replies (show any replies attached to the comment)
+                if (Array.isArray(c.replies) && c.replies.length) {
+                    c.replies.forEach(r => {
+                        const replyDiv = document.createElement('div');
+                        replyDiv.className = 'author-reply mt-2 p-2 bg-light border-start';
+                        replyDiv.style.whiteSpace = 'pre-wrap';
+                        replyDiv.style.wordBreak = 'break-word';
+                        const who = r.authorName || r.authorId || 'Tác giả';
+                        replyDiv.innerHTML = '<strong>' + who + ':</strong> ' + (r.content || '');
+                        container.appendChild(replyDiv);
+                    });
+                }
+
+                wrap.appendChild(container);
             });
         }
     </script>
