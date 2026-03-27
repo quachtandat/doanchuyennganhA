@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tác giả - Tổng quan</title>
+    <link rel="stylesheet" href="/assets/author.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <h2 class="sidebar-title">Tác giả</h2>
+            <nav class="sidebar-menu">
+                <a href="#" class="menu-item active" data-tab="overview"><i class="fas fa-chart-line"></i> Tổng quan</a>
+                <a href="#" class="menu-item" data-tab="stories"><i class="fas fa-book"></i> Quản lý Truyện</a>
+                <a href="#" class="menu-item" data-tab="chapters"><i class="fas fa-list-alt"></i> Quản lý Chương</a>
+                <a href="#" class="menu-item" data-tab="comments"><i class="fas fa-comments"></i> Bình luận</a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="/login" class="logout-link"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+          <header class="header">
+              <div class="header-icons">
+                <button id="theme-toggle" title="Chuyển chế độ sáng/tối">🌙</button>
+              </div>
+            </header>
+
+            <!-- OVERVIEW TAB -->
+            <div class="tab-content" id="overview-tab">
+                <h1 >Tổng quan</h1>
+                <h3 class="overview-heading">Thống kê tổng hợp về truyện và doanh thu của bạn</h3>
+                
+                <div class="stats-grid">
+                    <div class="stat-card stat-document">
+                        <div class="card-icon"><i class="fas fa-file-alt"></i></div>
+                        <div class="card-content">
+                            <p class="stat-label">Tổng Truyện</p>
+                            <h4 id="total-stories" class="stat-value">—</h4>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-document">
+                        <div class="card-icon"><i class="fas fa-file-alt"></i></div>
+                        <div class="card-content">
+                            <p class="stat-label">Tổng Chương</p>
+                            <h4 id="total-chapters" class="stat-value">—</h4>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-eye">
+                        <div class="card-icon"><i class="fas fa-eye"></i></div>
+                        <div class="card-content">
+                            <p class="stat-label">Tổng Lượt đọc</p>
+                            <h4 id="total-reads" class="stat-value">—</h4>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-money">
+                        <div class="card-icon"><i class="fas fa-dollar-sign"></i></div>
+                        <div class="card-content">
+                            <p class="stat-label">Doanh thu</p>
+                            <h4 id="total-revenue" class="stat-value">—</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="charts-row">
+                    <div class="chart-box">
+                        <p class="chart-label">Lượt đọc 7 ngày qua</p>
+                        <canvas id="readingChart"></canvas>
+                    </div>
+                    <div class="chart-box">
+                        <p class="chart-label">Doanh thu theo tháng</p>
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="top-stories-section">
+                    <h3 class="section-title">Top truyện được xem nhiều nhất</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Tên truyện</th>
+                                <th>Lượt xem</th>
+                                <th>Chương</th>
+                                <th>Doanh thu</th>
+                            </tr>
+                        </thead>
+                        <tbody id="topStoriesBody">
+                            <tr><td colspan="4" style="padding:12px; text-align:center; color:#999;">Đang tải...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- STORY MANAGEMENT TAB -->
+            <div class="tab-content hidden" id="stories-tab">
+                <h1  >Quản lý Truyện</h1>
+                <div class="content-section">
+                    <div class="content-header">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="storySearch" placeholder="Tìm kiếm truyện...">
+                        </div>
+                        <button class="btn-primary" id="openCreateStory">
+                            <i class="fas fa-plus"></i> Tạo truyện mới
+                        </button>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Tên truyện</th>
+                                <th>Thể loại</th>
+                                <th>Trạng thái</th>
+                                <th>Chương</th>
+                                <th>Lượt xem</th>
+                                <th>Ngày tạo</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="storiesTableBody" class="loading">
+                            <tr>
+                                <td colspan="7" style="padding:20px; text-align:center; color:#999;">Đang tải...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="storiesPagination" class="pagination" style="display:none;"></div>
+                </div>
+            </div>
+
+            <!-- CHAPTERS TAB -->
+            <div class="tab-content hidden" id="chapters-tab">
+                <h1 >Quản lý Chương</h1>
+                <div class="content-section">
+                    <div class="content-header">
+                        <div class="search-group">
+                            <div class="search-bar">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="chapterSearch" placeholder="Tìm kiếm chương...">
+                            </div>
+                            <select id="chapterStoryFilter" class="story-filter">
+                                <option value="all">Tất cả truyện</option>
+                                <!-- story options will be populated dynamically -->
+                            </select>
+                        </div>
+                        
+                        <button class="btn-primary" id="openCreateChapter">
+                            <i class="fas fa-plus"></i> Tạo chương mới
+                        </button>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Truyện</th>
+                                <th>Chương</th>
+                                <th>Tiêu đề</th>
+                                <th>Lượt xem</th>
+                                <th>Trạng thái</th>
+                                <th>Ngày tạo</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="chaptersTableBody">
+                            <tr>
+                                <td colspan="7" style="padding:20px; text-align:center; color:#999;">Đang tải...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="chaptersPagination" class="pagination" style="display:none;"></div>
+                </div>
+            </div>
+
+            <!-- COMMENTS TAB -->
+            <div class="tab-content hidden" id="comments-tab">
+                <h1 >Bình luận</h1>
+                <div class="content-section">
+                    <div class="content-header">
+                        <div class="search-group">
+                            <div class="search-bar">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="commentSearch" placeholder="Tìm kiếm bình luận...">
+                            </div>
+                            <select id="commentStoryFilter" class="story-filter">
+                                <option value="all">Tất cả truyện</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div id="commentsContainer" class="comments-container">
+                        <p style="text-align:center; color:#999; padding:40px;">Đang tải bình luận...</p>
+                    </div>
+                    <div id="commentsPagination" class="pagination" style="display:none;"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL FOR STORY CREATE/EDIT -->
+    <div class="modal-backdrop" id="storyModal" style="display: none;">
+        <div class="modal-content">
+            <h3 class="modal-title" id="storyModalTitle">Tạo truyện mới</h3>
+            <span class="close-button" id="closeCreateStory">&times;</span>
+            <input type="hidden" id="storyId">
+            <div class="form-group">
+                <label for="storyName">Tên truyện</label>
+                <input type="text" id="storyName" placeholder="Nhập tên truyện">
+            </div>
+            <div class="form-group">
+                <label for="storySlug">Slug</label>
+                <input type="text" id="storySlug" placeholder="slug-cua-truyen">
+            </div>
+            <div class="form-group">
+                <label>Thể loại (chọn tối đa 5)</label>
+                <div id="categoryTags" class="category-tags-container">
+                    <!-- Tags sẽ được tạo bởi JavaScript -->
+                </div>
+                <small class="text-muted" id="categoryCount">Đã chọn: 0/5</small>
+            </div>
+            <div class="form-group">
+                <label for="storyDescription">Mô tả</label>
+                <textarea id="storyDescription" rows="4" placeholder="Mô tả về truyện của bạn"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="storyCoverUrl">URL ảnh bìa</label>
+                <input type="text" id="storyCoverUrl" placeholder="https://...">
+            </div>
+            <div class="form-group">
+                <!-- Trạng thái được quản lý bởi hệ thống; không cho phép chỉnh sửa từ UI -->
+            </div>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="cancelStoryBtn">Hủy</button>
+                <button class="btn-primary" id="saveStoryBtn">Lưu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FOR CHAPTER CREATE/EDIT -->
+    <div class="modal-backdrop" id="chapterModal" style="display: none;">
+        <div class="modal-content large-modal">
+            <h3 class="modal-title" id="chapterModalTitle">Tạo chương mới</h3>
+            <span class="close-button" id="closeChapterModal">&times;</span>
+            <input type="hidden" id="chapterId">
+            
+            <div class="form-group">
+                <label for="chapterStory">Truyện</label>
+                <select id="chapterStory">
+                    <option value="">-- Chọn truyện --</option>
+                    <!-- Options will be populated from loadAuthorStories -->
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group half-width">
+                    <label for="chapterNumber">Số chương</label>
+                    <input type="number" id="chapterNumber" placeholder="VD: 1, 2, 3...">
+                </div>
+                <div class="form-group half-width">
+                    <label>Chương VIP</label>
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <label style="display:flex; align-items:center; gap:6px;"><input type="checkbox" id="chapterIsVip"> VIP</label>
+                        <div style="flex:1;">
+                            <label for="chapterPrice">Giá (coins)</label>
+                            <input type="number" id="chapterPrice" placeholder="0" min="0">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="chapterTitle">Tiêu đề chương</label>
+                <input type="text" id="chapterTitle" placeholder="Nhập tiêu đề chương">
+            </div>
+
+            <div class="form-group content-area">
+                <label for="chapterContent">Nội dung</label>
+                <textarea id="chapterContent" rows="10" placeholder="Viết nội dung chương ở đây..."></textarea>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="btn-secondary" id="cancelChapterBtn">Hủy</button>
+                <button class="btn-primary">Lưu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FOR REPLY COMMENT -->
+    <div class="modal-backdrop" id="replyCommentModal" style="display: none;">
+        <div class="modal-content">
+            <h3 class="modal-title">Trả lời bình luận</h3>
+            <span class="close-button" id="closeReplyModal">&times;</span>
+            <input type="hidden" id="replyCommentId">
+            
+            <div class="form-group">
+                <label><strong>Bình luận gốc:</strong></label>
+                <div id="originalCommentDisplay" style="padding: 12px; background: #f9f9f9; border-radius: 4px; margin-bottom: 12px; border-left: 3px solid #3b82f6;"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="replyContent">Nội dung trả lời</label>
+                <textarea id="replyContent" rows="6" placeholder="Nhập trả lời..."></textarea>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="btn-secondary" id="cancelReplyBtn">Hủy</button>
+                <button class="btn-primary" id="saveReplyBtn">Gửi trả lời</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="/assets/author.js"></script>
